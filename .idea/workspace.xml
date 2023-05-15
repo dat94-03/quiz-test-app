@@ -42,12 +42,18 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Merging main",
-    "last_opened_file_path": "E:/IDE/javaFX/javafx-sdk-20.0.1/lib",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "E:/text editor and compiler in here/openjfx-20.0.1_windows-x64_bin-sdk/javafx-sdk-20.0.1/lib",
     "project.structure.last.edited": "Libraries",
+<<<<<<< HEAD
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0"
 >>>>>>> b42097ef7a5da15749a7cb524c1811039d712b53
+=======
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.JavaFX"
+>>>>>>> e15785792232a560dad1b11505b8ce9326da6354
   }
 }</component>
   <component name="RunManager">
@@ -81,6 +87,7 @@
     </task>
     <servers />
   </component>
+<<<<<<< HEAD
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -92,6 +99,8 @@
       </map>
     </option>
   </component>
+=======
+>>>>>>> e15785792232a560dad1b11505b8ce9326da6354
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />

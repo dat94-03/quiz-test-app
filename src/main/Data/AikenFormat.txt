@@ -1,0 +1,26 @@
+Theo bạn thì Đạt có đẹp trai không ?
+A. có
+B. chắc chắn là có
+ANSWER: A
+
+Theo bạn thì Huy có gay không ?
+A. có
+B. chắc chắn là có
+ANSWER: A
+
+Một cộng một theo em bằng mấy?
+A. 2 
+B. 3 
+ANSWER: A
+
+Easy: Trong tiếng Việt, chủ nhật còn có tên gọi là gì? 
+A. Chúa nhật 
+B. Sunday 
+C. Ngày tất niên
+ANSWER: A
+
+
+$123 $Theo bạn thì Đạt có đẹp trai không ? $null $A $A. có $B. chắc chắn là có
+
+
+i=105

@@ -1,4 +1,4 @@
-package com.example.ourproject;
+package javaFx.bundle.view;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,20 +7,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class treeView implements Initializable {
+public class TreeView implements Initializable {
     @FXML
-    public TreeView treeView;
+    public javafx.scene.control.TreeView treeView;
     @FXML
     public Label defaultBox;
     @FXML

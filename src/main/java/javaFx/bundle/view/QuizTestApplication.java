@@ -1,16 +1,17 @@
-package com.example.ourproject;
+package javaFx.bundle.view;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.AikenFormatReader;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class QuizTestApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Home.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(QuizTestApplication.class.getResource("Home.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 960, 780 );
         stage.setTitle("HOME");
         stage.setScene(scene);

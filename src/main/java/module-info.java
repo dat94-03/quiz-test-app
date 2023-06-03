@@ -3,6 +3,6 @@ module com.example.ourproject {
     requires javafx.fxml;
 
 
-    opens com.example.ourproject to javafx.fxml;
-    exports com.example.ourproject;
+    opens javaFx.bundle.view to javafx.fxml;
+    exports javaFx.bundle.view;
 }

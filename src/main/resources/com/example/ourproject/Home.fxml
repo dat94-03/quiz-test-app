@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ourproject.HelloController">
+   <children>
+      <AnchorPane layoutX="-6.0" layoutY="-1.0" prefHeight="57.0" prefWidth="966.0" style="-fx-background-color: #0073A5;">
+         <children>
+            <ImageView fitHeight="50.0" fitWidth="56.0" layoutX="70.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Img.img/menu.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="719.0" layoutY="11.0" prefHeight="38.0" prefWidth="114.0" text="Đình Trường" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="50.0" fitWidth="66.0" layoutX="821.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Img.img/avatar.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+      <AnchorPane layoutX="33.0" layoutY="57.0" prefHeight="199.0" prefWidth="883.0" style="-fx-border-color: rgb(219, 221, 221);">
+         <children>
+            <Label layoutX="38.0" layoutY="4.0" prefHeight="62.0" prefWidth="70.0" text="IT" textFill="#c71d1d">
+               <font>
+                  <Font name="Tahoma" size="51.0" />
+               </font>
+            </Label>
+            <Label layoutX="42.0" layoutY="79.0" prefHeight="30.0" prefWidth="69.0" text="Home " textFill="#c71d1d">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="113.0" layoutY="78.0" prefHeight="30.0" prefWidth="144.0" text="/    My courses   /">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="278.0" layoutY="78.0" prefHeight="30.0" prefWidth="111.0" text="THI CUỐI KỲ" textFill="#c71d1d">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="666.0" layoutY="137.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="179.0" style="-fx-background-color: #0073A5;" text="TURN EDITING ON" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fitHeight="16.0" fitWidth="19.0" layoutX="824.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Img.img/setting%20dropdown.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Button layoutX="774.0" layoutY="21.0" mnemonicParsing="false" onAction="#switchToScene2" prefHeight="43.0" prefWidth="50.0" style="-fx-background-color: none;">
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="52.0" onMouseClicked="#switchToScene2" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Img.img/setting.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="33.0" layoutY="278.0" prefHeight="506.0" prefWidth="885.0" style="-fx-border-color: rgb(219, 221, 221);">
+         <children>
+            <ImageView fitHeight="29.0" fitWidth="38.0" layoutX="71.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Img.img/fileIcon.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label fx:id="label" layoutX="117.0" layoutY="45.0" onMouseEntered="#textUnderlineIn" onMouseExited="#textUnderlineOut" prefHeight="29.0" prefWidth="254.0" text="Kiểm tra cuối kỳ môn IT4895Q">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <ImageView fitHeight="29.0" fitWidth="38.0" layoutX="72.0" layoutY="104.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Img.img/fileIcon.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label layoutX="118.0" layoutY="107.0" prefHeight="29.0" prefWidth="254.0" text="Thi thử KTLT">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <ImageView fitHeight="29.0" fitWidth="38.0" layoutX="73.0" layoutY="163.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Img.img/fileIcon.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="119.0" layoutY="166.0" prefHeight="29.0" prefWidth="254.0" text="Thi GK2 Tin học 7">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="29.0" fitWidth="38.0" layoutX="76.0" layoutY="222.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Img.img/fileIcon.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="122.0" layoutY="225.0" prefHeight="29.0" prefWidth="254.0" text="Thi GK2 Sử Địa 7">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="29.0" fitWidth="38.0" layoutX="75.0" layoutY="289.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Img.img/fileIcon.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="121.0" layoutY="292.0" prefHeight="29.0" prefWidth="254.0" text="Thi giữa kì 2 môn Công Nghệ">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

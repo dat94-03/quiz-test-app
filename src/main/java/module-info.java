@@ -1,8 +1,8 @@
-module com.example.quiztestapp {
+module com.example.ourproject {
     requires javafx.controls;
     requires javafx.fxml;
 
 
-    opens com.example.quiztestapp to javafx.fxml;
-    exports com.example.quiztestapp;
+    opens com.example.ourproject to javafx.fxml;
+    exports com.example.ourproject;
 }

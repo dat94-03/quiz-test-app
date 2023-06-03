@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ourproject.listQuestion">
+   <children>
+      <AnchorPane layoutX="-6.0" layoutY="-1.0" prefHeight="57.0" prefWidth="966.0" style="-fx-background-color: #009FE5;" />
+      <AnchorPane layoutX="33.0" layoutY="57.0" prefHeight="122.0" prefWidth="883.0" style="-fx-border-color: rgb(219, 221, 221);">
+         <children>
+            <Label layoutX="42.0" layoutY="76.0" prefHeight="30.0" prefWidth="69.0" text="Home " textFill="#c71d1d">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="113.0" layoutY="75.0" prefHeight="30.0" prefWidth="144.0" text="/    My courses   /">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="278.0" layoutY="75.0" prefHeight="30.0" prefWidth="111.0" text="THI CUỐI KỲ" textFill="#c71d1d">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="4.0" layoutY="-5.0" mnemonicParsing="false" onAction="#switchToScene1" prefHeight="92.0" prefWidth="124.0" style="-fx-background-color: none;" text="IT" textFill="#c71d1d">
+               <font>
+                  <Font name="Tahoma" size="51.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="33.0" layoutY="196.0" prefHeight="613.0" prefWidth="890.0" style="-fx-border-color: rgb(219, 221, 221);">
+         <children>
+            <Label fx:id="label" layoutX="63.0" layoutY="13.0" prefHeight="38.0" prefWidth="134.0" text="Questions" textFill="#464646">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label layoutX="195.0" layoutY="13.0" prefHeight="38.0" prefWidth="114.0" text="Categories" textFill="#00a2e9">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label layoutX="315.0" layoutY="13.0" prefHeight="38.0" prefWidth="134.0" text="Import" textFill="#00a2e9">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label layoutX="414.0" layoutY="13.0" prefHeight="38.0" prefWidth="134.0" text="Export" textFill="#00a2e9">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Line endX="552.3999633789062" layoutX="333.0" layoutY="53.0" startX="-160.46664428710938" stroke="#c4c2c2" />
+            <Line endX="11.033355712890625" endY="-61.5" layoutX="161.0" layoutY="114.0" startX="11.033355712890625" startY="-101.0" stroke="#c4c2c2" />
+            <Line endX="74.46670532226562" layoutX="97.0" layoutY="13.0" startX="-50.333351135253906" stroke="#c4c2c2" />
+            <Line endX="-100.00001525878906" endY="-70.5" layoutX="148.0" layoutY="84.0" startX="-100.00001525878906" startY="-28.000030517578125" stroke="#c4c2c2" />
+            <Label layoutX="35.0" layoutY="47.0" prefHeight="63.0" prefWidth="206.0" text="Question Bank" textFill="#c71d1d">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label layoutX="46.0" layoutY="109.0" prefHeight="29.0" prefWidth="165.0" text="Select a category:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <CheckBox layoutX="45.0" layoutY="159.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="441.0" text="Also show questions from subcategories">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </CheckBox>
+            <CheckBox layoutX="45.0" layoutY="200.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="277.0" text="Also show old questions">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </CheckBox>
+            <Button layoutX="45.0" layoutY="241.0" mnemonicParsing="false" onAction="#switchToScene2" prefHeight="43.0" prefWidth="294.0" style="-fx-background-color: #009FE5;" text="CREATE A NEW QUESTION ..." textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label layoutX="220.0" layoutY="103.0" prefHeight="43.0" prefWidth="295.0" style="-fx-border-color: rgb(219, 221, 221);" text="     Sinh học kỳ 2 L7 (67)">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="23.0" fitWidth="15.0" layoutX="478.0" layoutY="119.0" opacity="0.81" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Img.img/pngegg%20(1).png" />
+               </image>
+            </ImageView>
+            <Label layoutX="99.0" layoutY="289.0" prefHeight="29.0" prefWidth="86.0" text="Question">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <CheckBox layoutX="42.0" layoutY="343.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="888.0" text="Cho các đặc điểm sau: 1. Thường mọc ở những nơi quang đãng 2.Phiến...">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Img.img/3.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </CheckBox>
+            <CheckBox layoutX="38.0" layoutY="318.0" mnemonicParsing="false" />
+            <Label layoutX="89.0" layoutY="315.0" prefHeight="33.0" prefWidth="236.0" text="Question name / ID number" textFill="#00a2e9">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <CheckBox layoutX="42.0" layoutY="383.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="888.0" style="-fx-background-color: white;" text="Cho các đặc điểm sau: 1. Thường mọc ở những nơi quang đãng 2.Phiến...">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Img.img/3.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </CheckBox>
+            <CheckBox layoutX="43.0" layoutY="433.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="764.0" text="Cho các yếu tố sau: 1. Nhiệt độ 2. Ánh sáng 3. Hàm lượng khí...">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Img.img/3.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </CheckBox>
+            <CheckBox layoutX="43.0" layoutY="465.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="885.0" style="-fx-background-color: white;" text="S7B21C1: Cho các chất sau: 1.Oxygen 2. Carbon dioxide 3. Chất dinh dưỡng 4...">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Img.img/3.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </CheckBox>
+            <CheckBox layoutX="44.0" layoutY="512.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="764.0" text="S7B21C10: Dựa vào kiểu trao đổi chất, người ta chia sinh vật thành 2 nhóm. Đ...">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Img.img/3.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </CheckBox>
+            <CheckBox layoutX="44.0" layoutY="541.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="881.0" style="-fx-background-color: white;" text="S7B21C11: Quang hợp là quá trình biến đổi.">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Img.img/3.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </CheckBox>
+            <Label layoutX="842.0" layoutY="286.0" prefHeight="33.0" prefWidth="86.0" text="Actions">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <GridPane layoutX="821.0" layoutY="342.0" onContextMenuRequested="#switchToEditQuestion" onMouseClicked="#switchToEditQuestion" prefHeight="42.0" prefWidth="155.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="20.8" minHeight="8.266668701171877" prefHeight="8.266668701171877" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="12.533331298828124" minHeight="0.0" prefHeight="12.533331298828124" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ImageView fitHeight="27.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../../../Img.img/arrowblue.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="67.0" text="  Edit" textFill="#00a2e9" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </GridPane>
+            <GridPane layoutX="821.0" layoutY="380.0" prefHeight="42.0" prefWidth="155.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="20.8" minHeight="8.266668701171877" prefHeight="8.266668701171877" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="12.533331298828124" minHeight="0.0" prefHeight="12.533331298828124" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="19.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../../../Img.img/arrowbluewhitebg.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="67.0" text="  Edit" textFill="#00a2e9" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </GridPane>
+            <Label layoutX="54.0" layoutY="288.0" prefHeight="23.0" prefWidth="22.0" text="T" textFill="#00a2e9">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="20.0" fitWidth="23.0" layoutX="68.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+               <image>
+                  <Image url="@../../../Img.img/arrowblue.png" />
+               </image>
+            </ImageView>
+            <GridPane layoutX="821.0" layoutY="463.0" prefHeight="42.0" prefWidth="155.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="20.8" minHeight="8.266668701171877" prefHeight="8.266668701171877" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="12.533331298828124" minHeight="0.0" prefHeight="12.533331298828124" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="19.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../../../Img.img/arrowbluewhitebg.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="67.0" text="  Edit" textFill="#00a2e9" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </GridPane>
+            <GridPane layoutX="822.0" layoutY="537.0" prefHeight="42.0" prefWidth="155.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="20.8" minHeight="8.266668701171877" prefHeight="8.266668701171877" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="12.533331298828124" minHeight="0.0" prefHeight="12.533331298828124" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="19.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../../../Img.img/arrowbluewhitebg.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="67.0" text="  Edit" textFill="#00a2e9" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </GridPane>
+            <GridPane layoutX="822.0" layoutY="421.0" prefHeight="42.0" prefWidth="155.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="20.8" minHeight="8.266668701171877" prefHeight="8.266668701171877" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="12.533331298828124" minHeight="0.0" prefHeight="12.533331298828124" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="27.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../../../Img.img/arrowblue.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="67.0" text="  Edit" textFill="#00a2e9" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </GridPane>
+            <GridPane layoutX="821.0" layoutY="500.0" prefHeight="42.0" prefWidth="155.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="20.8" minHeight="8.266668701171877" prefHeight="8.266668701171877" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="12.533331298828124" minHeight="0.0" prefHeight="12.533331298828124" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ImageView fitHeight="27.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../../../Img.img/arrowblue.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="67.0" text="  Edit" textFill="#00a2e9" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </GridPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

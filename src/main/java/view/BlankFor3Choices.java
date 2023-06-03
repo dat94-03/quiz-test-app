@@ -1,4 +1,4 @@
-package com.example.ourproject;
+package view;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class blankFor3Choices implements Initializable {
+public class BlankFor3Choices implements Initializable {
 
     @FXML
     private ChoiceBox<String> choiceBox;

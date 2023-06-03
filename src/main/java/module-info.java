@@ -1,8 +1,10 @@
-module com.example.ourproject {
+module view {
     requires javafx.controls;
     requires javafx.fxml;
 
 
-    opens com.example.ourproject to javafx.fxml;
-    exports com.example.ourproject;
+    opens view to javafx.fxml;
+    exports view;
+    exports model;
+    opens model to javafx.fxml;
 }

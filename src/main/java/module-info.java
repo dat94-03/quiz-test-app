@@ -2,9 +2,7 @@ module view {
     requires javafx.controls;
     requires javafx.fxml;
 
+    opens javaFx.bundle.view to javafx.fxml;
+    exports javaFx.bundle.view;
 
-    opens view to javafx.fxml;
-    exports view;
-    exports model;
-    opens model to javafx.fxml;
 }

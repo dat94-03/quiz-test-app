@@ -61,7 +61,6 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>com.example.ourproject/javaFx.bundle.view.QuizTestApplication</mainClass>
-
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

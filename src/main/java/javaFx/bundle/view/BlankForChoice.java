@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class BlankFor3Choices implements Initializable {
+public class BlankForChoice implements Initializable {
 
     @FXML
     private ChoiceBox<String> choiceBox;
@@ -41,14 +41,14 @@ public class BlankFor3Choices implements Initializable {
     private Parent root;
     @FXML
     public void switchToSceneList(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("listQuestion.fxml"));
+        root = FXMLLoader.load(getClass().getResource("QuestionList.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
     public void switchToMoreChoice(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("blanksFor3Choices.fxml"));
+        root = FXMLLoader.load(getClass().getResource("BlankForChoice.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

@@ -36,7 +36,7 @@ public class SceneController {
 
     @FXML
     public void switchToQuestionBank(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("questionBank.fxml"));
+        root = FXMLLoader.load(getClass().getResource("QuestionBank.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -44,7 +44,7 @@ public class SceneController {
     }
 
     public void textUnderlineIn() {
-           label.setUnderline(true);
+        label.setUnderline(true);
     }
     public void textUnderlineOut() {
         label.setUnderline(false);

@@ -8,8 +8,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import model.Question;
+import model.QuestionManage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class SceneController {
     private Stage stage;

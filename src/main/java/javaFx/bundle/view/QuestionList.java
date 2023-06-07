@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import model.QuestionManage;
 
 import java.io.IOException;
 
@@ -16,6 +17,10 @@ public class QuestionList {
     private Stage stage;
     private Scene scene;
     private Parent root;
+
+
+
+
     @FXML
     public void switchToScene1(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Home.fxml"));

@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.stage.Stage;
+import model.QuestionManage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -47,7 +48,6 @@ public class TreeView implements Initializable {
         TreeItem<String> branchItem8 = new TreeItem<>("Sử Địa kỳ 2 L7 (130)");
         TreeItem<String> branchItem9 = new TreeItem<>("Tin học GK2 L7 (94)");
         TreeItem<String> branchItem10 = new TreeItem<>("Vật lý GK2 L7 (121)");
-
         TreeItem<String> leafItem1 = new TreeItem<>("Dễ");
         TreeItem<String> leafItem2 = new TreeItem<>("Khó");
         TreeItem<String> leafItem3 = new TreeItem<>("Tự luận 20221");

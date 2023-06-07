@@ -15,8 +15,10 @@ import java.util.regex.Pattern;
 public class QuestionManage {
     String dataPath = "src/main/java/data/QuizTestAppData.xlsx";
     public static ArrayList<Question> questionsList = new ArrayList<>();
-    Sheet questionBank;
     XSSFWorkbook data;
+    Sheet questionBank;
+    Sheet categories;
+
 
     public QuestionManage() throws IOException {
         FileInputStream readDataStream = new FileInputStream(dataPath);
@@ -44,9 +46,10 @@ public class QuestionManage {
         }
     }
     //remove single question when we get id of question
-    public void deleteQuestion(int questionId) throws  IOException {
+    public void deleteQuestion(int questionId,String questionCategory) throws  IOException {
             FileOutputStream writeDataStream = new FileOutputStream(dataPath);
             int lastRowNum=questionBank.getLastRowNum();
+            updateCategory(questionCategory,-1);
             if(questionId>=0&&questionId<lastRowNum){
                 questionBank.shiftRows(questionId+1,lastRowNum, -1);
             }
@@ -57,6 +60,7 @@ public class QuestionManage {
                 }
             }
             data.write(writeDataStream);
+
             writeDataStream.close();
             loadQuestion();
     }
@@ -75,13 +79,16 @@ public class QuestionManage {
         }
         newQuestion.createCell(3).setCellValue(choices.toString());
        data.write(writeDataStream);
+       updateCategory(q.category, 1);
         writeDataStream.close();
         loadQuestion();
     }
 
     //import a file of questions in .docx format
     //return number of question have imported if the format is corrSect, otherwise return -1
-    public int importQuestions(String importingPath) throws IOException {
+    // parameter category will be a string that represent a tree of category and all category have a parent is root
+    // it needs to concat "root/" before
+    public int importQuestions(String importingPath, String category) throws IOException {
         if(checkAikenFormat(importingPath)){
             //----------------
             FileInputStream importingFileStream = new FileInputStream(importingPath);
@@ -117,6 +124,7 @@ public class QuestionManage {
                     newQuestion.createCell(3).setCellValue(choices.toString());
                     choices = new StringBuilder();
                     newQuestion.createCell(2).setCellValue(String.valueOf(line.charAt(8)));
+                    newQuestion.createCell(1).setCellValue(category);
                 }else{
                     newQuestion.createCell(0).setCellValue(line);
                 }
@@ -126,6 +134,7 @@ public class QuestionManage {
             data.write(writeDataStream);
             writeDataStream.close();
             loadQuestion();
+            updateCategory(category,insertingRow-startInsertingRow +1);
             return (insertingRow-startInsertingRow +1);
         }
         else {
@@ -141,6 +150,33 @@ public class QuestionManage {
         return true;
     }
 
+    public void updateCategory(String category,int amountChange) throws IOException {
+        FileInputStream readDataStream = new FileInputStream(dataPath);
+        data = new XSSFWorkbook(readDataStream);
+        categories = data.getSheet("Category");
+        for(Row row: categories){
+            if(category.contains(String.valueOf(row.getCell(0))) ){
+                row.getCell(1).setCellValue(row.getCell(1).getNumericCellValue() + amountChange);
+            }
+
+        }
+        FileOutputStream fos = new FileOutputStream(dataPath);
+        data.write(fos);
+        fos.close();
+    }
+
+    public void addCategory(String parentCategory,String addingCategory) throws IOException {
+        FileInputStream readDataStream = new FileInputStream(dataPath);
+        data = new XSSFWorkbook(readDataStream);
+        categories = data.getSheet("Category");
+        int lastRow = categories.getLastRowNum() +1;
+        Row newCategory = categories.createRow(lastRow);
+        newCategory.createCell(0).setCellValue(parentCategory + "/" + addingCategory);
+        newCategory.createCell(1).setCellValue(0);
+        FileOutputStream fos = new FileOutputStream(dataPath);
+        data.write(fos);
+        fos.close();
+    }
 
 
     /////print out data to test(delete when done project)

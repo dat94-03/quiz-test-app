@@ -1,5 +1,6 @@
 package model;
 
+import javafx.scene.control.Alert;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -18,6 +19,7 @@ public class QuestionManage {
     XSSFWorkbook data;
     Sheet questionBank;
     Sheet categories;
+    int errorLine;
 
 
     public QuestionManage() throws IOException {
@@ -84,6 +86,7 @@ public class QuestionManage {
         loadQuestion();
     }
 
+
     //import a file of questions in .docx format
     //return number of question have imported if the format is corrSect, otherwise return -1
     // parameter category will be a string that represent a tree of category and all category have a parent is root
@@ -143,11 +146,68 @@ public class QuestionManage {
     }
 
     //check if a file is in Aiken format, return boolean value
-    public boolean checkAikenFormat(String importingPath) throws IOException {
-        FileInputStream importingFileStream = new FileInputStream(importingPath);
-        XWPFDocument importingData = new XWPFDocument(importingFileStream);
+    public boolean checkAikenFormat(String path) throws IOException {
+//        FileInputStream importingFileStream = new FileInputStream(path);
+//        XWPFDocument importingData = new XWPFDocument(importingFileStream);
 
-        return true;
+        int numQuestion = 0;
+        boolean isAiken;
+
+        File file = new File(path);
+        FileInputStream fis = new FileInputStream(file);
+        XWPFDocument docx = new XWPFDocument(fis);
+
+        int flag = 0, i = 0;
+        boolean flag2 = true;
+
+//            loop for each paragraph in file docx,
+        for(XWPFParagraph paragraph : docx.getParagraphs()){
+            i++;
+            String text = paragraph.getText(); // text get content of paragraph
+            text = text.trim();
+            System.out.println("Dong nay la : " + text);
+//
+            if(text.length() <= 2)  continue; // skip space line
+//
+//                if text is'nt answer A,B,C,C or "ANSWER: ....."
+            if(text.charAt(1) != '.' && text.charAt(6) != ':' && flag == 0){
+                continue;
+            }
+//                if text start with "A."
+            else if(text.startsWith("A.")){
+                flag = 1;
+                continue;
+            }
+//                if text start with "B." or "C.", "D.", ....
+            else if(text.charAt(1) == '.' && (flag == 1 || flag == 2)){
+                flag = 2;
+                continue;
+            }
+//                if text start with "ANSWER: ..."
+            else if(text.startsWith("ANSWER:") && flag == 2){
+                flag = 0;
+                numQuestion++;
+                continue;
+            }
+//                else : break loop, announce paragraph i is wrong in aiken format
+            else {
+                System.out.println("Error at " + i + " " + text);
+                flag2 = false;
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Error at " + i + " " + text);
+                alert.showAndWait();
+                break;
+            }
+//
+        }
+        if(flag2 == true){
+            System.out.println("Success " + numQuestion);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Success " + numQuestion);
+            alert.showAndWait();
+        }
+        isAiken = flag2;
+        return isAiken;
     }
 
     public void updateCategory(String category,int amountChange) throws IOException {

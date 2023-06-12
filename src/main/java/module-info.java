@@ -3,6 +3,7 @@ module com.example.ourproject {
     requires javafx.fxml;
     requires org.apache.poi.ooxml;
     requires org.apache.poi.scratchpad;
+    requires java.sql;
 
 
     opens javaFx.bundle.view to javafx.fxml;

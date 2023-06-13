@@ -6,7 +6,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -15,6 +17,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -28,8 +31,6 @@ public class AddNewQuiz implements Initializable {
     private Parent root;
     @FXML
     private CheckBox checkBox ;
-    @FXML
-    private Label label;
     @FXML
     private ChoiceBox<String> choiceBox ;
     private String[] choiceTime = {" hours"," minutes"," seconds"} ;
@@ -93,6 +94,13 @@ public class AddNewQuiz implements Initializable {
     Integer currSecond ;
     Integer text ;
     Thread thrd ;
+    public void switchToHome(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
     void startCountdown() {
         System.out.println("Start Countdown");
         thrd = new Thread(new Runnable() {
@@ -112,6 +120,7 @@ public class AddNewQuiz implements Initializable {
 
 
                     }
+                    System.out.println("Finished");
                 } catch (Exception e) {
 
                 }
@@ -155,16 +164,19 @@ public class AddNewQuiz implements Initializable {
           return text ;
     }
 
-    public void start(ActionEvent event){
-        if(checkBox.isSelected()) {
-          currSecond = hmsToSeconds() ;
-          if(check() == 1)
-          scrollUp();
+    public void start(ActionEvent event) {
+        if (checkBox.isSelected()) {
+            currSecond = hmsToSeconds();
+            if (check() == 1)
+                scrollUp();
+        }
+        else scrollUp();
     }
-        else
     public void unStart(ActionEvent event){
+        if (checkBox.isSelected()) {
         stopCountdown();
-        scrollDown();
+        scrollDown(); }
+        else scrollDown();
     }
     void scrollUp() {
         TranslateTransition tr1 = new TranslateTransition() ;
@@ -180,6 +192,7 @@ public class AddNewQuiz implements Initializable {
         tr2.setToY(0);
         tr2.setNode(timerPane);
         ParallelTransition pt = new ParallelTransition(tr1,tr2) ;
+        if(checkBox.isSelected())
         startCountdown();
         pt.play();
     }

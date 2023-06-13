@@ -98,129 +98,129 @@
                   <Image url="@../../../Img.img/chamhoi.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="19.0" fitWidth="23.0" layoutX="29.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="19.0" fitWidth="23.0" layoutX="35.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Img.img/muiten.png" />
                </image>
             </ImageView>
-            <Text fill="#cd5452" layoutX="62.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="General" textAlignment="CENTER">
+            <Text fill="#cd5452" layoutX="68.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="General" textAlignment="CENTER">
                <font>
                   <Font name="Mongolian Baiti" size="24.0" />
                </font>
             </Text>
-            <Text fill="#565555" fontSmoothingType="LCD" layoutX="47.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+            <Text fill="#565555" fontSmoothingType="LCD" layoutX="53.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
             </Text>
-            <Text fill="#3b3a3a" layoutX="47.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+            <Text fill="#3b3a3a" layoutX="53.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
             </Text>
-            <ImageView fitHeight="35.0" fitWidth="34.0" layoutX="325.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="35.0" fitWidth="34.0" layoutX="331.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Img.img/chamthan.png" />
                </image>
             </ImageView>
-            <TextField layoutX="371.0" layoutY="119.0" prefHeight="38.0" prefWidth="426.0" />
-            <TextArea layoutX="371.0" layoutY="172.0" prefHeight="208.0" prefWidth="552.0" style="-fx-border-color: #565555;" />
-            <CheckBox layoutX="392.0" layoutY="407.0" mnemonicParsing="false" style="-fx-background-color: white;" />
-            <Text fill="#4b4949" layoutX="418.0" layoutY="422.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Display description on course page">
+            <TextField layoutX="377.0" layoutY="91.0" prefHeight="38.0" prefWidth="426.0" />
+            <TextArea layoutX="377.0" layoutY="144.0" prefHeight="208.0" prefWidth="552.0" style="-fx-border-color: #565555;" />
+            <CheckBox layoutX="398.0" layoutY="366.0" mnemonicParsing="false" style="-fx-background-color: white;" />
+            <Text fill="#4b4949" layoutX="424.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Display description on course page">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="705.0" layoutY="406.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="711.0" layoutY="365.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Img.img/chamhoi.png" />
                </image>
             </ImageView>
-            <Line endX="716.066650390625" endY="-3.0517578125E-5" layoutX="209.0" layoutY="449.0" startX="-160.73333740234375" startY="-3.0517578125E-5" stroke="#bcb8b8" />
-            <ImageView fitHeight="19.0" fitWidth="23.0" layoutX="29.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true">
+            <Line endX="716.066650390625" endY="-3.0517578125E-5" layoutX="208.0" layoutY="397.0" startX="-160.73333740234375" startY="-3.0517578125E-5" stroke="#bcb8b8" />
+            <ImageView fitHeight="19.0" fitWidth="23.0" layoutX="25.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Img.img/muiten.png" />
                </image>
             </ImageView>
-            <Text fill="#cd5452" layoutX="64.0" layoutY="478.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Timing" textAlignment="CENTER">
+            <Text fill="#cd5452" layoutX="60.0" layoutY="431.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Timing" textAlignment="CENTER">
                <font>
                   <Font name="Mongolian Baiti" size="24.0" />
                </font>
             </Text>
-            <Text fill="#565555" fontSmoothingType="LCD" layoutX="47.0" layoutY="525.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Open the quiz">
+            <Text fill="#565555" fontSmoothingType="LCD" layoutX="43.0" layoutY="478.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Open the quiz">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
             </Text>
-            <Text fill="#565555" fontSmoothingType="LCD" layoutX="47.0" layoutY="586.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Close the quiz">
+            <Text fill="#565555" fontSmoothingType="LCD" layoutX="43.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Close the quiz">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
             </Text>
-            <Text fill="#565555" fontSmoothingType="LCD" layoutX="47.0" layoutY="642.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time limit">
+            <Text fill="#565555" fontSmoothingType="LCD" layoutX="43.0" layoutY="595.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time limit">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
             </Text>
-            <Text fill="#565555" fontSmoothingType="LCD" layoutX="47.0" layoutY="705.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When time expires">
+            <Text fill="#565555" fontSmoothingType="LCD" layoutX="43.0" layoutY="658.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When time expires">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
             </Text>
-            <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="325.0" layoutY="498.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="321.0" layoutY="451.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Img.img/chamhoi.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="325.0" layoutY="624.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="321.0" layoutY="577.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Img.img/chamhoi.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="325.0" layoutY="694.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="321.0" layoutY="647.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Img.img/chamhoi.png" />
                </image>
             </ImageView>
-            <ComboBox fx:id="dayComboBox1" layoutX="362.0" layoutY="494.0" prefHeight="35.0" prefWidth="57.0" />
-            <ComboBox fx:id="monthComboBox1" layoutX="428.0" layoutY="494.0" prefHeight="35.0" prefWidth="120.0" />
-            <ComboBox fx:id="hourComboBox1" layoutX="652.0" layoutY="494.0" prefHeight="35.0" prefWidth="57.0" />
-            <ComboBox fx:id="minuteComboBox1" layoutX="720.0" layoutY="494.0" prefHeight="35.0" prefWidth="57.0" />
-            <ComboBox fx:id="yearComboBox1" layoutX="555.0" layoutY="494.0" prefHeight="35.0" prefWidth="85.0" />
-            <ComboBox fx:id="dayComboBox2" layoutX="361.0" layoutY="560.0" prefHeight="35.0" prefWidth="57.0" />
-            <ComboBox fx:id="monthComboBox2" layoutX="428.0" layoutY="559.0" prefHeight="35.0" prefWidth="120.0" />
-            <ComboBox fx:id="hourComboBox2" layoutX="652.0" layoutY="559.0" prefHeight="35.0" prefWidth="57.0" />
-            <ComboBox fx:id="minuteComboBox2" layoutX="720.0" layoutY="559.0" prefHeight="35.0" prefWidth="57.0" />
-            <ComboBox fx:id="yearComboBox2" layoutX="555.0" layoutY="559.0" prefHeight="35.0" prefWidth="85.0" />
-            <ChoiceBox fx:id="myChoiceBox" layoutX="440.0" layoutY="625.0" prefHeight="35.0" prefWidth="100.0" />
-            <TextField fx:id="textTime" layoutX="361.0" layoutY="625.0" prefHeight="38.0" prefWidth="64.0" />
-            <ChoiceBox fx:id="choiceBox" layoutX="361.0" layoutY="684.0" prefHeight="43.0" prefWidth="285.0" />
-            <CheckBox layoutX="821.0" layoutY="509.0" mnemonicParsing="false" prefHeight="1.0" prefWidth="13.0">
+            <ComboBox fx:id="dayComboBox1" layoutX="358.0" layoutY="447.0" prefHeight="35.0" prefWidth="57.0" />
+            <ComboBox fx:id="monthComboBox1" layoutX="424.0" layoutY="447.0" prefHeight="35.0" prefWidth="120.0" />
+            <ComboBox fx:id="hourComboBox1" layoutX="648.0" layoutY="447.0" prefHeight="35.0" prefWidth="57.0" />
+            <ComboBox fx:id="minuteComboBox1" layoutX="716.0" layoutY="447.0" prefHeight="35.0" prefWidth="57.0" />
+            <ComboBox fx:id="yearComboBox1" layoutX="551.0" layoutY="447.0" prefHeight="35.0" prefWidth="85.0" />
+            <ComboBox fx:id="dayComboBox2" layoutX="357.0" layoutY="513.0" prefHeight="35.0" prefWidth="57.0" />
+            <ComboBox fx:id="monthComboBox2" layoutX="424.0" layoutY="512.0" prefHeight="35.0" prefWidth="120.0" />
+            <ComboBox fx:id="hourComboBox2" layoutX="648.0" layoutY="512.0" prefHeight="35.0" prefWidth="57.0" />
+            <ComboBox fx:id="minuteComboBox2" layoutX="716.0" layoutY="512.0" prefHeight="35.0" prefWidth="57.0" />
+            <ComboBox fx:id="yearComboBox2" layoutX="551.0" layoutY="512.0" prefHeight="35.0" prefWidth="85.0" />
+            <ChoiceBox fx:id="myChoiceBox" layoutX="436.0" layoutY="578.0" prefHeight="35.0" prefWidth="100.0" />
+            <TextField fx:id="textTime" layoutX="357.0" layoutY="578.0" prefHeight="38.0" prefWidth="64.0" />
+            <ChoiceBox fx:id="choiceBox" layoutX="357.0" layoutY="637.0" prefHeight="43.0" prefWidth="285.0" />
+            <CheckBox layoutX="817.0" layoutY="462.0" mnemonicParsing="false" prefHeight="1.0" prefWidth="13.0">
                <font>
                   <Font size="10.0" />
                </font>
             </CheckBox>
-            <Text fill="#383737" layoutX="843.0" layoutY="524.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enable">
+            <Text fill="#383737" layoutX="839.0" layoutY="477.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enable">
                <font>
                   <Font size="16.0" />
                </font>
             </Text>
-            <CheckBox layoutX="821.0" layoutY="566.0" mnemonicParsing="false" prefHeight="1.0" prefWidth="13.0">
+            <CheckBox layoutX="817.0" layoutY="519.0" mnemonicParsing="false" prefHeight="1.0" prefWidth="13.0">
                <font>
                   <Font size="10.0" />
                </font>
             </CheckBox>
-            <Text fill="#383737" layoutX="843.0" layoutY="581.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enable">
+            <Text fill="#383737" layoutX="839.0" layoutY="534.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enable">
                <font>
                   <Font size="16.0" />
                </font>
             </Text>
-            <ImageView fitHeight="29.0" fitWidth="35.0" layoutX="787.0" layoutY="505.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="29.0" fitWidth="35.0" layoutX="783.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Img.img/calendar.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="29.0" fitWidth="35.0" layoutX="787.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="29.0" fitWidth="35.0" layoutX="783.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Img.img/calendar.png" />
                </image>
@@ -230,16 +230,26 @@
                   <Font size="19.0" />
                </font>
             </Button>
-            <CheckBox layoutX="565.0" layoutY="626.0" mnemonicParsing="false" prefHeight="1.0" prefWidth="13.0">
+            <CheckBox fx:id="checkBox" layoutX="561.0" layoutY="579.0" mnemonicParsing="false" prefHeight="1.0" prefWidth="13.0">
                <font>
                   <Font size="10.0" />
                </font>
             </CheckBox>
-            <Text fill="#383737" layoutX="587.0" layoutY="641.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enable">
+            <Text fill="#383737" layoutX="583.0" layoutY="594.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enable">
                <font>
                   <Font size="16.0" />
                </font>
             </Text>
+            <Button layoutX="332.0" layoutY="701.0" mnemonicParsing="false" onAction="#switchToHome" prefHeight="51.0" prefWidth="137.0" style="-fx-background-color: #009FE5;" text="CREATE" textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="480.0" layoutY="701.0" mnemonicParsing="false" onAction="#switchToHome" prefHeight="51.0" prefWidth="137.0" style="-fx-background-color: #C02424;" text="CANCEL" textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>

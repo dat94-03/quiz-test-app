@@ -6,15 +6,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -23,6 +26,13 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class AddNewQuiz implements Initializable {
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+    @FXML
+    private Label label;
+    @FXML
+    private CheckBox checkBox ;
     @FXML
     private ChoiceBox<String> choiceBox ;
     private String[] choiceTime = {" hours"," minutes"," seconds"} ;
@@ -86,12 +96,19 @@ public class AddNewQuiz implements Initializable {
     Integer currSecond ;
     Integer text ;
     Thread thrd ;
+    public void switchToHome(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
     void startCountdown() {
         System.out.println("Start Countdown");
         thrd = new Thread(new Runnable() {
             @Override
             public void run() {
-                try {
+                try { stopFlag = false ;
                     while (!stopFlag) {
                         // Countdown here
                         setOutput();
@@ -104,6 +121,7 @@ public class AddNewQuiz implements Initializable {
 
 
                     }
+                    System.out.println("Finished");
                 } catch (Exception e) {
 
                 }
@@ -119,13 +137,13 @@ public class AddNewQuiz implements Initializable {
             return   "0" + String.valueOf(a) ;
         else  return String.valueOf(a) ;
     }
-    void setOutput() {
+    void setOutput() {    // In ra màn hình Time left
         LinkedList<Integer> currHms = secondsToHms(currSecond) ;
         hoursTimer.setText(changeint(currHms.get(0)));
         minutesTimer.setText(changeint(currHms.get(1)));
         secondsTimer.setText(changeint(currHms.get(2)));
     }
-    LinkedList<Integer> secondsToHms(Integer currSecond) { //
+    LinkedList<Integer> secondsToHms(Integer currSecond) {   // Chuyển giây nhập vào thành giờ, phút, giây in ra
         Integer hours = currSecond /3600 ;
         currSecond  = currSecond % 3600 ;
         Integer minutes = currSecond / 60 ;
@@ -137,7 +155,7 @@ public class AddNewQuiz implements Initializable {
         answer.add(seconds) ;
         return answer ;
     }
-      Integer hmsToSeconds() {
+      Integer hmsToSeconds() { // chuyển Text nhập vào thành giây
          if(myChoiceBox.getValue() == " minutes")
         text = Integer.valueOf(textTime.getText())*60 ;
          else if(myChoiceBox.getValue() == " hours")
@@ -146,15 +164,18 @@ public class AddNewQuiz implements Initializable {
              text = Integer.valueOf(textTime.getText()) ;
           return text ;
     }
-
-    public void start(ActionEvent event){
+    public void start(ActionEvent event){     // Ấn vào nút Start
+        if(checkBox.isSelected()) {
           currSecond = hmsToSeconds() ;
           if(check() == 1)
-          scrollUp();
+          scrollUp(); }
+        else scrollUp();
     }
-    public void unStart(ActionEvent event){
+    public void unStart(ActionEvent event){     // Ấn vào nút Cancel
+        if(checkBox.isSelected()) {
         stopCountdown();
-        scrollDown();
+        scrollDown(); }
+        else  scrollDown();
     }
     void scrollUp() {
         TranslateTransition tr1 = new TranslateTransition() ;
@@ -170,6 +191,7 @@ public class AddNewQuiz implements Initializable {
         tr2.setToY(0);
         tr2.setNode(timerPane);
         ParallelTransition pt = new ParallelTransition(tr1,tr2) ;
+        if(checkBox.isSelected())
         startCountdown();
         pt.play();
     }
@@ -190,6 +212,7 @@ public class AddNewQuiz implements Initializable {
         pt.play();
 
     }
+
     public Integer check() {       // Kiểm tra xem có thể vào vào được quiz hay không
         Integer check = 0 ;
         Integer year1 = yearComboBox1.getValue() ;

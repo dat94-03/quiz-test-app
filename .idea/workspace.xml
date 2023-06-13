@@ -5,9 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="737f171c-f212-4f32-b257-51afab8dbb89" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/CheckAikenFormat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/AddNewQuiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/AddNewQuiz.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data/QuizTestAppData.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/QuizTestAppData.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/QuestionList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/QuestionList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/QuizTestApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/QuizTestApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/QuestionManage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/QuestionManage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/ImportQuestion.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/ImportQuestion.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/QuestionList.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/QuestionList.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +50,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;20&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/GITHUB/quiz-test-app&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/LE MINH TUAN/Downloads/openjfx-20.0.1_windows-x64_bin-sdk (1)/javafx-sdk-20.0.1/lib&quot;,
     &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.10459435&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.42030567&quot;,

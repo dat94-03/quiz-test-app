@@ -9,5 +9,8 @@
         <module name="Our-Project" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="quiz-test-app" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

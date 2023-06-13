@@ -92,6 +92,7 @@ public class AddNewQuiz implements Initializable {
             @Override
             public void run() {
                 try {
+//                    stopFlag = false ;
                     while (!stopFlag) {
                         // Countdown here
                         setOutput();

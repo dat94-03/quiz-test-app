@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class BlankForChoice implements Initializable {
+public class  BlankForChoice implements Initializable {
 
     @FXML
     private ChoiceBox<String> choiceBox;

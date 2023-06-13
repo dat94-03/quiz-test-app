@@ -12,7 +12,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFx.bundle.view.QuestionList">
    <children>
       <AnchorPane layoutX="-6.0" layoutY="-1.0" prefHeight="39.0" prefWidth="966.0" style="-fx-background-color: #009FE5;" />
-      <AnchorPane layoutX="7.0" layoutY="167.0" prefHeight="656.0" prefWidth="955.0" style="-fx-border-color: rgb(219, 221, 221);">
+      <AnchorPane layoutX="16.0" layoutY="167.0" prefHeight="656.0" prefWidth="955.0" style="-fx-border-color: rgb(219, 221, 221);">
          <children>
             <Label layoutX="49.0" layoutY="64.0" prefHeight="30.0" prefWidth="154.0" text="File format" textFill="#c71d1d">
                <font>
@@ -80,7 +80,7 @@
                   </ImageView>
                </graphic>
             </Label>
-            <Button layoutX="461.0" layoutY="294.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="154.0" style="-fx-background-color: #009FE5; -fx-background-radius: none;" text="CHOOSE A FILE..." textFill="WHITE">
+            <Button fx:id="chooseAFileButton" layoutX="461.0" layoutY="294.0" mnemonicParsing="false" onAction="#openFile" prefHeight="35.0" prefWidth="154.0" style="-fx-background-color: #009FE5; -fx-background-radius: none;" text="CHOOSE A FILE..." textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
@@ -102,6 +102,7 @@
                   <Image url="@../../../Img.img/darkblue-arrow.png" />
                </image>
             </ImageView>
+            <Button layoutX="640.0" layoutY="380.0" mnemonicParsing="false" onAction="#openFile" opacity="0.0" prefHeight="57.0" prefWidth="49.0" text="Button" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="9.0" layoutY="46.0" prefHeight="98.0" prefWidth="966.0" style="-fx-border-color: rgb(219, 221, 221);">

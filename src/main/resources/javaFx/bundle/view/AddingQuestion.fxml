@@ -39,15 +39,21 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label layoutX="364.0" layoutY="57.0" prefHeight="30.0" prefWidth="134.0" text="Question Bank" textFill="#c71d1d">
+            <Label layoutX="364.0" layoutY="57.0" onMouseClicked="#switchToQuestionBank" prefHeight="30.0" prefWidth="134.0" text="Question Bank" textFill="#c71d1d">
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
-            <Label layoutX="499.0" layoutY="57.0" prefHeight="30.0" prefWidth="121.0" text="/  Questions  /" textFill="#c71d1d">
+            <Label layoutX="499.0" layoutY="57.0" onMouseClicked="#switchToQuestionList" prefHeight="30.0" prefWidth="121.0" text="/  Questions  /" textFill="#c71d1d">
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
             <Label layoutX="620.0" layoutY="54.0" prefHeight="35.0" prefWidth="302.0" text="Editing a Multiple choice question">
                <font>
@@ -95,12 +101,12 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="myTextField" layoutX="560.0" layoutY="150.0" onAction="#initialize" onContextMenuRequested="#initialize" onMouseClicked="#initialize" prefHeight="35.0" prefWidth="295.0" style="-fx-border-color: white;">
+            <TextField fx:id="myTextField" layoutX="560.0" layoutY="150.0" onKeyReleased="#blankCheck" prefHeight="35.0" prefWidth="295.0" style="-fx-border-color: white;">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextArea layoutX="560.0" layoutY="198.0" prefHeight="82.0" prefWidth="297.0" style="-fx-border-color: white;">
+            <TextArea fx:id="questionText" layoutX="560.0" layoutY="198.0" onKeyReleased="#blankCheck2" prefHeight="82.0" prefWidth="297.0" style="-fx-border-color: white;">
                <font>
                   <Font size="18.0" />
                </font>
@@ -115,7 +121,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <AnchorPane layoutX="565.0" layoutY="333.0" prefHeight="126.0" prefWidth="302.0" style="-fx-background-color: white;">
+            <AnchorPane fx:id="myAnchorPane" layoutX="565.0" layoutY="333.0" prefHeight="126.0" prefWidth="302.0" style="-fx-background-color: white;">
                <children>
                   <ChoiceBox fx:id="choiceBox" layoutX="107.0" layoutY="58.0" pickOnBounds="false" prefHeight="30.0" prefWidth="95.0" />
                   <Label layoutX="20.0" layoutY="15.0" prefHeight="30.0" prefWidth="70.0" text="Choice 1">
@@ -145,7 +151,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <Button layoutX="153.0" layoutY="430.0" mnemonicParsing="false" onAction="#switchToMoreChoice" prefHeight="40.0" prefWidth="270.0" style="-fx-background-color: #009FE5;" text="BLANK FOR 3 MORE CHOICES" textFill="WHITE">
+            <Button fx:id="myButton" layoutX="153.0" layoutY="430.0" mnemonicParsing="false" onAction="#switchToMoreChoice" prefHeight="40.0" prefWidth="270.0" style="-fx-background-color: #009FE5;" text="BLANK FOR A MORE CHOICE" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -177,11 +183,26 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TextField layoutX="562.0" layoutY="283.0" prefHeight="42.0" prefWidth="95.0" style="-fx-border-color: white;" text="1">
+            <TextField fx:id="myTextField2" layoutX="562.0" layoutY="283.0" onKeyReleased="#blankCheck3" prefHeight="42.0" prefWidth="95.0" style="-fx-border-color: white;" text="1">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
+            <ImageView fx:id="alert1" fitHeight="19.0" fitWidth="21.0" layoutX="535.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Img.img/chamthan.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="alert2" fitHeight="19.0" fitWidth="21.0" layoutX="535.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Img.img/chamthan.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="alert3" fitHeight="19.0" fitWidth="21.0" layoutX="539.0" layoutY="290.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Img.img/chamthan.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

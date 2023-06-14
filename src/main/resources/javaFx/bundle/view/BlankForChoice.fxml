@@ -39,12 +39,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label layoutX="364.0" layoutY="39.0" prefHeight="30.0" prefWidth="134.0" text="Question Bank" textFill="#c71d1d">
+            <Label layoutX="364.0" layoutY="39.0" onMouseClicked="#switchToQuestionBank" prefHeight="30.0" prefWidth="134.0" text="Question Bank" textFill="#c71d1d">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="499.0" layoutY="39.0" prefHeight="30.0" prefWidth="121.0" text="/  Questions  /" textFill="#c71d1d">
+            <Label layoutX="499.0" layoutY="39.0" onMouseClicked="#switchToQuestionList" prefHeight="30.0" prefWidth="121.0" text="/  Questions  /" textFill="#c71d1d">
                <font>
                   <Font size="18.0" />
                </font>

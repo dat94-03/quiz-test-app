@@ -39,20 +39,29 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label layoutX="364.0" layoutY="57.0" prefHeight="30.0" prefWidth="134.0" text="Question Bank" textFill="#c71d1d">
+            <Label layoutX="364.0" layoutY="57.0" onContextMenuRequested="#switchToQuestionBank" onMouseClicked="#switchToQuestionBank" prefHeight="30.0" prefWidth="134.0" text="Question Bank" textFill="#c71d1d">
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
-            <Label layoutX="499.0" layoutY="57.0" prefHeight="30.0" prefWidth="121.0" text="/  Questions  /" textFill="#c71d1d">
+            <Label layoutX="499.0" layoutY="57.0" onContextMenuRequested="#switchToQuestionList" onMouseClicked="#switchToQuestionList" prefHeight="30.0" prefWidth="121.0" text="/  Questions  /" textFill="#c71d1d">
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
             <Label layoutX="620.0" layoutY="54.0" prefHeight="35.0" prefWidth="302.0" text="Add category">
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
          </children>
       </AnchorPane>
@@ -116,7 +125,7 @@
                </font>
             </TextField>
             <Line endX="616.9999389648438" layoutX="335.0" layoutY="499.0" opacity="0.35" startX="-335.0" />
-            <Button layoutX="375.0" layoutY="521.0" mnemonicParsing="false" onMouseClicked="#switchToEditQuestion" prefHeight="35.0" prefWidth="154.0" style="-fx-background-color: #c71d1d;" text="ADD CATEGORY" textFill="WHITE">
+            <Button layoutX="375.0" layoutY="521.0" mnemonicParsing="false" onMouseClicked="#switchToQuestionList" prefHeight="35.0" prefWidth="154.0" style="-fx-background-color: #c71d1d;" text="ADD CATEGORY" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

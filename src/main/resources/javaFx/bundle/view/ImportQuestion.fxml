@@ -31,7 +31,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="378.0" layoutY="522.0" mnemonicParsing="false" onMouseClicked="#switchToEditQuestion" prefHeight="39.0" prefWidth="110.0" style="-fx-background-color: #c71d1d;" text="IMPORT" textFill="WHITE">
+            <Button layoutX="378.0" layoutY="522.0" mnemonicParsing="false" onMouseClicked="#switchToQuestionList" prefHeight="39.0" prefWidth="110.0" style="-fx-background-color: #c71d1d;" text="IMPORT" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -84,6 +84,9 @@
                <font>
                   <Font size="16.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Label layoutX="623.0" layoutY="289.0" prefHeight="30.0" prefWidth="219.0" text="Maximun size for new files: 100MB">
                <font>
@@ -91,7 +94,10 @@
                </font>
             </Label>
             <Label layoutX="461.0" layoutY="357.0" prefHeight="133.0" prefWidth="406.0" style="-fx-border-color: #aca9a9;" />
-            <Label layoutX="474.0" layoutY="371.0" prefHeight="106.0" prefWidth="378.0" style="-fx-border-color: #aca9a9; -fx-border-style: dashed;" />
+            <Label layoutX="474.0" layoutY="371.0" prefHeight="106.0" prefWidth="378.0" style="-fx-border-color: #aca9a9; -fx-border-style: dashed;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Label>
             <Label layoutX="518.0" layoutY="438.0" prefHeight="27.0" prefWidth="292.0" text="You can drag and drop files here to add them">
                <font>
                   <Font size="14.0" />
@@ -130,15 +136,21 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label layoutX="364.0" layoutY="57.0" prefHeight="30.0" prefWidth="134.0" text="Question Bank" textFill="#c71d1d">
+            <Label layoutX="364.0" layoutY="57.0" onMouseClicked="#switchToQuestionBank" prefHeight="30.0" prefWidth="134.0" text="Question Bank" textFill="#c71d1d">
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
-            <Label layoutX="499.0" layoutY="57.0" prefHeight="30.0" prefWidth="121.0" text="/  Questions  /" textFill="#c71d1d">
+            <Label layoutX="499.0" layoutY="57.0" onMouseClicked="#switchToQuestionList" prefHeight="30.0" prefWidth="121.0" text="/  Questions  /" textFill="#c71d1d">
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
             <Label layoutX="620.0" layoutY="54.0" prefHeight="35.0" prefWidth="302.0" text="Import Question">
                <font>

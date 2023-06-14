@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -49,6 +50,20 @@ public class  BlankForChoice implements Initializable {
     }
     public void switchToMoreChoice(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("BlankForChoice.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void switchToQuestionList(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("QuestionList.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void switchToQuestionBank(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("QuestionBank.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

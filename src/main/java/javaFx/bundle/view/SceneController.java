@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Question;
 import model.QuestionManage;
@@ -46,12 +47,26 @@ public class SceneController {
         stage.show();
     }
    public void switchToAddNewQuiz(ActionEvent event) throws  IOException {
-       root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+       root = FXMLLoader.load(getClass().getResource("AddNewQuiz.fxml"));
        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
        scene = new Scene(root);
        stage.setScene(scene);
        stage.show();
    }
+    public void switchToCategory(MouseEvent event) throws  IOException {
+        root = FXMLLoader.load(getClass().getResource("AddingCategory.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void switchToImport(MouseEvent event) throws  IOException {
+        root = FXMLLoader.load(getClass().getResource("ImportQuestion.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
     public void textUnderlineIn() {
         label.setUnderline(true);
     }

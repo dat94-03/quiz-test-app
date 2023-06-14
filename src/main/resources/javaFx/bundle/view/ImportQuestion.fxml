@@ -84,6 +84,9 @@
                <font>
                   <Font size="16.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Label layoutX="623.0" layoutY="289.0" prefHeight="30.0" prefWidth="219.0" text="Maximun size for new files: 100MB">
                <font>
@@ -91,7 +94,10 @@
                </font>
             </Label>
             <Label layoutX="461.0" layoutY="357.0" prefHeight="133.0" prefWidth="406.0" style="-fx-border-color: #aca9a9;" />
-            <Label layoutX="474.0" layoutY="371.0" prefHeight="106.0" prefWidth="378.0" style="-fx-border-color: #aca9a9; -fx-border-style: dashed;" />
+            <Label layoutX="474.0" layoutY="371.0" prefHeight="106.0" prefWidth="378.0" style="-fx-border-color: #aca9a9; -fx-border-style: dashed;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Label>
             <Label layoutX="518.0" layoutY="438.0" prefHeight="27.0" prefWidth="292.0" text="You can drag and drop files here to add them">
                <font>
                   <Font size="14.0" />
@@ -102,7 +108,10 @@
                   <Image url="@../../../Img.img/darkblue-arrow.png" />
                </image>
             </ImageView>
-            <Button layoutX="640.0" layoutY="380.0" mnemonicParsing="false" onAction="#openFile" opacity="0.0" prefHeight="57.0" prefWidth="49.0" text="Button" />
+            <Button layoutX="640.0" layoutY="380.0" mnemonicParsing="false" onAction="#openFile" opacity="0.0" prefHeight="57.0" prefWidth="49.0" text="Button">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="9.0" layoutY="46.0" prefHeight="98.0" prefWidth="966.0" style="-fx-border-color: rgb(219, 221, 221);">
@@ -111,16 +120,25 @@
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
             <Label layoutX="83.0" layoutY="58.0" prefHeight="30.0" prefWidth="144.0" text="/    My courses   /">
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
             <Label layoutX="238.0" layoutY="59.0" prefHeight="30.0" prefWidth="131.0" text="THI CUỐI KỲ  /" textFill="#c71d1d">
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
             <Button layoutX="5.0" layoutY="-11.0" mnemonicParsing="false" onAction="#switchToScene3" prefHeight="83.0" prefWidth="126.0" style="-fx-background-color: none;" text="IT" textFill="#c71d1d">
                <font>
@@ -130,20 +148,29 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label layoutX="364.0" layoutY="57.0" prefHeight="30.0" prefWidth="134.0" text="Question Bank" textFill="#c71d1d">
+            <Label layoutX="364.0" layoutY="57.0" onMouseClicked="#switchToQuestionBank" prefHeight="30.0" prefWidth="134.0" text="Question Bank" textFill="#c71d1d">
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
-            <Label layoutX="499.0" layoutY="57.0" prefHeight="30.0" prefWidth="121.0" text="/  Questions  /" textFill="#c71d1d">
+            <Label layoutX="499.0" layoutY="57.0" onMouseClicked="#switchToQuestionList" prefHeight="30.0" prefWidth="121.0" text="/  Questions  /" textFill="#c71d1d">
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
             <Label layoutX="620.0" layoutY="54.0" prefHeight="35.0" prefWidth="302.0" text="Import Question">
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
          </children>
       </AnchorPane>

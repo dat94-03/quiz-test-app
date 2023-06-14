@@ -30,6 +30,9 @@
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
             <Button layoutX="5.0" layoutY="-22.0" mnemonicParsing="false" onAction="#switchToSceneList" prefHeight="83.0" prefWidth="126.0" style="-fx-background-color: none;" text="IT" textFill="#c71d1d">
                <font>
@@ -43,16 +46,25 @@
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
             <Label layoutX="499.0" layoutY="39.0" prefHeight="30.0" prefWidth="121.0" text="/  Questions  /" textFill="#c71d1d">
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
             <Label layoutX="620.0" layoutY="36.0" prefHeight="35.0" prefWidth="302.0" text="Editing a Multiple choice question">
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
          </children>
       </AnchorPane>

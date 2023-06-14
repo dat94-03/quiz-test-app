@@ -8,7 +8,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -48,17 +52,53 @@ public class AddQuestion implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    public void switchToQuestionList(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("QuestionList.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void switchToQuestionBank(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("QuestionBank.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
+    @FXML
+    private ImageView alert1;
+    @FXML
+    private ImageView alert2;
+    @FXML
+    private ImageView alert3;
     @FXML
     private TextField myTextField;
     @FXML
-    private void initialize() {
-        myTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue.trim().isEmpty()){
-                myTextField.setStyle("-fx-border-color: red;");
-            }else{
-                myTextField.setStyle("");
-            }
-        });
+    private TextField myTextField2;
+    @FXML
+    private TextArea questionText;
+    public void blankCheck(KeyEvent event) {
+        if (myTextField.getText().isBlank()) {
+            alert1.setVisible(true);
+        } else  {
+            alert1.setVisible(false);
+        }
     }
+    public void blankCheck2(KeyEvent event) {
+        if (questionText.getText().isBlank()) {
+            alert2.setVisible(true);
+        } else  {
+            alert2.setVisible(false);
+        }
+    }
+    public void blankCheck3(KeyEvent event) {
+        if (myTextField2.getText().isBlank()) {
+            alert3.setVisible(true);
+        } else  {
+            alert3.setVisible(false);
+        }
+    }
+
 }

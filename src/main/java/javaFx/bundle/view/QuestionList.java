@@ -35,6 +35,7 @@ public class QuestionList {
     private Parent root;
     @FXML
     private Button chooseAFileButton;
+
     private Button arrowButton;
     @FXML
     private VBox questionBox;
@@ -66,6 +67,13 @@ public class QuestionList {
         stage.setScene(scene);
         stage.show();
     }
+    public void switchToQuestionBank(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("QuestionBank.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
     public void switchToEditQuestion(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("EditQuestion.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -83,6 +91,13 @@ public class QuestionList {
     }
     public void switchToImportQuestion(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("ImportQuestion.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void switchToQuestionList(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("QuestionList.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

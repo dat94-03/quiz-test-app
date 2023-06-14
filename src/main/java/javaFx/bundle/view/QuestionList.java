@@ -25,6 +25,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Question;
 import model.QuestionManage;
+//import model.QuestionManage;
 
 import java.io.IOException;
 
@@ -39,9 +40,14 @@ public class QuestionList {
     @FXML
     private VBox questionBox;
     @FXML
+    private CheckBox checkBox1;
+
+    @FXML
     private VBox editBox;
 
     private Button click;  // delete when done
+
+
 
 
     @FXML
@@ -61,6 +67,20 @@ public class QuestionList {
     }
     public void switchToScene2(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("AddingQuestion.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void switchToQuestionList(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("QuestionList.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void switchToQuestionBank(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("QuestionBank.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

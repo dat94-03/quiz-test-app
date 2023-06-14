@@ -7,10 +7,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import model.QuestionManage;
+//import model.QuestionManage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,6 +21,9 @@ import java.util.ResourceBundle;
 public class TreeView implements Initializable {
     @FXML
     public javafx.scene.control.TreeView treeView;
+    @FXML
+    public CheckBox checkBox1;
+
     @FXML
     public Label defaultBox;
     @FXML
@@ -32,24 +37,30 @@ public class TreeView implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         treeView.setStyle("-fx-font-size: 16px;");
-
+        treeView.setShowRoot(true);
+        checkBox1.setSelected(true);
 
         TreeItem<String> rootItem = new TreeItem<>("Course: IT");
+        rootItem.setExpanded(true);
 
         TreeItem<String> rootItem2 = new TreeItem<>("Top for IT ");
+        rootItem2.setExpanded(true);
 
         TreeItem<String> branchItem1 = new TreeItem<>("C câu hỏi dễ (256)");
         TreeItem<String> branchItem2 = new TreeItem<>("C from linh tinh 1(5)");
         TreeItem<String> branchItem3 = new TreeItem<>("C khó (56)");
         TreeItem<String> branchItem4 = new TreeItem<>("Công nghệ GK2 lớp 7(53)");
         TreeItem<String> branchItem5 = new TreeItem<>("Default for IT");
+        branchItem5.setExpanded(true);
         TreeItem<String> branchItem6 = new TreeItem<>("From me - de thi GK2 L7 Sinh(21)");
         TreeItem<String> branchItem7 = new TreeItem<>("Sinh học kỳ 2 L7(67)");
         TreeItem<String> branchItem8 = new TreeItem<>("Sử Địa kỳ 2 L7 (130)");
         TreeItem<String> branchItem9 = new TreeItem<>("Tin học GK2 L7 (94)");
         TreeItem<String> branchItem10 = new TreeItem<>("Vật lý GK2 L7 (121)");
         TreeItem<String> leafItem1 = new TreeItem<>("Dễ");
+        leafItem1.setExpanded(true);
         TreeItem<String> leafItem2 = new TreeItem<>("Khó");
+        leafItem2.setExpanded(true);
         TreeItem<String> leafItem3 = new TreeItem<>("Tự luận 20221");
         TreeItem<String> leafItem4 = new TreeItem<>("Tự luận KTLT");
 
@@ -95,6 +106,21 @@ public class TreeView implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    public void switchToCategory(MouseEvent event) throws  IOException {
+        root = FXMLLoader.load(getClass().getResource("AddingCategory.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void switchToImport(MouseEvent event) throws  IOException {
+        root = FXMLLoader.load(getClass().getResource("ImportQuestion.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
 
 

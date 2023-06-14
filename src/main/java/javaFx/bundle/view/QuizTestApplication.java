@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import model.CheckAikenFormat;
 import model.Question;
 import model.QuestionManage;
+//import model.QuestionManage;
 import java.io.IOException;
 
 public class QuizTestApplication extends Application {
@@ -20,17 +21,7 @@ public class QuizTestApplication extends Application {
         stage.setResizable(false);
         stage.show();
     }
-    public static void main(String[] args) throws IOException {
-        QuestionManage questionManage = new QuestionManage();
-//        for (Question question : QuestionManage.questionsList) {
-////            if(question == null)    continue;
-//            String tmp = "test";
-//            if(question.category.equals(tmp) == true) {
-////                String tmp = question.toString();
-//                System.out.println(question.title);
-//            }
-//        }
-
+    public static void main(String[] args) {
         launch();
     }
 }

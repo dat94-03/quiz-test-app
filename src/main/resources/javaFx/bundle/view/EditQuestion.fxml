@@ -39,20 +39,29 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label layoutX="364.0" layoutY="57.0" prefHeight="30.0" prefWidth="134.0" text="Question Bank" textFill="#c71d1d">
+            <Label layoutX="364.0" layoutY="57.0" onMouseClicked="#switchToQuestionBank" prefHeight="30.0" prefWidth="134.0" text="Question Bank" textFill="#c71d1d">
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
-            <Label layoutX="499.0" layoutY="57.0" prefHeight="30.0" prefWidth="121.0" text="/  Questions  /" textFill="#c71d1d">
+            <Label layoutX="499.0" layoutY="57.0" onMouseClicked="#switchToQuestionList" prefHeight="30.0" prefWidth="121.0" text="/  Questions  /" textFill="#c71d1d">
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
             <Label layoutX="620.0" layoutY="54.0" prefHeight="35.0" prefWidth="302.0" text="Editing a Multiple choice question">
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Label>
          </children>
       </AnchorPane>
@@ -145,7 +154,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <Button layoutX="153.0" layoutY="430.0" mnemonicParsing="false" onAction="#switchToMoreChoice" prefHeight="40.0" prefWidth="270.0" style="-fx-background-color: #009FE5;" text="BLANK FOR 3 MORE CHOICES" textFill="WHITE">
+            <Button layoutX="153.0" layoutY="430.0" mnemonicParsing="false" onAction="#switchToMoreChoice" prefHeight="40.0" prefWidth="270.0" style="-fx-background-color: #009FE5;" text="BLANK FOR MORE CHOICE" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

@@ -113,7 +113,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="myTextField" layoutX="560.0" layoutY="150.0" onAction="#initialize" onContextMenuRequested="#initialize" onMouseClicked="#initialize" prefHeight="35.0" prefWidth="295.0" style="-fx-border-color: white;" text="Cho các đặc điểm sau:">
+            <TextField layoutX="560.0" layoutY="150.0" prefHeight="35.0" prefWidth="295.0" style="-fx-border-color: white;" text="Cho các đặc điểm sau:">
                <font>
                   <Font size="18.0" />
                </font>
@@ -135,7 +135,7 @@
             </Label>
             <AnchorPane layoutX="565.0" layoutY="333.0" prefHeight="126.0" prefWidth="302.0" style="-fx-background-color: white;">
                <children>
-                  <ChoiceBox fx:id="choiceBox" layoutX="107.0" layoutY="58.0" pickOnBounds="false" prefHeight="30.0" prefWidth="95.0" />
+                  <ChoiceBox layoutX="107.0" layoutY="58.0" pickOnBounds="false" prefHeight="30.0" prefWidth="95.0" />
                   <Label layoutX="20.0" layoutY="15.0" prefHeight="30.0" prefWidth="70.0" text="Choice 1">
                      <font>
                         <Font size="18.0" />
@@ -150,7 +150,7 @@
             </AnchorPane>
             <AnchorPane layoutX="565.0" layoutY="474.0" prefHeight="126.0" prefWidth="302.0" style="-fx-background-color: white;">
                <children>
-                  <ChoiceBox fx:id="choiceBox1" layoutX="107.0" layoutY="61.0" pickOnBounds="false" prefHeight="30.0" prefWidth="95.0" />
+                  <ChoiceBox layoutX="107.0" layoutY="61.0" pickOnBounds="false" prefHeight="30.0" prefWidth="95.0" />
                   <Label layoutX="20.0" layoutY="15.0" prefHeight="30.0" prefWidth="70.0" text="Choice 2">
                      <font>
                         <Font size="18.0" />

@@ -147,9 +147,6 @@ public class QuestionManage {
 
     //check if a file is in Aiken format, return boolean value
     public boolean checkAikenFormat(String path) throws IOException {
-//        FileInputStream importingFileStream = new FileInputStream(path);
-//        XWPFDocument importingData = new XWPFDocument(importingFileStream);
-
         int numQuestion = 0;
         boolean isAiken;
 

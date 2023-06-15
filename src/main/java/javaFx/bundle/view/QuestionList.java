@@ -130,7 +130,7 @@ public class QuestionList {
         for(Question question : QuestionManage.questionsList){
             if(question.category.equals("test ter")){
 //                Draw question in checkBox
-                Image threedots = new Image("E:\\btl oop\\quiz-test-app\\src\\main\\resources\\Img.img\\3.png");
+                Image threedots = new Image("3.png");
                 ImageView imageView = new ImageView(threedots);
                 imageView.setFitWidth(10);
                 imageView.setFitHeight(10);

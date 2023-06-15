@@ -1,6 +1,7 @@
 package model;
 
 import javafx.scene.control.Alert;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -166,7 +167,7 @@ public class QuestionManage {
 //
             if(text.length() <= 2)  continue; // skip space line
 //
-//                if text is'nt answer A,B,C,C or "ANSWER: ....."
+//                if text isn't answer A,B,C,C or "ANSWER: ....."
             if(text.charAt(1) != '.' && text.charAt(6) != ':' && flag == 0){
                 continue;
             }
@@ -207,19 +208,35 @@ public class QuestionManage {
         return isAiken;
     }
 
+    //update number of question of each category
     public void updateCategory(String category,int amountChange) throws IOException {
         FileInputStream readDataStream = new FileInputStream(dataPath);
         data = new XSSFWorkbook(readDataStream);
         categories = data.getSheet("Category");
         for(Row row: categories){
-            if(category.contains(String.valueOf(row.getCell(0))) ){
-                row.getCell(1).setCellValue(row.getCell(1).getNumericCellValue() + amountChange);
+            if(row.getCell(0).getStringCellValue().equals(category)){
+                double ad = row.getCell(2).getNumericCellValue();
+                row.getCell(2).setCellValue( ad + amountChange);
+                break;
             }
-
         }
+        readDataStream.close();
+
         FileOutputStream fos = new FileOutputStream(dataPath);
         data.write(fos);
         fos.close();
+
+        FileInputStream readDataStreams = new FileInputStream(dataPath);
+        data = new XSSFWorkbook(readDataStreams);
+        categories = data.getSheet("Category");
+        for(Row row: categories){
+            if(row.getCell(1).getStringCellValue().contains(category)){
+                String a = row.getCell(0).getStringCellValue();
+                readDataStreams.close();
+                updateCategory(a,amountChange);
+                break;
+            }
+        }
     }
 
     public void addCategory(String parentCategory,String addingCategory) throws IOException {
@@ -228,18 +245,26 @@ public class QuestionManage {
         categories = data.getSheet("Category");
         int lastRow = categories.getLastRowNum() +1;
         Row newCategory = categories.createRow(lastRow);
-        newCategory.createCell(0).setCellValue(parentCategory + "/" + addingCategory);
-        newCategory.createCell(1).setCellValue(0);
+        newCategory.createCell(0).setCellValue(addingCategory);
+        newCategory.createCell(1).setCellValue("undefine");
+        newCategory.createCell(2).setCellValue(0);
+        for(Row r : categories){
+            if(parentCategory.equals(r.getCell(0).getStringCellValue())){
+                Cell c = r.getCell(1);
+                String cell = c.getStringCellValue() ;
+                if(cell.isEmpty()){
+                    c.setCellValue(addingCategory);
+                }else {
+                    c.setCellValue(cell + "`" + addingCategory);
+                }
+                break;
+            }
+
+        }
+
         FileOutputStream fos = new FileOutputStream(dataPath);
         data.write(fos);
         fos.close();
     }
 
-
-    /////print out data to test(delete when done project)
-    public void test(){
-     for(Question question:questionsList){
-         System.out.println(question.toString());
-     }
-    }
 }

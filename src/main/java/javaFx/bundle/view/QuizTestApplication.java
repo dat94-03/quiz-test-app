@@ -4,9 +4,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.CheckAikenFormat;
-import model.Question;
+import model.Category;
 import model.QuestionManage;
+
 import java.io.IOException;
 
 public class QuizTestApplication extends Application {
@@ -21,16 +21,10 @@ public class QuizTestApplication extends Application {
         stage.show();
     }
     public static void main(String[] args) throws IOException {
-        QuestionManage questionManage = new QuestionManage();
-//        for (Question question : QuestionManage.questionsList) {
-////            if(question == null)    continue;
-//            String tmp = "test";
-//            if(question.category.equals(tmp) == true) {
-////                String tmp = question.toString();
-//                System.out.println(question.title);
-//            }
-//        }
 
-        launch();
+        QuestionManage qm= new QuestionManage();
+
+        qm.updateCategory("bai2.1", 20);
+        //System.out.println(new Category("root").toString());
     }
 }

@@ -5,7 +5,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
-
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -18,10 +18,7 @@ public class QuizzesManage {
     public QuizzesManage() throws IOException {
         this.loadQuiz();
     }
-    //add new quiz to database
-    public void AddQuiz(){
 
-    }
     //get arrayList of  quiz object from database
     public void loadQuiz() throws IOException {
         FileInputStream ips = new FileInputStream(dataPath);
@@ -42,9 +39,41 @@ public class QuizzesManage {
             quizzesList.add(quiz);
         }
     }
-    //add quiz' questions to exiting quiz in database
-    public void editingQuiz(String quizQuestions){
 
+    //add new quiz to database
+    public void AddQuiz(Quiz addingQuiz) throws IOException {
+    FileInputStream fis = new FileInputStream(dataPath);
+    data = new XSSFWorkbook(fis);
+    quizzes = data.getSheet("Quizzes");
+    int addingRow = quizzes.getLastRowNum() +1;
+    fis.close();
+
+    Row row = quizzes.createRow(addingRow);
+    row.createCell(0).setCellValue(addingQuiz.quizName);
+    row.createCell(1).setCellValue(addingQuiz.openingTime);
+    row.createCell(2).setCellValue(addingQuiz.closingTime);
+    row.createCell(3).setCellValue(addingQuiz.timeLimit);
+    row.createCell(4).setCellValue(addingQuiz.quizQuestions);
+
+    FileOutputStream fos = new FileOutputStream(dataPath);
+    data.write(fos);
+    fos.close();
+    }
+
+    //add quiz' questions to exiting quiz in database
+    public void editingQuiz(int id, String quizQuestions) throws IOException {
+        FileInputStream fis = new FileInputStream(dataPath);
+        data = new XSSFWorkbook(fis);
+        quizzes = data.getSheet("Quizzes");
+
+        fis.close();
+
+        Row row = quizzes.getRow(id);
+        row.createCell(4).setCellValue(quizQuestions);
+
+        FileOutputStream fos = new FileOutputStream(dataPath);
+        data.write(fos);
+        fos.close();
     }
 }
 

@@ -20,6 +20,9 @@ public class QuizTestApplication extends Application {
         stage.show();
     }
     public static void main(String[] args) throws IOException {
+       QuizzesManage qm = new QuizzesManage();
+       for (Quiz q : QuizzesManage.quizzesList)
+           System.out.println(q);
         launch();
     }
 }

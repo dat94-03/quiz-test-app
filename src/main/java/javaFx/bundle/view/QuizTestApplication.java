@@ -4,8 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.Category;
-import model.QuestionManage;
+import model.*;
 
 import java.io.IOException;
 
@@ -21,10 +20,6 @@ public class QuizTestApplication extends Application {
         stage.show();
     }
     public static void main(String[] args) throws IOException {
-
-        QuestionManage qm= new QuestionManage();
-
-        qm.updateCategory("bai2.1", 20);
-        //System.out.println(new Category("root").toString());
+        launch();
     }
 }

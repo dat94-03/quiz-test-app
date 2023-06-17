@@ -87,6 +87,25 @@ public class QuestionManage {
         loadQuestion();
     }
 
+    //edit question with given question id and edited Question object
+    public void editQuestion(Question editedQuestion) throws IOException {
+        FileInputStream fis = new FileInputStream(dataPath);
+        data = new XSSFWorkbook(fis);
+        questionBank = data.getSheet("QuestionBank");
+        Row editingQuestion = questionBank.getRow(editedQuestion.id);
+        editingQuestion.getCell(0).setCellValue(editedQuestion.title);
+        editingQuestion.getCell(1).setCellValue(editedQuestion.category);
+        editingQuestion.getCell(2).setCellValue(editedQuestion.correctAnswer);
+        StringBuilder choices = new StringBuilder();
+        for(String choice :editedQuestion.choices){
+            choices.append(choice).append("\n");
+        }
+        choices.delete(choices.length()-1,choices.length() +1);
+        editingQuestion.getCell(3).setCellValue(choices.toString());
+        FileOutputStream fos = new FileOutputStream(dataPath);
+        data.write(fos);
+        loadQuestion();
+    }
 
     //import a file of questions in .docx format
     //return number of question have imported if the format is corrSect, otherwise return -1
@@ -163,25 +182,21 @@ public class QuestionManage {
 //
 //                if text isn't answer A,B,C,C or "ANSWER: ....."
             if (text.charAt(1) != '.' && text.charAt(6) != ':' && flag == 0) {
-                continue;
             }
 //                if text start with "A."
             else if (text.startsWith("A.")) {
                 flag = 1;
-                continue;
             }
 //                if text start with "B." or "C.", "D.", ....
             else if (text.charAt(1) == '.' && (flag == 1 || flag == 2)) {
                 flag = 2;
-                continue;
             }
 //                if text start with "ANSWER: ..."
             else if (text.startsWith("ANSWER:") && flag == 2) {
                 flag = 0;
                 numQuestion++;
-                continue;
             }
-//                else : break loop, announce paragraph i is wrong in aiken format
+//                else : break loop, announce paragraph is wrong in aiken format
             else {
                 System.out.println("Error at " + i + " " + text);
                 flag2 = false;
@@ -216,6 +231,7 @@ public class QuestionManage {
         data.write(fos);
     }
 
+    //add a new category with the param is category path start with root node
     public void addCategory(String addingCategoryPath) throws IOException {
         FileInputStream readDataStream = new FileInputStream(dataPath);
         data = new XSSFWorkbook(readDataStream);

@@ -22,7 +22,7 @@ public class Category {
         sb.append(", numQuestions=").append(numQuestions);
         sb.append(", subCategories=");
         for(Category c : subCategories)
-        sb.append(c.categoryName+"|");
+            sb.append(c.categoryName+"|");
         sb.append('}');
         return sb.toString();
     }

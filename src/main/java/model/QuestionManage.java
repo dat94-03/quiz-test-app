@@ -1,5 +1,6 @@
 package model;
 
+import javaFx.bundle.view.TreeView;
 import javafx.scene.control.Alert;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -111,7 +112,6 @@ public class QuestionManage {
     //return number of question have imported if the format is corrSect, otherwise return -1
     public void importQuestions(String importingPath, String category) throws IOException {
         if (checkAikenFormat(importingPath)) {
-            //----------------
             FileInputStream importingFileStream = new FileInputStream(importingPath);
             XWPFDocument importingData = new XWPFDocument(importingFileStream);
 
@@ -212,6 +212,8 @@ public class QuestionManage {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Success " + numQuestion);
             alert.showAndWait();
+//            update number question is imported success
+            TreeView.currentCategory = LibraryForUs.updateNumberQuestion(TreeView.currentCategory, numQuestion);
         }
         isAiken = flag2;
         return isAiken;

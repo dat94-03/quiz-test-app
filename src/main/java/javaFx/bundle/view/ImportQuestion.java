@@ -1,5 +1,8 @@
 package javaFx.bundle.view;
 
+import javafx.animation.Interpolator;
+import javafx.animation.ParallelTransition;
+import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +22,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.transform.Rotate;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -43,7 +47,19 @@ public class ImportQuestion implements Initializable {
         TranslateTransition translate = new TranslateTransition(Duration.millis(1000), dropDown);
         translate.setCycleCount(TranslateTransition.INDEFINITE);
         translate.setByY(-25);
+        translate.setAutoReverse(true);
         translate.play();
+
+        RotateTransition rotate = new RotateTransition(Duration.millis(2000), dropDown);
+        rotate.setCycleCount(TranslateTransition.INDEFINITE);
+        rotate.setByAngle(360);
+        rotate.setAxis(Rotate.Y_AXIS);
+        rotate.setAutoReverse(true);
+        rotate.setInterpolator(Interpolator.LINEAR);
+
+        ParallelTransition parallel = new ParallelTransition(dropDown, translate, rotate);
+        parallel.play();
+
     }
 
     @FXML
@@ -69,7 +85,7 @@ public class ImportQuestion implements Initializable {
         stage.show();
     }
     public void switchToQuestionBank(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("QuestionBank.fxml"));
+//        root = FXMLLoader.load(getClass().getResource("QuestionBank.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -123,7 +139,7 @@ public class ImportQuestion implements Initializable {
         QuestionManage questionManage = null;
         try {
             questionManage = new QuestionManage();
-            questionManage.importQuestions(pathToFile, TreeView.currentCategory);
+            questionManage.importQuestions(pathToFile, TreeView.fullyCategory);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }

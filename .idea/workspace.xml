@@ -5,14 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="737f171c-f212-4f32-b257-51afab8dbb89" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/BuildCategoryTree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/data/QuizTestAppData.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/QuizTestAppData.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/QuizTestApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/QuizTestApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/AddCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/AddCategory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/AddQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/AddQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/EditQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/EditQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/ImportQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/ImportQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/QuestionList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/QuestionList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/TreeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/TreeView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/LibraryForUs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/LibraryForUs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/QuestionManage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/QuestionManage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Quiz.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/QuizzesManage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/QuizzesManage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Img.img/darkblue-arrow.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Img.img/darkblue-arrow.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/AddingCategory.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/AddingCategory.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/AddingQuestion.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/AddingQuestion.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/EditQuestion.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/EditQuestion.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/QuestionBank.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/QuestionBank.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/QuestionList.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/QuestionList.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,17 +92,6 @@
       <updated>1685846421373</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/model/QuestionManage.java</url>
-          <line>225</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

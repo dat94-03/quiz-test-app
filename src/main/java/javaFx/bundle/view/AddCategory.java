@@ -44,7 +44,7 @@ public class AddCategory implements Initializable {
         categoryLabel.setText("  " + TreeView.currentCategory);
 
         categoryTreeView.setStyle("-fx-font-size: 16px;");
-        categoryTreeView.setShowRoot(true);
+        categoryTreeView.setShowRoot(false);
 
         TreeItem<String> rootItem = new TreeItem<>("root");
         rootItem.setExpanded(true);
@@ -62,42 +62,36 @@ public class AddCategory implements Initializable {
     }
 
     public void selectItem() {
-        if(newCategory.getText().equals("") == false){
-            categoryTreeView.setOnMouseClicked(mouseEvent -> {
-                TreeItem<String> selectedItem = (TreeItem<String>) categoryTreeView.getSelectionModel().getSelectedItem();
-                selectCategory = selectedItem.getValue();
-                System.out.println(selectCategory);
+        categoryTreeView.setOnMouseClicked(mouseEvent -> {
+            TreeItem<String> selectedItem = (TreeItem<String>) categoryTreeView.getSelectionModel().getSelectedItem();
+            selectCategory = selectedItem.getValue();
 
-//            get fully path
-                String[] fullyCategory = new String[10];
-                TreeItem<String> tmp = selectedItem;
-                int i = 0;
-                fullyCategory[i] = tmp.getValue();
-                while (tmp.getParent() != null){
-                    tmp = tmp.getParent();
-                    fullyCategory[++i] = tmp.getValue();
-                }
-                for(int j = i; j >= 0; j--){
-                    fullyPath += fullyCategory[j] + "/";
-                }
-                fullyPath += newCategory.getText();
-                QuestionManage qm = null;
-                try {
-                    qm = new QuestionManage();
-                    qm.addCategory(fullyPath);
-                    System.out.println(fullyPath);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+//            get fully path of category
+
+            fullyPath = LibraryForUs.getFullyCategory(selectedItem);
 
 //            disable TreeView when we done
-                categoryTreeView.setVisible(false);
-            });
-        }
-        else{
             categoryTreeView.setVisible(false);
-        }
+        });
+    }
 
+    public void addCategory(ActionEvent event){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        if(newCategory.getText().equals("")){
+            alert.setContentText("You did'nt set new category name");
+        }
+        else {
+            fullyPath += ( "/" + newCategory.getText());
+            QuestionManage qm = null;
+            try {
+                qm = new QuestionManage();
+                qm.addCategory(fullyPath);
+                alert.setContentText("You save new category successfully");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        alert.showAndWait();
     }
 
     @FXML

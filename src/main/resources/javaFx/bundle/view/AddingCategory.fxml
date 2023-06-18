@@ -138,7 +138,7 @@
                </font>
             </TextField>
             <Line endX="616.9999389648438" layoutX="335.0" layoutY="499.0" opacity="0.35" startX="-335.0" />
-            <Button layoutX="375.0" layoutY="521.0" mnemonicParsing="false" onMouseClicked="#switchToEditQuestion" prefHeight="35.0" prefWidth="154.0" style="-fx-background-color: #c71d1d;" text="ADD CATEGORY" textFill="WHITE">
+            <Button layoutX="375.0" layoutY="521.0" mnemonicParsing="false" onAction="#addCategory" onMouseClicked="#switchToEditQuestion" prefHeight="35.0" prefWidth="154.0" style="-fx-background-color: #c71d1d;" text="ADD CATEGORY" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

@@ -8,13 +8,17 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class BuildCategoryTree {
+public class CategoriesManage {
     String dataPath = "src/main/java/data/QuizTestAppData.xlsx";
-    public static ArrayList<Category> categories = new ArrayList<>();
+    public ArrayList<Category> categories = new ArrayList<>();
     XSSFWorkbook data;
     Sheet category;
 
-    public BuildCategoryTree() throws IOException {
+    public CategoriesManage() throws IOException {
+        buildTree();
+    }
+    public  void buildTree() throws IOException {
+        categories.clear();
         FileInputStream fis = new FileInputStream(dataPath);
         data = new XSSFWorkbook(fis);
         category = data.getSheet("Category");
@@ -43,14 +47,16 @@ public class BuildCategoryTree {
             for(Category cate2 : categories){
                 if(cate1 != cate2){
                     if(!cate1.path.equals("root")){
-                    if(cate1.path.substring(0,cate1.path.lastIndexOf('/')).equals(cate2.path)){
-                        cate2.subCategories.add(cate1);
-                    }
+                        if(cate1.path.substring(0,cate1.path.lastIndexOf('/')).equals(cate2.path)){
+                            cate2.subCategories.add(cate1);
+                        }
                     }
                 }
             }
         }
     }
+
+
     public Category getRoot(){
         for(Category cate : categories){
             if(cate.categoryName.equals("root"))

@@ -13,10 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -36,6 +33,8 @@ public class QuestionList implements Initializable{
     private Scene scene;
     private Parent root;
 
+    public static Question q ;
+
     @FXML
     private Label categoryLabel;
     @FXML
@@ -49,6 +48,20 @@ public class QuestionList implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+//        remove when editquestion done
+        QuestionManage qm = null;
+        try {
+            qm = new QuestionManage();
+            for(Question ques : QuestionManage.questionsList){
+                if (ques.category.equals(TreeView.fullyCategory) && (ques.title.equals("") == false)){
+                    q = ques;
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         categoryLabel.setText("  " + TreeView.currentCategory);
 
 //        enable question from category
@@ -59,9 +72,11 @@ public class QuestionList implements Initializable{
         }
         int dem = 0;
         for (Question question : QuestionManage.questionsList) {
-            if (question.category.equals(TreeView.currentCategory)) {
-                //                Draw question in checkBox
-                HBox hbox = new HBox();
+            if (question.category.equals(TreeView.fullyCategory) && (question.title.equals("") == false)) {
+                HBox hBoxrow = new HBox();
+
+//                Draw question in checkBox
+                HBox hboxQuestion = new HBox();
                 Image threeDots = new Image("3.png");
                 ImageView imageView = new ImageView(threeDots);
                 imageView.setFitWidth(10);
@@ -71,30 +86,37 @@ public class QuestionList implements Initializable{
                 checkBox.setGraphic(imageView);
 
                 checkBox.setFont(Font.font(20));
-                hbox.getChildren().add(checkBox);
+//                checkBox.setPrefWidth(150);
+
+                hboxQuestion.getChildren().add(checkBox);
                 if(dem % 2 == 0){
-                    hbox.setBackground(Background.fill(Color.GRAY));
+                    BackgroundFill backgroundFill = new BackgroundFill(Color.web("#CCCCCC"), null, null);
+                    Background background = new Background(backgroundFill);
+                    hboxQuestion.setBackground(background);
                 }
-
-                questionBox.getChildren().add(hbox);
-
+                hboxQuestion.setPrefWidth(800);
+                HBox.setHgrow(hboxQuestion, Priority.NEVER);
 
 //                Draw button edit beside
-                HBox hBox = new HBox();
+                HBox hBoxEdit = new HBox();
                 Text text = new Text("Edit   ");
                 text.setFont(Font.font(20));
                 Color color = Color.web("#00a2e9");
                 text.setFill(color);
                 ImageView imageView1 = new ImageView("arrowblue.png");
 
-                hBox.getChildren().addAll(text, imageView1);
-                if(dem % 2 ==0){
-                    hBox.setBackground(Background.fill(Color.BROWN));
-                }
+                hBoxEdit.getChildren().addAll(text, imageView1);
 
                 Button button = new Button();
-                button.setGraphic(hBox);
-                button.setBackground(Background.fill(null));
+                button.setGraphic(hBoxEdit);
+                if(dem % 2 ==0){
+                    BackgroundFill backgroundFill2 = new BackgroundFill(Color.web("#CCCCCC"), null, null);
+                    Background background2 = new Background(backgroundFill2);
+                    button.setBackground(background2);
+                }
+                else {
+                    button.setBackground(Background.fill(null));
+                }
 //                set switch to EditQuestion when we click Edit
                 button.setOnMouseClicked(e -> {
                     try {
@@ -104,7 +126,10 @@ public class QuestionList implements Initializable{
                     }
                 });
 
-                editBox.getChildren().add(button);
+//                add component
+                hBoxrow.getChildren().addAll(hboxQuestion, button);
+                questionBox.getChildren().add(hBoxrow);
+
                 dem ++;
             }
         }

@@ -15,6 +15,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import model.LibraryForUs;
 import model.Question;
 import model.QuestionManage;
 
@@ -117,9 +118,12 @@ public class AddQuestion implements Initializable {
         }
 
         if(existCorrectAnswer == true && isHaveText == true){
-            Question newQuestion = new Question(++currentID, TreeView.currentCategory, questionText.getText() , rightAnswer, answerChoice);
-        System.out.println(newQuestion.toString());
+//            Add question to database
+            Question newQuestion = new Question(++currentID, TreeView.fullyCategory, questionText.getText() , rightAnswer, answerChoice);
             questionManage.addQuestion(newQuestion);
+
+//           update number question of current category
+            TreeView.currentCategory = LibraryForUs.updateNumberQuestion(TreeView.currentCategory, 1);
 
 //            switch scene
             root = FXMLLoader.load(getClass().getResource("QuestionList.fxml"));
@@ -205,6 +209,7 @@ public class AddQuestion implements Initializable {
             Label label = new Label("     Choice " + indexChoice);
             Label labelGrade = new Label("     Grade");
             Label spacer = new Label();
+            Label spacerTag = new Label();
 //        Declare ChoiceBox selectPercent and TextField textChoice for each Choice
             selectPercent[indexChoice] = new ChoiceBox<>();
             textChoice[indexChoice] = new TextField();
@@ -212,19 +217,22 @@ public class AddQuestion implements Initializable {
 //        Draw one more choice
             selectPercent[indexChoice].setValue("None");
             selectPercent[indexChoice].getItems().addAll(percent);
+            textChoice[indexChoice].setFont(Font.font(18));
             label.setFont(Font.font(18));
             labelGrade.setFont(Font.font(18));
-            spacer.setFont(Font.font(10));
+            spacer.setFont(Font.font(5));
+            spacerTag.setFont(Font.font(14));
 
             hBox.getChildren().addAll(labelGrade, selectPercent[indexChoice]);
             hBox.setSpacing(50);
             hBoxContainChoice.getChildren().addAll(label, textChoice[indexChoice]);
             hBoxContainChoice.setSpacing(50);
-            vBox.getChildren().addAll(spacer,hBoxContainChoice, hBox);
+            vBox.getChildren().addAll(spacer,hBoxContainChoice, hBox, spacerTag);
             vBox.setSpacing(15);
 
             vBox.setBackground(Background.fill(Color.WHITE));
             moreChoice.getChildren().add(vBox);
+            moreChoice.setPrefHeight(moreChoice.getHeight() + 150);
 
 //        Number of choice plus 1
             indexChoice++;

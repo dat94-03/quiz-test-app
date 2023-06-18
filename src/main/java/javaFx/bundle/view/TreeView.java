@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
 
 public class TreeView implements Initializable {
     public static String currentCategory = new String();
+    public static String fullyCategory = new String();
     @FXML
     public javafx.scene.control.TreeView treeView;
     @FXML
@@ -53,12 +54,10 @@ public class TreeView implements Initializable {
         }
 
         Category rootCategory = build.getRoot();
-        System.out.println(rootCategory);
 
         LibraryForUs.accessChildrenTreeView(rootCategory, rootItem);
 
         treeView.setRoot(rootItem);
-        System.out.println("Done");
     }
 
     private void switchToScene(String fxmlFile) {
@@ -77,6 +76,8 @@ public class TreeView implements Initializable {
             TreeItem<String> selectedItem = (TreeItem<String>) treeView.getSelectionModel().getSelectedItem();
             if(selectedItem != null){
                 currentCategory = selectedItem.getValue();
+                fullyCategory = LibraryForUs.getFullyCategory(selectedItem);
+                System.out.println(fullyCategory);
             }
             switchToScene("QuestionList.fxml");
         });

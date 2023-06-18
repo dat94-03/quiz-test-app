@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFx.bundle.view.AddQuestion">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFx.bundle.view.EditQuestion">
    <children>
       <AnchorPane layoutX="-6.0" layoutY="-1.0" prefHeight="39.0" prefWidth="966.0" style="-fx-background-color: #009FE5;" />
       <AnchorPane layoutX="9.0" layoutY="46.0" prefHeight="98.0" prefWidth="966.0" style="-fx-border-color: rgb(219, 221, 221);">
@@ -187,7 +187,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="157.0" layoutY="550.0" mnemonicParsing="false" onAction="#switchToSceneList" prefHeight="35.0" prefWidth="154.0" style="-fx-background-color: #c71d1d;" text="SAVE CHANGES" textFill="WHITE">
+            <Button layoutX="157.0" layoutY="550.0" mnemonicParsing="false" onAction="#saveChages" prefHeight="35.0" prefWidth="154.0" style="-fx-background-color: #c71d1d;" text="SAVE CHANGES" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

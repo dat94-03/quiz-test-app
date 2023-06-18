@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFx.bundle.view.QuestionList">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFx.bundle.view.ImportQuestion">
    <children>
       <AnchorPane layoutX="-6.0" layoutY="-1.0" prefHeight="39.0" prefWidth="966.0" style="-fx-background-color: #009FE5;" />
       <AnchorPane layoutX="16.0" layoutY="167.0" prefHeight="656.0" prefWidth="955.0" style="-fx-border-color: rgb(219, 221, 221);">
@@ -31,7 +31,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="378.0" layoutY="522.0" mnemonicParsing="false" onMouseClicked="#switchToEditQuestion" prefHeight="39.0" prefWidth="110.0" style="-fx-background-color: #c71d1d;" text="IMPORT" textFill="WHITE">
+            <Button layoutX="378.0" layoutY="522.0" mnemonicParsing="false" onAction="#importQuestion" prefHeight="39.0" prefWidth="110.0" style="-fx-background-color: #c71d1d;" text="IMPORT" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -103,12 +103,12 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ImageView fitHeight="49.0" fitWidth="43.0" focusTraversable="true" layoutX="644.0" layoutY="390.0" opacity="0.89" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+            <ImageView fx:id="dropDown" fitHeight="49.0" fitWidth="43.0" focusTraversable="true" layoutX="642.0" layoutY="396.0" opacity="0.89" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                <image>
                   <Image url="@../../../Img.img/darkblue-arrow.png" />
                </image>
             </ImageView>
-            <Button layoutX="640.0" layoutY="380.0" mnemonicParsing="false" onAction="#openFile" opacity="0.0" prefHeight="57.0" prefWidth="49.0" text="Button">
+            <Button layoutX="639.0" layoutY="388.0" mnemonicParsing="false" onAction="#openFile" opacity="0.0" prefHeight="57.0" prefWidth="49.0" text="Button">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>

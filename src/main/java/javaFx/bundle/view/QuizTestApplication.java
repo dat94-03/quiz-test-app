@@ -5,9 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import model.CheckAikenFormat;
-import model.Question;
-import model.QuestionManage;
+import model.*;
+
 import java.io.IOException;
 
 public class QuizTestApplication extends Application {
@@ -15,7 +14,7 @@ public class QuizTestApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(QuizTestApplication.class.getResource("Home.fxml"));
 
-        Image image = new Image("moodle.png");
+        Image image = new Image(getClass().getResource("/Img.img/moodle.png").toExternalForm());
         stage.setTitle("Quiz Test App");
         Scene scene = new Scene(fxmlLoader.load(), 960, 760 );
         stage.setScene(scene);
@@ -25,9 +24,6 @@ public class QuizTestApplication extends Application {
 
     }
     public static void main(String[] args) throws IOException {
-       QuizzesManage qm = new QuizzesManage();
-       for (Quiz q : QuizzesManage.quizzesList)
-           System.out.println(q);
         launch();
     }
 }

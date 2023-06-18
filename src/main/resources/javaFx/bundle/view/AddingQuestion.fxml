@@ -109,7 +109,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="561.0" layoutY="108.0" prefHeight="35.0" prefWidth="292.0" style="-fx-border-color: #514b4b;" text="   Sinh học kỳ 2 L7(67)">
+                  <Label fx:id="categoryLabel" layoutX="561.0" layoutY="108.0" prefHeight="35.0" prefWidth="292.0" style="-fx-border-color: #514b4b;" text="  Default">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -134,7 +134,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Button layoutX="149.0" layoutY="431.0" mnemonicParsing="false" onAction="#switchToMoreChoice" prefHeight="40.0" prefWidth="292.0" style="-fx-background-color: #009FE5;" text="BLANK FOR ONE MORE CHOICE" textFill="WHITE">
+                  <Button layoutX="149.0" layoutY="431.0" mnemonicParsing="false" onAction="#getMoreChoice" prefHeight="40.0" prefWidth="292.0" style="-fx-background-color: #009FE5;" text="BLANK FOR ONE MORE CHOICE" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -142,7 +142,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="125.0" layoutY="488.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="342.0" style="-fx-background-color: #009FE5;" text="SAVE CHANGES AND CONTINUE EDITING" textFill="WHITE">
+                  <Button layoutX="125.0" layoutY="488.0" mnemonicParsing="false" onAction="#saveChangesAndContinueEditting" prefHeight="42.0" prefWidth="342.0" style="-fx-background-color: #009FE5;" text="SAVE CHANGES AND CONTINUE EDITING" textFill="WHITE">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -158,7 +158,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="157.0" layoutY="550.0" mnemonicParsing="false" onAction="#switchToSceneList" prefHeight="35.0" prefWidth="154.0" style="-fx-background-color: #c71d1d;" text="SAVE CHANGES" textFill="WHITE">
+                  <Button layoutX="157.0" layoutY="550.0" mnemonicParsing="false" onAction="#saveChanges" prefHeight="35.0" prefWidth="154.0" style="-fx-background-color: #c71d1d;" text="SAVE CHANGES" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -186,10 +186,10 @@
                         <Image url="@../../../Img.img/chamthan.png" />
                      </image>
                   </ImageView>
-                  <VBox fx:id="morechoice" layoutX="573.0" layoutY="674.0" prefHeight="342.0" prefWidth="361.0" />
+                  <VBox fx:id="moreChoice" layoutX="573.0" layoutY="674.0" prefHeight="342.0" prefWidth="361.0" />
                   <AnchorPane fx:id="myAnchorPane" layoutX="578.0" layoutY="356.0" prefHeight="126.0" prefWidth="302.0" style="-fx-background-color: white;">
                      <children>
-                        <ChoiceBox fx:id="choiceBox" layoutX="133.0" layoutY="69.0" pickOnBounds="false" prefHeight="30.0" prefWidth="95.0" />
+                        <ChoiceBox fx:id="choiceBox1" layoutX="133.0" layoutY="69.0" pickOnBounds="false" prefHeight="30.0" prefWidth="95.0" />
                         <Label layoutX="20.0" layoutY="15.0" prefHeight="30.0" prefWidth="70.0" text="Choice 1">
                            <font>
                               <Font size="18.0" />
@@ -209,7 +209,7 @@
                   </AnchorPane>
                   <AnchorPane fx:id="myAnchorPane1" layoutX="577.0" layoutY="501.0" prefHeight="126.0" prefWidth="302.0" style="-fx-background-color: white;">
                      <children>
-                        <ChoiceBox fx:id="choiceBox1" layoutX="133.0" layoutY="71.0" pickOnBounds="false" prefHeight="30.0" prefWidth="95.0" />
+                        <ChoiceBox fx:id="choiceBox2" layoutX="133.0" layoutY="71.0" pickOnBounds="false" prefHeight="30.0" prefWidth="95.0" />
                         <Label layoutX="20.0" layoutY="15.0" prefHeight="30.0" prefWidth="70.0" text="Choice 2">
                            <font>
                               <Font size="18.0" />

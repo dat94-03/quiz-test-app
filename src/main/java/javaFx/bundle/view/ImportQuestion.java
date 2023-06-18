@@ -8,13 +8,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -30,86 +29,22 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class QuestionList implements Initializable{
-
+public class ImportQuestion implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
-
+    private String pathToFile = new String();
     @FXML
-    private Label categoryLabel;
-    @FXML
-    private VBox questionBox;
-    @FXML
-    private VBox editBox;
-
-    private Button click;  // delete when done
+    private Button chooseAFileButton;
     @FXML
     private ImageView dropDown;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        categoryLabel.setText("  " + TreeView.currentCategory);
-
-//        enable question from category
-        try {
-            QuestionManage questionManage = new QuestionManage();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        int dem = 0;
-        for (Question question : QuestionManage.questionsList) {
-            if (question.category.equals(TreeView.currentCategory)) {
-                //                Draw question in checkBox
-                HBox hbox = new HBox();
-                Image threeDots = new Image("3.png");
-                ImageView imageView = new ImageView(threeDots);
-                imageView.setFitWidth(10);
-                imageView.setFitHeight(10);
-                CheckBox checkBox = new CheckBox(question.title);
-
-                checkBox.setGraphic(imageView);
-
-                checkBox.setFont(Font.font(20));
-                hbox.getChildren().add(checkBox);
-                if(dem % 2 == 0){
-                    hbox.setBackground(Background.fill(Color.GRAY));
-                }
-
-                questionBox.getChildren().add(hbox);
-
-
-//                Draw button edit beside
-                HBox hBox = new HBox();
-                Text text = new Text("Edit   ");
-                text.setFont(Font.font(20));
-                Color color = Color.web("#00a2e9");
-                text.setFill(color);
-                ImageView imageView1 = new ImageView("arrowblue.png");
-
-                hBox.getChildren().addAll(text, imageView1);
-                if(dem % 2 ==0){
-                    hBox.setBackground(Background.fill(Color.BROWN));
-                }
-
-                Button button = new Button();
-                button.setGraphic(hBox);
-                button.setBackground(Background.fill(null));
-//                set switch to EditQuestion when we click Edit
-                button.setOnMouseClicked(e -> {
-                    try {
-                        switchToEditQuestion(e);
-                    } catch (IOException even) {
-                        even.printStackTrace();
-                    }
-                });
-
-                editBox.getChildren().add(button);
-                dem ++;
-            }
-        }
+        TranslateTransition translate = new TranslateTransition(Duration.millis(1000), dropDown);
+        translate.setCycleCount(TranslateTransition.INDEFINITE);
+        translate.setByY(-25);
+        translate.play();
     }
-
 
     @FXML
     public void switchToScene1(ActionEvent event) throws IOException {
@@ -162,5 +97,36 @@ public class QuestionList implements Initializable{
         stage.setScene(scene);
         stage.show();
     }
+    public void switchToQuestionList(MouseEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("QuestionList.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void openFile(ActionEvent event) throws IOException {
+        chooseAFileButton.setOnAction(e -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open File");
+            FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Word Documents", "*.docx");
+            fileChooser.getExtensionFilters().add(filter);
+            java.io.File selectedFile = fileChooser.showOpenDialog(stage);
 
+            if (selectedFile != null) {
+                pathToFile = selectedFile.getAbsolutePath();
+                System.out.println(pathToFile);
+            }
+        });
+    }
+
+    public void importQuestion(ActionEvent event) throws IOException {
+        QuestionManage questionManage = null;
+        try {
+            questionManage = new QuestionManage();
+            questionManage.importQuestions(pathToFile, TreeView.currentCategory);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 }
+

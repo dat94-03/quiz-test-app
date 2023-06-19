@@ -79,7 +79,7 @@ public class QuestionManage {
         newQuestion.createCell(1).setCellValue(q.category);
         newQuestion.createCell(2).setCellValue(q.correctAnswer);
         for (String choice : q.choices) {
-            choices.append("\n").append(choice);
+            choices.append(choice).append("\n");
         }
         newQuestion.createCell(3).setCellValue(choices.toString());
         data.write(writeDataStream);

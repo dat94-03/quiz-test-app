@@ -92,7 +92,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <CheckBox layoutX="44.0" layoutY="159.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="441.0" selected="true" text="Also show questions from subcategories">
+                  <CheckBox layoutX="44.0" layoutY="159.0" mnemonicParsing="false" onMouseClicked="#showQuestionFromSubCate" prefHeight="30.0" prefWidth="441.0" text="Also show questions from subcategories">
                      <font>
                         <Font size="18.0" />
                      </font>

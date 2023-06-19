@@ -7,10 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -18,8 +15,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import model.Question;
-import model.QuestionManage;
+import model.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,9 +31,12 @@ public class EditQuestion implements Initializable {
     String[] answerChoice = new String[10];
 
     private String[] percent = {"None","100%","90%","83.33333%","80%","75%","70%","67.66667%","60%","50%","40%","33.3333%","30%","25%","20%","16.66667%","14.28571%","12.5%","11.11111%","10%","5%","-5%",};
-    int indexChoice = 1;
+    int indexChoice = 0;
     int numOldChoice;
-    Question q;
+    private String selectCategory = new String();
+    private String fullyPath = TreeView.fullyCategory;
+    private String oldPath = TreeView.fullyCategory;
+    Question q = QuestionList.qStatic;
     @FXML
     private Label categoryLabel;
 
@@ -45,23 +44,40 @@ public class EditQuestion implements Initializable {
     private VBox moreChoice;
     @FXML
     private TextArea questionText;
-
+    @FXML
+    private javafx.scene.control.TreeView<String> categoryTreeView;
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle) {
-        q = QuestionList.q;
-        System.out.println(q.correctAnswer.charAt(0));
 
         categoryLabel.setText("  " + TreeView.currentCategory);
         moreChoice.setSpacing(15);
         questionText.setText(q.title);
 
+//        setup TreeView
+        categoryTreeView.setStyle("-fx-font-size: 16px;");
+        categoryTreeView.setShowRoot(false);
+
+        TreeItem<String> rootItem = new TreeItem<>("root");
+        rootItem.setExpanded(true);
+
+        CategoriesManage build = null;
+        try {
+            build = new CategoriesManage();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Category rootCategory = build.getRoot();
+        LibraryForUs.accessChildrenTreeView(rootCategory, rootItem);
+
+        categoryTreeView.setRoot(rootItem);
+
 //        draw answer of old question
         for(String answer : q.choices){
-            if(answer == null)  continue;
+            if(answer.equals("null"))  continue;
             VBox vBox = new VBox();
             HBox hBox = new HBox();
             HBox hBoxContainChoice = new HBox();
-            Label label = new Label("     Choice " + indexChoice);
+            Label label = new Label("     Choice " + (indexChoice + 1));
             Label labelGrade = new Label("     Grade");
             Label spacer = new Label();
             Label spacerTag = new Label();
@@ -75,9 +91,9 @@ public class EditQuestion implements Initializable {
             textChoice[indexChoice].setFont(Font.font(18));
             textChoice[indexChoice].setText(answer);
             // set correct answer
-//            if(textChoice[indexChoice].getText().charAt(0) == q.correctAnswer.charAt(0)){
-//                selectPercent[indexChoice].setValue("100%");
-//            }
+            if(textChoice[indexChoice].getText().charAt(0) == q.correctAnswer.charAt(0)){
+                selectPercent[indexChoice].setValue("100%");
+            }
             label.setFont(Font.font(18));
             labelGrade.setFont(Font.font(18));
             spacer.setFont(Font.font(5));
@@ -99,9 +115,100 @@ public class EditQuestion implements Initializable {
         }
     }
 
+    public void selectItem() {
+        categoryTreeView.setOnMouseClicked(mouseEvent -> {
+            TreeItem<String> selectedItem = (TreeItem<String>) categoryTreeView.getSelectionModel().getSelectedItem();
+            selectCategory = selectedItem.getValue();
+
+//            get fully path of category
+
+            fullyPath = LibraryForUs.getFullyCategory(selectedItem);
+
+//            disable TreeView when we done
+            categoryTreeView.setVisible(false);
+//            set label after change parent category
+            categoryLabel.setText("  " + selectedItem.getValue());
+        });
+    }
+
+    @FXML
+    public void displayTreeView() {
+        categoryTreeView.setVisible(true);
+    }
+    @FXML
+    public void displayTreeViewOff() {
+        categoryTreeView.setVisible(false);
+    }
+
     @FXML
     public void saveChages(ActionEvent event) throws IOException {
+//        declare flag
+        boolean flagTitle = true,  flagCorectAnswer = false;
+        int flagChoices = 0; // valid question must have more than two answer
+//        update category, title, choices, corect answer
+        q.category = fullyPath;
+        if(questionText == null){
+            flagTitle = false;
+        }
+        else
+            q.title = questionText.getText();
 
+        q.choices.clear();  // delete all in order to easy work
+        for(int i = 0; i < indexChoice; i++){
+            if(textChoice[i] == null)  continue;
+            q.choices.add(textChoice[i].getText());
+            flagChoices++;
+            if(selectPercent[i].getValue().equals("100%")){
+                q.correctAnswer = textChoice[i].getText(0,1);
+                flagCorectAnswer = true;
+            }
+        }
+
+        if((flagTitle == true) && (flagChoices >= 2) && (flagCorectAnswer == true)){
+            QuestionManage questionManage = new QuestionManage();
+            System.out.println(q);
+            questionManage.editQuestion(q);
+//            set alert to inform
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("You edit question successfully");
+            alert.showAndWait();
+
+//            switch scene
+            root = FXMLLoader.load(getClass().getResource("QuestionList.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("You did'nt finish edit question");
+            alert.showAndWait();
+        }
+    }
+
+    public void saveChangesAndContinueEditting(ActionEvent event) throws IOException {
+        //        declare flag
+        boolean flagTitle = true,  flagCorectAnswer = false;
+        int flagChoices = 0; // valid question must have more than two answer
+//        update category, title, choices, corect answer
+        q.category = fullyPath;
+        if(questionText == null){
+            flagTitle = false;
+        }
+        else
+            q.title = questionText.getText();
+
+        q.choices.clear();  // delete all in order to easy work
+        for(int i = 0; i < indexChoice; i++){
+            if(textChoice[i] == null)  continue;
+            q.choices.add(textChoice[i].getText());
+            flagChoices++;
+            if(selectPercent[i].getValue().equals("100%")){
+                q.correctAnswer = textChoice[i].getText(0,1);
+                flagCorectAnswer = true;
+            }
+        }
     }
 
     public void getMoreChoice(ActionEvent event) throws IOException {
@@ -112,7 +219,7 @@ public class EditQuestion implements Initializable {
             VBox vBox = new VBox();
             HBox hBox = new HBox();
             HBox hBoxContainChoice = new HBox();
-            Label label = new Label("     Choice " + indexChoice);
+            Label label = new Label("     Choice " + (indexChoice + 1));
             Label labelGrade = new Label("     Grade");
             Label spacer = new Label();
             Label spacerTag = new Label();

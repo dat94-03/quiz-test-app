@@ -30,18 +30,16 @@ public class AddQuestion implements Initializable {
     private Parent root;
 
     TextField[] textChoice = new TextField[10];  // dua vao mang
-
+    String[] answerChoice = new String[10];
+    private ChoiceBox<String>[] selectPercent = new ChoiceBox[10];
     private String[] percent = {"None","100%","90%","83.33333%","80%","75%","70%","67.66667%","60%","50%","40%","33.3333%","30%","25%","20%","16.66667%","14.28571%","12.5%","11.11111%","10%","5%","-5%",};
     int indexChoice = 3;
-    String[] answerChoice = new String[10];
-
     @FXML
     private Label categoryLabel;
     @FXML
     private ChoiceBox<String> choiceBox1;
     @FXML
     private ChoiceBox<String> choiceBox2;
-    private ChoiceBox<String>[] selectPercent = new ChoiceBox[10];
     @FXML
     private VBox moreChoice;
     @FXML
@@ -121,6 +119,7 @@ public class AddQuestion implements Initializable {
 //            Add question to database
             Question newQuestion = new Question(++currentID, TreeView.fullyCategory, questionText.getText() , rightAnswer, answerChoice);
             questionManage.addQuestion(newQuestion);
+            System.out.println(newQuestion);
 
 //           update number question of current category
             TreeView.currentCategory = LibraryForUs.updateNumberQuestion(TreeView.currentCategory, 1);
@@ -192,8 +191,8 @@ public class AddQuestion implements Initializable {
         }
 
         if(existCorrectAnswer == true && isHaveText == true){
-            Question newQuestion = new Question(++currentID, "Default", questionText.getText() , rightAnswer, answerChoice);
-            System.out.println(newQuestion.toString());
+            Question newQuestion = new Question(++currentID, TreeView.fullyCategory, questionText.getText() , rightAnswer, answerChoice);
+            System.out.println(newQuestion);
             questionManage.addQuestion(newQuestion);
         }
     }

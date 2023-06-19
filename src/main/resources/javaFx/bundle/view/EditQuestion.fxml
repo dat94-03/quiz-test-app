@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,7 +16,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFx.bundle.view.EditQuestion">
    <children>
       <AnchorPane layoutX="-6.0" layoutY="-1.0" prefHeight="39.0" prefWidth="966.0" style="-fx-background-color: #009FE5;" />
-      <AnchorPane layoutX="9.0" layoutY="46.0" prefHeight="98.0" prefWidth="966.0" style="-fx-border-color: rgb(219, 221, 221);">
+      <AnchorPane layoutX="9.0" layoutY="46.0" onMouseClicked="#displayTreeViewOff" prefHeight="98.0" prefWidth="966.0" style="-fx-border-color: rgb(219, 221, 221);">
          <children>
             <Label layoutX="20.0" layoutY="59.0" prefHeight="30.0" prefWidth="69.0" text="Home " textFill="#c71d1d">
                <font>
@@ -109,7 +110,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="categoryLabel" layoutX="561.0" layoutY="108.0" prefHeight="35.0" prefWidth="292.0" style="-fx-border-color: #514b4b;" text="   Default">
+            <Label fx:id="categoryLabel" layoutX="561.0" layoutY="108.0" onMouseClicked="#displayTreeView" prefHeight="35.0" prefWidth="292.0" style="-fx-border-color: #514b4b;" text="   Default">
                <font>
                   <Font size="18.0" />
                </font>
@@ -142,7 +143,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="63.0" layoutY="396.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="342.0" style="-fx-background-color: #009FE5;" text="SAVE CHANGES AND CONTINUE EDITING" textFill="WHITE">
+            <Button layoutX="63.0" layoutY="396.0" mnemonicParsing="false" onAction="#saveChangesAndContinueEditting" prefHeight="42.0" prefWidth="342.0" style="-fx-background-color: #009FE5;" text="SAVE CHANGES AND CONTINUE EDITING" textFill="WHITE">
                <font>
                   <Font size="17.0" />
                </font>
@@ -171,6 +172,7 @@
                   <Font size="18.0" />
                </font>
             </TextField>
+            <TreeView fx:id="categoryTreeView" layoutX="562.0" layoutY="144.0" onContextMenuRequested="#selectItem" onMouseClicked="#selectItem" prefHeight="286.0" prefWidth="350.0" style="-fx-background-color: none;" visible="false" />
          </children>
       </AnchorPane>
       <ScrollPane layoutX="505.0" layoutY="499.0" prefHeight="277.0" prefWidth="417.0">

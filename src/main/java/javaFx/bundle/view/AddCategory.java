@@ -8,15 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.*;
 
@@ -41,7 +33,7 @@ public class AddCategory implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        categoryLabel.setText("  " + TreeView.currentCategory);
+        categoryLabel.setText("  " + QuestionBankTree.currentCategory);
 
         categoryTreeView.setStyle("-fx-font-size: 16px;");
         categoryTreeView.setShowRoot(false);

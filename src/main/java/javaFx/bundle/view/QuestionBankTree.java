@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.input.MouseEvent;
@@ -15,13 +14,12 @@ import javafx.stage.Stage;
 import model.CategoriesManage;
 import model.Category;
 import model.LibraryForUs;
-import model.QuestionManage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TreeView implements Initializable {
+public class QuestionBankTree implements Initializable {
     public static String currentCategory = new String();
     public static String fullyCategory = new String();
     @FXML

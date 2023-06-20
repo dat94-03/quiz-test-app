@@ -21,7 +21,6 @@ public class QuizTestApplication extends Application {
         stage.setResizable(false);
         stage.getIcons().add(image);
         stage.show();
-
     }
     public static void main(String[] args) throws IOException {
         launch();

@@ -1,8 +1,6 @@
 package javaFx.bundle.view;
 
-import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,15 +10,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import model.Question;
 import model.QuestionManage;
 
@@ -58,7 +53,7 @@ public class QuestionList implements Initializable{
         try {
             qm = new QuestionManage();
             for(Question ques : QuestionManage.questionsList){
-                if (ques.category.equals(TreeView.fullyCategory) && (ques.title.equals("") == false)){
+                if (ques.category.equals(QuestionBankTree.fullyCategory) && (ques.title.equals("") == false)){
                     qStatic = ques;
                     break;
                 }
@@ -67,7 +62,7 @@ public class QuestionList implements Initializable{
             throw new RuntimeException(e);
         }
 
-        categoryLabel.setText("  " + TreeView.currentCategory);
+        categoryLabel.setText("  " + QuestionBankTree.currentCategory);
 
 //        enable question from category
         try {
@@ -77,7 +72,7 @@ public class QuestionList implements Initializable{
         }
         int dem = 0;
         for (Question question : QuestionManage.questionsList) {
-            if (question.category.equals(TreeView.fullyCategory) && (question.title.equals("") == false)) {
+            if (question.category.equals(QuestionBankTree.fullyCategory) && (question.title.equals("") == false)) {
                 questions.add(question); // add question to arraylist
                 HBox hBoxrow = new HBox();
 
@@ -148,11 +143,11 @@ public class QuestionList implements Initializable{
     public void showQuestionFromSubCate() throws IOException {
         QuestionManage questionManage = new QuestionManage();
         ArrayList<Question> subCate = new ArrayList<>();
-        subCate = questionManage.getQuestionsOfCategory(TreeView.fullyCategory);
+        subCate = questionManage.getQuestionsOfCategory(QuestionBankTree.fullyCategory);
 
         int dem = 0;
         for (Question question : subCate) {
-            if (question.category.equals(TreeView.fullyCategory) && (question.title.equals("") == false)) {
+            if (question.category.equals(QuestionBankTree.fullyCategory) && (question.title.equals("") == false)) {
                 questions.add(question); // add question to arraylist
                 HBox hBoxrow = new HBox();
 

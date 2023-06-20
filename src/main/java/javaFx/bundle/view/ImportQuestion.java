@@ -12,21 +12,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.Question;
 import model.QuestionManage;
 
 import java.io.IOException;
@@ -139,7 +130,7 @@ public class ImportQuestion implements Initializable {
         QuestionManage questionManage = null;
         try {
             questionManage = new QuestionManage();
-            questionManage.importQuestions(pathToFile, TreeView.fullyCategory);
+            questionManage.importQuestions(pathToFile, QuestionBankTree.fullyCategory);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }

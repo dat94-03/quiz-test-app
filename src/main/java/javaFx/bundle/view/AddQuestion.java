@@ -49,7 +49,7 @@ public class AddQuestion implements Initializable {
     
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle) {
-        categoryLabel.setText("  " + TreeView.currentCategory);
+        categoryLabel.setText("  " + QuestionBankTree.currentCategory);
         choiceBox1.getItems().addAll(percent);
         choiceBox1.setValue("None");
         choiceBox2.getItems().addAll(percent);
@@ -117,12 +117,12 @@ public class AddQuestion implements Initializable {
 
         if(existCorrectAnswer == true && isHaveText == true){
 //            Add question to database
-            Question newQuestion = new Question(++currentID, TreeView.fullyCategory, questionText.getText() , rightAnswer, answerChoice);
+            Question newQuestion = new Question(++currentID, QuestionBankTree.fullyCategory, questionText.getText() , rightAnswer, answerChoice);
             questionManage.addQuestion(newQuestion);
             System.out.println(newQuestion);
 
 //           update number question of current category
-            TreeView.currentCategory = LibraryForUs.updateNumberQuestion(TreeView.currentCategory, 1);
+            QuestionBankTree.currentCategory = LibraryForUs.updateNumberQuestion(QuestionBankTree.currentCategory, 1);
 
 //            switch scene
             root = FXMLLoader.load(getClass().getResource("QuestionList.fxml"));
@@ -191,7 +191,7 @@ public class AddQuestion implements Initializable {
         }
 
         if(existCorrectAnswer == true && isHaveText == true){
-            Question newQuestion = new Question(++currentID, TreeView.fullyCategory, questionText.getText() , rightAnswer, answerChoice);
+            Question newQuestion = new Question(++currentID, QuestionBankTree.fullyCategory, questionText.getText() , rightAnswer, answerChoice);
             System.out.println(newQuestion);
             questionManage.addQuestion(newQuestion);
         }

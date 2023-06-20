@@ -1,6 +1,6 @@
 package model;
 
-import javaFx.bundle.view.TreeView;
+import javaFx.bundle.view.QuestionBankTree;
 import javafx.scene.control.Alert;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -213,7 +213,7 @@ public class QuestionManage {
             alert.setContentText("Success " + numQuestion);
             alert.showAndWait();
 //            update number question is imported success
-            TreeView.currentCategory = LibraryForUs.updateNumberQuestion(TreeView.currentCategory, numQuestion);
+            QuestionBankTree.currentCategory = LibraryForUs.updateNumberQuestion(QuestionBankTree.currentCategory, numQuestion);
         }
         isAiken = flag2;
         return isAiken;

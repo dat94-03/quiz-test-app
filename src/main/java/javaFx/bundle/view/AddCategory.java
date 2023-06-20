@@ -72,6 +72,8 @@ public class AddCategory implements Initializable {
 
 //            disable TreeView when we done
             categoryTreeView.setVisible(false);
+//            set label after change parent category
+            categoryLabel.setText("  " + selectedItem.getValue());
         });
     }
 

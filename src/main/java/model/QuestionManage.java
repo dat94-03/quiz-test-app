@@ -101,6 +101,8 @@ public class QuestionManage {
         for(String choice :editedQuestion.choices){
             choices.append(choice).append("\n");
         }
+//        updateCategory(editingQuestion.getCell(1).getStringCellValue(),-1);
+//        updateCategory(editedQuestion.category,1);
         choices.delete(choices.length()-1,choices.length() +1);
         editingQuestion.getCell(3).setCellValue(choices.toString());
         FileOutputStream fos = new FileOutputStream(dataPath);
@@ -127,7 +129,6 @@ public class QuestionManage {
                 String pattern = "^[A-Z]\\.";
                 Pattern regex = Pattern.compile(pattern);
                 Matcher matcher = regex.matcher(line);
-
                 if (line.isEmpty()) {
 
                     insertingRow++;
@@ -161,61 +162,91 @@ public class QuestionManage {
 
     //check if a file is in Aiken format, return boolean value
     public boolean checkAikenFormat(String path) throws IOException {
-        int numQuestion = 0;
-        boolean isAiken;
+        String tmp = new String();
+        int numQuestion = 0 , errorLine , i = 0, flag = 0;
+        boolean isAiken = true;
 
         File file = new File(path);
         FileInputStream fis = new FileInputStream(file);
         XWPFDocument docx = new XWPFDocument(fis);
 
-        int flag = 0, i = 0;
-        boolean flag2 = true;
-
 //            loop for each paragraph in file docx,
-        for (XWPFParagraph paragraph : docx.getParagraphs()) {
+        for(XWPFParagraph paragraph : docx.getParagraphs()){
             i++;
             String text = paragraph.getText(); // text get content of paragraph
             text = text.trim();
-            System.out.println("Dong nay la : " + text);
 //
-            if (text.length() <= 2) continue; // skip space line
-//
-//                if text isn't answer A,B,C,C or "ANSWER: ....."
-            if (text.charAt(1) != '.' && text.charAt(6) != ':' && flag == 0) {
+            if(text.length() == 0)  continue; // skip space line
+
+//            System.out.println("Dong nay la : " + text);
+//                if text is title
+            if(flag == 0){
+                if((text.charAt(1) != '.') && (text.charAt(6) != ':')){
+                    flag = 1;
+                    continue;
+                }
+                else {
+                    tmp = text;
+                    isAiken = false;
+                    break;
+                }
             }
 //                if text start with "A."
-            else if (text.startsWith("A.")) {
-                flag = 1;
+            else if(flag == 1){
+                if(text.startsWith("A.")){
+                    flag = 2;
+                    continue;
+                }
+                else {
+                    tmp = text;
+                    isAiken = false;
+                    break;
+                }
+
             }
 //                if text start with "B." or "C.", "D.", ....
-            else if (text.charAt(1) == '.' && (flag == 1 || flag == 2)) {
-                flag = 2;
+            else if((flag == 2 || flag == 3) && (text.startsWith("ANSWER:") == false)){
+                if (text.charAt(1) == '.' && Character.isLetter(text.charAt(0))){
+                    flag = 3;
+                    continue;
+                }
+                else {
+                    tmp = text;
+                    isAiken = false;
+                    break;
+                }
             }
 //                if text start with "ANSWER: ..."
-            else if (text.startsWith("ANSWER:") && flag == 2) {
+            else if(text.startsWith("ANSWER:") && flag == 3){
                 flag = 0;
                 numQuestion++;
+                continue;
             }
-//                else : break loop, announce paragraph is wrong in aiken format
+//                else : break loop, announce paragraph i is wrong in aiken format
             else {
-                System.out.println("Error at " + i + " " + text);
-                flag2 = false;
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Error at " + i + " " + text);
-                alert.showAndWait();
+                tmp = text;
+                isAiken = false;
                 break;
             }
 //
         }
-        if (flag2 == true) {
+
+        if(flag != 0)   isAiken = false;
+
+        if(isAiken == true ){
             System.out.println("Success " + numQuestion);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Success " + numQuestion);
             alert.showAndWait();
 //            update number question is imported success
-            TreeView.currentCategory = LibraryForUs.updateNumberQuestion(TreeView.currentCategory, numQuestion);
+            TreeView.currentCategory = LibraryForUs.updateNumberQuestion(
+                    TreeView.currentCategory, numQuestion);
         }
-        isAiken = flag2;
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Error at " + i + "\nContent Error : " + tmp);
+            alert.showAndWait();
+        }
         return isAiken;
     }
 

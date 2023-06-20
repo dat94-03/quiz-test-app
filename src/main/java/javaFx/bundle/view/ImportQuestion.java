@@ -5,6 +5,7 @@ import javafx.animation.ParallelTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,9 +14,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -42,6 +47,12 @@ public class ImportQuestion implements Initializable {
     private Button chooseAFileButton;
     @FXML
     private ImageView dropDown;
+    @FXML
+    private Label dragDropFile;
+    @FXML
+    private Button dragDropButton;
+    @FXML
+    private Label dropHere;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         TranslateTransition translate = new TranslateTransition(Duration.millis(1000), dropDown);
@@ -62,6 +73,72 @@ public class ImportQuestion implements Initializable {
 
     }
 
+    public void openFile(ActionEvent event) throws IOException {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open File");
+            FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Word Documents", "*.docx");
+            fileChooser.getExtensionFilters().add(filter);
+            java.io.File selectedFile = fileChooser.showOpenDialog(stage);
+
+            if (selectedFile != null) {
+                pathToFile = selectedFile.getAbsolutePath();
+                System.out.println(pathToFile);
+            }
+    }
+    public void dragAndDropFile(ActionEvent event){
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Drag and drop File");
+            FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Word Documents", "*.docx");
+            fileChooser.getExtensionFilters().add(filter);
+            fileChooser.showOpenDialog(stage);
+
+        dropHere.setOnDragOver(new EventHandler<DragEvent>() {
+
+            @Override
+            public void handle(DragEvent event) {
+                if (event.getGestureSource() != dropHere
+                        && event.getDragboard().hasFiles()) {
+                    /* allow for both copying and moving, whatever user chooses */
+                    event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+                }
+                event.consume();
+            }
+        });
+
+        dropHere.setOnDragDropped(new EventHandler<DragEvent>() {
+
+            @Override
+            public void handle(DragEvent event) {
+                Dragboard db = event.getDragboard();
+                boolean success = false;
+                if (db.hasFiles()) {
+                    dragDropFile.setText(db.getFiles().toString());
+                    success = true;
+                }
+                /* let the source know whether the string was successfully
+                 * transferred and used */
+                event.setDropCompleted(success);
+
+                event.consume();
+            }
+        });
+
+        if(dragDropFile.getText().equals("") == false){
+            pathToFile = dragDropFile.getText();
+            System.out.println(pathToFile);
+        }
+
+    }
+
+    public void importQuestion(ActionEvent event) throws IOException {
+        QuestionManage questionManage = null;
+        try {
+            questionManage = new QuestionManage();
+            questionManage.importQuestions(pathToFile, TreeView.fullyCategory);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
     @FXML
     public void switchToScene1(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Home.fxml"));
@@ -120,29 +197,6 @@ public class ImportQuestion implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    public void openFile(ActionEvent event) throws IOException {
-        chooseAFileButton.setOnAction(e -> {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Open File");
-            FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Word Documents", "*.docx");
-            fileChooser.getExtensionFilters().add(filter);
-            java.io.File selectedFile = fileChooser.showOpenDialog(stage);
 
-            if (selectedFile != null) {
-                pathToFile = selectedFile.getAbsolutePath();
-                System.out.println(pathToFile);
-            }
-        });
-    }
-
-    public void importQuestion(ActionEvent event) throws IOException {
-        QuestionManage questionManage = null;
-        try {
-            questionManage = new QuestionManage();
-            questionManage.importQuestions(pathToFile, TreeView.fullyCategory);
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
-    }
 }
 

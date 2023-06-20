@@ -94,7 +94,7 @@
                </font>
             </Label>
             <Label layoutX="461.0" layoutY="357.0" prefHeight="133.0" prefWidth="406.0" style="-fx-border-color: #aca9a9;" />
-            <Label layoutX="474.0" layoutY="371.0" prefHeight="106.0" prefWidth="378.0" style="-fx-border-color: #aca9a9; -fx-border-style: dashed;">
+            <Label fx:id="dropHere" layoutX="474.0" layoutY="371.0" prefHeight="106.0" prefWidth="378.0" style="-fx-border-color: #aca9a9; -fx-border-style: dashed;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Label>
@@ -108,10 +108,11 @@
                   <Image url="@../../../Img.img/darkblue-arrow.png" />
                </image>
             </ImageView>
-            <Button layoutX="639.0" layoutY="388.0" mnemonicParsing="false" onAction="#openFile" opacity="0.0" prefHeight="57.0" prefWidth="49.0" text="Button">
+            <Button fx:id="dragDropButton" layoutX="639.0" layoutY="388.0" mnemonicParsing="false" onAction="#dragAndDropFile" opacity="0.0" prefHeight="57.0" prefWidth="49.0" text="Button">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
+            <Label fx:id="dragDropFile" layoutX="502.0" layoutY="457.0" prefHeight="17.0" prefWidth="321.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="9.0" layoutY="46.0" prefHeight="98.0" prefWidth="966.0" style="-fx-border-color: rgb(219, 221, 221);">

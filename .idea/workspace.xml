@@ -5,15 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="737f171c-f212-4f32-b257-51afab8dbb89" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/Gui7_3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/Gui7_4.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Img.img/avatar7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/Gui7_3.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/data/QuizTestAppData.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/QuizTestAppData.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/AddCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/AddCategory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/AddQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/AddQuestion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/EditQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/EditQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/ImportQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/ImportQuestion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/QuestionList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/QuestionList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/QuizTestApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/QuizTestApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/SceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/SceneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/TreeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/QuestionBankTree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/QuestionManage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/QuestionManage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/EditQuestion.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/EditQuestion.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/QuestionList.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/QuestionList.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/Home.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/QuestionBank.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/QuestionBank.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +31,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -41,23 +50,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/GITHUB/New folder/quiz-test-app&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.10459435&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.42030567&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/LENOVO/Desktop/JavaProjects/QuizApp/quiz-test-app/src/main/resources/Img.img",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.10459435",
+    "project.structure.side.proportion": "0.42030567"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\LENOVO\Desktop\JavaProjects\QuizApp\quiz-test-app\src\main\resources\Img.img" />
+      <recent name="C:\Users\LENOVO\Desktop\JavaProjects\QuizApp\quiz-test-app\src\main\resources\javaFx\bundle\view" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Source\Java\OOP\quiz-test-app\src\main\java\data" />
       <recent name="C:\Users\tiend\Desktop\Our-Project\src\main\java\model" />
       <recent name="C:\Users\tiend\Desktop\Our-Project\src\main\java\data" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="javaFx.bundle.view" />
     </key>
   </component>
   <component name="RunManager">

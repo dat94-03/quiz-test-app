@@ -93,8 +93,8 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="461.0" layoutY="357.0" prefHeight="133.0" prefWidth="406.0" style="-fx-border-color: #aca9a9;" />
-            <Label fx:id="dropHere" layoutX="474.0" layoutY="371.0" prefHeight="106.0" prefWidth="378.0" style="-fx-border-color: #aca9a9; -fx-border-style: dashed;">
+            <Label layoutX="461.0" layoutY="357.0" prefHeight="146.0" prefWidth="410.0" style="-fx-border-color: #aca9a9;" />
+            <Label fx:id="dropHere" layoutX="474.0" layoutY="371.0" prefHeight="119.0" prefWidth="381.0" style="-fx-border-color: #aca9a9; -fx-border-style: dashed;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Label>
@@ -112,7 +112,14 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Label fx:id="dragDropFile" layoutX="502.0" layoutY="457.0" prefHeight="17.0" prefWidth="321.0" />
+            <Label fx:id="dragDropFile" layoutX="481.0" layoutY="465.0" prefHeight="21.0" prefWidth="363.0" visible="false">
+               <graphic>
+                  <ImageView fitHeight="18.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Img.img/folder.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Label>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="9.0" layoutY="46.0" prefHeight="98.0" prefWidth="966.0" style="-fx-border-color: rgb(219, 221, 221);">

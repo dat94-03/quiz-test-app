@@ -4,16 +4,15 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFx.bundle.view.TreeView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFx.bundle.view.GUI6_1_Controller">
    <children>
       <AnchorPane layoutX="-6.0" layoutY="-1.0" prefHeight="57.0" prefWidth="966.0" style="-fx-background-color: #009FE5;" />
-      <AnchorPane layoutX="33.0" layoutY="57.0" onMouseClicked="#displayTreeViewOff" prefHeight="122.0" prefWidth="883.0" style="-fx-border-color: rgb(219, 221, 221);">
+      <AnchorPane layoutX="33.0" layoutY="57.0" prefHeight="122.0" prefWidth="883.0" style="-fx-border-color: rgb(219, 221, 221);">
          <children>
             <Label layoutX="42.0" layoutY="76.0" prefHeight="30.0" prefWidth="69.0" text="Home " textFill="#c71d1d">
                <font>
@@ -45,7 +44,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="4.0" layoutY="-5.0" mnemonicParsing="false" onAction="#switchToScene1" prefHeight="92.0" prefWidth="124.0" style="-fx-background-color: none;" text="IT" textFill="#c71d1d">
+            <Button layoutX="4.0" layoutY="-5.0" mnemonicParsing="false" prefHeight="92.0" prefWidth="124.0" style="-fx-background-color: none;" text="IT" textFill="#c71d1d">
                <font>
                   <Font name="Tahoma" size="51.0" />
                </font>
@@ -62,18 +61,28 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <Button layoutX="827.0" layoutY="3.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="49.0" style="-fx-background-color: none;">
+            <Button layoutX="810.0" layoutY="3.0" mnemonicParsing="false" onAction="#switchToGUI6_2a" prefHeight="35.0" prefWidth="66.0" style="-fx-background-color: null;">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></Button>
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Img.img/setting.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </graphic></Button>
             <ImageView fitHeight="14.0" fitWidth="13.0" layoutX="859.0" layoutY="15.0" opacity="0.7" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Img.img/setting%20dropdown.png" />
                </image>
             </ImageView>
-            <Label layoutX="663.0" layoutY="102.0" text="Time limit: 1 hour">
+            <Label layoutX="663.0" layoutY="102.0" prefHeight="27.0" prefWidth="144.0" text="Time limit: 1 hour">
                <font>
-                  <Font size="14.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
             <Label layoutX="31.0" layoutY="203.0" prefHeight="30.0" prefWidth="367.0" text="Summary of your previous attempts" textFill="#c71d1d">
@@ -85,62 +94,53 @@
                <children>
                   <Label layoutX="183.0" layoutY="18.0" text="Attempt" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="410.0" layoutY="18.0" prefHeight="17.0" prefWidth="39.0" text="State" textFill="WHITE">
+                  <Label layoutX="410.0" layoutY="13.0" prefHeight="30.0" prefWidth="69.0" text="State" textFill="WHITE">
                      <font>
-                        <Font size="16.0" />
+                        <Font size="20.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
-            <TreeView fx:id="treeView" layoutX="219.0" layoutY="179.0" onContextMenuRequested="#selectItem" onMouseClicked="#selectItem" prefHeight="325.0" prefWidth="401.0" style="-fx-background-color: none;" visible="false" />
             <AnchorPane layoutX="31.0" layoutY="308.0" prefHeight="55.0" prefWidth="820.0" style="-fx-background-color: #EEEEEE;">
                <children>
                   <Label layoutX="183.0" layoutY="18.0" opacity="0.8" text="Preview">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="410.0" layoutY="18.0" opacity="0.8" prefHeight="20.0" prefWidth="122.0" text="Never submitted">
+                  <Label layoutX="410.0" layoutY="18.0" opacity="0.8" prefHeight="30.0" prefWidth="157.0" text="Never submitted">
                      <font>
-                        <Font size="16.0" />
+                        <Font size="20.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
-            <Button layoutX="629.0" layoutY="395.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="168.0" style="-fx-background-color: #009FE5 #009FE5;" text="PREVIEW QUIZ NOW" textFill="WHITE">
+            <Button layoutX="619.0" layoutY="399.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="224.0" style="-fx-background-color: #009FE5 #009FE5;" text="PREVIEW QUIZ NOW" textFill="WHITE">
                <font>
-                  <Font size="16.0" />
+                  <Font size="20.0" />
                </font>
             </Button>
-            <Label layoutX="552.0" layoutY="475.0" prefHeight="30.0" prefWidth="88.0" style="-fx-border-color: #514b4b;" text="Jump to...">
+            <Label layoutX="539.0" layoutY="470.0" prefHeight="35.0" prefWidth="144.0" style="-fx-border-color: #514b4b;" text="   Jump to...">
                <font>
-                  <Font size="14.0" />
+                  <Font size="18.0" />
                </font>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </Label>
-            <ImageView fitHeight="7.0" fitWidth="7.0" layoutX="628.0" layoutY="488.0" opacity="0.78" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="20.0" fitWidth="13.0" layoutX="654.0" layoutY="478.0" opacity="0.78" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../Quan/Our-Project/src/main/resources/Img.img/pngegg%20(1).png" />
+                  <Image url="@../../../Img.img/pngegg%20(1).png" />
                </image>
             </ImageView>
             <Label layoutX="626.0" layoutY="135.0" text="Grading method: Last attempt">
                <font>
-                  <Font size="14.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
-            <ImageView fitHeight="30.0" fitWidth="27.0" layoutX="826.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../Img.img/setting.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
          </children>
       </AnchorPane>
    </children>

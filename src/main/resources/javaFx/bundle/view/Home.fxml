@@ -93,7 +93,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label fx:id="label" layoutX="117.0" layoutY="45.0" onMouseEntered="#textUnderlineIn" onMouseExited="#textUnderlineOut" prefHeight="29.0" prefWidth="254.0" text="Kiểm tra cuối kỳ môn IT4895Q">
+            <Label fx:id="label" layoutX="117.0" layoutY="45.0" onMouseClicked="#switchToGUI6_1" onMouseEntered="#textUnderlineIn" onMouseExited="#textUnderlineOut" prefHeight="29.0" prefWidth="254.0" text="Kiểm tra cuối kỳ môn IT4895Q">
                <font>
                   <Font size="18.0" />
                </font>

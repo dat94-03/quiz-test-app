@@ -2,8 +2,6 @@ package model;
 
 import javafx.scene.control.TreeItem;
 
-import java.io.IOException;
-
 public class LibraryForUs {
     public static void accessChildrenTreeView(Category category, TreeItem<String> item){
         if(category == null)    return;
@@ -60,6 +58,11 @@ public class LibraryForUs {
         des = previousCate.substring(0, locate1 - 1);
         des = des + " (" + tmp + ")";
         return des;
+    }
+
+    public static String getLastCategory(String fullCate){
+        String[] categories = fullCate.split("/");
+        return categories[categories.length - 1];
     }
 }
 

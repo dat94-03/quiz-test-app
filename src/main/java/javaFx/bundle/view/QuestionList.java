@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import model.Question;
 import model.QuestionManage;
 
+import javax.xml.transform.Source;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -45,9 +46,11 @@ public class QuestionList implements Initializable{
     private Button click;  // delete when done
     @FXML
     private ImageView dropDown;
+    @FXML
+    private CheckBox checkBoxShowSubCategory;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle){
 //        remove when editquestion done
         QuestionManage qm = null;
         try {
@@ -64,12 +67,7 @@ public class QuestionList implements Initializable{
 
         categoryLabel.setText("  " + QuestionBankTree.currentCategory);
 
-//        enable question from category
-        try {
-            QuestionManage questionManage = new QuestionManage();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//        Display Question
         int dem = 0;
         for (Question question : QuestionManage.questionsList) {
             if (question.category.equals(QuestionBankTree.fullyCategory) && (question.title.equals("") == false)) {
@@ -141,78 +139,156 @@ public class QuestionList implements Initializable{
     }
 
     public void showQuestionFromSubCate() throws IOException {
-        QuestionManage questionManage = new QuestionManage();
-        ArrayList<Question> subCate = new ArrayList<>();
-        subCate = questionManage.getQuestionsOfCategory(QuestionBankTree.fullyCategory);
+        QuestionManage qm = new QuestionManage();
+        questionBox.getChildren().clear();
+        questions.clear();
 
-        int dem = 0;
-        for (Question question : subCate) {
-            if (question.category.equals(QuestionBankTree.fullyCategory) && (question.title.equals("") == false)) {
-                questions.add(question); // add question to arraylist
-                HBox hBoxrow = new HBox();
+        if(checkBoxShowSubCategory.isSelected() == false){
+            int dem = 0;
+            for (Question question : QuestionManage.questionsList) {
+                if (question.category.equals(QuestionBankTree.fullyCategory) && (question.title.equals("") == false)) {
+                    questions.add(question); // add question to arraylist
+                    HBox hBoxrow = new HBox();
 
 //                Draw question in checkBox
-                HBox hboxQuestion = new HBox();
-                Image threeDots = new Image("3.png");
-                ImageView imageView = new ImageView(threeDots);
-                imageView.setFitWidth(10);
-                imageView.setFitHeight(10);
-                CheckBox checkBox = new CheckBox(question.title);
+                    HBox hboxQuestion = new HBox();
+                    Image threeDots = new Image("3.png");
+                    ImageView imageView = new ImageView(threeDots);
+                    imageView.setFitWidth(10);
+                    imageView.setFitHeight(10);
+                    CheckBox checkBox = new CheckBox(question.title);
 
-                checkBox.setGraphic(imageView);
+                    checkBox.setGraphic(imageView);
 
-                checkBox.setFont(Font.font(20));
+                    checkBox.setFont(Font.font(20));
 //                checkBox.setPrefWidth(150);
 
-                hboxQuestion.getChildren().add(checkBox);
-                if(dem % 2 == 0){
-                    BackgroundFill backgroundFill = new BackgroundFill(Color.web("#CCCCCC"), null, null);
-                    Background background = new Background(backgroundFill);
-                    hboxQuestion.setBackground(background);
-                }
-                hboxQuestion.setPrefWidth(800);
-                HBox.setHgrow(hboxQuestion, Priority.NEVER);
+                    hboxQuestion.getChildren().add(checkBox);
+                    if(dem % 2 == 0){
+                        BackgroundFill backgroundFill = new BackgroundFill(Color.web("#CCCCCC"), null, null);
+                        Background background = new Background(backgroundFill);
+                        hboxQuestion.setBackground(background);
+                    }
+                    hboxQuestion.setPrefWidth(800);
+                    HBox.setHgrow(hboxQuestion, Priority.NEVER);
 
 //                Draw button edit beside
-                HBox hBoxEdit = new HBox();
-                Text text = new Text("Edit   ");
-                text.setFont(Font.font(20));
-                Color color = Color.web("#00a2e9");
-                text.setFill(color);
-                ImageView imageView1 = new ImageView("arrowblue.png");
+                    HBox hBoxEdit = new HBox();
+                    Text text = new Text("Edit   ");
+                    text.setFont(Font.font(20));
+                    Color color = Color.web("#00a2e9");
+                    text.setFill(color);
+                    ImageView imageView1 = new ImageView("arrowblue.png");
 
-                hBoxEdit.getChildren().addAll(text, imageView1);
+                    hBoxEdit.getChildren().addAll(text, imageView1);
 
-                Button button = new Button();
-                editButton.add(button);
-                editButton.get(dem).setGraphic(hBoxEdit);
-                if(dem % 2 ==0){
-                    BackgroundFill backgroundFill2 = new BackgroundFill(Color.web("#CCCCCC"), null, null);
-                    Background background2 = new Background(backgroundFill2);
-                    editButton.get(dem).setBackground(background2);
-                }
-                else {
-                    editButton.get(dem).setBackground(Background.fill(null));
-                }
-//                set action for Edit Click
-                final int Dem = dem; // hơi cấn cấn chỗ này vì phải dùng hằng, dùng vì hàm lambda bắt buộc dùng
-                editButton.get(dem).setOnMouseClicked(e -> {
-                    try {
-                        qStatic = questions.get(Dem);
-                        switchToEditQuestion(e);
-                    } catch (IOException even) {
-                        even.printStackTrace();
+                    Button button = new Button();
+                    editButton.add(button);
+                    editButton.get(dem).setGraphic(hBoxEdit);
+                    if(dem % 2 ==0){
+                        BackgroundFill backgroundFill2 = new BackgroundFill(Color.web("#CCCCCC"), null, null);
+                        Background background2 = new Background(backgroundFill2);
+                        editButton.get(dem).setBackground(background2);
                     }
-                });
+                    else {
+                        editButton.get(dem).setBackground(Background.fill(null));
+                    }
+//                set action for Edit Click
+                    final int Dem = dem; // hơi cấn cấn chỗ này vì phải dùng hằng, dùng vì hàm lambda bắt buộc dùng
+                    editButton.get(dem).setOnMouseClicked(e -> {
+                        try {
+                            qStatic = questions.get(Dem);
+                            switchToEditQuestion(e);
+                        } catch (IOException even) {
+                            even.printStackTrace();
+                        }
+                    });
 
 
 //                add component
-                hBoxrow.getChildren().addAll(hboxQuestion, editButton.get(dem));
-                questionBox.getChildren().add(hBoxrow);
+                    hBoxrow.getChildren().addAll(hboxQuestion, editButton.get(dem));
+                    questionBox.getChildren().add(hBoxrow);
 
-                dem ++;
+                    dem ++;
+                }
             }
         }
+
+        else {
+            ArrayList<Question> subCate = new ArrayList<>();
+            subCate = qm.getQuestionsOfCategoryAndSubcategory(QuestionBankTree.fullyCategory);
+
+            int dem = 0;
+            for (Question question : subCate) {
+                if ((question.title.equals("") == false)){
+                    questions.add(question); // add question to arraylist
+                    System.out.println(question);
+                    HBox hBoxrow = new HBox();
+
+//                Draw question in checkBox
+                    HBox hboxQuestion = new HBox();
+                    Image threeDots = new Image("3.png");
+                    ImageView imageView = new ImageView(threeDots);
+                    imageView.setFitWidth(10);
+                    imageView.setFitHeight(10);
+                    CheckBox checkBox = new CheckBox(question.title);
+
+                    checkBox.setGraphic(imageView);
+
+                    checkBox.setFont(Font.font(20));
+//                checkBox.setPrefWidth(150);
+
+                    hboxQuestion.getChildren().add(checkBox);
+                    if(dem % 2 == 0){
+                        BackgroundFill backgroundFill = new BackgroundFill(Color.web("#CCCCCC"), null, null);
+                        Background background = new Background(backgroundFill);
+                        hboxQuestion.setBackground(background);
+                    }
+                    hboxQuestion.setPrefWidth(800);
+                    HBox.setHgrow(hboxQuestion, Priority.NEVER);
+
+//                Draw button edit beside
+                    HBox hBoxEdit = new HBox();
+                    Text text = new Text("Edit   ");
+                    text.setFont(Font.font(20));
+                    Color color = Color.web("#00a2e9");
+                    text.setFill(color);
+                    ImageView imageView1 = new ImageView("arrowblue.png");
+
+                    hBoxEdit.getChildren().addAll(text, imageView1);
+
+                    Button button = new Button();
+                    editButton.add(button);
+                    editButton.get(dem).setGraphic(hBoxEdit);
+                    if(dem % 2 ==0){
+                        BackgroundFill backgroundFill2 = new BackgroundFill(Color.web("#CCCCCC"), null, null);
+                        Background background2 = new Background(backgroundFill2);
+                        editButton.get(dem).setBackground(background2);
+                    }
+                    else {
+                        editButton.get(dem).setBackground(Background.fill(null));
+                    }
+//                set action for Edit Click
+                    final int Dem = dem; // hơi cấn cấn chỗ này vì phải dùng hằng, dùng vì hàm lambda bắt buộc dùng
+                    editButton.get(dem).setOnMouseClicked(e -> {
+                        try {
+                            qStatic = questions.get(Dem);
+                            switchToEditQuestion(e);
+                        } catch (IOException even) {
+                            even.printStackTrace();
+                        }
+                    });
+
+
+//                add component
+                    hBoxrow.getChildren().addAll(hboxQuestion, editButton.get(dem));
+                    questionBox.getChildren().add(hBoxrow);
+
+                    dem ++;
+                }
+            }
+        }
+
     }
 
     @FXML

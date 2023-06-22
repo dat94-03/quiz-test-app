@@ -82,6 +82,8 @@ public class ImportQuestion implements Initializable {
 
             if (selectedFile != null) {
                 pathToFile = selectedFile.getAbsolutePath();
+                dragDropFile.setText("[" + pathToFile + "]");
+                dragDropFile.setVisible(true);
                 System.out.println(pathToFile);
             }
     }
@@ -106,12 +108,12 @@ public class ImportQuestion implements Initializable {
         });
 
         dropHere.setOnDragDropped(new EventHandler<DragEvent>() {
-
             @Override
             public void handle(DragEvent event) {
                 Dragboard db = event.getDragboard();
                 boolean success = false;
                 if (db.hasFiles()) {
+                    dragDropFile.setVisible(true);
                     dragDropFile.setText(db.getFiles().toString());
                     success = true;
                 }
@@ -125,6 +127,7 @@ public class ImportQuestion implements Initializable {
 
         if(dragDropFile.getText().equals("") == false){
             pathToFile = dragDropFile.getText();
+            pathToFile = pathToFile.substring(1, pathToFile.length() - 1);
             System.out.println(pathToFile);
         }
 
@@ -134,7 +137,7 @@ public class ImportQuestion implements Initializable {
         QuestionManage questionManage = null;
         try {
             questionManage = new QuestionManage();
-            questionManage.importQuestions(pathToFile, TreeView.fullyCategory);
+            questionManage.importQuestions(pathToFile, QuestionBankTree.fullyCategory);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }

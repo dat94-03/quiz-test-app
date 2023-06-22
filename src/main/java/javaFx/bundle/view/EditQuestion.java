@@ -49,7 +49,7 @@ public class EditQuestion implements Initializable {
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle) {
 
-        categoryLabel.setText("  " + QuestionBankTree.currentCategory);
+        categoryLabel.setText("  " + LibraryForUs.getLastCategory(QuestionList.qStatic.category));
         moreChoice.setSpacing(15);
         questionText.setText(q.title);
 

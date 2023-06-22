@@ -20,10 +20,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.event.ActionEvent;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
-import model.CategoriesManage;
-import model.Category;
-import model.LibraryForUs;
+import model.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -34,6 +35,7 @@ public class GUI63 implements Initializable {
     private Scene scene;
     private Parent root;
     private String selectCate = new String("Default");
+    private String fullyCate = new String();
     @FXML
     private AnchorPane anchorPane ;
     @FXML
@@ -78,93 +80,106 @@ public class GUI63 implements Initializable {
     Integer count = 0 ;
 
     public void selectItem() {
-
             treeView.setOnMouseClicked(mouseEvent -> {
-                if(count == 0) {
-                    TreeItem<String> selectedItem = (TreeItem<String>) treeView.getSelectionModel().getSelectedItem();
-                    if (selectedItem != null) {
-                        try {
-                            selectCate = selectedItem.getValue();
-                            System.out.println(selectCate);
-                            addquestionbank();
-                            displayTreeViewOff();
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
+                TreeItem<String> selectedItem = (TreeItem<String>) treeView.getSelectionModel().getSelectedItem();
+                if (selectedItem != null) {
+                    try {
+                        selectCate = selectedItem.getValue();
+                        fullyCate = LibraryForUs.getFullyCategory(selectedItem);
+                        button.setText(selectCate);
+                        addQuestionBank();
+                        displayTreeViewOff();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
                 }
             });
 
 
     }
-    public void addquestionbank() throws IOException {
-         for(int i=1;i<=51;i++) {
-             VBox vBox = new VBox();
-             vBox.setPrefWidth(924);
-             vBox.setPrefHeight(45);
-             vBox.setMaxHeight(Double.POSITIVE_INFINITY);
-             vBox.setMaxWidth(Double.POSITIVE_INFINITY);
-             vBox.setMinHeight(Double.NEGATIVE_INFINITY);
-             vBox.setMinWidth(Double.NEGATIVE_INFINITY);
+    public void addQuestionBank() throws IOException {
+        questionBox.getChildren().clear();
 
-             HBox hBox = new HBox();
-             hBox.setPrefHeight(45);
-             hBox.setPrefWidth(924);
+        int i = 1;
+        QuestionManage questionManage = new QuestionManage();
+         for(Question question : QuestionManage.questionsList) {
+             if(question.category.equals(fullyCate)){
+                 VBox vBox = new VBox();
+                 vBox.setPrefWidth(924);
+                 vBox.setPrefHeight(45);
+                 vBox.setMaxHeight(Double.POSITIVE_INFINITY);
+                 vBox.setMaxWidth(Double.POSITIVE_INFINITY);
+                 vBox.setMinHeight(Double.NEGATIVE_INFINITY);
+                 vBox.setMinWidth(Double.NEGATIVE_INFINITY);
 
-             Image image1 = new Image(getClass().getResourceAsStream("/Img.img/add.png"));
-             ImageView add = new ImageView(image1);
-             add.setPreserveRatio(true);
-             add.setPickOnBounds(true);
-             add.setFitHeight(19);
-             add.setFitWidth(22);
-             HBox.setMargin(add, new Insets(10, 0, 0, 0));
-             hBox.getChildren().add(add);
+                 HBox hBox = new HBox();
+                 hBox.setPrefHeight(45);
+                 hBox.setPrefWidth(924);
 
-             CheckBox checkBox = new CheckBox();
-             checkBox.setMnemonicParsing(false);
-             checkBox.setFont(Font.font(14));
-             HBox.setMargin(checkBox, new Insets(8, 0, 0, 8));
-             hBox.getChildren().add(checkBox);
+                 Image image1 = new Image(getClass().getResourceAsStream("/Img.img/add.png"));
+                 ImageView add = new ImageView(image1);
+                 add.setPreserveRatio(true);
+                 add.setPickOnBounds(true);
+                 add.setFitHeight(19);
+                 add.setFitWidth(22);
+                 HBox.setMargin(add, new Insets(10, 0, 0, 0));
+                 hBox.getChildren().add(add);
 
-             Image image2 = new Image(getClass().getResourceAsStream("/Img.img/3.png"));
-             ImageView threedot = new ImageView(image2);
-             threedot.setPickOnBounds(true);
-             threedot.setPreserveRatio(true);
-             threedot.setFitHeight(18);
-             threedot.setFitWidth(26);
-             HBox.setMargin(threedot, new Insets(14, 0, 0, 2));
-             hBox.getChildren().add(threedot);
+                 CheckBox checkBox = new CheckBox();
+                 checkBox.setMnemonicParsing(false);
+                 checkBox.setFont(Font.font(14));
+                 HBox.setMargin(checkBox, new Insets(8, 0, 0, 8));
+                 hBox.getChildren().add(checkBox);
 
-             Label questionLabel = new Label(String.valueOf(i));
-             questionLabel.setFont(Font.font(18));
-             questionLabel.setPrefWidth(812);
-             questionLabel.setPrefHeight(46);
-             HBox.setMargin(questionLabel,new Insets(0,0,0,10));
-             hBox.getChildren().add(questionLabel) ;
+                 Image image2 = new Image(getClass().getResourceAsStream("/Img.img/3.png"));
+                 ImageView threedot = new ImageView(image2);
+                 threedot.setPickOnBounds(true);
+                 threedot.setPreserveRatio(true);
+                 threedot.setFitHeight(18);
+                 threedot.setFitWidth(26);
+                 HBox.setMargin(threedot, new Insets(14, 0, 0, 2));
+                 hBox.getChildren().add(threedot);
 
-             Image image3 = new Image(getClass().getResourceAsStream("/Img.img/magnifying glass.png")) ;
-             ImageView zoom = new ImageView(image3) ;
-             zoom.setPreserveRatio(true);
-             zoom.setPickOnBounds(true);
-             zoom.setFitHeight(17);
-             zoom.setFitWidth(18);
-             Label zoomLabel = new Label() ;
-             zoomLabel.setFont(Font.font(34));
-             zoomLabel.setPrefWidth(29);
-             zoomLabel.setGraphic(zoom);
-             hBox.getChildren().add(zoomLabel) ;
+                 Label questionLabel = new Label(" ");
+                 Text text1 = new Text(question.title + " ");
+                 text1.setFont(Font.font("System", FontWeight.BOLD, 18));
 
-             if(i%2 == 0) {
-                 questionLabel.setStyle("-fx-background-color: #E6E6E6");
-                 zoomLabel.setStyle("-fx-background-color: #E6E6E6");  }
-             else if (i%2 == 1) {
-                 questionLabel.setStyle("-fx-background-color: #FFFFFF");
-                 zoomLabel.setStyle("-fx-background-color: #FFFFFF"); }
-             vBox.getChildren().add(hBox) ;
-             VBox.setMargin(vBox,new Insets(0,0,0,5));
-             questionBox.getChildren().add(vBox) ;
-             if(i>=10)
-             anchorPane.setPrefHeight(760+110+(i-10)*45) ;
+                 Text text2 = new Text(question.title);
+                 text2.setFont(Font.font("System", FontWeight.NORMAL, 18));
+
+                 TextFlow textFlow = new TextFlow(text1, text2);
+                 questionLabel.setGraphic(textFlow);
+                 questionLabel.setPrefWidth(812);
+                 questionLabel.setPrefHeight(46);
+                 HBox.setMargin(questionLabel,new Insets(0,0,0,10));
+                 hBox.getChildren().add(questionLabel) ;
+
+                 Image image3 = new Image(getClass().getResourceAsStream("/Img.img/magnifying glass.png")) ;
+                 ImageView zoom = new ImageView(image3) ;
+                 zoom.setPreserveRatio(true);
+                 zoom.setPickOnBounds(true);
+                 zoom.setFitHeight(17);
+                 zoom.setFitWidth(18);
+                 Label zoomLabel = new Label() ;
+                 zoomLabel.setFont(Font.font(34));
+                 zoomLabel.setPrefWidth(29);
+                 zoomLabel.setGraphic(zoom);
+                 hBox.getChildren().add(zoomLabel) ;
+
+                 if(i%2 == 0) {
+                     questionLabel.setStyle("-fx-background-color: #E6E6E6");
+                     zoomLabel.setStyle("-fx-background-color: #E6E6E6");  }
+                 else if (i%2 == 1) {
+                     questionLabel.setStyle("-fx-background-color: #FFFFFF");
+                     zoomLabel.setStyle("-fx-background-color: #FFFFFF"); }
+                 vBox.getChildren().add(hBox) ;
+                 VBox.setMargin(vBox,new Insets(0,0,0,5));
+                 questionBox.getChildren().add(vBox) ;
+                 if(i>=10)
+                     anchorPane.setPrefHeight(760+110+(i-10)*45) ;
+
+                 i++;
+             }
          }
         VBox vBox2 = new VBox() ;
          vBox2.setPrefHeight(100);
@@ -200,9 +215,6 @@ public class GUI63 implements Initializable {
         vBox2.getChildren().add(buttonaddquiz) ;
         questionBox.getChildren().add(vBox2) ;
 
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("Addseletedquestionstothequiz.fxml"));
-//        VBox fxmlVBox = loader.load();
-//        questionBox.getChildren().add(fxmlVBox);
         count ++ ;
 
     }

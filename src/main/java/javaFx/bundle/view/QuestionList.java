@@ -80,8 +80,8 @@ public class QuestionList implements Initializable{
                 ImageView imageView = new ImageView(threeDots);
                 imageView.setFitWidth(10);
                 imageView.setFitHeight(10);
-                CheckBox checkBox = new CheckBox(question.title);
 
+                CheckBox checkBox = new CheckBox(question.title);
                 checkBox.setGraphic(imageView);
 
                 checkBox.setFont(Font.font(20));

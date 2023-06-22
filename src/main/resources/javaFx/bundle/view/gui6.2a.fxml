@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFx.bundle.view.TreeView">
+   <children>
+      <AnchorPane layoutX="-6.0" layoutY="-1.0" prefHeight="57.0" prefWidth="966.0" style="-fx-background-color: #009FE5;" />
+      <AnchorPane layoutX="33.0" layoutY="57.0" onMouseClicked="#displayTreeViewOff" prefHeight="122.0" prefWidth="883.0" style="-fx-border-color: rgb(219, 221, 221);">
+         <children>
+            <Label layoutX="42.0" layoutY="76.0" prefHeight="30.0" prefWidth="69.0" text="Home " textFill="#c71d1d">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="113.0" layoutY="75.0" prefHeight="30.0" prefWidth="144.0" text="/    My courses   /">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="278.0" layoutY="75.0" prefHeight="30.0" prefWidth="111.0" text="THI CUỐI KỲ" textFill="#c71d1d">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="389.0" layoutY="73.0" prefHeight="30.0" prefWidth="92.0" text="/   General   /" textFill="#c71d1d">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="495.0" layoutY="73.0" prefHeight="30.0" prefWidth="259.0" text="Thi thử giữa kỳ 2 môn Công nghệ" textFill="#c71d1d">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="752.0" layoutY="68.0" prefHeight="40.0" prefWidth="88.0" text="/  Edit quiz" textFill="#c71d1d">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="773.0" layoutY="21.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="50.0" style="-fx-background-color: none;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="4.0" layoutY="-5.0" mnemonicParsing="false" onAction="#switchToScene1" prefHeight="92.0" prefWidth="124.0" style="-fx-background-color: none;" text="IT" textFill="#c71d1d">
+               <font>
+                  <Font name="Tahoma" size="51.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="33.0" layoutY="196.0" prefHeight="561.0" prefWidth="883.0" style="-fx-border-color: rgb(219, 221, 221);">
+         <children>
+            <Label layoutX="31.0" prefHeight="63.0" prefWidth="536.0" text="Editing quiz: Thi giữa kỳ 2 môn Công nghệ" textFill="#c71d1d">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="18.0" fitWidth="17.0" layoutX="560.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../img/OOP_%20assetment/question%20mark.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="31.0" layoutY="107.0" mnemonicParsing="false" prefHeight="30.0" style="-fx-background-color: #009FE5 #009FE5;" text="REPAGINATE" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="796.0" layoutY="63.0" maxHeight="32.0" maxWidth="58.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="53.0" style="-fx-background-color: #009FE5 #009FE5;" text="SAVE" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label layoutX="653.0" layoutY="69.0" text="Maxium grade">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="730.0" layoutY="113.0" text="Total of marks: 0.00 ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <AnchorPane layoutX="32.0" layoutY="147.0" prefHeight="71.0" prefWidth="820.0" style="-fx-background-color: #EEEEEE;">
+               <children>
+                  <Label layoutX="764.0" layoutY="41.0" text="Add" />
+                  <Button layoutX="792.0" layoutY="37.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="21.0" style="-fx-background-color: none;" />
+                  <Label layoutX="730.0" layoutY="4.0" opacity="0.8" prefHeight="20.0" prefWidth="50.0" text="Shuffle">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="26.0" fitWidth="16.0" layoutX="25.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../../img/OOP_%20assetment/edit.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="12.0" fitWidth="17.0" layoutX="775.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../../img/OOP_%20assetment/question%20mark.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="795.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: #009FE5 #009FE5;">
+                     <image>
+                        <Image url="@../../../../../../../../../img/OOP_%20assetment/avatar%20dropdown.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Label layoutX="318.0" layoutY="473.0" prefHeight="30.0" prefWidth="200.0" style="-fx-border-color: #514b4b;" text="Jump to...">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <ImageView fitHeight="7.0" fitWidth="7.0" layoutX="506.0" layoutY="485.0" opacity="0.78" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../../Quan/Our-Project/src/main/resources/Img.img/pngegg%20(1).png" />
+               </image>
+            </ImageView>
+            <Label layoutX="31.0" layoutY="69.0" text="Quetions: 0  |  This quiz is open">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button layoutX="126.0" layoutY="107.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="160.0" style="-fx-background-color: #009FE5 #009FE5;" text="SELECT MULTIPLEITEMS" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label layoutX="743.0" layoutY="63.0" prefHeight="30.0" prefWidth="50.0" style="-fx-border-color: #000000;" text="10.00" textAlignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="960.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFx.bundle.view.GUI64">
+   <children>
+      <AnchorPane prefHeight="39.0" prefWidth="960.0" style="-fx-background-color: #009FE5;" />
+      <AnchorPane layoutX="12.0" layoutY="48.0" prefHeight="98.0" prefWidth="940.0" style="-fx-border-color: rgb(219, 221, 221); -fx-background-color: white;">
+         <children>
+            <Label layoutX="20.0" layoutY="59.0" prefHeight="30.0" prefWidth="69.0" text="Home " textFill="#c71d1d">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="83.0" layoutY="58.0" prefHeight="30.0" prefWidth="144.0" text="/    My courses   /">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="238.0" layoutY="59.0" prefHeight="30.0" prefWidth="131.0" text="THI CUỐI KỲ  /" textFill="#c71d1d">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="5.0" layoutY="-11.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="126.0" style="-fx-background-color: none;" text="IT" textFill="#c71d1d">
+               <font>
+                  <Font name="Tahoma" size="40.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label layoutX="364.0" layoutY="57.0" prefHeight="30.0" prefWidth="134.0" text="General" textFill="#c71d1d">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="439.0" layoutY="57.0" prefHeight="30.0" prefWidth="291.0" text="/  Thi giữa kỳ 2 môn Công nghệ    /" textFill="#c71d1d">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="738.0" layoutY="57.0" prefHeight="30.0" prefWidth="134.0" text="Edit quiz" textFill="#c71d1d">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <ScrollPane layoutX="12.0" layoutY="162.0" prefHeight="590.0" prefWidth="936.0">
+         <content>
+            <AnchorPane fx:id="menuPane" prefHeight="589.0" prefWidth="929.0" style="-fx-border-color: rgb(219, 221, 221); -fx-background-color: white;">
+               <children>
+                  <Label layoutX="15.0" layoutY="15.0" text="Editing quiz : Thi giữa kỳ 2 môn Công nghệ " textFill="#c71d1d">
+                     <font>
+                        <Font name="Arial" size="24.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="21.0" fitWidth="15.0" layoutX="481.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Img.img/question%20mark.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="20.0" layoutY="55.0" prefHeight="30.0" prefWidth="85.0" text="Questions:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Text layoutX="105.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="67">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <Label layoutX="140.0" layoutY="56.0" prefHeight="18.0" prefWidth="176.0" text="| This quiz is open">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="601.0" layoutY="71.0" prefHeight="26.0" prefWidth="127.0" text="Maximum grade">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="732.0" layoutY="62.0" prefHeight="42.0" prefWidth="95.0" style="-fx-border-color: rgb(219, 221, 221);" text="10.00">
+                     <padding>
+                        <Insets left="17.0" />
+                     </padding>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="835.0" layoutY="63.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="74.0" style="-fx-background-color: #009FE5;" text="SAVE" textFill="WHITE">
+                     <font>
+                        <Font name="Arial" size="17.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="746.0" layoutY="118.0" text="Total of  marks: ">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <VBox fx:id="questionBox" layoutX="4.0" layoutY="235.0" prefHeight="354.0" prefWidth="915.0" />
+                  <Text layoutX="864.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="67.00">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <Button layoutX="20.0" layoutY="95.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="135.0" style="-fx-background-color: #009FE5;" text="REPAGINATE" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" layoutX="34.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Img.img/edit.png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="832.0" layoutY="188.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="59.0" style="-fx-background-color: null;" text="Add" textFill="#009fe5">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="168.0" layoutY="96.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="205.0" style="-fx-background-color: #009FE5;" text="SELECT MULTIPLEITEMS" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="29.0" layoutY="187.0" prefHeight="26.0" prefWidth="64.0" text="Page 1" textFill="#c71d1d">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <CheckBox layoutX="788.0" layoutY="160.0" mnemonicParsing="false" prefHeight="8.0" prefWidth="17.0" />
+                  <Text layoutX="811.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Shuffle" wrappingWidth="60.6005859375">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="15.0" fitWidth="22.0" layoutX="865.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Img.img/question%20mark.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="882.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Img.img/muiten.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

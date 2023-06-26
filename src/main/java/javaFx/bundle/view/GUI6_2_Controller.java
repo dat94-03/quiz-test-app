@@ -1,7 +1,5 @@
 package javaFx.bundle.view;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,30 +9,30 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TreeItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.LibraryForUs;
-import org.w3c.dom.events.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class GUI6_2a_Controller implements Initializable {
+public class GUI6_2_Controller implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    String[] choices = {" a new question", " from question bank", " a random question"};
+
+    @FXML
+    private Label label;
 
     @FXML
     private ListView<Label> addListView;
-    String[] choices = {" a new question", " from question bank", " a random question"};
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        label.setText("Editing quiz:" + GUI1_1_Controller.currentQuiz);
+
         boolean flag = false;
         Label label1 = getItem(choices[0]);
         Label label2 = getItem(choices[1]);

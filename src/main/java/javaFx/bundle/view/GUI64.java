@@ -14,6 +14,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
+import model.Question;
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,7 +31,9 @@ public class GUI64 implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        for(int i=1;i<=55;i++) {
+        int i = 1;
+        for(Question question : GUI63.questionsForQuiz) {
+            System.out.println(question);
             VBox vBox = new VBox() ;
             vBox.setPrefHeight(56);
             vBox.setPrefWidth(915);
@@ -80,7 +86,15 @@ public class GUI64 implements Initializable {
             HBox.setMargin(setting, new Insets(17, 0, 0, 6));
             hBox.getChildren().add(setting);
 
-            Label questionLabel = new Label(String.valueOf(i));
+            Label questionLabel = new Label(" ");
+            Text text1 = new Text(question.title + " ");
+            text1.setFont(Font.font("System", FontWeight.BOLD, 18));
+
+            Text text2 = new Text(question.title);
+            text2.setFont(Font.font("System", FontWeight.NORMAL, 18));
+
+            TextFlow textFlow = new TextFlow(text1, text2);
+            questionLabel.setGraphic(textFlow);
             questionLabel.setPrefHeight(46);
             questionLabel.setPrefWidth(531);
             questionLabel.setFont(Font.font(18));
@@ -141,6 +155,8 @@ public class GUI64 implements Initializable {
             vBox.getChildren().add(spacing) ;
 
             questionBox.getChildren().add(vBox) ;
+
+            i++;
         }
 //            FXMLLoader loader = new FXMLLoader(getClass().getResource("questionsinGUI6.4.fxml"));
 //            VBox fxmlVBox = new VBox();

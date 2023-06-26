@@ -41,10 +41,6 @@ public class QuestionList implements Initializable{
     @FXML
     private VBox questionBox;
     @FXML
-    private VBox editBox;
-
-    private Button click;  // delete when done
-    @FXML
     private ImageView dropDown;
     @FXML
     private CheckBox checkBoxShowSubCategory;

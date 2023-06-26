@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFx.bundle.view.GUI6_2a_Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFx.bundle.view.GUI6_2_Controller">
    <children>
       <AnchorPane layoutX="-6.0" layoutY="-1.0" prefHeight="57.0" prefWidth="966.0" style="-fx-background-color: #009FE5;" />
       <AnchorPane layoutX="33.0" layoutY="57.0" onMouseClicked="#displayListViewOff" prefHeight="122.0" prefWidth="883.0" style="-fx-border-color: rgb(219, 221, 221);">
@@ -62,7 +62,7 @@
       </AnchorPane>
       <AnchorPane layoutX="33.0" layoutY="196.0" prefHeight="561.0" prefWidth="883.0" style="-fx-border-color: rgb(219, 221, 221);">
          <children>
-            <Label layoutX="31.0" prefHeight="63.0" prefWidth="642.0" text="Editing quiz: Thi giữa kỳ 2 môn Công nghệ" textFill="#c71d1d">
+            <Label fx:id="label" layoutX="31.0" prefHeight="63.0" prefWidth="642.0" text="Editing quiz: Thi giữa kỳ 2 môn Công nghệ" textFill="#c71d1d">
                <font>
                   <Font size="30.0" />
                </font>

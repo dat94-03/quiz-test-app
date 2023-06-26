@@ -1,5 +1,6 @@
 package javaFx.bundle.view;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -28,6 +30,7 @@ import model.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class GUI63 implements Initializable {
@@ -36,6 +39,9 @@ public class GUI63 implements Initializable {
     private Parent root;
     private String selectCate = new String("Default");
     private String fullyCate = new String();
+    private ArrayList<CheckBox> listCheckBox = new ArrayList<>();
+    private ArrayList<Question> listQuestion = new ArrayList<>();
+    public static ArrayList<Question> questionsForQuiz = new ArrayList<>();
     @FXML
     private AnchorPane anchorPane ;
     @FXML
@@ -104,6 +110,8 @@ public class GUI63 implements Initializable {
         QuestionManage questionManage = new QuestionManage();
          for(Question question : QuestionManage.questionsList) {
              if(question.category.equals(fullyCate)){
+                 listQuestion.add(question);
+
                  VBox vBox = new VBox();
                  vBox.setPrefWidth(924);
                  vBox.setPrefHeight(45);
@@ -128,7 +136,17 @@ public class GUI63 implements Initializable {
                  CheckBox checkBox = new CheckBox();
                  checkBox.setMnemonicParsing(false);
                  checkBox.setFont(Font.font(14));
-                 HBox.setMargin(checkBox, new Insets(8, 0, 0, 8));
+                 listCheckBox.add(checkBox);
+                 int finalI = i;
+                 listCheckBox.get(i - 1).setOnAction(new EventHandler<ActionEvent>() {
+                     @Override
+                     public void handle(ActionEvent event) {
+                         if(listCheckBox.get(finalI - 1).isSelected()){
+                             questionsForQuiz.add(listQuestion.get(finalI - 1));
+                         }
+                     }
+                 });
+                 HBox.setMargin(listCheckBox.get(i - 1), new Insets(8, 0, 0, 8));
                  hBox.getChildren().add(checkBox);
 
                  Image image2 = new Image(getClass().getResourceAsStream("/Img.img/3.png"));
@@ -140,6 +158,7 @@ public class GUI63 implements Initializable {
                  HBox.setMargin(threedot, new Insets(14, 0, 0, 2));
                  hBox.getChildren().add(threedot);
 
+//                 For question text
                  Label questionLabel = new Label(" ");
                  Text text1 = new Text(question.title + " ");
                  text1.setFont(Font.font("System", FontWeight.BOLD, 18));
@@ -153,6 +172,7 @@ public class GUI63 implements Initializable {
                  questionLabel.setPrefHeight(46);
                  HBox.setMargin(questionLabel,new Insets(0,0,0,10));
                  hBox.getChildren().add(questionLabel) ;
+//              end question text
 
                  Image image3 = new Image(getClass().getResourceAsStream("/Img.img/magnifying glass.png")) ;
                  ImageView zoom = new ImageView(image3) ;
@@ -167,27 +187,27 @@ public class GUI63 implements Initializable {
                  hBox.getChildren().add(zoomLabel) ;
 
                  if(i%2 == 0) {
-                     questionLabel.setStyle("-fx-background-color: #E6E6E6");
-                     zoomLabel.setStyle("-fx-background-color: #E6E6E6");  }
+                     hBox.setStyle("-fx-background-color: #E6E6E6");
+                 }
                  else if (i%2 == 1) {
-                     questionLabel.setStyle("-fx-background-color: #FFFFFF");
-                     zoomLabel.setStyle("-fx-background-color: #FFFFFF"); }
+                     hBox.setStyle("-fx-background-color: #FFFFFF");
+                 }
                  vBox.getChildren().add(hBox) ;
                  VBox.setMargin(vBox,new Insets(0,0,0,5));
                  questionBox.getChildren().add(vBox) ;
-                 if(i>=10)
-                     anchorPane.setPrefHeight(760+110+(i-10)*45) ;
+                 if(i>=7)
+                     anchorPane.setPrefHeight(760+110+(i-7)*45) ;
 
                  i++;
              }
          }
-        VBox vBox2 = new VBox() ;
+         VBox vBox2 = new VBox();
          vBox2.setPrefHeight(100);
          vBox2.setPrefWidth(924);
-        vBox2.setMaxHeight(Double.POSITIVE_INFINITY);
-        vBox2.setMaxWidth(Double.POSITIVE_INFINITY);
-        vBox2.setMinHeight(Double.NEGATIVE_INFINITY);
-        vBox2.setMinWidth(Double.NEGATIVE_INFINITY);
+         vBox2.setMaxHeight(Double.POSITIVE_INFINITY);
+         vBox2.setMaxWidth(Double.POSITIVE_INFINITY);
+         vBox2.setMinHeight(Double.NEGATIVE_INFINITY);
+         vBox2.setMinWidth(Double.NEGATIVE_INFINITY);
 
         Label buttonLabel = new Label() ;
         buttonLabel.setPrefWidth(924);
@@ -225,5 +245,11 @@ public class GUI63 implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
+    public void switchToGUIHome(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

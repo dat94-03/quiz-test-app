@@ -3,12 +3,14 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFx.bundle.view.SceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFx.bundle.view.GUI1_1_Controller">
    <children>
       <AnchorPane layoutX="-6.0" layoutY="-1.0" prefHeight="57.0" prefWidth="966.0" style="-fx-background-color: #0073A5;">
          <children>
@@ -81,74 +83,13 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Button layoutX="380.0" layoutY="141.0" mnemonicParsing="false" onAction="#switchTo7" prefHeight="26.0" prefWidth="202.0" text="Switch to gui7.3" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="33.0" layoutY="278.0" prefHeight="506.0" prefWidth="885.0" style="-fx-border-color: rgb(219, 221, 221);">
-         <children>
-            <ImageView fitHeight="29.0" fitWidth="38.0" layoutX="71.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../Img.img/fileIcon.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-            <Label fx:id="label" layoutX="117.0" layoutY="45.0" onMouseClicked="#switchToGUI6_1" onMouseEntered="#textUnderlineIn" onMouseExited="#textUnderlineOut" prefHeight="29.0" prefWidth="254.0" text="Kiểm tra cuối kỳ môn IT4895Q">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Label>
-            <ImageView fitHeight="29.0" fitWidth="38.0" layoutX="72.0" layoutY="104.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../Img.img/fileIcon.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-            <Label layoutX="118.0" layoutY="107.0" prefHeight="29.0" prefWidth="254.0" text="Thi thử KTLT">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Label>
-            <ImageView fitHeight="29.0" fitWidth="38.0" layoutX="73.0" layoutY="163.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../Img.img/fileIcon.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="119.0" layoutY="166.0" prefHeight="29.0" prefWidth="254.0" text="Thi GK2 Tin học 7">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="29.0" fitWidth="38.0" layoutX="76.0" layoutY="222.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../Img.img/fileIcon.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="122.0" layoutY="225.0" prefHeight="29.0" prefWidth="254.0" text="Thi GK2 Sử Địa 7">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="29.0" fitWidth="38.0" layoutX="75.0" layoutY="289.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../Img.img/fileIcon.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="121.0" layoutY="292.0" prefHeight="29.0" prefWidth="254.0" text="Thi giữa kì 2 môn Công Nghệ">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Button layoutX="75.0" layoutY="366.0" mnemonicParsing="false" onAction="#switchTo7" prefHeight="26.0" prefWidth="202.0" text="Switch to gui7.3" />
-         </children>
-      </AnchorPane>
+      <ScrollPane layoutX="33.0" layoutY="258.0" prefHeight="558.0" prefWidth="882.0">
+         <content>
+            <VBox fx:id="vBoxQuiz" prefHeight="556.0" prefWidth="884.0" />
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

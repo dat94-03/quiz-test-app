@@ -59,14 +59,20 @@ public class ImportQuestion implements Initializable {
         translate.setCycleCount(TranslateTransition.INDEFINITE);
         translate.setByY(-25);
         translate.setAutoReverse(true);
-        translate.play();
+//        translate.play();
 
+
+//        Rotate pivot = new Rotate();  // create center rotate
+//        pivot.setPivotX(dropDown.getX());
+//        pivot.setPivotY(dropDown.getY() - 1500);
+//        dropDown.getTransforms().add(pivot); // set center rotate for Image View drop down
         RotateTransition rotate = new RotateTransition(Duration.millis(2000), dropDown);
         rotate.setCycleCount(TranslateTransition.INDEFINITE);
         rotate.setByAngle(360);
-        rotate.setAxis(Rotate.Y_AXIS);
+//        rotate.setAxis(Rotate.Y_AXIS);
         rotate.setAutoReverse(true);
         rotate.setInterpolator(Interpolator.LINEAR);
+        rotate.play();
 
         ParallelTransition parallel = new ParallelTransition(dropDown, translate, rotate);
         parallel.play();

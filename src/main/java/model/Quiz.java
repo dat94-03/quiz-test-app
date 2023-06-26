@@ -2,12 +2,12 @@ package model;
 
 
 public class Quiz {
-    int id;
-    String quizName;
-    String openingTime,closingTime;
-    int timeLimit;
+    public int id;
+    public String quizName;
+    public String openingTime,closingTime;
+    public int timeLimit;
 
-    String quizQuestions;
+    public String quizQuestions;
 
     public Quiz(int id, String quizName, String openingTime, String closingTime, int timeLimit, String quizQuestions){
         this.id = id;

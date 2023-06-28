@@ -33,7 +33,8 @@ public class QuizzesManage {
                     String.valueOf(row.getCell(1)),
                     String.valueOf(row.getCell(2)),
                     (int) row.getCell(3).getNumericCellValue(),
-                    String.valueOf(row.getCell(4))
+                    String.valueOf(row.getCell(4)),
+                    String.valueOf(row.getCell(5))
             );
 
             i++;
@@ -42,7 +43,7 @@ public class QuizzesManage {
     }
 
     //add new quiz to database
-    public void addQuiz(Quiz addingQuiz) throws IOException {
+    public void AddQuiz(Quiz addingQuiz) throws IOException {
     FileInputStream fis = new FileInputStream(dataPath);
     data = new XSSFWorkbook(fis);
     quizzes = data.getSheet("Quizzes");
@@ -55,15 +56,14 @@ public class QuizzesManage {
     row.createCell(2).setCellValue(addingQuiz.closingTime);
     row.createCell(3).setCellValue(addingQuiz.timeLimit);
     row.createCell(4).setCellValue(addingQuiz.quizQuestions);
-
+    row.createCell(5).setCellValue(addingQuiz.questionsMark);
     FileOutputStream fos = new FileOutputStream(dataPath);
     data.write(fos);
     fos.close();
-    loadQuiz();
     }
 
     //add quiz' questions to exiting quiz in database
-    public void editingQuiz(int id, String quizQuestions) throws IOException {
+    public void editingQuiz(int id, String quizQuestions, String questionsMark) throws IOException {
         FileInputStream fis = new FileInputStream(dataPath);
         data = new XSSFWorkbook(fis);
         quizzes = data.getSheet("Quizzes");
@@ -72,11 +72,10 @@ public class QuizzesManage {
 
         Row row = quizzes.getRow(id);
         row.createCell(4).setCellValue(quizQuestions);
-
+        row.createCell(5).setCellValue(questionsMark);
         FileOutputStream fos = new FileOutputStream(dataPath);
         data.write(fos);
         fos.close();
-        loadQuiz();
     }
 }
 

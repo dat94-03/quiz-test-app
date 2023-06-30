@@ -4,18 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="737f171c-f212-4f32-b257-51afab8dbb89" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/moodle.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/moodle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="737f171c-f212-4f32-b257-51afab8dbb89" name="Changes" comment="Done-gui7.3, 7.4- Tuấn làm countdown 7.3 nhé">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Img.img/flag2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data/QuizTestAppData.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/QuizTestAppData.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data/testInput.docx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/testInput.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/QuizTestApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/QuizTestApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/QuestionManage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/QuestionManage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Quiz.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/QuizzesManage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/QuizzesManage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Img.img/moodle.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/Gui7_3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/Gui7_3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/Gui7_4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/Gui7_4.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,14 +19,12 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/java/javaFx/bundle/view/GUI6_2a_Controller.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -48,13 +39,11 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/btl oop/quiz-test-app/src/main/java/javaFx/bundle/view&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/LENOVO/Desktop/JavaProjects/QuizApp/quiz-test-app/src/main/resources/Img.img&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.10459435&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.42030567&quot;
@@ -62,13 +51,16 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\btl oop\quiz-test-app\src\main\java\javaFx\bundle\view" />
-      <recent name="E:\btl oop\quiz-test-app\src\main\resources\javaFx\bundle\view" />
+      <recent name="C:\Users\LENOVO\Desktop\JavaProjects\QuizApp\quiz-test-app\src\main\resources\Img.img" />
+      <recent name="C:\Users\LENOVO\Desktop\JavaProjects\QuizApp\quiz-test-app\src\main\resources\javaFx\bundle\view" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Source\Java\OOP\quiz-test-app\src\main\java\data" />
       <recent name="C:\Users\tiend\Desktop\Our-Project\src\main\java\model" />
       <recent name="C:\Users\tiend\Desktop\Our-Project\src\main\java\data" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="javaFx.bundle.view" />
     </key>
   </component>
   <component name="RunManager">
@@ -95,31 +87,19 @@
       <option name="presentableId" value="Default" />
       <updated>1685846421373</updated>
     </task>
+    <task id="LOCAL-00001" summary="Done-gui7.3, 7.4- Tuấn làm countdown 7.3 nhé">
+      <created>1687271356661</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1687271356661</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.io.IOException" package="java.io" />
-          <option name="timeStamp" value="2" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Done-gui7.3, 7.4- Tuấn làm countdown 7.3 nhé" />
+    <option name="LAST_COMMIT_MESSAGE" value="Done-gui7.3, 7.4- Tuấn làm countdown 7.3 nhé" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

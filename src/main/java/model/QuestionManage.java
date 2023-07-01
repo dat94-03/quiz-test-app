@@ -127,14 +127,13 @@ public class QuestionManage {
             fis.close();
 
             int insertingRow = startInsertingRow +1;
-            System.out.println(insertingRow);
             
             FileInputStream importingFileStream = new FileInputStream(importingPath);
             XWPFDocument importingData = new XWPFDocument(importingFileStream);
 
             StringBuilder choices = new StringBuilder();
             Row newQuestion = questionBank.createRow(startInsertingRow +1);
-            String pattern = "^[A-Z]\\.";
+            String pattern = "^[A-Z](\\.)";
             Pattern regex = Pattern.compile(pattern);
 
             for (XWPFParagraph paragraph : importingData.getParagraphs()) {

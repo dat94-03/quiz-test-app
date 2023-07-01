@@ -11,6 +11,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -18,6 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -61,9 +64,10 @@ public class Gui7_4 implements Initializable {
 
         // Create labels for question panel
         Label questionTitle = new Label("Question "+ i);
-        questionTitle.setFont(Font.font( 18.0));
+        Font font = Font.font("Arial", FontWeight.BOLD, 18);
+        questionTitle.setFont(font);
         questionTitle.setTextFill(Color.web("#cf1616"));
-        questionTitle.setStyle("-fx-font-weight: bold;");
+
 
         Label statusLabel = new Label("Answered");
         statusLabel.setFont(Font.font(14.0));
@@ -72,13 +76,22 @@ public class Gui7_4 implements Initializable {
         Label markLabel = new Label("Mark out of 1.00");
         markLabel.setFont(Font.font(14.0));
 
+        HBox flagHbox = new HBox();
+        Image flagImg = new Image(getClass().getResource("/Img.img/flag2.png").toExternalForm());
+        ImageView flagImgView = new ImageView(flagImg);
+        flagImgView.setFitWidth(20);
+        flagImgView.setFitHeight(20);
         Label flagLabel = new Label("Flag question");
         flagLabel.setFont(Font.font(14.0));
+        flagHbox.setSpacing(2);
+        flagHbox.setCursor(Cursor.HAND);
+        flagHbox.setId("flag"+i);
+        flagHbox.getChildren().addAll(flagImgView,flagLabel);
 
         // Add labels to question panel
         VBox questionBox = new VBox(8);
         questionBox.setPadding(new Insets(15));
-        questionBox.getChildren().addAll(questionTitle, statusLabel, markLabel, flagLabel);
+        questionBox.getChildren().addAll(questionTitle, statusLabel, markLabel, flagHbox);
         questionPane.getChildren().add(questionBox);
 
         // Create AnchorPane for question content area
@@ -117,9 +130,9 @@ public class Gui7_4 implements Initializable {
 
         // Create a label answer
         Label aLabel = new Label("The correct answer is: ");
-        aLabel.setFont(new Font(16));
+        Font font1 = Font.font("Arial", FontWeight.BOLD, 16);
+        aLabel.setFont(font1);
         aLabel.setTextFill(Color.web("#cf1616"));
-        aLabel.setStyle("-fx-font-weight: bold;");
 
 
         // Add components to content pane
@@ -141,14 +154,15 @@ public class Gui7_4 implements Initializable {
     private VBox vBoxNav;
     @FXML
     private ScrollPane scrollPane;
-    private void scrollToQuestion(int questionIndex) {
-        double vvalue = (double) questionIndex / 23;
-        scrollPane.setVvalue(vvalue);
+    private void scrollToQuestion(int questionIndex,int numQuestion) {
+        double vValue = (double) questionIndex / (numQuestion-2.2);
+        scrollPane.setVvalue(vValue);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        for (int i=1;i<=25;i++) {
+        int numQuestion=100;
+        for (int i=1;i<=numQuestion;i++) {
             vBox.getChildren().add(AQuestion(i));
         }
 
@@ -160,7 +174,7 @@ public class Gui7_4 implements Initializable {
         int numRows = 7;
         int numColumns = 4;
 
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < numQuestion; i++) {
             Button button = new Button("" + (i + 1));
             button.setPrefHeight(40);
             button.setPrefWidth(30);
@@ -170,11 +184,12 @@ public class Gui7_4 implements Initializable {
             button.setAlignment(Pos.TOP_CENTER);
             button.setPadding(new Insets(-5, 0,0,0));
             button.setId("button"+(i + 1));
-            button.setStyle("-fx-background-color: linear-gradient(from 100.0% 46.2121% to 100.0% 45.0758%, #0b1f69 0.0%, #fffdfd 38.8941%, #e7e7e7 100.0%)");
+            button.setStyle("-fx-background-color: linear-gradient(from 42.803% 50.3788% to 42.803% 50.0%, #c9c9c9 0.0%, #ffffff 100.0%); -fx-border-color: black;-fx-border-radius:10% ; -fx-border-width:2px;");
+
 
 
             int finalI = i;
-            button.setOnAction(event -> scrollToQuestion(finalI +1));
+            button.setOnAction(event -> scrollToQuestion(finalI +1,numQuestion));
             int row = i / numColumns; // Vị trí hàng
             int column = i % numColumns; // Vị trí cột
             gridPane.add(button, column, row); // Thêm nút vào vị trí hàng và cột tương ứng
@@ -208,7 +223,7 @@ public class Gui7_4 implements Initializable {
         Button targetButton = (Button) vBoxNav.lookup("#button"+questionIndex);
         Label answeredLabel = (Label) vBox.lookup("#answered"+questionIndex);
         if (targetButton != null) {
-            targetButton.setStyle("-fx-background-color: linear-gradient(from 100.0% 46.2121% to 100.0% 45.0758%, #0b1f69 0.0%, #fffdfd 38.8941%, #e7e7e7 100.0%)");
+            targetButton.setStyle("-fx-background-color: linear-gradient(from 42.803% 50.3788% to 42.803% 50.0%, #c9c9c9 0.0%, #ffffff 100.0%); -fx-border-color: black;-fx-border-radius:10% ; -fx-border-width:2px;");
             answeredLabel.setText("Answered          ");
         }
     }

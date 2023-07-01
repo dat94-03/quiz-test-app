@@ -91,11 +91,13 @@ public class QuestionManage {
     //edit question with given question id and edited Question object
     public void editQuestion(Question editedQuestion) throws IOException {
         FileInputStream fis = new FileInputStream(dataPath);
-        data = new XSSFWorkbook(fis);
-        questionBank = data.getSheet("QuestionBank");
+        XSSFWorkbook data = new XSSFWorkbook(fis);
+        Sheet questionBank = data.getSheet("QuestionBank");
         Row editingQuestion = questionBank.getRow(editedQuestion.id);
         editingQuestion.getCell(0).setCellValue(editedQuestion.title);
+        String oldCategory = editingQuestion.getCell(1).getStringCellValue();
         editingQuestion.getCell(1).setCellValue(editedQuestion.category);
+
         editingQuestion.getCell(2).setCellValue(editedQuestion.correctAnswer);
         StringBuilder choices = new StringBuilder();
         for(String choice :editedQuestion.choices){
@@ -103,8 +105,14 @@ public class QuestionManage {
         }
         choices.delete(choices.length()-1,choices.length() +1);
         editingQuestion.getCell(3).setCellValue(choices.toString());
+        fis.close();
+
         FileOutputStream fos = new FileOutputStream(dataPath);
         data.write(fos);
+        fos.close();
+
+        updateCategory(oldCategory,-1);
+        updateCategory(editedQuestion.category,1);
         loadQuestion();
     }
 
@@ -112,50 +120,59 @@ public class QuestionManage {
     //return number of question have imported if the format is corrSect, otherwise return -1
     public void importQuestions(String importingPath, String category) throws IOException {
         if (checkAikenFormat(importingPath)) {
+            FileInputStream fis = new FileInputStream(dataPath);
+            XSSFWorkbook data = new XSSFWorkbook(fis);
+            Sheet questionBank = data.getSheet("QuestionBank");
+            int startInsertingRow = questionBank.getLastRowNum();
+            fis.close();
+
+            int insertingRow = startInsertingRow +1;
+            
             FileInputStream importingFileStream = new FileInputStream(importingPath);
             XWPFDocument importingData = new XWPFDocument(importingFileStream);
 
-            int startInsertingRow = questionBank.getLastRowNum() + 1;
-            int insertingRow = startInsertingRow;
-            FileOutputStream writeDataStream = new FileOutputStream(dataPath);
-            Row newQuestion = questionBank.createRow(insertingRow);
             StringBuilder choices = new StringBuilder();
+            Row newQuestion = questionBank.createRow(startInsertingRow +1);
+            String pattern = "^[A-Z](\\.)";
+            Pattern regex = Pattern.compile(pattern);
+
             for (XWPFParagraph paragraph : importingData.getParagraphs()) {
                 String line = paragraph.getText();
                 line = line.trim();
-                //pattern to check if a line start with an uppercase alphabet and follow by a fot and space
-                String pattern = "^[A-Z]\\.";
-                Pattern regex = Pattern.compile(pattern);
-                Matcher matcher = regex.matcher(line);
+                if (!line.isEmpty()) {
+                    //pattern to check if a line start with an uppercase alphabet and follow by a fot and space
 
-                if (line.isEmpty()) {
+                    Matcher matcher = regex.matcher(line);
 
-                    insertingRow++;
-                    newQuestion = questionBank.createRow(insertingRow);
-
-                } else if (matcher.find()) {
-                    if (choices.isEmpty()) {
-                        choices.append(line);
+                    if (matcher.find()) {
+                        if (choices.isEmpty()) {
+                            choices.append(line);
+                        } else {
+                            choices.append("\n").append(line);
+                        }
+                    } else if (line.startsWith("ANSWER: ")) {
+                        newQuestion.createCell(3).setCellValue(choices.toString());
+                        choices = new StringBuilder();
+                        newQuestion.createCell(2).setCellValue(String.valueOf(line.charAt(8)));
+                        newQuestion.createCell(1).setCellValue(category);
+                        insertingRow++;
                     } else {
-                        choices.append("\n").append(line);
+                        newQuestion = questionBank.createRow(insertingRow);
+                        newQuestion.createCell(0).setCellValue(line);
+
                     }
 
-
-                } else if (line.startsWith("ANSWER: ")) {
-                    newQuestion.createCell(3).setCellValue(choices.toString());
-                    choices = new StringBuilder();
-                    newQuestion.createCell(2).setCellValue(String.valueOf(line.charAt(8)));
-                    newQuestion.createCell(1).setCellValue(category);
-                } else {
-                    newQuestion.createCell(0).setCellValue(line);
                 }
 
             }
+            importingFileStream.close();
 
+            FileOutputStream writeDataStream = new FileOutputStream(dataPath);
             data.write(writeDataStream);
             writeDataStream.close();
-            loadQuestion();
             updateCategory(category, insertingRow - startInsertingRow + 1);
+            loadQuestion();
+
         }
     }
 
@@ -176,7 +193,7 @@ public class QuestionManage {
             i++;
             String text = paragraph.getText(); // text get content of paragraph
             text = text.trim();
-            System.out.println("Dong nay la : " + text);
+            //System.out.println("Dong nay la : " + text);
 //
             if (text.length() <= 2) continue; // skip space line
 //
@@ -198,7 +215,7 @@ public class QuestionManage {
             }
 //                else : break loop, announce paragraph is wrong in aiken format
             else {
-                System.out.println("Error at " + i + " " + text);
+                //System.out.println("Error at " + i + " " + text);
                 flag2 = false;
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Error at " + i + " " + text);
@@ -215,22 +232,26 @@ public class QuestionManage {
 //            update number question is imported success
             QuestionBankTree.currentCategory = LibraryForUs.updateNumberQuestion(QuestionBankTree.currentCategory, numQuestion);
         }
+
         isAiken = flag2;
+        fis.close();
         return isAiken;
     }
 
     //update number of question of each category
     public void updateCategory(String categoryPath, int amountChange) throws IOException {
         FileInputStream readDataStream = new FileInputStream(dataPath);
-        data = new XSSFWorkbook(readDataStream);
-        categories = data.getSheet("Category");
+        XSSFWorkbook data = new XSSFWorkbook(readDataStream);
+        Sheet categories = data.getSheet("Category");
         for(Row r: categories){
             if(categoryPath.contains(r.getCell(0).getStringCellValue())){
                 r.getCell(1).setCellValue(r.getCell(1).getNumericCellValue()+(double)amountChange);
             }
         }
+        readDataStream.close();
         FileOutputStream fos = new FileOutputStream(dataPath);
         data.write(fos);
+        fos.close();
     }
 
     //add a new category with the param is category path start with root node

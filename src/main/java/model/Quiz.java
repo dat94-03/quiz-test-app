@@ -8,14 +8,16 @@ public class Quiz {
     public int timeLimit;
 
     public String quizQuestions;
+    public String questionsMark;
 
-    public Quiz(int id, String quizName, String openingTime, String closingTime, int timeLimit, String quizQuestions){
+    public Quiz(int id, String quizName, String openingTime, String closingTime, int timeLimit, String quizQuestions, String questionsMark){
         this.id = id;
         this.quizName = quizName;
         this.openingTime = openingTime;
         this.closingTime = closingTime;
         this.timeLimit = timeLimit;
         this.quizQuestions = quizQuestions;
+        this.questionsMark=questionsMark;
     }
 
     @Override

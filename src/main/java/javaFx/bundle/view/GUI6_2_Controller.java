@@ -31,7 +31,7 @@ public class GUI6_2_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        label.setText("Editing quiz:" + GUI1_1_Controller.currentQuiz);
+        label.setText("Editing quiz:" + GUI1_1_Controller.currentQuiz.quizName);
 
         boolean flag = false;
         Label label1 = getItem(choices[0]);

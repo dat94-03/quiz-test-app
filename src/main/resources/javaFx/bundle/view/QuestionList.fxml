@@ -14,7 +14,7 @@
 
 <ScrollPane fitToWidth="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFx.bundle.view.QuestionList">
    <content>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="1477.0" prefWidth="900.0">
+      <AnchorPane fx:id="myAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="784.0" prefWidth="900.0">
          <children>
             <AnchorPane layoutX="-6.0" layoutY="-1.0" prefHeight="57.0" prefWidth="966.0" style="-fx-background-color: #009FE5;" />
             <AnchorPane layoutX="33.0" layoutY="57.0" prefHeight="122.0" prefWidth="883.0" style="-fx-border-color: rgb(219, 221, 221);">
@@ -44,7 +44,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="33.0" layoutY="198.0" prefHeight="1300.0" prefWidth="979.0" style="-fx-border-color: rgb(219, 221, 221);">
+            <AnchorPane layoutX="33.0" layoutY="198.0" prefHeight="583.0" prefWidth="943.0" style="-fx-border-color: rgb(219, 221, 221);">
                <children>
                   <Label fx:id="label" layoutX="63.0" layoutY="13.0" prefHeight="38.0" prefWidth="134.0" text="Questions" textFill="#464646">
                      <font>
@@ -146,7 +146,7 @@
                         <Image url="@../../../Img.img/arrowblue.png" />
                      </image>
                   </ImageView>
-                  <VBox fx:id="questionBox" layoutX="8.0" layoutY="346.0" prefHeight="941.0" prefWidth="901.0" />
+                  <VBox fx:id="questionBox" layoutX="8.0" layoutY="346.0" prefHeight="235.0" prefWidth="901.0" />
                </children>
             </AnchorPane>
          </children>

@@ -1,5 +1,7 @@
 package javaFx.bundle.view;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -17,23 +20,36 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import model.Question;
+import model.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class GUI64 implements Initializable {
+    private Quiz currentQuiz = GUI1_1_Controller.currentQuiz;
+    private ArrayList<Integer> idQuestionsForQuiz ;
+    private ArrayList<Integer> idQuestionDelete =  new ArrayList<>();
+    private ArrayList<ImageView> binImageViews = new ArrayList<>();
+    private ArrayList<VBox> vBoxesQuestion = new ArrayList<>();
     @FXML
     private VBox questionBox;
-   @FXML
-   private AnchorPane menuPane ;
+    @FXML
+    private AnchorPane menuPane ;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        idQuestionsForQuiz = LibraryForUs.getQuestionIdFromQuiz(currentQuiz);
+        QuestionManage questionManage = null;
+        try {
+            questionManage = new QuestionManage();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         int i = 1;
-        for(Question question : GUI63.questionsForQuiz) {
-            System.out.println(question);
+//        Fix beside code
+        for(int j : idQuestionsForQuiz) {
             VBox vBox = new VBox() ;
             vBox.setPrefHeight(56);
             vBox.setPrefWidth(915);
@@ -86,15 +102,14 @@ public class GUI64 implements Initializable {
             HBox.setMargin(setting, new Insets(17, 0, 0, 6));
             hBox.getChildren().add(setting);
 
-            Label questionLabel = new Label(" ");
-            Text text1 = new Text(question.title + " ");
-            text1.setFont(Font.font("System", FontWeight.BOLD, 18));
-
-            Text text2 = new Text(question.title);
-            text2.setFont(Font.font("System", FontWeight.NORMAL, 18));
-
-            TextFlow textFlow = new TextFlow(text1, text2);
-            questionLabel.setGraphic(textFlow);
+            Label questionLabel = new Label(QuestionManage.questionsList.get(j).title);
+            questionLabel.setFont(Font.font(18));
+//            Text text1 = new Text(question.title + " ");
+//            text1.setFont(Font.font("System", FontWeight.BOLD, 18));
+//            Text text2 = new Text(question.title);
+//            text2.setFont(Font.font("System", FontWeight.NORMAL, 18));
+//            TextFlow textFlow = new TextFlow(text1, text2);
+//            questionLabel.setGraphic(textFlow);
             questionLabel.setPrefHeight(46);
             questionLabel.setPrefWidth(531);
             questionLabel.setFont(Font.font(18));
@@ -121,8 +136,24 @@ public class GUI64 implements Initializable {
             bin.setPreserveRatio(true);
             bin.setFitHeight(22);
             bin.setFitWidth(23);
-            HBox.setMargin(bin,new Insets(12,10,0,5));
-            hBox.getChildren().add(bin) ;
+            binImageViews.add(bin);
+            int finalI = i;
+            binImageViews.get(i - 1).setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    idQuestionDelete.add(j);
+                    questionBox.getChildren().remove(vBoxesQuestion.get(finalI - 1));
+                    System.out.println("i la " + finalI + "j la " + j);
+                }
+            });
+            binImageViews.get(i - 1).setOnMouseEntered(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    binImageViews.get(finalI - 1).setStyle("-fx-cursor: hand;");
+                }
+            });
+            HBox.setMargin(binImageViews.get(i - 1),new Insets(12,10,0,5));
+            hBox.getChildren().add(binImageViews.get(i - 1)) ;
 
             TextField textField = new TextField() ;
             textField.setPrefHeight(30);
@@ -153,8 +184,9 @@ public class GUI64 implements Initializable {
 
             vBox.getChildren().add(hBox) ;
             vBox.getChildren().add(spacing) ;
+            vBoxesQuestion.add(vBox);
 
-            questionBox.getChildren().add(vBox) ;
+            questionBox.getChildren().add(vBoxesQuestion.get(i - 1)) ;
 
             i++;
         }
@@ -173,6 +205,9 @@ public class GUI64 implements Initializable {
 //        }
 //        questionBox.setSpacing(5) ;
        }
+    public void saveQuestions(ActionEvent event){
+
+    }
     }
 
 

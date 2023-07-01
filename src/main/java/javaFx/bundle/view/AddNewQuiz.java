@@ -16,19 +16,26 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.QuestionManage;
+import model.Quiz;
+import model.QuizzesManage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class AddNewQuiz implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    Map<Integer,String> numberMap ;
+    Integer currSecond ;
+    Integer text ;
+    Thread thrd ;
+
+    @FXML
+    private TextField textFieldNameQuiz;
     @FXML
     private CheckBox checkBox ;
     @FXML
@@ -90,11 +97,74 @@ public class AddNewQuiz implements Initializable {
     private volatile boolean stopFlag = false;
     @FXML
     private ComboBox<Integer> yearComboBox2;
-    Map<Integer,String> numberMap ;
-    Integer currSecond ;
-    Integer text ;
-    Thread thrd ;
-    public void switchToHome(ActionEvent event) throws IOException {
+    public void CreateQuiz(ActionEvent event) throws IOException {
+        boolean flagNameQuiz = false, flagTimeSet = false;
+
+        if(textFieldNameQuiz != null && (textFieldNameQuiz.getText().equals("") == false)){
+            String nameQuiz = new String(textFieldNameQuiz.getText());
+            flagNameQuiz = true;
+        }
+        String nameQuiz = new String(textFieldNameQuiz.getText());
+        String strOpenQuiz = dayComboBox1.getValue() + "/" + monthComboBox1.getValue() + "/" + yearComboBox1.getValue();
+        String strCloseQuiz = dayComboBox2.getValue() + "/" + monthComboBox2.getValue() + "/" + yearComboBox2.getValue();
+        String questionsOnQuiz = new String();  // it is empty
+        int intTimeLimit = 0;
+        if((textTime != null) && IntegerCheck.isInteger(textTime.getText())){
+            if(myChoiceBox.getValue().equals(" seconds")){
+                intTimeLimit = Integer.valueOf(textTime.getText());
+                System.out.println("seconds");
+            }
+            else if(myChoiceBox.getValue().equals(" minutes")){
+                intTimeLimit = Integer.valueOf(textTime.getText()) * 60;
+                System.out.println("minutes");
+            }
+            else if(myChoiceBox.getValue().equals(" hours")){
+                intTimeLimit = Integer.valueOf(textTime.getText()) * 3600;
+                System.out.println("hours");
+            }
+            else {
+                System.out.println("Error at create quiz");
+            }
+            flagTimeSet = true;
+        }
+
+        if((flagNameQuiz == true) && (flagTimeSet == true)){
+            System.out.println("Quiz infor : " + nameQuiz + " " +  strOpenQuiz + " " +  strCloseQuiz + " " + intTimeLimit);
+            QuizzesManage quizzesManage = new QuizzesManage();
+            int numQuiz = 0;
+            for (Quiz quiz : QuizzesManage.quizzesList){
+                numQuiz++;
+            }
+            Quiz quiz = new Quiz(numQuiz, nameQuiz, strOpenQuiz, strCloseQuiz, intTimeLimit, questionsOnQuiz);
+            quizzesManage.addQuiz(quiz);
+
+//       switch to GUI 1.1
+            root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("You don't import quiz name or set time (time must be integer)");
+            alert.showAndWait();
+        }
+    }
+
+    public class IntegerCheck {
+        public static boolean isInteger(String str) {
+            try {
+                Integer.parseInt(str); // Chuyển đổi chuỗi thành số nguyên
+                return true;
+            } catch (NumberFormatException e) {
+                return false;
+            }
+        }
+    }
+
+
+    public void switchToHome(ActionEvent event) throws IOException{
         root = FXMLLoader.load(getClass().getResource("Home.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -273,8 +343,8 @@ public class AddNewQuiz implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
          myChoiceBox.getItems().addAll(choiceTime) ;
-          myChoiceBox.setValue(" minutes");
-          choiceBox.setValue("Open attempts are submitted automatic");
+         myChoiceBox.setValue(" minutes");
+         choiceBox.setValue("Open attempts are submitted automatic");
         ObservableList<Integer> dayList = FXCollections.observableArrayList();
         ObservableList<String> monthList = FXCollections.observableArrayList("January",
                 "February",
@@ -292,20 +362,24 @@ public class AddNewQuiz implements Initializable {
         ObservableList<Integer> hourList = FXCollections.observableArrayList() ;
         ObservableList<Integer> minuteList = FXCollections.observableArrayList() ;
           for(int i =1 ;i <= 31 ;i++)
-              dayList.add(new Integer(i)) ;
+//              dayList.add(new Integer(i)) ;
+              dayList.add(i);
           for(int i=2020;i<=2040;i++)
-              yearList.add(new Integer(i)) ;
+//              yearList.add(new Integer(i)) ;
+              dayList.add(i);
           for(int i = 0;i<=23;i++)
-              hourList.add(new Integer(i)) ;
+//              hourList.add(new Integer(i)) ;
+              dayList.add(i);
           for(int i=0;i<=59;i++)
-              minuteList.add(new Integer(i)) ;
+//              minuteList.add(new Integer(i)) ;
+              dayList.add(i);
           dayComboBox1.setItems(dayList);
           dayComboBox1.setValue(21);
           dayComboBox2.setItems(dayList);
         dayComboBox2.setValue(21);
-          monthComboBox1.setItems(monthList);
-          monthComboBox1.setValue("March");
-          monthComboBox2.setItems(monthList);
+        monthComboBox1.setItems(monthList);
+        monthComboBox1.setValue("March");
+        monthComboBox2.setItems(monthList);
         monthComboBox2.setValue("March");
           yearComboBox1.setItems(yearList);
           yearComboBox1.setValue(2023);

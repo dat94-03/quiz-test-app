@@ -39,9 +39,11 @@ public class GUI63 implements Initializable {
     private Parent root;
     private String selectCate = new String("Default");
     private String fullyCate = new String();
+    private Quiz currentQuiz = GUI1_1_Controller.currentQuiz;
+
     private ArrayList<CheckBox> listCheckBox = new ArrayList<>();
     private ArrayList<Question> listQuestion = new ArrayList<>();
-    public static ArrayList<Question> questionsForQuiz = new ArrayList<>();
+//    public static ArrayList<Question> questionsForQuiz = new ArrayList<>();
     @FXML
     private AnchorPane anchorPane ;
     @FXML
@@ -104,8 +106,8 @@ public class GUI63 implements Initializable {
 
     }
     public void addQuestionBank() throws IOException {
+        QuizzesManage quizzesManage = new QuizzesManage();
         questionBox.getChildren().clear();
-
         int i = 1;
         QuestionManage questionManage = new QuestionManage();
          for(Question question : QuestionManage.questionsList) {
@@ -136,14 +138,22 @@ public class GUI63 implements Initializable {
                  CheckBox checkBox = new CheckBox();
                  checkBox.setMnemonicParsing(false);
                  checkBox.setFont(Font.font(14));
+                 if(LibraryForUs.checkQuestionExistOnQuiz(question, currentQuiz) == true){
+                     checkBox.setSelected(true);
+                 }
                  listCheckBox.add(checkBox);
                  int finalI = i;
                  listCheckBox.get(i - 1).setOnAction(new EventHandler<ActionEvent>() {
                      @Override
                      public void handle(ActionEvent event) {
-                         if(listCheckBox.get(finalI - 1).isSelected()){
-                             questionsForQuiz.add(listQuestion.get(finalI - 1));
-                         }
+//                         if(listCheckBox.get(finalI - 1).isSelected() == false){
+//                             try {
+//                                 LibraryForUs.deleteQuestionInQuiz(listQuestion.get(finalI - 1), currentQuiz);
+//                                 System.out.println(listQuestion.get(finalI - 1));
+//                             } catch (IOException e) {
+//                                 throw new RuntimeException(e);
+//                             }
+//                         }
                      }
                  });
                  HBox.setMargin(listCheckBox.get(i - 1), new Insets(8, 0, 0, 8));
@@ -160,14 +170,16 @@ public class GUI63 implements Initializable {
 
 //                 For question text
                  Label questionLabel = new Label(" ");
-                 Text text1 = new Text(question.title + " ");
-                 text1.setFont(Font.font("System", FontWeight.BOLD, 18));
-
-                 Text text2 = new Text(question.title);
-                 text2.setFont(Font.font("System", FontWeight.NORMAL, 18));
-
-                 TextFlow textFlow = new TextFlow(text1, text2);
-                 questionLabel.setGraphic(textFlow);
+                 questionLabel.setText(question.title);
+                 questionLabel.setFont(Font.font(18));
+//                 Text text1 = new Text(question.title + " ");
+//                 text1.setFont(Font.font("System", FontWeight.BOLD, 18));
+//
+//                 Text text2 = new Text(question.title);
+//                 text2.setFont(Font.font("System", FontWeight.NORMAL, 18));
+//
+//                 TextFlow textFlow = new TextFlow(text1, text2);
+//                 questionLabel.setGraphic(textFlow);
                  questionLabel.setPrefWidth(812);
                  questionLabel.setPrefHeight(46);
                  HBox.setMargin(questionLabel,new Insets(0,0,0,10));
@@ -195,8 +207,7 @@ public class GUI63 implements Initializable {
                  vBox.getChildren().add(hBox) ;
                  VBox.setMargin(vBox,new Insets(0,0,0,5));
                  questionBox.getChildren().add(vBox) ;
-                 if(i>=7)
-                     anchorPane.setPrefHeight(760+110+(i-7)*45) ;
+                 anchorPane.setPrefHeight(760+110+(i-4)*45) ;
 
                  i++;
              }
@@ -226,7 +237,7 @@ public class GUI63 implements Initializable {
         buttonaddquiz.setFont(Font.font(17)) ;
         buttonaddquiz.setOnAction(event -> {
             try {
-                switchToGUI64(event);
+                addSelectedQuestionToQuiz(event);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -238,13 +249,33 @@ public class GUI63 implements Initializable {
         count ++ ;
 
     }
-    public void switchToGUI64(ActionEvent event) throws IOException {
+    public void addSelectedQuestionToQuiz(ActionEvent event) throws IOException {
+        QuizzesManage quizzesManage = new QuizzesManage();
+        int i = 0;
+        for(CheckBox checkBox : listCheckBox){
+            if(checkBox.isSelected()) {
+                try {
+                    if (LibraryForUs.checkQuestionExistOnQuiz(listQuestion.get(i), currentQuiz) == false) {
+                        currentQuiz.quizQuestions =
+                                currentQuiz.quizQuestions + "," + Integer.toString(listQuestion.get(i).id);
+                        quizzesManage.editingQuiz(currentQuiz.id, currentQuiz.quizQuestions);
+                        System.out.println(listQuestion.get(i));
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            i++;
+        }
+
+//        switch to GUI 6.4
         root = FXMLLoader.load(getClass().getResource("GUI6.4.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
+
     public void switchToGUIHome(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Home.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

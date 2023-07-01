@@ -23,11 +23,12 @@ public class QuizTestApplication extends Application {
         stage.show();
     }
     public static void main(String[] args) throws IOException {
-//        QuestionManage questionManage = new QuestionManage();
-//        Question q = QuestionManage.questionsList.get(1);
-//        q.category = "root/Course : IT/Top for IT/C câu hỏi dễ";
-//        questionManage.editQuestion(q);
-
-        launch();
+        QuestionManage questionManage = new QuestionManage();
+        QuizzesManage quizzesManage = new QuizzesManage();
+        Question question = QuestionManage.questionsList.get(3);
+        Quiz quiz = QuizzesManage.quizzesList.get(0);
+        LibraryForUs.deleteQuestionInQuiz(question, quiz);
+        System.out.println(quiz.quizQuestions);
+//        launch();
     }
 }

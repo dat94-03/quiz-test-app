@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Question {
-    int id = -1;
+    public int id = -1;
     public String title;
     public String category;
     public ArrayList<String> choices = new ArrayList<>();

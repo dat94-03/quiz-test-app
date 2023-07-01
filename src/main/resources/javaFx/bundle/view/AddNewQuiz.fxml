@@ -123,7 +123,7 @@
                   <Image url="@../../../Img.img/chamthan.png" />
                </image>
             </ImageView>
-            <TextField layoutX="377.0" layoutY="91.0" prefHeight="38.0" prefWidth="426.0" />
+            <TextField fx:id="textFieldNameQuiz" layoutX="377.0" layoutY="91.0" prefHeight="38.0" prefWidth="426.0" />
             <TextArea layoutX="377.0" layoutY="144.0" prefHeight="208.0" prefWidth="552.0" style="-fx-border-color: #565555;" />
             <CheckBox layoutX="398.0" layoutY="366.0" mnemonicParsing="false" style="-fx-background-color: white;" />
             <Text fill="#4b4949" layoutX="424.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Display description on course page">
@@ -240,7 +240,7 @@
                   <Font size="16.0" />
                </font>
             </Text>
-            <Button layoutX="332.0" layoutY="701.0" mnemonicParsing="false" onAction="#switchToHome" prefHeight="51.0" prefWidth="137.0" style="-fx-background-color: #009FE5;" text="CREATE" textFill="WHITE">
+            <Button layoutX="332.0" layoutY="701.0" mnemonicParsing="false" onAction="#CreateQuiz" prefHeight="51.0" prefWidth="137.0" style="-fx-background-color: #009FE5;" text="CREATE" textFill="WHITE">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>

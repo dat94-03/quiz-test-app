@@ -27,9 +27,7 @@ public class GUI6_1_Controller implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        quizName.setText(GUI1_1_Controller.currentQuiz);
-//        quizName.setFont(Font.font(30));
-//        quizName.setTextFill(Color.web("#c71d1d"));
+        quizName.setText(GUI1_1_Controller.currentQuiz.quizName);
     }
     public void switchToGUI6_2a(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("gui6.2.fxml"));

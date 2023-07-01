@@ -2,6 +2,9 @@ package model;
 
 import javafx.scene.control.TreeItem;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class LibraryForUs {
     public static void accessChildrenTreeView(Category category, TreeItem<String> item){
         if(category == null)    return;
@@ -63,6 +66,68 @@ public class LibraryForUs {
     public static String getLastCategory(String fullCate){
         String[] categories = fullCate.split("/");
         return categories[categories.length - 1];
+    }
+
+    public static boolean checkQuestionExistOnQuiz(Question question, Quiz quiz) throws IOException {
+        String[] tmp = quiz.quizQuestions.split(",");
+        ArrayList<Integer> idQuestions = new ArrayList<>();
+        for(String str : tmp){
+            str = str.trim();
+            if(IntegerCheck.isInteger(str)){
+                idQuestions.add(Integer.valueOf(str));
+            }
+        }
+
+        for(int i : idQuestions){
+            if(question.id == i)    return true;
+        }
+        return false;
+    }
+
+    public static ArrayList<Integer> getQuestionIdFromQuiz(Quiz quiz){
+        String[] tmp = quiz.quizQuestions.split(",");
+        ArrayList<Integer> idQuestions = new ArrayList<>();
+        for(String str : tmp){
+            str = str.trim();
+            if(IntegerCheck.isInteger(str)){
+                idQuestions.add(Integer.valueOf(str));
+            }
+        }
+        return idQuestions;
+    }
+    public static void deleteQuestionInQuiz(Question question, Quiz quiz) throws IOException {
+//        QuestionManage questionManage = new QuestionManage();
+        if(checkQuestionExistOnQuiz(question, quiz)){
+            System.out.println("Exist");
+            String[] tmp = quiz.quizQuestions.split(",");
+            String questionOnQuiz = new String();
+            ArrayList<Integer> idQuestions = new ArrayList<>();
+            for(String str : tmp){
+                str = str.trim();
+                if(IntegerCheck.isInteger(str)){
+                    idQuestions.add(Integer.valueOf(str));
+                }
+            }
+
+            for(int i : idQuestions){
+                if(question.id == i)    continue;
+                questionOnQuiz = questionOnQuiz + "," + Integer.toString(i);
+            }
+//            quiz.quizQuestions = questionOnQuiz;
+            QuizzesManage quizzesManage = new QuizzesManage();
+            quizzesManage.editingQuiz(quiz.id, questionOnQuiz);
+        }
+    }
+
+    private class IntegerCheck {
+        public static boolean isInteger(String str) {
+            try {
+                Integer.parseInt(str); // Chuyển đổi chuỗi thành số nguyên
+                return true;
+            } catch (NumberFormatException e) {
+                return false;
+            }
+        }
     }
 }
 

@@ -29,7 +29,8 @@ public class GUI1_1_Controller implements Initializable {
     private Scene scene;
     private Parent root;
     private ArrayList<Label> labelQuizzes = new ArrayList<>();
-    public static String currentQuiz = new String("Default");
+//    public static String currentQuiz = new String("Default");
+    static Quiz currentQuiz;
     @FXML
     private Label label;
     @FXML
@@ -67,7 +68,7 @@ public class GUI1_1_Controller implements Initializable {
             labelQuizzes.get(i).setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    currentQuiz = labelQuizzes.get(finalI).getText();
+                    currentQuiz = quiz;
                     try {
                         root = FXMLLoader.load(getClass().getResource("gui6.1.fxml"));
                     } catch (IOException e) {

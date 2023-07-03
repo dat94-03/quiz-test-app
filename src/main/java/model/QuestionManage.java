@@ -123,10 +123,10 @@ public class QuestionManage {
             FileInputStream fis = new FileInputStream(dataPath);
             XSSFWorkbook data = new XSSFWorkbook(fis);
             Sheet questionBank = data.getSheet("QuestionBank");
-            int startInsertingRow = questionBank.getLastRowNum();
+            int startInsertingRow = questionBank.getLastRowNum() +1;
             fis.close();
 
-            int insertingRow = startInsertingRow +1;
+            int insertingRow = startInsertingRow;
             
             FileInputStream importingFileStream = new FileInputStream(importingPath);
             XWPFDocument importingData = new XWPFDocument(importingFileStream);
@@ -170,7 +170,7 @@ public class QuestionManage {
             FileOutputStream writeDataStream = new FileOutputStream(dataPath);
             data.write(writeDataStream);
             writeDataStream.close();
-            updateCategory(category, insertingRow - startInsertingRow + 1);
+            updateCategory(category, insertingRow - startInsertingRow);
             loadQuestion();
 
         }

@@ -6,10 +6,14 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -40,13 +44,26 @@ public class Question {
         int count =0;
         for (String path : paths){
             if(path.equals("null")){
-                imagesByteData.append("F").append("\n");
+                imagesByteData.append("N").append("\n");
             }else{
-                File image = new File(path);
-                BufferedImage img = ImageIO.read(image);
-                File out = new File("src/main/java/data/picture/"+ this.id +"#"+ count +".png");
-                ImageIO.write(img,"png",out);
-                imagesByteData.append("T").append("\n");
+                if(path.endsWith("gif")){
+//                    Image img = new Image(new File(path).toURI().toString());
+//                    BufferedImage bufferedImage = SwingFXUtils.fromFXImage(img, null);
+//                   File image = new File(path);
+//                    BufferedImage img = ImageIO.read(image);
+//                    File out = new File("src/main/java/data/picture/"+ this.id +"#"+ count +".gif");
+//                    ImageIO.write(img,"gif",out);
+                    Path sourcePath = Path.of(path);
+                    Path destinationPath = Path.of("src/main/java/data/picture/"+ this.id +"#"+ count +".gif"); // Replace with the desired destination path
+                    Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+                    imagesByteData.append("G").append("\n");
+                }else{
+                    File image = new File(path);
+                    BufferedImage img = ImageIO.read(image);
+                    File out = new File("src/main/java/data/picture/"+ this.id +"#"+ count +".png");
+                    ImageIO.write(img,"png",out);
+                    imagesByteData.append("P").append("\n");
+                }
             }
             count++;
         }
@@ -74,12 +91,16 @@ public class Question {
         databaseStream.close();
         int count =0;
         for (String flag : flags){
-            if(flag.equals("F")){
+            if(flag.equals("N")){
                 imageList.add(null);
-            }else{
+            }else if(flag.equals("G")){
+                File imageFile = new File(System.getProperty("user.dir") + File.separator + "src/main/java/data/picture/"+ this.id +"#"+ count +".gif");
+                imageList.add(new Image(imageFile.toURI().toString()));
+            }else {
                 File imageFile = new File(System.getProperty("user.dir") + File.separator + "src/main/java/data/picture/"+ this.id +"#"+ count +".png");
                 imageList.add(new Image(imageFile.toURI().toString()));
             }
+
             count++;
         }
         return imageList;

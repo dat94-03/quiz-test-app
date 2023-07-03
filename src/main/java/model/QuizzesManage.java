@@ -43,7 +43,7 @@ public class QuizzesManage {
     }
 
     //add new quiz to database
-    public void AddQuiz(Quiz addingQuiz) throws IOException {
+    public void addQuiz(Quiz addingQuiz) throws IOException {
     FileInputStream fis = new FileInputStream(dataPath);
     data = new XSSFWorkbook(fis);
     quizzes = data.getSheet("Quizzes");
@@ -60,6 +60,7 @@ public class QuizzesManage {
     FileOutputStream fos = new FileOutputStream(dataPath);
     data.write(fos);
     fos.close();
+    loadQuiz();
     }
 
     //add quiz' questions to exiting quiz in database
@@ -76,6 +77,7 @@ public class QuizzesManage {
         FileOutputStream fos = new FileOutputStream(dataPath);
         data.write(fos);
         fos.close();
+        loadQuiz();
     }
 }
 

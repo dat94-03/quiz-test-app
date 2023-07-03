@@ -258,7 +258,7 @@ public class GUI63 implements Initializable {
                     if (LibraryForUs.checkQuestionExistOnQuiz(listQuestion.get(i), currentQuiz) == false) {
                         currentQuiz.quizQuestions =
                                 currentQuiz.quizQuestions + "," + Integer.toString(listQuestion.get(i).id);
-                        quizzesManage.editingQuiz(currentQuiz.id, currentQuiz.quizQuestions);
+                        quizzesManage.editingQuiz(currentQuiz.id, currentQuiz.quizQuestions, "will fix");
                         System.out.println(listQuestion.get(i));
                     }
                 } catch (IOException e) {

@@ -53,7 +53,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Label layoutX="451.0" layoutY="50.0" prefHeight="30.0" prefWidth="281.0" text="/  Thi giữa kì 2 môn Công Nghệ  /" textFill="#c71d1d">
+                  <Label fx:id="labelNameQuiz" layoutX="451.0" layoutY="50.0" prefHeight="30.0" prefWidth="281.0" text="/  Thi giữa kì 2 môn Công Nghệ  /" textFill="#c71d1d">
                      <font>
                         <Font size="18.0" />
                      </font>

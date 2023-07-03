@@ -5,22 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="737f171c-f212-4f32-b257-51afab8dbb89" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/GUI1_1_Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/data/QuizTestAppData.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/QuizTestAppData.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/AddNewQuiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/AddNewQuiz.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/GUI63.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/GUI63.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/GUI64.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/GUI64.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/GUI6_1_Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/GUI6_1_Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/GUI6_2a_Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/GUI6_2_Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/ImportQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/ImportQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/QuestionList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/QuestionList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/Gui7_3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/Gui7_3.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/QuizTestApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/QuizTestApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Quiz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/LibraryForUs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/LibraryForUs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/QuizzesManage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/QuizzesManage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/GUI6.3.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/GUI6.3.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/Home.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/GUI6.4.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/GUI6.4.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/Gui7_3.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/Gui7_3.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/gui6.1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/gui6.1.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/gui6.2a.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/gui6.2.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/moodle.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Img.img/moodle.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/moodle.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Img.img/moodle.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +57,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/btl oop/quiz-test-app/src/main/resources/javaFx/bundle/view&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/btl oop/Clone/Backup oop 1-7/quiz-test-app&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.10459435&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.42030567&quot;
@@ -70,6 +69,7 @@
       <recent name="E:\btl oop\quiz-test-app\src\main\java\javaFx\bundle\view" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\btl oop\quiz-test-app\src\main\resources\Img.img" />
       <recent name="E:\Source\Java\OOP\quiz-test-app\src\main\java\data" />
       <recent name="C:\Users\tiend\Desktop\Our-Project\src\main\java\model" />
       <recent name="C:\Users\tiend\Desktop\Our-Project\src\main\java\data" />

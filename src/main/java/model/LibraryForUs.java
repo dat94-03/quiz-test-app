@@ -95,12 +95,12 @@ public class LibraryForUs {
         }
         return idQuestions;
     }
-    public static void deleteQuestionInQuiz(Question question, Quiz quiz) throws IOException {
-//        QuestionManage questionManage = new QuestionManage();
+    public static void deleteQuestionOnQuiz(Question question, Quiz quiz) throws IOException {
+        QuestionManage questionManage = new QuestionManage();
         if(checkQuestionExistOnQuiz(question, quiz)){
             System.out.println("Exist");
             String[] tmp = quiz.quizQuestions.split(",");
-            String questionOnQuiz = new String();
+            String questionOnQuiz = new String("");
             ArrayList<Integer> idQuestions = new ArrayList<>();
             for(String str : tmp){
                 str = str.trim();
@@ -113,9 +113,11 @@ public class LibraryForUs {
                 if(question.id == i)    continue;
                 questionOnQuiz = questionOnQuiz + "," + Integer.toString(i);
             }
-//            quiz.quizQuestions = questionOnQuiz;
+            System.out.println(questionOnQuiz);
+            quiz.quizQuestions = questionOnQuiz;
             QuizzesManage quizzesManage = new QuizzesManage();
-            quizzesManage.editingQuiz(quiz.id, questionOnQuiz);
+            quizzesManage.editingQuiz(quiz.id, questionOnQuiz,"will fix");
+
         }
     }
 
@@ -129,6 +131,11 @@ public class LibraryForUs {
             }
         }
     }
+
+    public static boolean isMultipleChoice(Question question){
+        return false;
+    }
+
 }
 
 

@@ -7,6 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -20,6 +23,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.Stage;
 import model.*;
 
 import java.io.IOException;
@@ -28,6 +32,9 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class GUI64 implements Initializable {
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
     private Quiz currentQuiz = GUI1_1_Controller.currentQuiz;
     private ArrayList<Integer> idQuestionsForQuiz ;
     private ArrayList<Integer> idQuestionDelete =  new ArrayList<>();
@@ -204,10 +211,22 @@ public class GUI64 implements Initializable {
 //
 //        }
 //        questionBox.setSpacing(5) ;
-       }
-    public void saveQuestions(ActionEvent event){
+    }
 
+    public void saveQuestions(ActionEvent event) throws IOException {
+        QuestionManage questionManage = new QuestionManage();
+        for(int i : idQuestionDelete){
+            LibraryForUs.deleteQuestionOnQuiz(QuestionManage.questionsList.get(i), currentQuiz);
+        }
+
+//        switch to scene 6.1
+        root = FXMLLoader.load(getClass().getResource("gui6.1.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
-    }
+
+}
 
 

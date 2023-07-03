@@ -135,7 +135,7 @@ public class AddNewQuiz implements Initializable {
             for (Quiz quiz : QuizzesManage.quizzesList){
                 numQuiz++;
             }
-            Quiz quiz = new Quiz(numQuiz, nameQuiz, strOpenQuiz, strCloseQuiz, intTimeLimit, questionsOnQuiz);
+            Quiz quiz = new Quiz(numQuiz, nameQuiz, strOpenQuiz, strCloseQuiz, intTimeLimit, questionsOnQuiz, "wil fix");
             quizzesManage.addQuiz(quiz);
 
 //       switch to GUI 1.1
@@ -362,17 +362,17 @@ public class AddNewQuiz implements Initializable {
         ObservableList<Integer> hourList = FXCollections.observableArrayList() ;
         ObservableList<Integer> minuteList = FXCollections.observableArrayList() ;
           for(int i =1 ;i <= 31 ;i++)
-//              dayList.add(new Integer(i)) ;
-              dayList.add(i);
+              dayList.add(new Integer(i)) ;
+//              dayList.add(i);
           for(int i=2020;i<=2040;i++)
-//              yearList.add(new Integer(i)) ;
-              dayList.add(i);
+              yearList.add(new Integer(i)) ;
+//              dayList.add(i);
           for(int i = 0;i<=23;i++)
-//              hourList.add(new Integer(i)) ;
-              dayList.add(i);
+              hourList.add(new Integer(i)) ;
+//              dayList.add(i);
           for(int i=0;i<=59;i++)
-//              minuteList.add(new Integer(i)) ;
-              dayList.add(i);
+              minuteList.add(new Integer(i)) ;
+//              dayList.add(i);
           dayComboBox1.setItems(dayList);
           dayComboBox1.setValue(21);
           dayComboBox2.setItems(dayList);

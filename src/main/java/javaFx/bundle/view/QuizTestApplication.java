@@ -25,11 +25,11 @@ public class QuizTestApplication extends Application {
         stage.getIcons().add(image);
         stage.show();
     }
-    public static void main(String[] args) throws IOException, InvalidFormatException {
+    public static void main(String[] args) throws IOException {
 
 //
         QuestionManage qm = new QuestionManage();
-        QuestionManage.questionsList.get(10).addQuestionImage("1\n2\n3\n4\n5\n");
+        QuestionManage.questionsList.get(10).addQuestionImage("null\nnull\nnull\nnull\nC:\\Users\\tiend\\OneDrive\\Desktop\\test.gif\n");
         //add thêm ảnh vào câu nào thì gọi hàm bên trên ở object của câu hỏi đó tham số là đường dẫn đến ảnh
         //nếu mà phaanf nào không có ảnh thì để null cách nhau bởi \n
         // vị trí 1 trên kia sẽ là ảnh của title, sau đấy là ảnh của choices, có bao nhiêu choices thì phải có ngần đấy path

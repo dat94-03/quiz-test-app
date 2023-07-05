@@ -141,7 +141,7 @@
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <CheckBox layoutX="788.0" layoutY="160.0" mnemonicParsing="false" prefHeight="8.0" prefWidth="17.0" />
+                  <CheckBox fx:id="shuffleQuestion" layoutX="788.0" layoutY="160.0" mnemonicParsing="false" onAction="#setShuffleQuestion" prefHeight="8.0" prefWidth="17.0" />
                   <Text layoutX="811.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Shuffle" wrappingWidth="60.6005859375">
                      <font>
                         <Font size="16.0" />

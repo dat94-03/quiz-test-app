@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="960.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFx.bundle.view.GUI6_5">
+   <children>
+      <AnchorPane prefHeight="39.0" prefWidth="960.0" style="-fx-background-color: #009FE5;" />
+      <AnchorPane layoutX="11.0" layoutY="47.0" prefHeight="98.0" prefWidth="940.0" style="-fx-border-color: rgb(219, 221, 221); -fx-background-color: white;">
+         <children>
+            <Label layoutX="20.0" layoutY="59.0" prefHeight="30.0" prefWidth="69.0" text="Home " textFill="#c71d1d">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="83.0" layoutY="58.0" prefHeight="30.0" prefWidth="144.0" text="/    My courses   /">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="238.0" layoutY="59.0" prefHeight="30.0" prefWidth="131.0" text="THI CUỐI KỲ  /" textFill="#c71d1d">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="5.0" layoutY="-11.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="126.0" style="-fx-background-color: none;" text="IT" textFill="#c71d1d">
+               <font>
+                  <Font name="Tahoma" size="40.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label layoutX="364.0" layoutY="57.0" prefHeight="30.0" prefWidth="134.0" text="General" textFill="#c71d1d">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="439.0" layoutY="57.0" prefHeight="30.0" prefWidth="291.0" text="/  Thi giữa kỳ 2 môn Công nghệ    /" textFill="#c71d1d">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="738.0" layoutY="57.0" prefHeight="30.0" prefWidth="134.0" text="Edit quiz" textFill="#c71d1d">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Text fill="#c02424" layoutX="25.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add from the question bank at the end ">
+         <font>
+            <Font name="MS Reference Sans Serif" size="19.0" />
+         </font>
+      </Text>
+      <Line endX="798.5999755859375" endY="-1.52587890625E-5" fill="BLACK" layoutX="151.0" layoutY="192.0" startX="-141.88330078125" startY="-1.52587890625E-5" stroke="#a6a1a1" strokeWidth="1.5" />
+      <ScrollPane layoutX="13.0" layoutY="196.0" prefHeight="550.0" prefWidth="934.0">
+        <content>
+          <AnchorPane fx:id="menuPane" minHeight="0.0" minWidth="0.0" prefHeight="552.0" prefWidth="934.0" style="-fx-background-color: white;">
+               <children>
+                  <Line endX="-100.00000762939453" endY="-32.13334274291992" layoutX="112.0" layoutY="43.0" startX="-100.00000762939453" startY="16.933303833007812" stroke="#999696" />
+                  <Line endX="58.70713806152344" endY="0.15953445434570312" layoutX="114.0" layoutY="12.0" startX="-100.0" stroke="#999696" />
+                  <Line endX="-100.00000762939453" endY="-32.13334274291992" layoutX="272.0" layoutY="45.0" startX="-99.99996948242188" startY="12.666641235351562" stroke="#999696" />
+                  <Line endX="614.0000610351562" endY="14.599990844726562" layoutX="277.0" layoutY="45.0" startX="-105.70707702636719" startY="13.373737335205078" stroke="#999696" />
+                  <Button layoutX="19.0" layoutY="14.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: null;" text="Exsting category">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="178.0" layoutY="13.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: null;" text="New category" textFill="#009fe5">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Button>
+                  <Text layoutX="43.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category" wrappingWidth="82.93672180175781">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Text>
+                  <Label layoutX="145.0" layoutY="77.0" prefHeight="42.0" prefWidth="290.0" style="-fx-border-color: #b7b2b2;">
+                     <graphic>
+                        <GridPane>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.866650390625" minWidth="10.0" prefWidth="270.46661376953125" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.60003662109375" minWidth="10.0" prefWidth="18.933386230468727" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#displayTreeView" prefHeight="41.0" prefWidth="295.0" style="-fx-background-color: null;" text="Default">
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                              </Button>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                                 <image>
+                                    <Image url="@../../../Img.img/pngegg%20(1).png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </GridPane>
+                     </graphic>
+                  </Label>
+                  <CheckBox layoutX="138.0" layoutY="130.0" mnemonicParsing="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </CheckBox>
+                  <Text layoutX="167.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Include questions from subcategories too ">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="25.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of random questions" wrappingWidth="149.60000610351557">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Text>
+                  <ComboBox fx:id="comboBox" layoutX="209.0" layoutY="174.0" prefHeight="30.0" prefWidth="60.0" style="-fx-border-color: #999696; -fx-background-color: white;" />
+                  <Text layoutX="19.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Questions matching this filter">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Text>
+                  <HBox fx:id="numberHBox" layoutX="66.0" layoutY="248.0" prefHeight="44.0" prefWidth="391.0" style="-fx-border-color: #d1d1d1; -fx-background-color: white;" />
+                  <Button layoutX="17.0" layoutY="248.0" mnemonicParsing="false" onAction="#buttonLeft" prefHeight="47.0" prefWidth="47.0" style="-fx-background-color: white; -fx-border-color: #d1d1d1;">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Img.img/Arrow_left.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="459.0" layoutY="248.0" mnemonicParsing="false" onAction="#buttonRight" prefHeight="47.0" prefWidth="47.0" style="-fx-background-color: white; -fx-border-color: #d1d1d1;">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Img.img/Arrow_right.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <VBox fx:id="questionVBox" layoutX="10.0" layoutY="301.0" prefHeight="234.0" prefWidth="905.0" style="-fx-border-color: #d1d1d1; -fx-background-color: white;" />
+                  <TreeView fx:id="treeView" layoutX="144.0" layoutY="120.0" onContextMenuRequested="#selectItem" onMouseClicked="#selectItem" prefHeight="268.0" prefWidth="393.0" visible="false" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

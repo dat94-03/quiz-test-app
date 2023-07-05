@@ -83,7 +83,6 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="380.0" layoutY="141.0" mnemonicParsing="false" onAction="#switchTo7" prefHeight="26.0" prefWidth="202.0" text="Switch to gui7.3" />
          </children>
       </AnchorPane>
       <ScrollPane layoutX="33.0" layoutY="258.0" prefHeight="558.0" prefWidth="882.0">

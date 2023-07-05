@@ -34,7 +34,7 @@ public class EditQuestion implements Initializable {
     int indexChoice = 0;
     int numOldChoice;
     private String selectCategory = new String();
-    private String fullyPath = QuestionBankTree.fullyCategory;
+    private String fullyPath = new String();
     private String oldPath = QuestionBankTree.fullyCategory;
     Question q = QuestionList.qStatic;
     @FXML
@@ -48,6 +48,7 @@ public class EditQuestion implements Initializable {
     private javafx.scene.control.TreeView<String> categoryTreeView;
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle) {
+        fullyPath = QuestionList.qStatic.category;
 
         categoryLabel.setText("  " + LibraryForUs.getLastCategory(QuestionList.qStatic.category));
         moreChoice.setSpacing(15);

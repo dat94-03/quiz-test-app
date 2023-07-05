@@ -84,6 +84,13 @@ public class LibraryForUs {
         return false;
     }
 
+    public static String changeArrayListToString(ArrayList<Integer> arrayList){
+        String tmp = new String("");
+        for(int i : arrayList){
+            tmp = tmp + "," + Integer.toString(i);
+        }
+        return tmp;
+    }
     public static ArrayList<Integer> getQuestionIdFromQuiz(Quiz quiz){
         String[] tmp = quiz.quizQuestions.split(",");
         ArrayList<Integer> idQuestions = new ArrayList<>();

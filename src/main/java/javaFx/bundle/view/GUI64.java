@@ -10,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -29,6 +30,8 @@ import model.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class GUI64 implements Initializable {
@@ -44,6 +47,8 @@ public class GUI64 implements Initializable {
     private VBox questionBox;
     @FXML
     private AnchorPane menuPane ;
+    @FXML
+    private CheckBox shuffleQuestion;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -54,8 +59,57 @@ public class GUI64 implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        drawQuestionInVBox();
+
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("questionsinGUI6.4.fxml"));
+//            VBox fxmlVBox = new VBox();
+//            try {
+//                fxmlVBox = loader.load();
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//            QuestioninEditingquiz questioninEditingquiz = loader.getController() ;
+//            questioninEditingquiz.setNumber(String.valueOf(i));
+//            questioninEditingquiz.setQuestion(String.valueOf(i));
+//            questionBox.getChildren().add(fxmlVBox) ;
+//
+//        }
+//        questionBox.setSpacing(5) ;
+    }
+
+    public void saveQuestions(ActionEvent event) throws IOException {
+        QuestionManage questionManage = new QuestionManage();
+        for(int i : idQuestionDelete){
+            LibraryForUs.deleteQuestionOnQuiz(QuestionManage.questionsList.get(i), currentQuiz);
+        }
+
+//        switch to scene 6.1
+        root = FXMLLoader.load(getClass().getResource("gui6.1.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void setShuffleQuestion(ActionEvent event) throws IOException {
+        if(shuffleQuestion.isSelected()){
+            Collections.shuffle(idQuestionsForQuiz);
+            String tmp = LibraryForUs.changeArrayListToString(idQuestionsForQuiz);
+            drawQuestionInVBox();
+
+            QuizzesManage quizzesManage = new QuizzesManage();
+            quizzesManage.editingQuiz(currentQuiz.id, tmp, "will fix");
+
+        }
+    }
+
+    public void drawQuestionInVBox(){
+        questionBox.getChildren().clear();
+        idQuestionDelete.clear();
+        binImageViews.clear();
+        vBoxesQuestion.clear();
         int i = 1;
-//        Fix beside code
         for(int j : idQuestionsForQuiz) {
             VBox vBox = new VBox() ;
             vBox.setPrefHeight(56);
@@ -197,36 +251,7 @@ public class GUI64 implements Initializable {
 
             i++;
         }
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("questionsinGUI6.4.fxml"));
-//            VBox fxmlVBox = new VBox();
-//            try {
-//                fxmlVBox = loader.load();
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//            QuestioninEditingquiz questioninEditingquiz = loader.getController() ;
-//            questioninEditingquiz.setNumber(String.valueOf(i));
-//            questioninEditingquiz.setQuestion(String.valueOf(i));
-//            questionBox.getChildren().add(fxmlVBox) ;
-//
-//        }
-//        questionBox.setSpacing(5) ;
     }
-
-    public void saveQuestions(ActionEvent event) throws IOException {
-        QuestionManage questionManage = new QuestionManage();
-        for(int i : idQuestionDelete){
-            LibraryForUs.deleteQuestionOnQuiz(QuestionManage.questionsList.get(i), currentQuiz);
-        }
-
-//        switch to scene 6.1
-        root = FXMLLoader.load(getClass().getResource("gui6.1.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
 }
 
 

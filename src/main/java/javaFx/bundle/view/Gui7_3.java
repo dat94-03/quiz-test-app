@@ -22,10 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import model.LibraryForUs;
-import model.Question;
-import model.QuestionManage;
-import model.Quiz;
+import model.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,8 +34,9 @@ public class Gui7_3 implements Initializable {
     private Scene scene;
     private Parent root;
     private Quiz currentQuiz = GUI1_1_Controller.currentQuiz;
-
+    static QuizInExam quizInExam = new QuizInExam();
     private ArrayList<AnchorPane> questionPanes = new ArrayList<>();
+
     @FXML
     private Label labelNameQuiz;
     @FXML
@@ -52,6 +50,7 @@ public class Gui7_3 implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        quizInExam.deleteData();
         labelNameQuiz.setText("/ " + currentQuiz.quizName + " / ");
 
         QuestionManage questionManage = null;
@@ -60,13 +59,17 @@ public class Gui7_3 implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
         ArrayList<Integer> listQuestion = LibraryForUs.getQuestionIdFromQuiz(currentQuiz);
         int dem = 1;
         for (int i : listQuestion) {
             vBox.getChildren().add(AQuestion(i, dem));
             dem++;
+            quizInExam.maxPoint = quizInExam.maxPoint + 1;  // sau sẽ thay bằng cộng trọng số điểm từng câu
         }
         dem -- ; // real number question
+
+
 //         set display in VBoxNav
         GridPane gridPane = new GridPane();
         gridPane.setHgap(4); // Khoảng cách giữa các cột
@@ -74,6 +77,7 @@ public class Gui7_3 implements Initializable {
 
         int numRows = 7;
         int numColumns = 4;
+
 
         for (int i = 0; i < dem; i++) {
             Button button = new Button("" + (i + 1));
@@ -112,12 +116,13 @@ public class Gui7_3 implements Initializable {
                 switchTo7_4(mouseEvent);
             } catch (IOException e) {
                 throw new RuntimeException(e);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
         });
         vBoxNav.getChildren().add(labelFinishAttempt);
 
     }
-
 
     public HBox AQuestion (int i, int dem){
         Question question = QuestionManage.questionsList.get(i);
@@ -130,6 +135,7 @@ public class Gui7_3 implements Initializable {
 
         // Create AnchorPane for question panel
         AnchorPane questionPane = new AnchorPane();
+        questionPane.setId("QuestionPane");
         questionPane.setStyle("-fx-border-color: #bfbcbc;");
         questionPane.setPrefWidth(120.0);
         questionPane.setPrefHeight(120.0);
@@ -144,7 +150,7 @@ public class Gui7_3 implements Initializable {
 
         Label statusLabel = new Label("Not yet answered");
         statusLabel.setFont(Font.font(14.0));
-        statusLabel.setId("answered"+i);
+        statusLabel.setId("answered" + dem);
 
         Label markLabel = new Label("Mark out of 1.00");
         markLabel.setFont(Font.font(14.0));
@@ -158,9 +164,9 @@ public class Gui7_3 implements Initializable {
         flagLabel.setFont(Font.font(14.0));
         flagHbox.setSpacing(2);
         flagHbox.setCursor(Cursor.HAND);
-        flagHbox.setId("flag" + i);
+        flagHbox.setId("flag" + dem);
         flagHbox.getChildren().addAll(flagImgView,flagLabel);
-        flagHbox.setOnMouseClicked(event -> flagQuestion(i));
+        flagHbox.setOnMouseClicked(event -> flagQuestion(dem));
 
         // Add labels to question panel
         VBox questionBox = new VBox(8);
@@ -170,12 +176,15 @@ public class Gui7_3 implements Initializable {
 
         // Create AnchorPane for question content area
         AnchorPane contentPane = new AnchorPane();
+        contentPane.setId("" + i);
         contentPane.setStyle("-fx-background-color: #E7F3F5;");
         contentPane.setPrefWidth(750.0);
         contentPane.setPrefHeight(204.0);
 
         // Create question label
         Label questionLabel = new Label(question.title);
+        questionLabel.setWrapText(true);
+        questionLabel.setMaxWidth(580);
         questionLabel.setFont(Font.font(16.0));
         questionLabel.setWrapText(true);
 
@@ -193,31 +202,11 @@ public class Gui7_3 implements Initializable {
                 RadioButton option = new RadioButton(choice);
                 option.setFont(Font.font(14.0));
                 option.setToggleGroup(answerGroup);
-                option.setOnAction(e -> handleAnswerSelection(i));
+                option.setOnAction(e -> handleAnswerSelection(dem));
+
                 contentBox.getChildren().add(option);
             }
         }
-
-//        RadioButton optionA = new RadioButton("A. 15 đến 25 độ C");
-//        RadioButton optionB = new RadioButton("B. 10 đến 30 độ C");
-//        RadioButton optionC = new RadioButton("C. 20 đến 25 độ C");
-//        RadioButton optionD = new RadioButton("D. 15 đến 35 độ C");
-//
-//        optionA.setFont(Font.font(14.0));
-//        optionB.setFont(Font.font(14.0));
-//        optionC.setFont(Font.font(14.0));
-//        optionD.setFont(Font.font(14.0));
-//
-//
-//        optionA.setToggleGroup(answerGroup);
-//        optionB.setToggleGroup(answerGroup);
-//        optionC.setToggleGroup(answerGroup);
-//        optionD.setToggleGroup(answerGroup);
-//
-//        optionA.setOnAction(e -> handleAnswerSelection(i));
-//        optionB.setOnAction(e -> handleAnswerSelection(i));
-//        optionC.setOnAction(e -> handleAnswerSelection(i));
-//        optionD.setOnAction(e -> handleAnswerSelection(i));
 
         contentPane.getChildren().add(contentBox);
 
@@ -248,20 +237,63 @@ public class Gui7_3 implements Initializable {
     // Flag Question
     public void flagQuestion(int questionIndex) {
         Button targetButton = (Button) vBoxNav.lookup("#button"+questionIndex);
-//        Image flagImg = new Image(getClass().getResource("/Img.img/flag2.png").toExternalForm());
-//        ImageView flagImgView = new ImageView(flagImg);
-//        flagImgView.setFitWidth(15);
-//        flagImgView.setFitHeight(15);
-//        if (targetButton != null) {
-//            targetButton.setGraphic(flagImgView);
-//            targetButton.setContentDisplay(ContentDisplay.BOTTOM);
-//        }
+        Image flagImg = new Image(getClass().getResource("/Img.img/flag2.png").toExternalForm());
+        ImageView flagImgView = new ImageView(flagImg);
+        flagImgView.setFitWidth(15);
+        flagImgView.setFitHeight(15);
+        if (targetButton != null) {
+            targetButton.setGraphic(flagImgView);
+            targetButton.setContentDisplay(ContentDisplay.BOTTOM);
+        }
         if (targetButton != null) {
             targetButton.setStyle("-fx-background-color:  linear-gradient(from 42.803% 48.8636% to 42.803% 48.1061%, #ff8989 0.0%, #ffffff 100.0%); -fx-border-color: black;-fx-border-radius:10% ; -fx-border-width:2px;");
         }
     }
 
-    public void switchTo7_4(MouseEvent event) throws IOException {
+    public void switchTo7_4(MouseEvent event) throws IOException, InterruptedException {
+//        finish attempt
+        for (javafx.scene.Node node : vBox.getChildren()) {
+            if (node instanceof HBox) {
+                HBox hBox = (HBox) node;
+                for (javafx.scene.Node childNode : hBox.getChildren()) {
+                    if (childNode instanceof AnchorPane) {
+                        AnchorPane anchorPane = (AnchorPane) childNode;
+                        if(anchorPane == null)  continue;
+                        if(anchorPane.getId().equals("QuestionPane"))   continue;
+                        int idQues = Integer.parseInt(anchorPane.getId());
+                        Question question = QuestionManage.questionsList.get(idQues);
+                        for (javafx.scene.Node grandChildNode : anchorPane.getChildren()) {
+                            if (grandChildNode instanceof VBox) {
+                                VBox contentBox = (VBox) grandChildNode;
+                                int userChoice = 1;  boolean flag = false;
+                                for (javafx.scene.Node radioNode : contentBox.getChildren()) {
+                                    if(radioNode instanceof RadioButton){
+                                        if(((RadioButton) radioNode).isSelected() ){
+                                            flag =true; // da tra loi cau hoi
+                                            quizInExam.userChoice.add(userChoice);
+                                            String corectAns = question.correctAnswer;
+                                            String selectAns = ((RadioButton) radioNode).getText().substring(0,1);
+                                            if(corectAns.equals(selectAns) ){
+//                                                System.out.println("Cau " + idQues + "lam dung");
+                                                quizInExam.userPoint = quizInExam.userPoint + 1;
+                                                quizInExam.correctQuestions.add(idQues);
+                                            }
+//                                            System.out.println(((RadioButton) radioNode).getText());
+
+                                        }
+                                        userChoice++;
+                                    }
+
+                                }
+                                if(flag == false)   quizInExam.userChoice.add(-1);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+//      switch to GUI 7.4
         root = FXMLLoader.load(getClass().getResource("Gui7_4.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -270,3 +302,4 @@ public class Gui7_3 implements Initializable {
     }
 
 }
+

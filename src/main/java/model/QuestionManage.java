@@ -195,7 +195,7 @@ public class QuestionManage {
             text = text.trim();
             //System.out.println("Dong nay la : " + text);
 //
-            if (text.length() <= 2) continue; // skip space line
+            if (text.length() == 0) continue; // skip space line
 //
 //                if text isn't answer A,B,C,C or "ANSWER: ....."
             if (text.charAt(1) != '.' && text.charAt(6) != ':' && flag == 0) {

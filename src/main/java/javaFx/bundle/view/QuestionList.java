@@ -92,7 +92,7 @@ public class QuestionList implements Initializable{
 
                 hboxQuestion.getChildren().add(checkBox);
                 if(dem % 2 == 0){
-                    BackgroundFill backgroundFill = new BackgroundFill(Color.web("#CCCCCC"), null, null);
+                    BackgroundFill backgroundFill = new BackgroundFill(Color.web("#DDDDDD"), null, null);
                     Background background = new Background(backgroundFill);
                     hboxQuestion.setBackground(background);
                 }
@@ -143,7 +143,7 @@ public class QuestionList implements Initializable{
                 hBoxEdit.getChildren().addAll(label, imageView1);
                 // fill color
                 if(dem % 2 ==0){
-                    BackgroundFill backgroundFill2 = new BackgroundFill(Color.web("#CCCCCC"), null, null);
+                    BackgroundFill backgroundFill2 = new BackgroundFill(Color.web("#DDDDDD"), null, null);
                     Background background2 = new Background(backgroundFill2);
                     hBoxEdit.setBackground(background2);
                 }
@@ -189,7 +189,7 @@ public class QuestionList implements Initializable{
 
                     hboxQuestion.getChildren().add(checkBox);
                     if(dem % 2 == 0){
-                        BackgroundFill backgroundFill = new BackgroundFill(Color.web("#CCCCCC"), null, null);
+                        BackgroundFill backgroundFill = new BackgroundFill(Color.web("#DDDDDD"), null, null);
                         Background background = new Background(backgroundFill);
                         hboxQuestion.setBackground(background);
                     }
@@ -240,7 +240,7 @@ public class QuestionList implements Initializable{
                     hBoxEdit.getChildren().addAll(label, imageView1);
                     // fill color
                     if(dem % 2 ==0){
-                        BackgroundFill backgroundFill2 = new BackgroundFill(Color.web("#CCCCCC"), null, null);
+                        BackgroundFill backgroundFill2 = new BackgroundFill(Color.web("#DDDDDD"), null, null);
                         Background background2 = new Background(backgroundFill2);
                         hBoxEdit.setBackground(background2);
                     }
@@ -283,7 +283,7 @@ public class QuestionList implements Initializable{
 
                     hboxQuestion.getChildren().add(checkBox);
                     if(dem % 2 == 0){
-                        BackgroundFill backgroundFill = new BackgroundFill(Color.web("#CCCCCC"), null, null);
+                        BackgroundFill backgroundFill = new BackgroundFill(Color.web("#DDDDDD"), null, null);
                         Background background = new Background(backgroundFill);
                         hboxQuestion.setBackground(background);
                     }
@@ -334,7 +334,7 @@ public class QuestionList implements Initializable{
                     hBoxEdit.getChildren().addAll(label, imageView1);
                     // fill color
                     if(dem % 2 ==0){
-                        BackgroundFill backgroundFill2 = new BackgroundFill(Color.web("#CCCCCC"), null, null);
+                        BackgroundFill backgroundFill2 = new BackgroundFill(Color.web("#DDDDDD"), null, null);
                         Background background2 = new Background(backgroundFill2);
                         hBoxEdit.setBackground(background2);
                     }

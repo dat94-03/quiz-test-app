@@ -1,5 +1,6 @@
 package javaFx.bundle.view;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,12 +22,16 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 public class Gui7_3 implements Initializable {
@@ -36,7 +41,12 @@ public class Gui7_3 implements Initializable {
     private Quiz currentQuiz = GUI1_1_Controller.currentQuiz;
     static QuizInExam quizInExam = new QuizInExam();
     private ArrayList<AnchorPane> questionPanes = new ArrayList<>();
-
+    @FXML
+    private Text hour ;
+    @FXML
+    private Text minute ;
+    @FXML
+    private Text second ;
     @FXML
     private Label labelNameQuiz;
     @FXML
@@ -48,6 +58,95 @@ public class Gui7_3 implements Initializable {
     @FXML
     private ScrollPane scrollPane;
 
+    Integer finish  = 0;
+    Integer check = 1 ;
+    Thread thrd ;
+    Integer k = 0 ;
+    Integer currSecond = 3600 ;
+    LocalDateTime currentDateTime = LocalDateTime.now();
+    LocalDateTime time = currentDateTime ;
+
+    public void startCountdown() {
+
+        System.out.println("Start Countdown");
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy, h:mm a");
+        String formattedDateTime = currentDateTime.format(formatter);
+        System.out.println(formattedDateTime);
+
+
+        thrd = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    while (true) {
+                        // Countdown here
+                        setOutput();
+                        if (currSecond == -1) {
+
+                            thrd.interrupt();
+                            if(finish != 1)
+                            {  time = time.plusSeconds(currSecond) ;
+                                DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy, h:mm a");
+                                String formattedDateTime2 = time.format(formatter2);
+                                System.out.println(formattedDateTime2); }
+                            Platform.runLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        Parent root = FXMLLoader.load(getClass().getResource("Gui7_4.fxml"));
+                                        Stage stage = (Stage) scrollPane.getScene().getWindow();
+                                        Scene scene = new Scene(root);
+                                        stage.setScene(scene);
+                                        stage.show();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+
+                        }
+                        currSecond -= 1 ;
+                        Thread.sleep(1000);
+
+
+                    }
+                } catch (Exception e) {
+
+                }
+            }
+        }) ;
+        thrd.start();
+    }
+    public void stop() {
+        if(check == 1)
+            thrd.interrupt();
+    }
+    String changeint(int a) {
+        if(0<=a && a <= 9)
+            return   "0" + String.valueOf(a) ;
+        else  return String.valueOf(a) ;
+    }
+
+
+    void setOutput() {
+        LinkedList<Integer> currHms = secondsToHms(currSecond) ;
+        hour.setText(changeint(currHms.get(0)));
+        minute.setText(changeint(currHms.get(1)));
+        second.setText(changeint(currHms.get(2)));
+    }
+    LinkedList<Integer> secondsToHms(Integer currSecond) { //
+        Integer hours = currSecond /3600 ;
+        currSecond  = currSecond % 3600 ;
+        Integer minutes = currSecond / 60 ;
+        currSecond = currSecond % 60 ;
+        Integer seconds = currSecond ;
+        LinkedList<Integer> answer = new LinkedList<>() ;
+        answer.add(hours) ;
+        answer.add(minutes) ;
+        answer.add(seconds) ;
+        return answer ;
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         quizInExam.deleteData();
@@ -112,7 +211,12 @@ public class Gui7_3 implements Initializable {
             labelFinishAttempt.setUnderline(false);
         });
         labelFinishAttempt.setOnMouseClicked(mouseEvent -> {
-            try {
+            try { finish = 1 ;
+                LocalDateTime currentDateTime = LocalDateTime.now();
+                DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy, h:mm a");
+                String formattedDateTime3 = currentDateTime.format(formatter3);
+                System.out.println(formattedDateTime3);
+                stop();
                 switchTo7_4(mouseEvent);
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -121,7 +225,8 @@ public class Gui7_3 implements Initializable {
             }
         });
         vBoxNav.getChildren().add(labelFinishAttempt);
-
+        if (check == 1)
+            startCountdown();
     }
 
     public HBox AQuestion (int i, int dem){

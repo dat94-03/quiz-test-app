@@ -118,10 +118,13 @@
                   </Label>
                </children>
             </AnchorPane>
-            <Button layoutX="619.0" layoutY="399.0" mnemonicParsing="false" onAction="#switchTo7" prefHeight="43.0" prefWidth="224.0" style="-fx-background-color: #009FE5 #009FE5;" text="PREVIEW QUIZ NOW" textFill="WHITE">
+            <Button fx:id="openButton" layoutX="619.0" layoutY="399.0" mnemonicParsing="false" onAction="#openChildStage1" prefHeight="43.0" prefWidth="224.0" style="-fx-background-color: #009FE5 #009FE5;" text="PREVIEW QUIZ NOW" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Label layoutX="539.0" layoutY="470.0" prefHeight="35.0" prefWidth="144.0" style="-fx-border-color: #514b4b;" text="   Jump to...">
                <font>

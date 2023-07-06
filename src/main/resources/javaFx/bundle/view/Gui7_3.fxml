@@ -8,9 +8,13 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" prefHeight="760.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFx.bundle.view.Gui7_3">
    <content>
@@ -78,16 +82,74 @@
                <children>
                   <AnchorPane prefHeight="754.0" prefWidth="758.0" style="-fx-border-color: rgb(219, 221, 221);">
                      <children>
-                        <Label alignment="CENTER" layoutX="589.0" layoutY="14.0" prefHeight="31.0" prefWidth="150.0" style="-fx-border-color: red;" text="Time left 0:59:56">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
                         <VBox fx:id="vBox" layoutX="-15.0" layoutY="70.0" prefHeight="682.0" prefWidth="775.0" spacing="20.0">
                            <padding>
                               <Insets left="20.0" />
                            </padding>
                         </VBox>
+                        <GridPane layoutX="501.0" layoutY="19.0" style="-fx-border-color: red;">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.2666015625" minWidth="10.0" prefWidth="120.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="30.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="8.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="30.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="10.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="30.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Text fx:id="hour" strokeType="OUTSIDE" strokeWidth="0.0" text="00" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets bottom="2.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fx:id="minute" layoutX="131.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" GridPane.columnIndex="3">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets bottom="2.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fx:id="second" layoutX="172.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" GridPane.columnIndex="5">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets bottom="2.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text=":" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets bottom="2.0" left="1.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text layoutX="161.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" GridPane.columnIndex="4">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets bottom="2.0" left="1.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time left :" wrappingWidth="113.6341552734375">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets bottom="2.0" left="2.0" />
+                                 </GridPane.margin>
+                              </Text>
+                           </children>
+                        </GridPane>
                      </children>
                   </AnchorPane>
                   <VBox fx:id="vBoxNav" prefHeight="754.0" prefWidth="199.0">

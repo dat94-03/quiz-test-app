@@ -5,16 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="737f171c-f212-4f32-b257-51afab8dbb89" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/data/picture/141#1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/data/picture/141#2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/data/picture/141#4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/GUI6_5_Controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/QuizInExam.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/GUI6.5.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/data/QuizTestAppData.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/QuizTestAppData.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/AddCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/AddCategory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/EditQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/EditQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/GUI1_1_Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/GUI1_1_Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/GUI64.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/GUI64.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/Gui7_3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/Gui7_3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/Gui7_4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/Gui7_4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/QuestionList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/QuestionList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/QuizTestApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javaFx/bundle/view/QuizTestApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/EditQuestion.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/EditQuestion.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/LibraryForUs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/LibraryForUs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/QuestionManage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/QuestionManage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/arrowblue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/GUI6.4.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/GUI6.4.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/Gui7_4.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/Gui7_4.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javaFx/bundle/view/Home.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +43,7 @@
     <setting file="file://$PROJECT_DIR$/src/main/java/javaFx/bundle/view/GUI6_2a_Controller.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2QipnLeZ7ESK2imjCXJHMwnqeMj" />
   <component name="ProjectLevelVcsManager">

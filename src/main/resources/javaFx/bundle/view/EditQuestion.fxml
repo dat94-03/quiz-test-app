@@ -120,7 +120,7 @@
                   <Font size="18.0" />
                </font>
             </TextField>
-            <TextArea fx:id="questionText" layoutX="560.0" layoutY="198.0" prefHeight="82.0" prefWidth="297.0" style="-fx-border-color: white;">
+            <TextArea fx:id="questionText" layoutX="560.0" layoutY="198.0" prefHeight="82.0" prefWidth="276.0" style="-fx-border-color: white;">
                <font>
                   <Font size="18.0" />
                </font>
@@ -173,6 +173,16 @@
                </font>
             </TextField>
             <TreeView fx:id="categoryTreeView" layoutX="562.0" layoutY="144.0" onContextMenuRequested="#selectItem" onMouseClicked="#selectItem" prefHeight="286.0" prefWidth="350.0" style="-fx-background-color: none;" visible="false" />
+            <Button layoutX="156.0" layoutY="512.0" mnemonicParsing="false" onAction="#previewQuestion" style="-fx-background-color: #03dbfc;" text="Preview Question">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="brokenImage" fitHeight="41.0" fitWidth="35.0" layoutX="837.0" layoutY="230.0" onMouseClicked="#chooseImage" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Img.img/broken%20image.jpg" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <ScrollPane layoutX="505.0" layoutY="499.0" prefHeight="277.0" prefWidth="417.0">

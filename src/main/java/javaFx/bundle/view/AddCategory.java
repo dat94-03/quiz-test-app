@@ -36,7 +36,7 @@ public class AddCategory implements Initializable {
         categoryLabel.setText("  " + QuestionBankTree.currentCategory);
 
         categoryTreeView.setStyle("-fx-font-size: 16px;");
-        categoryTreeView.setShowRoot(false);
+        categoryTreeView.setShowRoot(true);
 
         TreeItem<String> rootItem = new TreeItem<>("root");
         rootItem.setExpanded(true);

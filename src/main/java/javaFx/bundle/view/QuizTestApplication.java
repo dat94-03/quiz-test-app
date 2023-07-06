@@ -29,6 +29,8 @@ public class QuizTestApplication extends Application {
 
 //
         QuestionManage qm = new QuestionManage();
+
+
 //        QuestionManage.questionsList.get(10).addQuestionImage("1\n2\n3\n4\n5\n");
         ////////add thêm ảnh vào câu nào thì gọi hàm bên trên ở object của câu hỏi đó tham số là đường dẫn đến ảnh
         //nếu mà phaanf nào không có ảnh thì để null cách nhau bởi \n

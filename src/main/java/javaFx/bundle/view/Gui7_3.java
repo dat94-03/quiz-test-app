@@ -279,7 +279,6 @@ public class Gui7_3 implements Initializable {
                                                 quizInExam.correctQuestions.add(idQues);
                                             }
 //                                            System.out.println(((RadioButton) radioNode).getText());
-
                                         }
                                         userChoice++;
                                     }

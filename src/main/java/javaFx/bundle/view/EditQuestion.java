@@ -1,24 +1,31 @@
 package javaFx.bundle.view;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class EditQuestion implements Initializable {
@@ -28,6 +35,8 @@ public class EditQuestion implements Initializable {
     private Parent root;
     private TextField[] textChoice = new TextField[10];  // dua vao mang
     private ChoiceBox<String>[] selectPercent = new ChoiceBox[10];
+    private ImageView[] imageChooser = new ImageView[10];
+    private String[] stringImage = new String[10];
     String[] answerChoice = new String[10];
 
     private String[] percent = {"None","100%","90%","83.33333%","80%","75%","70%","67.66667%","60%","50%","40%","33.3333%","30%","25%","20%","16.66667%","14.28571%","12.5%","11.11111%","10%","5%","-5%",};
@@ -46,6 +55,8 @@ public class EditQuestion implements Initializable {
     private TextArea questionText;
     @FXML
     private javafx.scene.control.TreeView<String> categoryTreeView;
+    @FXML
+    private ImageView brokenImage;
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle) {
         fullyPath = QuestionList.qStatic.category;
@@ -72,6 +83,21 @@ public class EditQuestion implements Initializable {
 
         categoryTreeView.setRoot(rootItem);
 
+//        setup choose image
+        brokenImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                stringImage[0] = chooseImage(event);
+            }
+        });
+        brokenImage.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                brokenImage.setStyle("-fx-cursor: hand;");
+            }
+        });
+
+
 //        draw answer of old question
         for(String answer : q.choices){
             if(answer.equals("null"))  continue;
@@ -85,22 +111,45 @@ public class EditQuestion implements Initializable {
 //        Declare ChoiceBox selectPercent and TextField textChoice for each Choice
             selectPercent[indexChoice] = new ChoiceBox<>();
             textChoice[indexChoice] = new TextField();
+            Image image = new Image(getClass().getResource("/Img.img/broken image.jpg").toExternalForm());
+            imageChooser[indexChoice] = new ImageView(image);
 
 //        Draw old choice
             selectPercent[indexChoice].setValue("None");
             selectPercent[indexChoice].getItems().addAll(percent);
             textChoice[indexChoice].setFont(Font.font(18));
             textChoice[indexChoice].setText(answer);
+
             // set correct answer
+
             if(textChoice[indexChoice].getText().charAt(0) == q.correctAnswer.charAt(0)){
                 selectPercent[indexChoice].setValue("100%");
             }
+//            set choose image from computer
+            int finalIndexChoice = indexChoice;
+            imageChooser[finalIndexChoice].setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    stringImage[finalIndexChoice + 1] = chooseImage(event);
+                }
+            });
+
+            imageChooser[finalIndexChoice].setOnMouseEntered(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    imageChooser[finalIndexChoice].setStyle("-fx-cursor: hand;");
+                }
+            });
+            imageChooser[finalIndexChoice].setOnMouseExited(event -> {
+                imageChooser[finalIndexChoice].setStyle("");
+            });
+
             label.setFont(Font.font(18));
             labelGrade.setFont(Font.font(18));
             spacer.setFont(Font.font(5));
             spacerTag.setFont(Font.font(14));
 
-            hBox.getChildren().addAll(labelGrade, selectPercent[indexChoice]);
+            hBox.getChildren().addAll(labelGrade, selectPercent[indexChoice], imageChooser[finalIndexChoice]);
             hBox.setSpacing(50);
             hBoxContainChoice.getChildren().addAll(label, textChoice[indexChoice]);
             hBoxContainChoice.setSpacing(50);
@@ -212,6 +261,9 @@ public class EditQuestion implements Initializable {
         }
     }
 
+    private List<String> getSupportedImageExtensions() {
+        return Arrays.asList("*.png", "*.jpg", "*.jpeg");
+    }
     public void getMoreChoice(ActionEvent event) throws IOException {
         if(indexChoice >= 4 && textChoice[indexChoice-1].getText().equals("")){
             return;
@@ -251,6 +303,49 @@ public class EditQuestion implements Initializable {
 //        Number of choice plus 1
             indexChoice++;
         }
+    }
+
+    public String chooseImage(MouseEvent event){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose Image, GIF, VIDEO");
+        FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Ảnh", getSupportedImageExtensions());
+        fileChooser.getExtensionFilters().add(imageFilter);
+        java.io.File selectedFile = fileChooser.showOpenDialog(stage);
+
+        if (selectedFile != null) {
+            return selectedFile.getAbsolutePath();
+        }
+        return null;
+    }
+
+    @FXML
+    public void previewQuestion(ActionEvent event) throws IOException {
+        String tmp = new String();
+        for(String str : stringImage){
+            System.out.println(str);
+            tmp += str + "\n";
+        }
+        q.addQuestionImage(tmp);
+
+       ScrollPane scrollPane = new ScrollPane();
+       VBox previewRoot = new VBox();
+       Label labelTitle = new Label(q.title);
+       ImageView imageViewTitle = new ImageView(q.getQuestionImage().get(0));
+       previewRoot.getChildren().addAll(labelTitle, imageViewTitle);
+       int dem = 1;
+        for(String str : q.choices){
+            Label labelChoice = new Label(str);
+            ImageView imageView = new ImageView(q.getQuestionImage().get(dem));
+            previewRoot.getChildren().addAll(labelChoice,imageView);
+
+            dem++;
+        }
+//        previewRoot.getChildren().add(q.getQuestionImage());
+        Stage previewStage = new Stage();
+
+        Scene previewScene = new Scene(previewRoot);
+        previewStage.setScene(previewScene);
+        previewStage.show();
     }
 
     @FXML

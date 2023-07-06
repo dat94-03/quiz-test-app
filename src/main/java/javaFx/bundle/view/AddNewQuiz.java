@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -26,6 +27,8 @@ import java.sql.Timestamp;
 import java.util.*;
 
 public class AddNewQuiz implements Initializable {
+    @FXML
+    private ImageView chamthan ;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -393,5 +396,21 @@ public class AddNewQuiz implements Initializable {
           minuteComboBox1.setValue(57);
           minuteComboBox2.setItems(minuteList);
         minuteComboBox2.setValue(57);
+
+        textTime.setEditable(false);
+        textFieldNameQuiz.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.isEmpty()) {
+                chamthan.setVisible(true);
+            } else {
+                chamthan.setVisible(false);
+            }
+        });
+    }
+    public void change(ActionEvent event) {
+        if (!checkBox.isSelected()) {
+            textTime.setEditable(false);
+        } else {
+            textTime.setEditable(true);
+        }
     }
 }

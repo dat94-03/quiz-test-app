@@ -162,7 +162,11 @@ public class Gui7_3 implements Initializable {
         ArrayList<Integer> listQuestion = LibraryForUs.getQuestionIdFromQuiz(currentQuiz);
         int dem = 1;
         for (int i : listQuestion) {
-            vBox.getChildren().add(AQuestion(i, dem));
+            try {
+                vBox.getChildren().add(AQuestion(i, dem));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             dem++;
             quizInExam.maxPoint = quizInExam.maxPoint + 1;  // sau sẽ thay bằng cộng trọng số điểm từng câu
         }
@@ -229,8 +233,11 @@ public class Gui7_3 implements Initializable {
             startCountdown();
     }
 
-    public HBox AQuestion (int i, int dem){
+    public HBox AQuestion (int i, int dem) throws IOException {
         Question question = QuestionManage.questionsList.get(i);
+
+        boolean hasImage = false;
+        if(question.getQuestionImage() != null)     hasImage =  true;
 
         // Create HBox
         HBox hbox = new HBox();
@@ -293,23 +300,31 @@ public class Gui7_3 implements Initializable {
         questionLabel.setFont(Font.font(16.0));
         questionLabel.setWrapText(true);
 
-
         // Add components to content pane
         VBox contentBox = new VBox(10);
         contentBox.setPadding(new Insets(20.0));
         contentBox.getChildren().add(questionLabel);
+        if(hasImage == true){
+            ImageView imageTitle = new ImageView(question.getQuestionImage().get(0));
+            contentBox.getChildren().add(imageTitle);
+        }
 
         // Group radio buttons
         ToggleGroup answerGroup = new ToggleGroup();
         // Create answer radio buttons
+        int count = 1;
         if(LibraryForUs.isMultipleChoice(question) == false){
             for (String choice : question.choices){
                 RadioButton option = new RadioButton(choice);
                 option.setFont(Font.font(14.0));
                 option.setToggleGroup(answerGroup);
                 option.setOnAction(e -> handleAnswerSelection(dem));
-
                 contentBox.getChildren().add(option);
+                if(hasImage == true){
+                    ImageView imageChoice = new ImageView(question.getQuestionImage().get(count));
+                    contentBox.getChildren().add(imageChoice);
+                }
+                count++;
             }
         }
 

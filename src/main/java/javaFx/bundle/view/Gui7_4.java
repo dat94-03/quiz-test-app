@@ -78,7 +78,11 @@ public class Gui7_4 implements Initializable {
         ArrayList<Integer> listQuestion = LibraryForUs.getQuestionIdFromQuiz(currentQuiz);
         int dem = 1;
         for (int i : listQuestion) {
-            vBox.getChildren().add(AQuestion(i, dem));
+            try {
+                vBox.getChildren().add(AQuestion(i, dem));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             dem++;
         }
         dem -- ; // real number question
@@ -143,8 +147,11 @@ public class Gui7_4 implements Initializable {
         }
     }
 
-    public HBox AQuestion (int i, int dem){
+    public HBox AQuestion (int i, int dem) throws IOException {
         Question question = QuestionManage.questionsList.get(i);
+
+        boolean hasImage = false;
+        if(question.getQuestionImage() != null)     hasImage =  true;
 
         int userChoice = quizInExam.userChoice.get(dem - 1);
 
@@ -212,6 +219,10 @@ public class Gui7_4 implements Initializable {
         VBox contentBox = new VBox(10);
         contentBox.setPadding(new Insets(20.0));
         contentBox.getChildren().add(questionLabel);
+        if(hasImage == true){
+            ImageView imageTitle = new ImageView(question.getQuestionImage().get(0));
+            contentBox.getChildren().add(imageTitle);
+        }
 
         // Group radio buttons
         ToggleGroup answerGroup = new ToggleGroup();
@@ -225,6 +236,10 @@ public class Gui7_4 implements Initializable {
                 if(count == userChoice)     option.setSelected(true);
                 option.setToggleGroup(answerGroup);
                 contentBox.getChildren().add(option);
+                if(hasImage == true){
+                    ImageView imageChoice = new ImageView(question.getQuestionImage().get(count));
+                    contentBox.getChildren().add(imageChoice);
+                }
                 count++;
             }
         }

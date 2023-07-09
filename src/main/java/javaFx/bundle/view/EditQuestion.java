@@ -24,6 +24,7 @@ import model.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -36,7 +37,7 @@ public class EditQuestion implements Initializable {
     private TextField[] textChoice = new TextField[10];  // dua vao mang
     private ChoiceBox<String>[] selectPercent = new ChoiceBox[10];
     private ImageView[] imageChooser = new ImageView[10];
-    private String[] stringImage = new String[10];
+    private  String stringImage[] = new String[10];
     String[] answerChoice = new String[10];
 
     private String[] percent = {"None","100%","90%","83.33333%","80%","75%","70%","67.66667%","60%","50%","40%","33.3333%","30%","25%","20%","16.66667%","14.28571%","12.5%","11.11111%","10%","5%","-5%",};
@@ -64,6 +65,18 @@ public class EditQuestion implements Initializable {
         categoryLabel.setText("  " + LibraryForUs.getLastCategory(QuestionList.qStatic.category));
         moreChoice.setSpacing(15);
         questionText.setText(q.title);
+
+//        check image in question
+        try {
+            if (q.getPathQuestionImage() != null){
+                stringImage = q.getPathQuestionImage().toArray(new String[0]);
+                System.out.println("Day la");
+                System.out.println(stringImage);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
 
 //        setup TreeView
         categoryTreeView.setStyle("-fx-font-size: 16px;");
@@ -100,6 +113,8 @@ public class EditQuestion implements Initializable {
 
 //        draw answer of old question
         for(String answer : q.choices){
+            String tmp = new String("null");
+//            stringImage.add(tmp);
             if(answer.equals("null"))  continue;
             VBox vBox = new VBox();
             HBox hBox = new HBox();
@@ -130,6 +145,7 @@ public class EditQuestion implements Initializable {
             imageChooser[finalIndexChoice].setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
+//                    stringImage.set(finalIndexChoice + 1, chooseImage(event));
                     stringImage[finalIndexChoice + 1] = chooseImage(event);
                 }
             });
@@ -261,9 +277,6 @@ public class EditQuestion implements Initializable {
         }
     }
 
-    private List<String> getSupportedImageExtensions() {
-        return Arrays.asList("*.png", "*.jpg", "*.jpeg");
-    }
     public void getMoreChoice(ActionEvent event) throws IOException {
         if(indexChoice >= 4 && textChoice[indexChoice-1].getText().equals("")){
             return;
@@ -305,6 +318,10 @@ public class EditQuestion implements Initializable {
         }
     }
 
+    private List<String> getSupportedImageExtensions() {
+        return Arrays.asList("*.png", "*.jpg", "*.jpeg", "*.gif");
+    }
+
     public String chooseImage(MouseEvent event){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose Image, GIF, VIDEO");
@@ -322,9 +339,10 @@ public class EditQuestion implements Initializable {
     public void previewQuestion(ActionEvent event) throws IOException {
         String tmp = new String();
         for(String str : stringImage){
-            System.out.println(str);
+//            System.out.println(str);
             tmp += str + "\n";
         }
+        System.out.println("Day la tmp " + tmp);
         q.addQuestionImage(tmp);
 
        ScrollPane scrollPane = new ScrollPane();
@@ -335,8 +353,10 @@ public class EditQuestion implements Initializable {
        int dem = 1;
         for(String str : q.choices){
             Label labelChoice = new Label(str);
+            previewRoot.getChildren().add(labelChoice);
+//            if(dem >= q.getQuestionImage().size())  continue;
             ImageView imageView = new ImageView(q.getQuestionImage().get(dem));
-            previewRoot.getChildren().addAll(labelChoice,imageView);
+            previewRoot.getChildren().add(imageView);
 
             dem++;
         }

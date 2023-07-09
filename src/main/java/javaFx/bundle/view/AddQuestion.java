@@ -21,6 +21,7 @@ import model.QuestionManage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AddQuestion implements Initializable {
@@ -32,6 +33,7 @@ public class AddQuestion implements Initializable {
     TextField[] textChoice = new TextField[10];  // dua vao mang
     String[] answerChoice = new String[10];
     private ChoiceBox<String>[] selectPercent = new ChoiceBox[10];
+    private ArrayList<String> answerChoices = new ArrayList<>();
     private String[] percent = {"None","100%","90%","83.33333%","80%","75%","70%","67.66667%","60%","50%","40%","33.3333%","30%","25%","20%","16.66667%","14.28571%","12.5%","11.11111%","10%","5%","-5%",};
     int indexChoice = 3;
     @FXML
@@ -116,8 +118,13 @@ public class AddQuestion implements Initializable {
         }
 
         if(existCorrectAnswer == true && isHaveText == true){
+//            Update option for question, without null
+            for(String tmp : answerChoice){
+                if(tmp != null && (tmp.equals("") == false))     answerChoices.add(tmp);
+            }
+
 //            Add question to database
-            Question newQuestion = new Question(++currentID, QuestionBankTree.fullyCategory, questionText.getText() , rightAnswer, answerChoice);
+            Question newQuestion = new Question(++currentID, QuestionBankTree.fullyCategory, questionText.getText() , rightAnswer, answerChoices.toArray(answerChoices.toArray(new String[0])));
             questionManage.addQuestion(newQuestion);
             System.out.println(newQuestion);
 

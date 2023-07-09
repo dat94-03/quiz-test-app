@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import model.Question;
 import model.QuestionManage;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
@@ -49,6 +50,9 @@ public class QuizTestApplication extends Application {
         //là sinh viên bách khoa cái gì mà mình có theer tư duy 1 chút mà có câu trả lời thì không nên đi hỏ
 
         launch();
+
+//        QuestionManage.questionsList.get(0).addQuestionImage("\"E:\\btl oop\\Câu hỏi có ảnh\\1.jpg\"\nnull" +
+//                "\nnull\nnull\nnull");
 
     }
 }

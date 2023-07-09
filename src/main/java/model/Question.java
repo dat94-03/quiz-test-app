@@ -105,6 +105,39 @@ public class Question {
         }
         return imageList;
     }
+
+    public ArrayList<String> getPathQuestionImage() throws IOException {
+        ArrayList<String> pathList = new ArrayList<>();
+        FileInputStream databaseStream = new FileInputStream("src/main/java/data/QuizTestAppData.xlsx");
+        XSSFWorkbook data = new XSSFWorkbook(databaseStream);
+        Sheet questionBank = data.getSheet("QuestionBank");
+        if(questionBank.getRow(this.id).getLastCellNum()==4){
+            return null;
+        }
+
+        String[] flags = questionBank.getRow(this.id).getCell(4).getStringCellValue().split("\n");
+        databaseStream.close();
+        int count =0;
+        for (String flag : flags){
+            if(flag.equals("N")){
+                pathList.add(null);
+            }else if(flag.equals("G")){
+                File imageFile = new File(System.getProperty("user.dir") + File.separator + "src/main/java/data/picture/"+ this.id +"#"+ count +".gif");
+                String path = imageFile.getPath();
+                System.out.println(path);
+                pathList.add(path);
+            }else {
+                File imageFile = new File(System.getProperty("user.dir") + File.separator + "src/main/java/data/picture/"+ this.id +"#"+ count +".png");
+                String path = imageFile.getPath();
+                System.out.println(path);
+                pathList.add(path);
+            }
+
+            count++;
+        }
+        return pathList;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Question{");

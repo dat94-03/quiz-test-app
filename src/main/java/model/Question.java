@@ -80,8 +80,8 @@ public class Question {
         storeStream.close();
 
     }
-    public ArrayList<Set<Object>> getQuestionMedia() throws IOException {
-        ArrayList<Set<Object>> mediaList = new ArrayList<>();
+    public ArrayList<QuestionMedia> getQuestionMedia() throws IOException {
+        ArrayList<QuestionMedia> mediaList = new ArrayList<>();
         FileInputStream databaseStream = new FileInputStream("src/main/java/data/QuizTestAppData.xlsx");
         XSSFWorkbook data = new XSSFWorkbook(databaseStream);
         Sheet questionBank = data.getSheet("QuestionBank");
@@ -92,32 +92,20 @@ public class Question {
         String[] flags = questionBank.getRow(this.id).getCell(4).getStringCellValue().split("\n");
         databaseStream.close();
         int count =0;
-        File mediaFile;
+        // mediaFile;
         Set<Object> pair;
         for (String flag : flags){
             switch (flag) {
                 case "N" -> mediaList.add(null);
                 case "G" -> {
-                    mediaFile = new File(System.getProperty("user.dir") + File.separator + "src/main/java/data/picture/" + this.id + "#" + count + ".gif");
-                    //imageList.add(new Image(imageFile.toURI().toString()));
-                    pair = new HashSet<>();
-                    pair.add(flag);
-                    pair.add(mediaFile);
-                    mediaList.add(pair);
+                    mediaList.add(new QuestionMedia(flag,System.getProperty("user.dir") + File.separator + "src/main/java/data/picture/" + this.id + "#" + count + ".gif"));
                 }
                 case "V" -> {
-                    mediaFile = new File(System.getProperty("user.dir") + File.separator + "src/main/java/data/picture/" + this.id + "#" + count + ".mp4");
-                    pair = new HashSet<>();
-                    pair.add(flag);
-                    pair.add(mediaFile);
-                    mediaList.add(pair);
+                    mediaList.add(new QuestionMedia(flag,System.getProperty("user.dir") + File.separator + "src/main/java/data/picture/" + this.id + "#" + count + ".mp4"));
                 }
                 case "P" -> {
-                    mediaFile = new File(System.getProperty("user.dir") + File.separator + "src/main/java/data/picture/" + this.id + "#" + count + ".png");
-                    pair = new HashSet<>();
-                    pair.add(flag);
-                    pair.add(mediaFile);
-                    mediaList.add(pair);
+                    mediaList.add(new QuestionMedia(flag,System.getProperty("user.dir") + File.separator + "src/main/java/data/picture/" + this.id + "#" + count + ".png"));
+
                 }
             }
 
@@ -164,15 +152,4 @@ public class Question {
         return pathList;
     }
 
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("Question{");
-        sb.append("id=").append(id);
-        sb.append(", title='").append(title).append('\'');
-        sb.append(", category='").append(category).append('\'');
-        sb.append(", choices=").append(choices);
-        sb.append(", correctAnswer='").append(correctAnswer).append('\'');
-        sb.append('}');
-        return sb.toString();
-    }
 }

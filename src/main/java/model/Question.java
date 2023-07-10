@@ -6,7 +6,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -14,8 +13,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 
 public class Question {
@@ -38,7 +36,7 @@ public class Question {
         this.correctAnswer = correctAnswer;
     }
 
-    public void addQuestionImage(String picturePaths) throws IOException {
+    public void addQuestionMedia(String picturePaths) throws IOException {
         String[] paths = picturePaths.split("\n");
         StringBuilder imagesByteData = new StringBuilder();
         int count =0;
@@ -46,18 +44,17 @@ public class Question {
             if(path.equals("null")){
                 imagesByteData.append("N").append("\n");
             }else{
+                Path source = Path.of(path);
                 if(path.endsWith("gif")){
-//                    Image img = new Image(new File(path).toURI().toString());
-//                    BufferedImage bufferedImage = SwingFXUtils.fromFXImage(img, null);
-//                   File image = new File(path);
-//                    BufferedImage img = ImageIO.read(image);
-//                    File out = new File("src/main/java/data/picture/"+ this.id +"#"+ count +".gif");
-//                    ImageIO.write(img,"gif",out);
-                    Path sourcePath = Path.of(path);
-                    Path destinationPath = Path.of("src/main/java/data/picture/"+ this.id +"#"+ count +".gif"); // Replace with the desired destination path
-                    Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+                    Path destinationPath = Path.of("src/main/java/data/picture/"+ this.id +"#"+ count +".gif");
+                    Files.copy(source, destinationPath, StandardCopyOption.REPLACE_EXISTING);
                     imagesByteData.append("G").append("\n");
-                }else{
+                }else if(path.endsWith("mp4")){
+                    Path destinationPath = Path.of("src/main/java/data/picture/"+ this.id +"#"+ count +".mp4");
+                    Files.copy(source, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+                    imagesByteData.append("V").append("\n");}
+                else
+                {
                     File image = new File(path);
                     BufferedImage img = ImageIO.read(image);
                     File out = new File("src/main/java/data/picture/"+ this.id +"#"+ count +".png");
@@ -70,7 +67,12 @@ public class Question {
         FileInputStream databaseStream =new FileInputStream("src/main/java/data/QuizTestAppData.xlsx");
         XSSFWorkbook data = new XSSFWorkbook(databaseStream);
         Sheet questionBank = data.getSheet("QuestionBank");
-        questionBank.getRow(this.id).createCell(4).setCellValue(imagesByteData.toString());
+        if(questionBank.getRow(this.id).getLastCellNum()==4){
+            questionBank.getRow(this.id).createCell(4).setCellValue(imagesByteData.toString());
+        }else {
+            questionBank.getRow(this.id).getCell(4).setCellValue(imagesByteData.toString());
+        }
+
         databaseStream.close();
 
         FileOutputStream storeStream = new FileOutputStream("src/main/java/data/QuizTestAppData.xlsx");
@@ -78,8 +80,8 @@ public class Question {
         storeStream.close();
 
     }
-    public ArrayList<Image> getQuestionImage() throws IOException {
-        ArrayList<Image> imageList = new ArrayList<>();
+    public ArrayList<Set<Object>> getQuestionMedia() throws IOException {
+        ArrayList<Set<Object>> mediaList = new ArrayList<>();
         FileInputStream databaseStream = new FileInputStream("src/main/java/data/QuizTestAppData.xlsx");
         XSSFWorkbook data = new XSSFWorkbook(databaseStream);
         Sheet questionBank = data.getSheet("QuestionBank");
@@ -90,23 +92,41 @@ public class Question {
         String[] flags = questionBank.getRow(this.id).getCell(4).getStringCellValue().split("\n");
         databaseStream.close();
         int count =0;
+        File mediaFile;
+        Set<Object> pair;
         for (String flag : flags){
-            if(flag.equals("N")){
-                imageList.add(null);
-            }else if(flag.equals("G")){
-                File imageFile = new File(System.getProperty("user.dir") + File.separator + "src/main/java/data/picture/"+ this.id +"#"+ count +".gif");
-                imageList.add(new Image(imageFile.toURI().toString()));
-            }else {
-                File imageFile = new File(System.getProperty("user.dir") + File.separator + "src/main/java/data/picture/"+ this.id +"#"+ count +".png");
-                imageList.add(new Image(imageFile.toURI().toString()));
+            switch (flag) {
+                case "N" -> mediaList.add(null);
+                case "G" -> {
+                    mediaFile = new File(System.getProperty("user.dir") + File.separator + "src/main/java/data/picture/" + this.id + "#" + count + ".gif");
+                    //imageList.add(new Image(imageFile.toURI().toString()));
+                    pair = new HashSet<>();
+                    pair.add(flag);
+                    pair.add(mediaFile);
+                    mediaList.add(pair);
+                }
+                case "V" -> {
+                    mediaFile = new File(System.getProperty("user.dir") + File.separator + "src/main/java/data/picture/" + this.id + "#" + count + ".mp4");
+                    pair = new HashSet<>();
+                    pair.add(flag);
+                    pair.add(mediaFile);
+                    mediaList.add(pair);
+                }
+                case "P" -> {
+                    mediaFile = new File(System.getProperty("user.dir") + File.separator + "src/main/java/data/picture/" + this.id + "#" + count + ".png");
+                    pair = new HashSet<>();
+                    pair.add(flag);
+                    pair.add(mediaFile);
+                    mediaList.add(pair);
+                }
             }
 
             count++;
         }
-        return imageList;
+        return mediaList;
     }
 
-    public ArrayList<String> getPathQuestionImage() throws IOException {
+    public ArrayList<String> getPathQuestionMedia() throws IOException {
         ArrayList<String> pathList = new ArrayList<>();
         FileInputStream databaseStream = new FileInputStream("src/main/java/data/QuizTestAppData.xlsx");
         XSSFWorkbook data = new XSSFWorkbook(databaseStream);
@@ -126,7 +146,13 @@ public class Question {
                 String path = imageFile.getPath();
                 System.out.println(path);
                 pathList.add(path);
-            }else {
+            }else if (flag.equals("V")){
+                File imageFile = new File(System.getProperty("user.dir") + File.separator + "src/main/java/data/picture/"+ this.id +"#"+ count +".mp4");
+                String path = imageFile.getPath();
+                System.out.println(path);
+                pathList.add(path);
+            }else
+            {
                 File imageFile = new File(System.getProperty("user.dir") + File.separator + "src/main/java/data/picture/"+ this.id +"#"+ count +".png");
                 String path = imageFile.getPath();
                 System.out.println(path);

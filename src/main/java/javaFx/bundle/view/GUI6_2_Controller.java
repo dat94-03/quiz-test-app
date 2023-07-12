@@ -47,6 +47,9 @@ public class GUI6_2_Controller implements Initializable {
             if(tmp.getText().equals(" from question bank")){
                 switchToScene("GUI6.3.fxml");
             }
+            else if(tmp.getText().equals(" a random question")){
+                switchToScene("GUI6.5.fxml");
+            }
         });
     }
 

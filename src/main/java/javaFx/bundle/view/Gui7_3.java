@@ -26,6 +26,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.*;
 
+import javax.print.attribute.standard.Media;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -40,6 +41,7 @@ public class Gui7_3 implements Initializable {
     private Parent root;
     private Quiz currentQuiz = GUI1_1_Controller.currentQuiz;
     static QuizInExam quizInExam = new QuizInExam();
+//    private Media media;
     private ArrayList<AnchorPane> questionPanes = new ArrayList<>();
     @FXML
     private Text hour ;

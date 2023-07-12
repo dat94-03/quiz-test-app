@@ -1,6 +1,7 @@
 package javaFx.bundle.view;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -48,8 +49,15 @@ public class GUI6_1_Controller implements Initializable{
         stage.setScene(scene);
         stage.show();
     }
-    public void switchTo7(ActionEvent event) throws  IOException {
-        root = FXMLLoader.load(getClass().getResource("Gui7_3.fxml"));
+    public void switchToGUIHome(ActionEvent event) throws  IOException {
+        root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void switchToGUI8(ActionEvent event) throws  IOException {
+        root = FXMLLoader.load(getClass().getResource("GUI8.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -190,6 +198,16 @@ public class GUI6_1_Controller implements Initializable{
         exportButton.setStyle("-fx-background-color: #5aea57");
         exportButton.setTextFill(Color.web("#ececec"));
         exportButton.setFont(Font.font(18));
+        exportButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    switchToGUI8(event);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
         root.getChildren().add(exportButton) ;
 
         // Thiết lập Stage con làm cửa sổ modal và kết nối với Stage cha

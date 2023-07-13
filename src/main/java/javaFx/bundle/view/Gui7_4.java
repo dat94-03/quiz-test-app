@@ -1,6 +1,7 @@
 package javaFx.bundle.view;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,12 +16,17 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import model.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -33,6 +39,7 @@ public class Gui7_4 implements Initializable {
     private Parent root;
     private Quiz currentQuiz = GUI1_1_Controller.currentQuiz;
     private QuizInExam quizInExam = Gui7_3.quizInExam;
+    private Boolean isPlay = false;
     @FXML
     Label labelStartQUiz;  // 2 cái startQuiz với finishQUiz kia là set time thì Tuấn làm nhé
     @FXML
@@ -54,6 +61,9 @@ public class Gui7_4 implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        labelStartQUiz.setText(quizInExam.startExam);
+        labelFinishQuiz.setText(quizInExam.endExam);
+
         double userPoint = quizInExam.userPoint;
         double maxPoint = quizInExam.maxPoint;
         double ratio = userPoint/maxPoint*10.0;
@@ -151,7 +161,7 @@ public class Gui7_4 implements Initializable {
         Question question = QuestionManage.questionsList.get(i);
 
         boolean hasImage = false;
-        if(question.getQuestionImage() != null)     hasImage =  true;
+        if(question.getQuestionMedia() != null)     hasImage =  true;
 
         int userChoice = quizInExam.userChoice.get(dem - 1);
 
@@ -220,8 +230,51 @@ public class Gui7_4 implements Initializable {
         contentBox.setPadding(new Insets(20.0));
         contentBox.getChildren().add(questionLabel);
         if(hasImage == true){
-            ImageView imageTitle = new ImageView(question.getQuestionImage().get(0));
-            contentBox.getChildren().add(imageTitle);
+            if(question.getQuestionMedia().get(0) != null){
+                if(question.getQuestionMedia().get(0).mediaType.equals("V")){
+                    File file = question.getQuestionMedia().get(0).mediaFile;
+                    javafx.scene.media.Media media = new Media(file.toURI().toString());
+                    MediaPlayer mediaPlayer = new MediaPlayer(media);
+                    MediaView mediaView = new MediaView();
+                    mediaView.setMediaPlayer(mediaPlayer);
+                    mediaView.setFitWidth(500);
+                    mediaView.setFitHeight(500);
+                    mediaView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            if(isPlay == false){
+                                mediaPlayer.play();
+                                isPlay = true;
+                            }
+                            else {
+                                mediaPlayer.pause();
+                                isPlay = false;
+                            }
+                        }
+                    });
+                    contentBox.getChildren().add(mediaView);
+
+                    Button seeAgain = new Button("See Video Again");
+                    seeAgain.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            if(mediaPlayer.getStatus() != MediaPlayer.Status.READY) {
+                                mediaPlayer.seek(Duration.seconds(0.0));
+                            }
+                        }
+                    });
+                    contentBox.getChildren().add(seeAgain);
+                }
+                else {
+                    ImageView imageView = new ImageView(new Image(question.getQuestionMedia().get(0).mediaFile.toURI().toString()));
+                    contentBox.getChildren().addAll(imageView);
+                }
+
+            }
+
+//          old
+//            ImageView imageTitle = new ImageView(question.getQuestionImage().get(0));
+//            contentBox.getChildren().add(imageTitle);
         }
 
         // Group radio buttons
@@ -237,8 +290,48 @@ public class Gui7_4 implements Initializable {
                 option.setToggleGroup(answerGroup);
                 contentBox.getChildren().add(option);
                 if(hasImage == true){
-                    ImageView imageChoice = new ImageView(question.getQuestionImage().get(count));
-                    contentBox.getChildren().add(imageChoice);
+                    if(question.getQuestionMedia().get(count) != null){
+                        if(question.getQuestionMedia().get(count).mediaType.equals("V")){
+                            File file = question.getQuestionMedia().get(count).mediaFile;
+                            Media media = new Media(file.toURI().toString());
+                            MediaPlayer mediaPlayer = new MediaPlayer(media);
+                            MediaView mediaView = new MediaView();
+                            mediaView.setMediaPlayer(mediaPlayer);
+                            mediaView.setFitWidth(500);
+                            mediaView.setFitHeight(500);
+                            mediaView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                                @Override
+                                public void handle(MouseEvent event) {
+                                    if(isPlay == false){
+                                        mediaPlayer.play();
+                                        isPlay = true;
+                                    }
+                                    else {
+                                        mediaPlayer.pause();
+                                        isPlay = false;
+                                    }
+                                }
+                            });
+                            contentBox.getChildren().add(mediaView);
+                            Button seeAgain = new Button("See Video Again");
+                            seeAgain.setOnAction(new EventHandler<ActionEvent>() {
+                                @Override
+                                public void handle(ActionEvent event) {
+                                    if(mediaPlayer.getStatus() != MediaPlayer.Status.READY) {
+                                        mediaPlayer.seek(Duration.seconds(0.0));
+                                    }
+                                }
+                            });
+                            contentBox.getChildren().add(seeAgain);
+                        }
+                        else {
+                            ImageView imageView = new ImageView(new Image(question.getQuestionMedia().get(count).mediaFile.toURI().toString()));
+                            contentBox.getChildren().addAll(imageView);
+                        }
+                    }
+//                      old
+//                    ImageView imageChoice = new ImageView(question.getQuestionImage().get(count));
+//                    contentBox.getChildren().add(imageChoice);
                 }
                 count++;
             }

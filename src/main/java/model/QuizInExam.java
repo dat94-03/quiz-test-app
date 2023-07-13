@@ -7,6 +7,10 @@ public class QuizInExam {
     public ArrayList<Integer> userChoice = new ArrayList<>();
     public double userPoint = 0;
     public double maxPoint = 0;
+    public double timeUsed = 0;
+
+    public String startExam = new String();
+    public String endExam = new String();
 
     public void saveStateQuizExam(ArrayList<Integer> correctQuestion,ArrayList<Integer> userChoice, double userPoint, double maxPoint){
         this.maxPoint = maxPoint;
@@ -19,6 +23,8 @@ public class QuizInExam {
         userPoint = 0;
         correctQuestions.clear();
         userChoice.clear();
+        startExam = "";
+        endExam = "";
+        timeUsed = 0;
     }
-
 }

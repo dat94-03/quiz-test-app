@@ -202,6 +202,7 @@ public class GUI6_1_Controller implements Initializable{
             @Override
             public void handle(ActionEvent event) {
                 try {
+                    childStage.close();
                     switchToGUI8(event);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -215,7 +216,7 @@ public class GUI6_1_Controller implements Initializable{
         childStage.initOwner(parentStage);
 
         // Làm mờ Stage cha
-        parentStage.setOpacity(0.5);
+//        parentStage.setOpacity(0.5);
 
         Scene scene = new Scene(root,760,370);
         childStage.setScene(scene);

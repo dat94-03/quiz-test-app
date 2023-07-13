@@ -15,11 +15,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import model.*;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -37,7 +42,7 @@ public class EditQuestion implements Initializable {
     private TextField[] textChoice = new TextField[10];  // dua vao mang
     private ChoiceBox<String>[] selectPercent = new ChoiceBox[10];
     private ImageView[] imageChooser = new ImageView[10];
-    private  String stringImage[] = new String[10];
+    private  String stringMedia[] = new String[10];
     String[] answerChoice = new String[10];
 
     private String[] percent = {"None","100%","90%","83.33333%","80%","75%","70%","67.66667%","60%","50%","40%","33.3333%","30%","25%","20%","16.66667%","14.28571%","12.5%","11.11111%","10%","5%","-5%",};
@@ -47,6 +52,7 @@ public class EditQuestion implements Initializable {
     private String fullyPath = new String();
     private String oldPath = QuestionBankTree.fullyCategory;
     Question q = QuestionList.qStatic;
+    private Boolean isPlay = false;
     @FXML
     private Label categoryLabel;
 
@@ -68,10 +74,10 @@ public class EditQuestion implements Initializable {
 
 //        check image in question
         try {
-            if (q.getPathQuestionImage() != null){
-                stringImage = q.getPathQuestionImage().toArray(new String[0]);
+            if (q.getPathQuestionMedia() != null){
+                stringMedia = q.getPathQuestionMedia().toArray(new String[0]);
                 System.out.println("Day la");
-                System.out.println(stringImage);
+                System.out.println(stringMedia);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -100,7 +106,7 @@ public class EditQuestion implements Initializable {
         brokenImage.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                stringImage[0] = chooseImage(event);
+                stringMedia[0] = chooseImage(event);
             }
         });
         brokenImage.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -146,7 +152,7 @@ public class EditQuestion implements Initializable {
                 @Override
                 public void handle(MouseEvent event) {
 //                    stringImage.set(finalIndexChoice + 1, chooseImage(event));
-                    stringImage[finalIndexChoice + 1] = chooseImage(event);
+                    stringMedia[finalIndexChoice + 1] = chooseImage(event);
                 }
             });
 
@@ -319,7 +325,7 @@ public class EditQuestion implements Initializable {
     }
 
     private List<String> getSupportedImageExtensions() {
-        return Arrays.asList("*.png", "*.jpg", "*.jpeg", "*.gif");
+        return Arrays.asList("*.png", "*.jpg", "*.jpeg", "*.gif","*.mp4");
     }
 
     public String chooseImage(MouseEvent event){
@@ -338,25 +344,98 @@ public class EditQuestion implements Initializable {
     @FXML
     public void previewQuestion(ActionEvent event) throws IOException {
         String tmp = new String();
-        for(String str : stringImage){
+        for(String str : stringMedia){
 //            System.out.println(str);
             tmp += str + "\n";
         }
-        System.out.println("Day la tmp " + tmp);
-        q.addQuestionImage(tmp);
+        System.out.println("Day la tmp: \n" + tmp);
+        q.addQuestionMedia(tmp);
 
        ScrollPane scrollPane = new ScrollPane();
        VBox previewRoot = new VBox();
        Label labelTitle = new Label(q.title);
-       ImageView imageViewTitle = new ImageView(q.getQuestionImage().get(0));
-       previewRoot.getChildren().addAll(labelTitle, imageViewTitle);
+       if(q.getQuestionMedia().get(0) == null) {
+           previewRoot.getChildren().add(labelTitle);
+       }
+       else {
+           if(q.getQuestionMedia().get(0).mediaType.equals("V")){
+               System.out.println("Video se duoc in ra");
+               File file = q.getQuestionMedia().get(0).mediaFile;
+               Media media = new Media(file.toURI().toString());
+               MediaPlayer mediaPlayer = new MediaPlayer(media);
+               MediaView mediaView = new MediaView();
+               mediaView.setFitWidth(500);
+               mediaView.setFitHeight(500);
+               mediaView.setMediaPlayer(mediaPlayer);
+               mediaView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                   @Override
+                   public void handle(MouseEvent event) {
+                       if(isPlay == false){
+                           mediaPlayer.play();
+                           isPlay = true;
+                       }
+                       else {
+                           mediaPlayer.pause();
+                           isPlay = false;
+                       }
+                   }
+               });
+
+               previewRoot.getChildren().addAll(labelTitle, mediaView);
+           }
+           else {
+               ImageView imageViewTitle = new ImageView(new Image(q.getQuestionMedia().get(0).mediaFile.toURI().toString()));
+               previewRoot.getChildren().addAll(labelTitle, imageViewTitle);
+           }
+       }
+
+
        int dem = 1;
         for(String str : q.choices){
             Label labelChoice = new Label(str);
             previewRoot.getChildren().add(labelChoice);
-//            if(dem >= q.getQuestionImage().size())  continue;
-            ImageView imageView = new ImageView(q.getQuestionImage().get(dem));
-            previewRoot.getChildren().add(imageView);
+            if(q.getQuestionMedia().get(dem) == null){
+                dem++;
+                continue;
+            }
+            if(q.getQuestionMedia().get(dem).mediaType.equals("V")){
+                File file = q.getQuestionMedia().get(dem).mediaFile;
+                Media media = new Media(file.toURI().toString());
+                MediaPlayer mediaPlayer = new MediaPlayer(media);
+                MediaView mediaView = new MediaView();
+                mediaView.setMediaPlayer(mediaPlayer);
+                mediaView.setFitWidth(500);
+                mediaView.setFitHeight(500);
+                mediaView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        if(isPlay == false){
+                            mediaPlayer.play();
+                            isPlay = true;
+                        }
+                        else {
+                            mediaPlayer.pause();
+                            isPlay = false;
+                        }
+                    }
+                });
+                previewRoot.getChildren().add(mediaView);
+
+                Button seeAgain = new Button("See Video Again");
+                seeAgain.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        if(mediaPlayer.getStatus() != MediaPlayer.Status.READY) {
+                            mediaPlayer.seek(Duration.seconds(0.0));
+                        }
+                    }
+                });
+                previewRoot.getChildren().add(seeAgain);
+            }
+            else {
+                ImageView imageView = new ImageView(new Image(q.getQuestionMedia().get(dem).mediaFile.toURI().toString()));
+                previewRoot.getChildren().addAll(imageView);
+            }
 
             dem++;
         }
@@ -367,6 +446,7 @@ public class EditQuestion implements Initializable {
         previewStage.setScene(previewScene);
         previewStage.show();
     }
+
 
     @FXML
     public void switchToSceneList(ActionEvent event) throws IOException {

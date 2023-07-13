@@ -5,6 +5,7 @@ module com.example.ourproject {
     requires org.apache.poi.scratchpad;
     requires java.sql;
     requires java.desktop;
+    requires javafx.media;
 
 
     opens javaFx.bundle.view to javafx.fxml;

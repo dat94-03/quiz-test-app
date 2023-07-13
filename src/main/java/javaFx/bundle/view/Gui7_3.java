@@ -1,6 +1,8 @@
 package javaFx.bundle.view;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,14 +21,18 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import model.*;
 
-import javax.print.attribute.standard.Media;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -43,6 +49,7 @@ public class Gui7_3 implements Initializable {
     static QuizInExam quizInExam = new QuizInExam();
 //    private Media media;
     private ArrayList<AnchorPane> questionPanes = new ArrayList<>();
+    private Boolean isPlay = false;
     @FXML
     private Text hour ;
     @FXML
@@ -64,7 +71,7 @@ public class Gui7_3 implements Initializable {
     Integer check = 1 ;
     Thread thrd ;
     Integer k = 0 ;
-    Integer currSecond = 3600 ;
+    Integer currSecond = currentQuiz.timeLimit ;
     LocalDateTime currentDateTime = LocalDateTime.now();
     LocalDateTime time = currentDateTime ;
 
@@ -74,7 +81,7 @@ public class Gui7_3 implements Initializable {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy, h:mm a");
         String formattedDateTime = currentDateTime.format(formatter);
-        System.out.println(formattedDateTime);
+        quizInExam.startExam = formattedDateTime;
 
 
         thrd = new Thread(new Runnable() {
@@ -91,11 +98,51 @@ public class Gui7_3 implements Initializable {
                             {  time = time.plusSeconds(currSecond) ;
                                 DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy, h:mm a");
                                 String formattedDateTime2 = time.format(formatter2);
-                                System.out.println(formattedDateTime2); }
+                                quizInExam.endExam = formattedDateTime2;
+                            }
                             Platform.runLater(new Runnable() {
                                 @Override
                                 public void run() {
                                     try {
+                                        for (javafx.scene.Node node : vBox.getChildren()) {
+                                            if (node instanceof HBox) {
+                                                HBox hBox = (HBox) node;
+                                                for (javafx.scene.Node childNode : hBox.getChildren()) {
+                                                    if (childNode instanceof AnchorPane) {
+                                                        AnchorPane anchorPane = (AnchorPane) childNode;
+                                                        if(anchorPane == null)  continue;
+                                                        if(anchorPane.getId().equals("QuestionPane"))   continue;
+                                                        int idQues = Integer.parseInt(anchorPane.getId());
+                                                        Question question = QuestionManage.questionsList.get(idQues);
+                                                        for (javafx.scene.Node grandChildNode : anchorPane.getChildren()) {
+                                                            if (grandChildNode instanceof VBox) {
+                                                                VBox contentBox = (VBox) grandChildNode;
+                                                                int userChoice = 1;  boolean flag = false;
+                                                                for (javafx.scene.Node radioNode : contentBox.getChildren()) {
+                                                                    if(radioNode instanceof RadioButton){
+                                                                        if(((RadioButton) radioNode).isSelected() ){
+                                                                            flag =true; // da tra loi cau hoi
+                                                                            quizInExam.userChoice.add(userChoice);
+                                                                            String corectAns = question.correctAnswer;
+                                                                            String selectAns = ((RadioButton) radioNode).getText().substring(0,1);
+                                                                            if(corectAns.equals(selectAns) ){
+//                                                System.out.println("Cau " + idQues + "lam dung");
+                                                                                quizInExam.userPoint = quizInExam.userPoint + 1;
+                                                                                quizInExam.correctQuestions.add(idQues);
+                                                                            }
+//                                            System.out.println(((RadioButton) radioNode).getText());
+                                                                        }
+                                                                        userChoice++;
+                                                                    }
+
+                                                                }
+                                                                if(flag == false)   quizInExam.userChoice.add(-1);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
                                         Parent root = FXMLLoader.load(getClass().getResource("Gui7_4.fxml"));
                                         Stage stage = (Stage) scrollPane.getScene().getWindow();
                                         Scene scene = new Scene(root);
@@ -221,7 +268,7 @@ public class Gui7_3 implements Initializable {
                 LocalDateTime currentDateTime = LocalDateTime.now();
                 DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy, h:mm a");
                 String formattedDateTime3 = currentDateTime.format(formatter3);
-                System.out.println(formattedDateTime3);
+                quizInExam.endExam = formattedDateTime3;
                 stop();
                 switchTo7_4(mouseEvent);
             } catch (IOException e) {
@@ -239,7 +286,7 @@ public class Gui7_3 implements Initializable {
         Question question = QuestionManage.questionsList.get(i);
 
         boolean hasImage = false;
-        if(question.getQuestionImage() != null)     hasImage =  true;
+        if(question.getQuestionMedia() != null)     hasImage =  true;
 
         // Create HBox
         HBox hbox = new HBox();
@@ -307,8 +354,51 @@ public class Gui7_3 implements Initializable {
         contentBox.setPadding(new Insets(20.0));
         contentBox.getChildren().add(questionLabel);
         if(hasImage == true){
-            ImageView imageTitle = new ImageView(question.getQuestionImage().get(0));
-            contentBox.getChildren().add(imageTitle);
+            if(question.getQuestionMedia().get(0) != null){
+                if(question.getQuestionMedia().get(0).mediaType.equals("V")){
+                    File file = question.getQuestionMedia().get(0).mediaFile;
+                    javafx.scene.media.Media media = new Media(file.toURI().toString());
+                    MediaPlayer mediaPlayer = new MediaPlayer(media);
+                    MediaView mediaView = new MediaView();
+                    mediaView.setMediaPlayer(mediaPlayer);
+                    mediaView.setFitWidth(500);
+                    mediaView.setFitHeight(500);
+                    mediaView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            if(isPlay == false){
+                                mediaPlayer.play();
+                                isPlay = true;
+                            }
+                            else {
+                                mediaPlayer.pause();
+                                isPlay = false;
+                            }
+                        }
+                    });
+                    contentBox.getChildren().add(mediaView);
+
+                    Button seeAgain = new Button("See Video Again");
+                    seeAgain.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            if(mediaPlayer.getStatus() != MediaPlayer.Status.READY) {
+                                mediaPlayer.seek(Duration.seconds(0.0));
+                            }
+                        }
+                    });
+                    contentBox.getChildren().add(seeAgain);
+                }
+                else {
+                    ImageView imageView = new ImageView(new Image(question.getQuestionMedia().get(0).mediaFile.toURI().toString()));
+                    contentBox.getChildren().addAll(imageView);
+                }
+
+            }
+
+//          old
+//            ImageView imageTitle = new ImageView(question.getQuestionImage().get(0));
+//            contentBox.getChildren().add(imageTitle);
         }
 
         // Group radio buttons
@@ -323,8 +413,48 @@ public class Gui7_3 implements Initializable {
                 option.setOnAction(e -> handleAnswerSelection(dem));
                 contentBox.getChildren().add(option);
                 if(hasImage == true){
-                    ImageView imageChoice = new ImageView(question.getQuestionImage().get(count));
-                    contentBox.getChildren().add(imageChoice);
+                    if(question.getQuestionMedia().get(count) != null){
+                        if(question.getQuestionMedia().get(count).mediaType.equals("V")){
+                            File file = question.getQuestionMedia().get(count).mediaFile;
+                            Media media = new Media(file.toURI().toString());
+                            MediaPlayer mediaPlayer = new MediaPlayer(media);
+                            MediaView mediaView = new MediaView();
+                            mediaView.setMediaPlayer(mediaPlayer);
+                            mediaView.setFitWidth(500);
+                            mediaView.setFitHeight(500);
+                            mediaView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                                @Override
+                                public void handle(MouseEvent event) {
+                                    if(isPlay == false){
+                                        mediaPlayer.play();
+                                        isPlay = true;
+                                    }
+                                    else {
+                                        mediaPlayer.pause();
+                                        isPlay = false;
+                                    }
+                                }
+                            });
+                            contentBox.getChildren().add(mediaView);
+                            Button seeAgain = new Button("See Video Again");
+                            seeAgain.setOnAction(new EventHandler<ActionEvent>() {
+                                @Override
+                                public void handle(ActionEvent event) {
+                                    if(mediaPlayer.getStatus() != MediaPlayer.Status.READY) {
+                                        mediaPlayer.seek(Duration.seconds(0.0));
+                                    }
+                                }
+                            });
+                            contentBox.getChildren().add(seeAgain);
+                        }
+                        else {
+                            ImageView imageView = new ImageView(new Image(question.getQuestionMedia().get(count).mediaFile.toURI().toString()));
+                            contentBox.getChildren().addAll(imageView);
+                        }
+                    }
+//                      old
+//                    ImageView imageChoice = new ImageView(question.getQuestionImage().get(count));
+//                    contentBox.getChildren().add(imageChoice);
                 }
                 count++;
             }

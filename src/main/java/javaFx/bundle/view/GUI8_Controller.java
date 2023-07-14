@@ -1,17 +1,26 @@
 package javaFx.bundle.view;
 
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -263,5 +272,44 @@ public class GUI8_Controller implements Initializable {
         double vValue = (double) questionIndex / (numQuestion-2.5);
         scrollPane.setVvalue(vValue);
     }
+public void exportPDF() throws IOException {
+    String output = "D:\\Java\\Output.pdf";
+    PdfWriter writer = new PdfWriter(output);
 
+//        {
+//            try {
+//                writer = new PdfWriter(new FileOutputStream(output));
+//            } catch (FileNotFoundException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
+
+    PdfDocument pdfDocument = new PdfDocument(writer);
+
+    Document document = new Document(pdfDocument, PageSize.A4);
+
+    document.setMargins(50, 50, 50, 50);
+    // Khởi tạo VBox và lấy kích thước của nó
+
+    double vboxHeight = vBox.getHeight();
+    double vboxWidth = vBox.getWidth();
+    double startY = 0;
+
+    while (vboxHeight > startY) {
+        double partHeight = vboxHeight - startY;
+
+        Rectangle2D partRect = new Rectangle2D(0, startY, vboxWidth, partHeight);
+
+        SnapshotParameters parameters = new SnapshotParameters();
+        parameters.setViewport(partRect);
+
+        WritableImage partImage = vBox.snapshot(parameters, null);
+        com.itextpdf.layout.element.Image partPdfImage = new com.itextpdf.layout.element.Image(ImageDataFactory.create(SwingFXUtils.fromFXImage(partImage, null),null));
+        document.add(partPdfImage);
+
+        startY += 704;
+    }
+    document.close();
+
+}
 }

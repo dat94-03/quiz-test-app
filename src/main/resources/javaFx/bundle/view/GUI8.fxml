@@ -81,7 +81,7 @@
                               <Insets left="20.0" />
                            </padding>
                         </VBox>
-                        <Button layoutX="546.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #FF8C00;" text="Export to PDF" textFill="#290ad7">
+                        <Button layoutX="546.0" layoutY="1.0" mnemonicParsing="false" onAction="#exportPDF" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #FF8C00;" text="Export to PDF" textFill="#290ad7">
                            <font>
                               <Font size="18.0" />
                            </font>

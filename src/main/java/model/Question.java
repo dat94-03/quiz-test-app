@@ -22,6 +22,8 @@ public class Question {
     public String category;
     public ArrayList<String> choices = new ArrayList<>();
     public String correctAnswer;
+    public ArrayList<String> multipleAnswer = new ArrayList<>();
+
     Question(){
         this.title = "";
         this.category= "";
@@ -152,4 +154,24 @@ public class Question {
         return pathList;
     }
 
+    public boolean isMultipleChoice(){
+        multipleAnswer.clear();
+        String[] tmp = correctAnswer.split(",");
+        if(tmp.length == 1)     return false;
+        for(String str : tmp){
+            if(str.equals("") || str == null || str.equals(" "))   continue;
+            str = str.trim();
+            multipleAnswer.add(str);
+        }
+        return true;
+    }
+
+    public boolean isOptionBelongMultipleAns(String option){
+        for(String str : multipleAnswer){
+            if(option.substring(0,1).equals(str)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

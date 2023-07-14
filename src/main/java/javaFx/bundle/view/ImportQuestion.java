@@ -13,25 +13,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.transform.Rotate;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.Question;
 import model.QuestionManage;
 
 import java.io.IOException;
@@ -57,25 +47,25 @@ public class ImportQuestion implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         TranslateTransition translate = new TranslateTransition(Duration.millis(1000), dropDown);
         translate.setCycleCount(TranslateTransition.INDEFINITE);
-        translate.setByY(-25);
+        translate.setByY(-23);
         translate.setAutoReverse(true);
-//        translate.play();
+        translate.play();
 
 
 //        Rotate pivot = new Rotate();  // create center rotate
 //        pivot.setPivotX(dropDown.getX());
 //        pivot.setPivotY(dropDown.getY() - 1500);
 //        dropDown.getTransforms().add(pivot); // set center rotate for Image View drop down
-        RotateTransition rotate = new RotateTransition(Duration.millis(2000), dropDown);
-        rotate.setCycleCount(TranslateTransition.INDEFINITE);
-        rotate.setByAngle(360);
+//        RotateTransition rotate = new RotateTransition(Duration.millis(2000), dropDown);
+//        rotate.setCycleCount(TranslateTransition.INDEFINITE);
+//        rotate.setByAngle(360);
 //        rotate.setAxis(Rotate.Y_AXIS);
-        rotate.setAutoReverse(true);
-        rotate.setInterpolator(Interpolator.LINEAR);
-        rotate.play();
-
-        ParallelTransition parallel = new ParallelTransition(dropDown, translate, rotate);
-        parallel.play();
+//        rotate.setAutoReverse(true);
+//        rotate.setInterpolator(Interpolator.LINEAR);
+//        rotate.play();
+//
+//        ParallelTransition parallel = new ParallelTransition(dropDown, translate, rotate);
+//        parallel.play();
 
     }
 
@@ -101,7 +91,6 @@ public class ImportQuestion implements Initializable {
             fileChooser.showOpenDialog(stage);
 
         dropHere.setOnDragOver(new EventHandler<DragEvent>() {
-
             @Override
             public void handle(DragEvent event) {
                 if (event.getGestureSource() != dropHere
@@ -112,7 +101,6 @@ public class ImportQuestion implements Initializable {
                 event.consume();
             }
         });
-
         dropHere.setOnDragDropped(new EventHandler<DragEvent>() {
             @Override
             public void handle(DragEvent event) {
@@ -148,23 +136,9 @@ public class ImportQuestion implements Initializable {
             throw new RuntimeException(ex);
         }
     }
-    @FXML
-    public void switchToScene1(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("Home.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+
     public void switchToScene3(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("QuestionList.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-    public void switchToScene2(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("AddingQuestion.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -177,28 +151,7 @@ public class ImportQuestion implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    public void switchToEditQuestion(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("EditQuestion.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 
-    public void switchToCategory(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("AddingCategory.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-    public void switchToImportQuestion(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("ImportQuestion.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
     public void switchToQuestionList(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("QuestionList.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -206,6 +159,5 @@ public class ImportQuestion implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
 }
 

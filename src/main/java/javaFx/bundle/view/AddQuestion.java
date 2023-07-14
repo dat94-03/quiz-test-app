@@ -62,7 +62,7 @@ public class AddQuestion implements Initializable {
     @FXML
     public void saveChanges(ActionEvent event) throws IOException {
         int currentID = 0;
-        String rightAnswer = new String();
+        String rightAnswer = new String(""); //  maybe multiple choice
         boolean existCorrectAnswer = false;  // flag
         boolean isHaveText = true;
         QuestionManage questionManage = new QuestionManage();
@@ -78,14 +78,14 @@ public class AddQuestion implements Initializable {
 
         if(choiceBox1 != null){
             if(choiceBox1.getValue().equals("100%")){
-                rightAnswer = choiceAnswer1.getText(0, 1);
+                rightAnswer += choiceAnswer1.getText(0, 1)  + ", ";
                 existCorrectAnswer = true;
             }
         }
 
         if(choiceBox2 != null){
             if(choiceBox2.getValue().equals("100%")){
-                rightAnswer = choiceAnswer2.getText(0, 1);
+                rightAnswer += choiceAnswer2.getText(0, 1) + ", ";
                 existCorrectAnswer = true;
             }
         }
@@ -98,7 +98,7 @@ public class AddQuestion implements Initializable {
 
             if(selectPercent[i] != null){
                 if(selectPercent[i].getValue().equals("100%")){
-                    rightAnswer = textChoice[i].getText(0, 1);
+                    rightAnswer += textChoice[i].getText(0, 1) + ", ";
                     existCorrectAnswer = true;
                 }
             }
@@ -113,7 +113,7 @@ public class AddQuestion implements Initializable {
 
         if(existCorrectAnswer == false){
             Alert isFormatQuestionRight = new Alert(Alert.AlertType.ERROR);
-            isFormatQuestionRight.setContentText("You did'nt set up correct answer");
+            isFormatQuestionRight.setContentText("You didn't set up correct answer");
             isFormatQuestionRight.showAndWait();
         }
 
@@ -205,7 +205,7 @@ public class AddQuestion implements Initializable {
     }
 
     public void getMoreChoice(ActionEvent event) throws IOException {
-        if(indexChoice >= 4 && textChoice[indexChoice-1].getText().equals("")){
+        if(indexChoice >= 4 && textChoice[indexChoice - 1].getText().equals("")){
             return;
         }
         else {  // if if previous choice is filled

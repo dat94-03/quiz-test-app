@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -28,6 +29,8 @@ public class GUI6_2_Controller implements Initializable {
 
     @FXML
     private ListView<Label> addListView;
+    @FXML
+    private Label labelAdd;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -51,6 +54,14 @@ public class GUI6_2_Controller implements Initializable {
                 switchToScene("GUI6.5.fxml");
             }
         });
+    }
+    public void changeColorLabel(){
+        labelAdd.setTextFill(Color.GREEN);
+        labelAdd.setStyle("-fx-cursor: hand;");
+    }
+
+    public void changeColorLabelOff(){
+        labelAdd.setTextFill(Color.BLUE);
     }
 
     private Label getItem(String content){

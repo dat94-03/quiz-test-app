@@ -95,7 +95,7 @@
             </Label>
             <AnchorPane layoutX="32.0" layoutY="166.0" prefHeight="66.0" prefWidth="820.0" style="-fx-background-color: #EEEEEE;">
                <children>
-                  <Label layoutX="755.0" layoutY="36.0" onMouseClicked="#displayListView" text="Add" textFill="#6ec7ed">
+                  <Label fx:id="labelAdd" layoutX="755.0" layoutY="36.0" onMouseClicked="#displayListView" onMouseEntered="#changeColorLabel" onMouseExited="#changeColorLabelOff" text="Add" textFill="#6ec7ed">
                      <font>
                         <Font size="18.0" />
                      </font></Label>

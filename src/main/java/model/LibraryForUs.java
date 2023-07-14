@@ -139,10 +139,6 @@ public class LibraryForUs {
         }
     }
 
-    public static boolean isMultipleChoice(Question question){
-        return false;
-    }
-
 }
 
 

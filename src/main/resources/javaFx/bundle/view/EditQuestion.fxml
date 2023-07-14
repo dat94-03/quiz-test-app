@@ -159,7 +159,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="90.0" layoutY="454.0" mnemonicParsing="false" onAction="#saveChages" prefHeight="35.0" prefWidth="154.0" style="-fx-background-color: #c71d1d;" text="SAVE CHANGES" textFill="WHITE">
+            <Button layoutX="90.0" layoutY="454.0" mnemonicParsing="false" onAction="#saveChanges" prefHeight="35.0" prefWidth="154.0" style="-fx-background-color: #c71d1d;" text="SAVE CHANGES" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -177,6 +177,9 @@
                <font>
                   <Font size="16.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <ImageView fx:id="brokenImage" fitHeight="41.0" fitWidth="35.0" layoutX="837.0" layoutY="230.0" onMouseClicked="#chooseImage" pickOnBounds="true" preserveRatio="true">
                <image>

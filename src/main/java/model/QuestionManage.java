@@ -153,13 +153,12 @@ public class QuestionManage {
                     } else if (line.startsWith("ANSWER: ")) {
                         newQuestion.createCell(3).setCellValue(choices.toString());
                         choices = new StringBuilder();
-                        newQuestion.createCell(2).setCellValue(String.valueOf(line.charAt(8)));
+                        newQuestion.createCell(2).setCellValue(String.valueOf(line.substring(8)));
                         newQuestion.createCell(1).setCellValue(category);
                         insertingRow++;
                     } else {
                         newQuestion = questionBank.createRow(insertingRow);
                         newQuestion.createCell(0).setCellValue(line);
-
                     }
 
                 }
@@ -172,14 +171,13 @@ public class QuestionManage {
             writeDataStream.close();
             updateCategory(category, insertingRow - startInsertingRow);
             loadQuestion();
-
         }
     }
 
     //check if a file is in Aiken format, return boolean value
     public boolean checkAikenFormat(String path) throws IOException {
         String tmp = new String();
-        int numQuestion = 0 , errorLine , i = 0, flag = 0;
+        int numQuestion = 0 , i = 0, flag = 0;
         boolean isAiken = true;
 
         File file = new File(path);
@@ -198,7 +196,7 @@ public class QuestionManage {
 //                if text is title
             if(flag == 0){
                 if((text.charAt(6) != ':')){
-                    if((text.charAt(1) == '.') && (Character.isLetter(text.charAt(0)) == true)){
+                    if((text.charAt(1) == '.') && (Character.isLetter(text.charAt(0)))){
                         tmp = text;
                         isAiken = false;
                         break;
@@ -207,6 +205,7 @@ public class QuestionManage {
                     continue;
                 }
                 else {
+                    System.out.println("This is error 1");
                     tmp = text;
                     isAiken = false;
                     break;
@@ -219,11 +218,11 @@ public class QuestionManage {
                     continue;
                 }
                 else {
+                    System.out.println("This is error 2");
                     tmp = text;
                     isAiken = false;
                     break;
                 }
-
             }
 //                if text start with "B." or "C.", "D.", ....
             else if((flag == 2 || flag == 3) && (text.startsWith("ANSWER:") == false)){
@@ -232,6 +231,8 @@ public class QuestionManage {
                     continue;
                 }
                 else {
+                    System.out.println(text);
+                    System.out.println("This is error 3");
                     tmp = text;
                     isAiken = false;
                     break;
@@ -245,23 +246,23 @@ public class QuestionManage {
             }
 //                else : break loop, announce paragraph i is wrong in aiken format
             else {
+                System.out.println("This is error 4");
                 tmp = text;
                 isAiken = false;
                 break;
             }
-//
         }
 
         if(flag != 0)   isAiken = false;
 
-        if(isAiken == true ){
+        if(isAiken ){
             System.out.println("Success " + numQuestion);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Success " + numQuestion);
             alert.showAndWait();
 //            update number question is imported success
-            QuestionBankTree.currentCategory = LibraryForUs.updateNumberQuestion(
-                    QuestionBankTree.currentCategory, numQuestion);
+//            QuestionBankTree.currentCategory = LibraryForUs.updateNumberQuestion(
+//                    QuestionBankTree.currentCategory, numQuestion);
         }
         else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -270,7 +271,6 @@ public class QuestionManage {
         }
         return isAiken;
     }
-
 
     //update number of question of each category
     public void updateCategory(String categoryPath, int amountChange) throws IOException {

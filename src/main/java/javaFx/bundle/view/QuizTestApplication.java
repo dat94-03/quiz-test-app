@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import model.Question;
 import model.QuestionManage;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
@@ -26,10 +27,18 @@ public class QuizTestApplication extends Application {
         stage.show();
     }
     public static void main(String[] args) throws IOException, InvalidFormatException {
-
-//
         QuestionManage qm = new QuestionManage();
-//
+//        Question question = QuestionManage.questionsList.get(227);
+//        System.out.println(question.title);
+//        if (question.isMultipleChoice()){
+//            System.out.println(question.multipleAnswer);
+//            if(question.isOptionBelongMultipleAns("B"))
+//                System.out.println("true");
+//            else System.out.println("fa");
+//        }
+//        else {
+//            System.out.println(question.correctAnswer);
+//        }
 
         launch();
 

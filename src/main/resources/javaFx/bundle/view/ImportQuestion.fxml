@@ -103,12 +103,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ImageView fx:id="dropDown" fitHeight="49.0" fitWidth="43.0" focusTraversable="true" layoutX="642.0" layoutY="396.0" opacity="0.89" pickOnBounds="true" preserveRatio="true" rotate="90.0">
-               <image>
-                  <Image url="@../../../Img.img/darkblue-arrow.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="dragDropButton" layoutX="639.0" layoutY="388.0" mnemonicParsing="false" onAction="#dragAndDropFile" opacity="0.0" prefHeight="57.0" prefWidth="49.0" text="Button">
+            <Button fx:id="dragDropButton" layoutX="632.0" layoutY="381.0" mnemonicParsing="false" onAction="#dragAndDropFile" opacity="0.0" prefHeight="57.0" prefWidth="63.0" text="Button">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
@@ -120,6 +115,14 @@
                      </image>
                   </ImageView>
                </graphic></Label>
+            <ImageView fx:id="dropDown" fitHeight="55.0" fitWidth="48.0" layoutX="639.0" layoutY="388.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Img.img/darkblue-arrow.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="9.0" layoutY="46.0" prefHeight="98.0" prefWidth="966.0" style="-fx-border-color: rgb(219, 221, 221);">

@@ -39,7 +39,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="5.0" layoutY="-11.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="126.0" style="-fx-background-color: none;" text="IT" textFill="#c71d1d">
+            <Button layoutX="5.0" layoutY="-11.0" mnemonicParsing="false" onAction="#switchToGUIHome" prefHeight="83.0" prefWidth="126.0" style="-fx-background-color: none;" text="IT" textFill="#c71d1d">
                <font>
                   <Font name="Tahoma" size="40.0" />
                </font>
@@ -104,7 +104,7 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Button mnemonicParsing="false" onAction="#displayTreeView" prefHeight="41.0" prefWidth="295.0" style="-fx-background-color: null;" text="Default">
+                              <Button fx:id="buttonCate" mnemonicParsing="false" onAction="#displayTreeView" prefHeight="41.0" prefWidth="295.0" style="-fx-background-color: null;" text="Default">
                                  <font>
                                     <Font size="19.0" />
                                  </font>
@@ -133,7 +133,7 @@
                         <Font size="17.0" />
                      </font>
                   </Text>
-                  <ComboBox fx:id="comboBox" layoutX="209.0" layoutY="174.0" prefHeight="30.0" prefWidth="60.0" style="-fx-border-color: #999696; -fx-background-color: white;" />
+                  <ComboBox fx:id="comboBox" layoutX="209.0" layoutY="174.0" onAction="#selectNumberQuesToQuiz" prefHeight="30.0" prefWidth="60.0" style="-fx-border-color: #999696; -fx-background-color: white;" />
                   <Text layoutX="19.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Questions matching this filter">
                      <font>
                         <Font size="17.0" />

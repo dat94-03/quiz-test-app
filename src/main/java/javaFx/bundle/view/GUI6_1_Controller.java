@@ -189,7 +189,7 @@ public class GUI6_1_Controller implements Initializable{
         });
         root.getChildren().add(cancelButton) ;
 
-        Button exportButton = new Button("export") ;
+        Button exportButton = new Button("EXPORT") ;
         exportButton.setLayoutX(615);
         exportButton.setLayoutY(311);
         exportButton.setMnemonicParsing(false);

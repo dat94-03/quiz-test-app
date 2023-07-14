@@ -209,7 +209,7 @@ public class GUI8_Controller implements Initializable {
         ToggleGroup answerGroup = new ToggleGroup();
         // Create answer radio buttons
         int count = 1;
-        if(LibraryForUs.isMultipleChoice(question) == false){
+        if(question.isMultipleChoice() == false){
             for (String choice : question.choices){
                 RadioButton option = new RadioButton(choice);
                 option.setFont(Font.font(14.0));

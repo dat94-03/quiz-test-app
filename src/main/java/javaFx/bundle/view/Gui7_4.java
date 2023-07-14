@@ -163,7 +163,12 @@ public class Gui7_4 implements Initializable {
         boolean hasImage = false;
         if(question.getQuestionMedia() != null)     hasImage =  true;
 
-        int userChoice = quizInExam.userChoice.get(dem - 1);
+        System.out.println("Bat dau in ra test");
+        for(String str : quizInExam.userChoice){
+            System.out.println(str);
+        }
+
+        String userChoice = quizInExam.userChoice.get(dem - 1);
 
         // Create HBox
         HBox hbox = new HBox();
@@ -254,7 +259,7 @@ public class Gui7_4 implements Initializable {
                     });
                     contentBox.getChildren().add(mediaView);
 
-                    Button seeAgain = new Button("See Video Again");
+                    Button seeAgain = new Button("Watch Video Again");
                     seeAgain.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
@@ -280,13 +285,15 @@ public class Gui7_4 implements Initializable {
         // Group radio buttons
         ToggleGroup answerGroup = new ToggleGroup();
         // Create answer radio buttons
-        if(LibraryForUs.isMultipleChoice(question) == false){
+        if(question.isMultipleChoice() == false){
             int count = 1;
             for (String choice : question.choices){
                 RadioButton option = new RadioButton(choice);
                 option.setFont(Font.font(14.0));
                 option.setDisable(true);
-                if(count == userChoice)     option.setSelected(true);
+                if(userChoice != null){
+                    if(userChoice.equals(choice.substring(0,1)))     option.setSelected(true);
+                }
                 option.setToggleGroup(answerGroup);
                 contentBox.getChildren().add(option);
                 if(hasImage == true){
@@ -313,7 +320,7 @@ public class Gui7_4 implements Initializable {
                                 }
                             });
                             contentBox.getChildren().add(mediaView);
-                            Button seeAgain = new Button("See Video Again");
+                            Button seeAgain = new Button("Watch Video Again");
                             seeAgain.setOnAction(new EventHandler<ActionEvent>() {
                                 @Override
                                 public void handle(ActionEvent event) {
@@ -336,6 +343,62 @@ public class Gui7_4 implements Initializable {
                 count++;
             }
         }
+        else {
+            int count = 1;
+            for (String choice : question.choices) {
+                CheckBox option = new CheckBox(choice);
+                option.setFont(Font.font(14.0));
+                option.setDisable(true);
+                if(userChoice != null){
+                    if (userChoice.contains(choice.substring(0,1))) option.setSelected(true);
+                }
+                contentBox.getChildren().add(option);
+                if (hasImage == true) {
+                    if (question.getQuestionMedia().get(count) != null) {
+                        if (question.getQuestionMedia().get(count).mediaType.equals("V")) {
+                            File file = question.getQuestionMedia().get(count).mediaFile;
+                            Media media = new Media(file.toURI().toString());
+                            MediaPlayer mediaPlayer = new MediaPlayer(media);
+                            MediaView mediaView = new MediaView();
+                            mediaView.setMediaPlayer(mediaPlayer);
+                            mediaView.setFitWidth(500);
+                            mediaView.setFitHeight(500);
+                            mediaView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                                @Override
+                                public void handle(MouseEvent event) {
+                                    if (isPlay == false) {
+                                        mediaPlayer.play();
+                                        isPlay = true;
+                                    } else {
+                                        mediaPlayer.pause();
+                                        isPlay = false;
+                                    }
+                                }
+                            });
+                            contentBox.getChildren().add(mediaView);
+                            Button seeAgain = new Button("Watch Video Again");
+                            seeAgain.setOnAction(new EventHandler<ActionEvent>() {
+                                @Override
+                                public void handle(ActionEvent event) {
+                                    if (mediaPlayer.getStatus() != MediaPlayer.Status.READY) {
+                                        mediaPlayer.seek(Duration.seconds(0.0));
+                                    }
+                                }
+                            });
+                            contentBox.getChildren().add(seeAgain);
+                        } else {
+                            ImageView imageView = new ImageView(new Image(question.getQuestionMedia().get(count).mediaFile.toURI().toString()));
+                            contentBox.getChildren().addAll(imageView);
+                        }
+                    }
+//                      old
+//                    ImageView imageChoice = new ImageView(question.getQuestionImage().get(count));
+//                    contentBox.getChildren().add(imageChoice);
+                }
+                count++;
+            }
+        }
+
         // Create a label answer
         Label aLabel = new Label("The correct answer is: " + question.correctAnswer);
         Font font1 = Font.font("Arial", FontWeight.BOLD, 16);

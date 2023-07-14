@@ -104,45 +104,7 @@ public class Gui7_3 implements Initializable {
                                 @Override
                                 public void run() {
                                     try {
-                                        for (javafx.scene.Node node : vBox.getChildren()) {
-                                            if (node instanceof HBox) {
-                                                HBox hBox = (HBox) node;
-                                                for (javafx.scene.Node childNode : hBox.getChildren()) {
-                                                    if (childNode instanceof AnchorPane) {
-                                                        AnchorPane anchorPane = (AnchorPane) childNode;
-                                                        if(anchorPane == null)  continue;
-                                                        if(anchorPane.getId().equals("QuestionPane"))   continue;
-                                                        int idQues = Integer.parseInt(anchorPane.getId());
-                                                        Question question = QuestionManage.questionsList.get(idQues);
-                                                        for (javafx.scene.Node grandChildNode : anchorPane.getChildren()) {
-                                                            if (grandChildNode instanceof VBox) {
-                                                                VBox contentBox = (VBox) grandChildNode;
-                                                                int userChoice = 1;  boolean flag = false;
-                                                                for (javafx.scene.Node radioNode : contentBox.getChildren()) {
-                                                                    if(radioNode instanceof RadioButton){
-                                                                        if(((RadioButton) radioNode).isSelected() ){
-                                                                            flag =true; // da tra loi cau hoi
-                                                                            quizInExam.userChoice.add(userChoice);
-                                                                            String corectAns = question.correctAnswer;
-                                                                            String selectAns = ((RadioButton) radioNode).getText().substring(0,1);
-                                                                            if(corectAns.equals(selectAns) ){
-//                                                System.out.println("Cau " + idQues + "lam dung");
-                                                                                quizInExam.userPoint = quizInExam.userPoint + 1;
-                                                                                quizInExam.correctQuestions.add(idQues);
-                                                                            }
-//                                            System.out.println(((RadioButton) radioNode).getText());
-                                                                        }
-                                                                        userChoice++;
-                                                                    }
-
-                                                                }
-                                                                if(flag == false)   quizInExam.userChoice.add(-1);
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
+                                        calculateAttempt();
                                         Parent root = FXMLLoader.load(getClass().getResource("Gui7_4.fxml"));
                                         Stage stage = (Stage) scrollPane.getScene().getWindow();
                                         Scene scene = new Scene(root);
@@ -378,7 +340,7 @@ public class Gui7_3 implements Initializable {
                     });
                     contentBox.getChildren().add(mediaView);
 
-                    Button seeAgain = new Button("See Video Again");
+                    Button seeAgain = new Button("Watch Video Again");
                     seeAgain.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
@@ -405,7 +367,7 @@ public class Gui7_3 implements Initializable {
         ToggleGroup answerGroup = new ToggleGroup();
         // Create answer radio buttons
         int count = 1;
-        if(LibraryForUs.isMultipleChoice(question) == false){
+        if(question.isMultipleChoice() == false){
             for (String choice : question.choices){
                 RadioButton option = new RadioButton(choice);
                 option.setFont(Font.font(14.0));
@@ -459,6 +421,56 @@ public class Gui7_3 implements Initializable {
                 count++;
             }
         }
+        else {
+            for (String choice : question.choices){
+                CheckBox option = new CheckBox(choice);
+                option.setFont(Font.font(14.0));
+                option.setOnAction(e -> handleAnswerSelection(dem));
+                contentBox.getChildren().add(option);
+                if(hasImage == true){
+                    if(question.getQuestionMedia().get(count) != null){
+                        if(question.getQuestionMedia().get(count).mediaType.equals("V")){
+                            File file = question.getQuestionMedia().get(count).mediaFile;
+                            Media media = new Media(file.toURI().toString());
+                            MediaPlayer mediaPlayer = new MediaPlayer(media);
+                            MediaView mediaView = new MediaView();
+                            mediaView.setMediaPlayer(mediaPlayer);
+                            mediaView.setFitWidth(500);
+                            mediaView.setFitHeight(500);
+                            mediaView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                                @Override
+                                public void handle(MouseEvent event) {
+                                    if(isPlay == false){
+                                        mediaPlayer.play();
+                                        isPlay = true;
+                                    }
+                                    else {
+                                        mediaPlayer.pause();
+                                        isPlay = false;
+                                    }
+                                }
+                            });
+                            contentBox.getChildren().add(mediaView);
+                            Button seeAgain = new Button("Watch Video Again");
+                            seeAgain.setOnAction(new EventHandler<ActionEvent>() {
+                                @Override
+                                public void handle(ActionEvent event) {
+                                    if(mediaPlayer.getStatus() != MediaPlayer.Status.READY) {
+                                        mediaPlayer.seek(Duration.seconds(0.0));
+                                    }
+                                }
+                            });
+                            contentBox.getChildren().add(seeAgain);
+                        }
+                        else {
+                            ImageView imageView = new ImageView(new Image(question.getQuestionMedia().get(count).mediaFile.toURI().toString()));
+                            contentBox.getChildren().addAll(imageView);
+                        }
+                    }
+                }
+                count++;
+            }
+        }
 
         contentPane.getChildren().add(contentBox);
 
@@ -471,6 +483,7 @@ public class Gui7_3 implements Initializable {
     }
 
     private void scrollToQuestion(int questionIndex,int numQuestion) {
+//        System.out.println("question Index la : " + questionIndex + ", numQues la : " + numQuestion);
         double vValue = (double) questionIndex / (numQuestion-2.5);
         scrollPane.setVvalue(vValue);
     }
@@ -503,7 +516,17 @@ public class Gui7_3 implements Initializable {
     }
 
     public void switchTo7_4(MouseEvent event) throws IOException, InterruptedException {
-//        finish attempt
+        calculateAttempt();
+//      switch to GUI 7.4
+        root = FXMLLoader.load(getClass().getResource("Gui7_4.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void calculateAttempt(){
+        //        finish attempt
         for (javafx.scene.Node node : vBox.getChildren()) {
             if (node instanceof HBox) {
                 HBox hBox = (HBox) node;
@@ -518,38 +541,63 @@ public class Gui7_3 implements Initializable {
                             if (grandChildNode instanceof VBox) {
                                 VBox contentBox = (VBox) grandChildNode;
                                 int userChoice = 1;  boolean flag = false;
-                                for (javafx.scene.Node radioNode : contentBox.getChildren()) {
-                                    if(radioNode instanceof RadioButton){
-                                        if(((RadioButton) radioNode).isSelected() ){
-                                            flag =true; // da tra loi cau hoi
-                                            quizInExam.userChoice.add(userChoice);
-                                            String corectAns = question.correctAnswer;
-                                            String selectAns = ((RadioButton) radioNode).getText().substring(0,1);
-                                            if(corectAns.equals(selectAns) ){
+                                if(question.isMultipleChoice() == false){
+                                    for (javafx.scene.Node radioNode : contentBox.getChildren()) {
+                                        if(radioNode instanceof RadioButton){
+                                            if(((RadioButton) radioNode).isSelected() ){
+                                                flag =true; // da tra loi cau hoi
+                                                String correctAns = question.correctAnswer;
+                                                String selectAns = ((RadioButton) radioNode).getText().substring(0,1);
+                                                quizInExam.userChoice.add(selectAns);
+                                                if(correctAns.equals(selectAns) ){
 //                                                System.out.println("Cau " + idQues + "lam dung");
-                                                quizInExam.userPoint = quizInExam.userPoint + 1;
-                                                quizInExam.correctQuestions.add(idQues);
-                                            }
+                                                    quizInExam.userPoint = quizInExam.userPoint + 1;
+                                                    quizInExam.correctQuestions.add(idQues);
+                                                }
 //                                            System.out.println(((RadioButton) radioNode).getText());
+                                            }
+                                            userChoice++;
                                         }
-                                        userChoice++;
-                                    }
 
+                                    }
+                                    if(flag == false)   quizInExam.userChoice.add(null);
                                 }
-                                if(flag == false)   quizInExam.userChoice.add(-1);
+                                else {
+                                    int tmp = 0;
+                                    int numberCorrectAns = question.multipleAnswer.size();
+                                    System.out.println(question.multipleAnswer);
+                                    boolean isUserRight = true;
+                                    String userSelect = new String("");
+                                    String correctAns = question.correctAnswer;
+                                    for (javafx.scene.Node checkBoxNode : contentBox.getChildren()) {
+                                        if(checkBoxNode instanceof CheckBox){
+                                            if(((CheckBox) checkBoxNode).isSelected() ){
+                                                flag = true; // da tra loi cau hoi
+                                                String selectAns = ((CheckBox) checkBoxNode).getText().substring(0,1);
+                                                userSelect += selectAns + ", ";
+                                                if(correctAns.contains(selectAns) == false){
+                                                    isUserRight = false;
+                                                    break;
+                                                }
+                                                tmp++;
+                                            }
+                                            userChoice++;
+                                        }
+                                    }
+                                    if(flag == false)   quizInExam.userChoice.add(null);
+                                    else    quizInExam.userChoice.add(userSelect);
+                                    System.out.println("tmp la : " + tmp + ", numberCorrect la : " + numberCorrectAns);
+                                    if(isUserRight && (tmp == numberCorrectAns)){
+                                        quizInExam.userPoint = quizInExam.userPoint + 1;
+                                        quizInExam.correctQuestions.add(idQues);
+                                    }
+                                }
                             }
                         }
                     }
                 }
             }
         }
-
-//      switch to GUI 7.4
-        root = FXMLLoader.load(getClass().getResource("Gui7_4.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
     }
 
 }

@@ -5,7 +5,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -29,7 +28,6 @@ import model.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -51,7 +49,7 @@ public class EditQuestion implements Initializable {
     private String selectCategory = new String();
     private String fullyPath = new String();
     private String oldPath = QuestionBankTree.fullyCategory;
-    Question q = QuestionList.qStatic;
+    Question currentQuestion = QuestionList.qStatic;
     private Boolean isPlay = false;
     @FXML
     private Label categoryLabel;
@@ -70,12 +68,12 @@ public class EditQuestion implements Initializable {
 
         categoryLabel.setText("  " + LibraryForUs.getLastCategory(QuestionList.qStatic.category));
         moreChoice.setSpacing(15);
-        questionText.setText(q.title);
+        questionText.setText(currentQuestion.title);
 
 //        check image in question
         try {
-            if (q.getPathQuestionMedia() != null){
-                stringMedia = q.getPathQuestionMedia().toArray(new String[0]);
+            if (currentQuestion.getPathQuestionMedia() != null){
+                stringMedia = currentQuestion.getPathQuestionMedia().toArray(new String[0]);
                 System.out.println("Day la");
                 System.out.println(stringMedia);
             }
@@ -118,7 +116,7 @@ public class EditQuestion implements Initializable {
 
 
 //        draw answer of old question
-        for(String answer : q.choices){
+        for(String answer : currentQuestion.choices){
             String tmp = new String("null");
 //            stringImage.add(tmp);
             if(answer.equals("null"))  continue;
@@ -142,10 +140,17 @@ public class EditQuestion implements Initializable {
             textChoice[indexChoice].setText(answer);
 
             // set correct answer
-
-            if(textChoice[indexChoice].getText().charAt(0) == q.correctAnswer.charAt(0)){
-                selectPercent[indexChoice].setValue("100%");
+            if(currentQuestion.isMultipleChoice()){
+                if(currentQuestion.isOptionBelongMultipleAns(answer)){
+                    selectPercent[indexChoice].setValue("100%");
+                }
             }
+            else {
+                if(textChoice[indexChoice].getText().charAt(0) == currentQuestion.correctAnswer.charAt(0)){
+                    selectPercent[indexChoice].setValue("100%");
+                }
+            }
+
 //            set choose image from computer
             int finalIndexChoice = indexChoice;
             imageChooser[finalIndexChoice].setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -213,33 +218,34 @@ public class EditQuestion implements Initializable {
     }
 
     @FXML
-    public void saveChages(ActionEvent event) throws IOException {
+    public void saveChanges(ActionEvent event) throws IOException {
+//        set answer choice of current question to ""
+        currentQuestion.correctAnswer = "";
 //        declare flag
         boolean flagTitle = true,  flagCorectAnswer = false;
         int flagChoices = 0; // valid question must have more than two answer
 //        update category, title, choices, corect answer
-        q.category = fullyPath;
+        currentQuestion.category = fullyPath;
         if(questionText == null){
             flagTitle = false;
         }
         else
-            q.title = questionText.getText();
+            currentQuestion.title = questionText.getText();
 
-        q.choices.clear();  // delete all in order to easy work
+        currentQuestion.choices.clear();  // delete all in order to work simply
         for(int i = 0; i < indexChoice; i++){
             if(textChoice[i] == null)  continue;
-            q.choices.add(textChoice[i].getText());
+            currentQuestion.choices.add(textChoice[i].getText());
             flagChoices++;
             if(selectPercent[i].getValue().equals("100%")){
-                q.correctAnswer = textChoice[i].getText(0,1);
+                currentQuestion.correctAnswer += textChoice[i].getText(0,1) + ", ";
                 flagCorectAnswer = true;
             }
         }
 
         if((flagTitle == true) && (flagChoices >= 2) && (flagCorectAnswer == true)){
             QuestionManage questionManage = new QuestionManage();
-            System.out.println(q);
-            questionManage.editQuestion(q);
+            questionManage.editQuestion(currentQuestion);
 //            set alert to inform
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("You edit question successfully");
@@ -260,24 +266,26 @@ public class EditQuestion implements Initializable {
     }
 
     public void saveChangesAndContinueEditting(ActionEvent event) throws IOException {
-        //        declare flag
+        //        set answer choice of current question to ""
+        currentQuestion.correctAnswer = "";
+//        declare flag
         boolean flagTitle = true,  flagCorectAnswer = false;
         int flagChoices = 0; // valid question must have more than two answer
 //        update category, title, choices, corect answer
-        q.category = fullyPath;
+        currentQuestion.category = fullyPath;
         if(questionText == null){
             flagTitle = false;
         }
         else
-            q.title = questionText.getText();
+            currentQuestion.title = questionText.getText();
 
-        q.choices.clear();  // delete all in order to easy work
+        currentQuestion.choices.clear();  // delete all in order to work simply
         for(int i = 0; i < indexChoice; i++){
             if(textChoice[i] == null)  continue;
-            q.choices.add(textChoice[i].getText());
+            currentQuestion.choices.add(textChoice[i].getText());
             flagChoices++;
             if(selectPercent[i].getValue().equals("100%")){
-                q.correctAnswer = textChoice[i].getText(0,1);
+                currentQuestion.correctAnswer += textChoice[i].getText(0,1) + ", ";
                 flagCorectAnswer = true;
             }
         }
@@ -345,22 +353,21 @@ public class EditQuestion implements Initializable {
     public void previewQuestion(ActionEvent event) throws IOException {
         String tmp = new String();
         for(String str : stringMedia){
-//            System.out.println(str);
             tmp += str + "\n";
         }
         System.out.println("Day la tmp: \n" + tmp);
-        q.addQuestionMedia(tmp);
+        currentQuestion.addQuestionMedia(tmp);
 
        ScrollPane scrollPane = new ScrollPane();
        VBox previewRoot = new VBox();
-       Label labelTitle = new Label(q.title);
-       if(q.getQuestionMedia().get(0) == null) {
+       Label labelTitle = new Label(currentQuestion.title);
+       if(currentQuestion.getQuestionMedia().get(0) == null) {
            previewRoot.getChildren().add(labelTitle);
        }
        else {
-           if(q.getQuestionMedia().get(0).mediaType.equals("V")){
+           if(currentQuestion.getQuestionMedia().get(0).mediaType.equals("V")){
                System.out.println("Video se duoc in ra");
-               File file = q.getQuestionMedia().get(0).mediaFile;
+               File file = currentQuestion.getQuestionMedia().get(0).mediaFile;
                Media media = new Media(file.toURI().toString());
                MediaPlayer mediaPlayer = new MediaPlayer(media);
                MediaView mediaView = new MediaView();
@@ -384,22 +391,22 @@ public class EditQuestion implements Initializable {
                previewRoot.getChildren().addAll(labelTitle, mediaView);
            }
            else {
-               ImageView imageViewTitle = new ImageView(new Image(q.getQuestionMedia().get(0).mediaFile.toURI().toString()));
+               ImageView imageViewTitle = new ImageView(new Image(currentQuestion.getQuestionMedia().get(0).mediaFile.toURI().toString()));
                previewRoot.getChildren().addAll(labelTitle, imageViewTitle);
            }
        }
 
 
        int dem = 1;
-        for(String str : q.choices){
+        for(String str : currentQuestion.choices){
             Label labelChoice = new Label(str);
             previewRoot.getChildren().add(labelChoice);
-            if(q.getQuestionMedia().get(dem) == null){
+            if(currentQuestion.getQuestionMedia().get(dem) == null){
                 dem++;
                 continue;
             }
-            if(q.getQuestionMedia().get(dem).mediaType.equals("V")){
-                File file = q.getQuestionMedia().get(dem).mediaFile;
+            if(currentQuestion.getQuestionMedia().get(dem).mediaType.equals("V")){
+                File file = currentQuestion.getQuestionMedia().get(dem).mediaFile;
                 Media media = new Media(file.toURI().toString());
                 MediaPlayer mediaPlayer = new MediaPlayer(media);
                 MediaView mediaView = new MediaView();
@@ -421,7 +428,7 @@ public class EditQuestion implements Initializable {
                 });
                 previewRoot.getChildren().add(mediaView);
 
-                Button seeAgain = new Button("See Video Again");
+                Button seeAgain = new Button("Watch Video Again");
                 seeAgain.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
@@ -433,7 +440,7 @@ public class EditQuestion implements Initializable {
                 previewRoot.getChildren().add(seeAgain);
             }
             else {
-                ImageView imageView = new ImageView(new Image(q.getQuestionMedia().get(dem).mediaFile.toURI().toString()));
+                ImageView imageView = new ImageView(new Image(currentQuestion.getQuestionMedia().get(dem).mediaFile.toURI().toString()));
                 previewRoot.getChildren().addAll(imageView);
             }
 

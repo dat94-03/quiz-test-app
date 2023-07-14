@@ -102,8 +102,6 @@ public class GUI63 implements Initializable {
                     }
                 }
             });
-
-
     }
     public void addQuestionBank() throws IOException {
         QuizzesManage quizzesManage = new QuizzesManage();

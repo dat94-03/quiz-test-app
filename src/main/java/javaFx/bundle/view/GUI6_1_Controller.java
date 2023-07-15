@@ -190,6 +190,7 @@ public class GUI6_1_Controller implements Initializable{
         exportButton.setStyle("-fx-background-color: #5aea57");
         exportButton.setTextFill(Color.web("#ececec"));
         exportButton.setFont(Font.font(18));
+        exportButton.setCursor(Cursor.HAND);
         exportButton.setOnAction(event -> {
             try {
                 childStage.close();
@@ -202,7 +203,6 @@ public class GUI6_1_Controller implements Initializable{
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         });
         root.getChildren().add(exportButton) ;
 
@@ -211,7 +211,7 @@ public class GUI6_1_Controller implements Initializable{
         childStage.initOwner(parentStage);
 
         // Làm mờ Stage cha
-        parentStage.setOpacity(0.5);
+//        parentStage.setOpacity(0.5);
 
         Scene scene = new Scene(root,760,370);
         childStage.setScene(scene);

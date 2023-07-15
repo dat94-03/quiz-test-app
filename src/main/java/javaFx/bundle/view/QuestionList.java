@@ -42,15 +42,12 @@ public class QuestionList implements Initializable{
     @FXML
     private VBox questionBox;
     @FXML
-    private ImageView dropDown;
-    @FXML
     private CheckBox checkBoxShowSubCategory;
     @FXML
     private AnchorPane myAnchorPane;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-//        remove when editQuestion done
         QuestionManage qm = null;
         try {
             qm = new QuestionManage();
@@ -117,7 +114,7 @@ public class QuestionList implements Initializable{
 
 //                Draw question in checkBox
             HBox hboxQuestion = new HBox();
-            Image threeDots = new Image("3.png");
+            Image threeDots = new Image(getClass().getResourceAsStream("/Img.img/3.png")) ;
             ImageView imageView = new ImageView(threeDots);
             imageView.setFitWidth(10);
             imageView.setFitHeight(10);
@@ -203,13 +200,7 @@ public class QuestionList implements Initializable{
         stage.setScene(scene);
         stage.show();
     }
-    public void switchToScene3(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("QuestionList.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+
     public void switchToScene2(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("AddingQuestion.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -246,5 +237,4 @@ public class QuestionList implements Initializable{
         stage.setScene(scene);
         stage.show();
     }
-
 }

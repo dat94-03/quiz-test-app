@@ -50,7 +50,7 @@ public class QuestionList implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-//        remove when editquestion done
+//        remove when editQuestion done
         QuestionManage qm = null;
         try {
             qm = new QuestionManage();
@@ -73,90 +73,10 @@ public class QuestionList implements Initializable{
 //        Display Question
         int dem = 0;
         for (Question question : QuestionManage.questionsList) {
-            if (question.category.equals(QuestionBankTree.fullyCategory) && (question.title.equals("") == false)) {
-                questions.add(question); // add question to arraylist
-                HBox hBoxrow = new HBox();
-
-//                Draw question in checkBox
-                HBox hboxQuestion = new HBox();
-                Image threeDots = new Image("3.png");
-                ImageView imageView = new ImageView(threeDots);
-                imageView.setFitWidth(10);
-                imageView.setFitHeight(10);
-
-                CheckBox checkBox = new CheckBox(question.title);
-                checkBox.setGraphic(imageView);
-
-                checkBox.setFont(Font.font(20));
-//                checkBox.setPrefWidth(150);
-
-                hboxQuestion.getChildren().add(checkBox);
-                if(dem % 2 == 0){
-                    BackgroundFill backgroundFill = new BackgroundFill(Color.web("#DDDDDD"), null, null);
-                    Background background = new Background(backgroundFill);
-                    hboxQuestion.setBackground(background);
-                }
-                hboxQuestion.setPrefWidth(800);
-                HBox.setHgrow(hboxQuestion, Priority.NEVER);
-
-//                Draw function edit beside
-                HBox hBoxEdit = new HBox();
-                Label label = new Label("Edit ");
-                Image image = new Image(getClass().getResource("/Img.img/dropdown arrow.png").toExternalForm());
-                ImageView imageView1 = new ImageView(image);
-
-                label.setFont(Font.font(20));
-                Color color = Color.web("#00a2e9");
-                label.setTextFill(color);
-
-
-                editLabel.add(label);
-
-//                set action for Edit Click
-                int Dem = dem; // hơi cấn cấn chỗ này vì phải dùng hằng, dùng vì hàm lambda bắt buộc dùng
-                editLabel.get(dem).setOnMouseClicked(e -> {
-                    try {
-                        qStatic = questions.get(Dem);
-                        switchToEditQuestion(e);
-                    } catch (IOException even) {
-                        even.printStackTrace();
-                    }
-                });
-
-                editLabel.get(dem).setOnMouseEntered(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent mouseEvent) {
-                        editLabel.get(Dem).setStyle("-fx-cursor: hand;");
-                        editLabel.get(Dem).setUnderline(true);
-                    }
-                });
-
-                editLabel.get(dem).setOnMouseExited(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent mouseEvent) {
-                        editLabel.get(Dem).setUnderline(false);
-                    }
-                });
-
-
-//                add component
-                hBoxEdit.getChildren().addAll(label, imageView1);
-                // fill color
-                if(dem % 2 ==0){
-                    BackgroundFill backgroundFill2 = new BackgroundFill(Color.web("#DDDDDD"), null, null);
-                    Background background2 = new Background(backgroundFill2);
-                    hBoxEdit.setBackground(background2);
-                }
-                else {
-                    hBoxEdit.setBackground(Background.fill(null));
-                }
-                // continue add component
-                hBoxrow.getChildren().addAll(hboxQuestion, hBoxEdit);
-                questionBox.getChildren().add(hBoxrow);
-
-                dem ++;
+            if (question.category.equals(QuestionBankTree.fullyCategory)){
+                addToVBox(question, dem);
+                dem++;
             }
-            myAnchorPane.setPrefHeight(784 + dem*30);
         }
     }
 
@@ -170,187 +90,109 @@ public class QuestionList implements Initializable{
         if(checkBoxShowSubCategory.isSelected() == false){
             int dem = 0;
             for (Question question : QuestionManage.questionsList) {
-                if (question.category.equals(QuestionBankTree.fullyCategory) && (question.title.equals("") == false)) {
-                    questions.add(question); // add question to arraylist
-                    HBox hBoxrow = new HBox();
-
-//                Draw question in checkBox
-                    HBox hboxQuestion = new HBox();
-                    Image threeDots = new Image("3.png");
-                    ImageView imageView = new ImageView(threeDots);
-                    imageView.setFitWidth(10);
-                    imageView.setFitHeight(10);
-                    CheckBox checkBox = new CheckBox(question.title);
-
-                    checkBox.setGraphic(imageView);
-
-                    checkBox.setFont(Font.font(20));
-//                checkBox.setPrefWidth(150);
-
-                    hboxQuestion.getChildren().add(checkBox);
-                    if(dem % 2 == 0){
-                        BackgroundFill backgroundFill = new BackgroundFill(Color.web("#DDDDDD"), null, null);
-                        Background background = new Background(backgroundFill);
-                        hboxQuestion.setBackground(background);
-                    }
-                    hboxQuestion.setPrefWidth(800);
-                    HBox.setHgrow(hboxQuestion, Priority.NEVER);
-
-//                Draw button edit beside
-                    HBox hBoxEdit = new HBox();
-                    Label label = new Label("Edit ");
-                    Image image = new Image(getClass().getResource("/Img.img/dropdown arrow.png").toExternalForm());
-                    ImageView imageView1 = new ImageView(image);
-
-                    label.setFont(Font.font(20));
-                    Color color = Color.web("#00a2e9");
-                    label.setTextFill(color);
-
-
-                    editLabel.add(label);
-
-//                set action for Edit Click
-                    int Dem = dem; // hơi cấn cấn chỗ này vì phải dùng hằng, dùng vì hàm lambda bắt buộc dùng
-                    editLabel.get(dem).setOnMouseClicked(e -> {
-                        try {
-                            qStatic = questions.get(Dem);
-                            switchToEditQuestion(e);
-                        } catch (IOException even) {
-                            even.printStackTrace();
-                        }
-                    });
-
-                    editLabel.get(dem).setOnMouseEntered(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent mouseEvent) {
-                            editLabel.get(Dem).setStyle("-fx-cursor: hand;");
-                            editLabel.get(Dem).setUnderline(true);
-                        }
-                    });
-
-                    editLabel.get(dem).setOnMouseExited(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent mouseEvent) {
-                            editLabel.get(Dem).setUnderline(false);
-                        }
-                    });
-
-
-//                add component
-                    hBoxEdit.getChildren().addAll(label, imageView1);
-                    // fill color
-                    if(dem % 2 ==0){
-                        BackgroundFill backgroundFill2 = new BackgroundFill(Color.web("#DDDDDD"), null, null);
-                        Background background2 = new Background(backgroundFill2);
-                        hBoxEdit.setBackground(background2);
-                    }
-                    else {
-                        hBoxEdit.setBackground(Background.fill(null));
-                    }
-                    // continue add component
-                    hBoxrow.getChildren().addAll(hboxQuestion, hBoxEdit);
-                    questionBox.getChildren().add(hBoxrow);
-
-                    dem ++;
+                if (question.category.equals(QuestionBankTree.fullyCategory)){
+                    addToVBox(question, dem);
+                    dem++;
                 }
-                myAnchorPane.setPrefHeight(784 + dem*30);
             }
         }
 
 //        if click "Sub question from category"
         else {
-            ArrayList<Question> subCate = new ArrayList<>();
-            subCate = qm.getQuestionsOfCategoryAndSubcategory(QuestionBankTree.fullyCategory);
+            ArrayList<Question> subCate = qm.getQuestionsOfCategoryAndSubcategory(QuestionBankTree.fullyCategory);
 
             int dem = 0;
             for (Question question : subCate) {
-                if ((question.title.equals("") == false)){
-                    questions.add(question); // add question to arraylist
-                    HBox hBoxrow = new HBox();
-
-//                Draw question in checkBox
-                    HBox hboxQuestion = new HBox();
-                    Image threeDots = new Image("3.png");
-                    ImageView imageView = new ImageView(threeDots);
-                    imageView.setFitWidth(10);
-                    imageView.setFitHeight(10);
-                    CheckBox checkBox = new CheckBox(question.title);
-
-                    checkBox.setGraphic(imageView);
-
-                    checkBox.setFont(Font.font(20));
-//                checkBox.setPrefWidth(150);
-
-                    hboxQuestion.getChildren().add(checkBox);
-                    if(dem % 2 == 0){
-                        BackgroundFill backgroundFill = new BackgroundFill(Color.web("#DDDDDD"), null, null);
-                        Background background = new Background(backgroundFill);
-                        hboxQuestion.setBackground(background);
-                    }
-                    hboxQuestion.setPrefWidth(800);
-                    HBox.setHgrow(hboxQuestion, Priority.NEVER);
-
-//                Draw button edit beside
-                    HBox hBoxEdit = new HBox();
-                    Label label = new Label("Edit ");
-                    Image image = new Image(getClass().getResource("/Img.img/dropdown arrow.png").toExternalForm());
-                    ImageView imageView1 = new ImageView(image);
-
-                    label.setFont(Font.font(20));
-                    Color color = Color.web("#00a2e9");
-                    label.setTextFill(color);
-
-
-                    editLabel.add(label);
-
-//                set action for Edit Click
-                    int Dem = dem; // hơi cấn cấn chỗ này vì phải dùng hằng, dùng vì hàm lambda bắt buộc dùng
-                    editLabel.get(dem).setOnMouseClicked(e -> {
-                        try {
-                            qStatic = questions.get(Dem);
-                            switchToEditQuestion(e);
-                        } catch (IOException even) {
-                            even.printStackTrace();
-                        }
-                    });
-
-                    editLabel.get(dem).setOnMouseEntered(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent mouseEvent) {
-                            editLabel.get(Dem).setStyle("-fx-cursor: hand;");
-                            editLabel.get(Dem).setUnderline(true);
-                        }
-                    });
-
-                    editLabel.get(dem).setOnMouseExited(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent mouseEvent) {
-                            editLabel.get(Dem).setUnderline(false);
-                        }
-                    });
-
-
-//                add component
-                    hBoxEdit.getChildren().addAll(label, imageView1);
-                    // fill color
-                    if(dem % 2 ==0){
-                        BackgroundFill backgroundFill2 = new BackgroundFill(Color.web("#DDDDDD"), null, null);
-                        Background background2 = new Background(backgroundFill2);
-                        hBoxEdit.setBackground(background2);
-                    }
-                    else {
-                        hBoxEdit.setBackground(Background.fill(null));
-                    }
-                    // continue add component
-                    hBoxrow.getChildren().addAll(hboxQuestion, hBoxEdit);
-                    questionBox.getChildren().add(hBoxrow);
-
-                    dem ++;
-                }
-                myAnchorPane.setPrefHeight(784 + dem*30);
+                addToVBox(question, dem);
+                dem++;
             }
         }
 
+    }
+
+    private void addToVBox(Question question, int dem){
+        if (question.title.equals("") == false) {
+            questions.add(question); // add question to arraylist
+            HBox hBoxrow = new HBox();
+
+//                Draw question in checkBox
+            HBox hboxQuestion = new HBox();
+            Image threeDots = new Image("3.png");
+            ImageView imageView = new ImageView(threeDots);
+            imageView.setFitWidth(10);
+            imageView.setFitHeight(10);
+
+            CheckBox checkBox = new CheckBox(question.title);
+            checkBox.setGraphic(imageView);
+
+            checkBox.setFont(Font.font(20));
+//                checkBox.setPrefWidth(150);
+
+            hboxQuestion.getChildren().add(checkBox);
+            if(dem % 2 == 0){
+                BackgroundFill backgroundFill = new BackgroundFill(Color.web("#DDDDDD"), null, null);
+                Background background = new Background(backgroundFill);
+                hboxQuestion.setBackground(background);
+            }
+            hboxQuestion.setPrefWidth(800);
+            HBox.setHgrow(hboxQuestion, Priority.NEVER);
+
+//                Draw function edit beside
+            HBox hBoxEdit = new HBox();
+            Label label = new Label("Edit ");
+            Image image = new Image(getClass().getResource("/Img.img/dropdown arrow.png").toExternalForm());
+            ImageView imageView1 = new ImageView(image);
+
+            label.setFont(Font.font(20));
+            Color color = Color.web("#00a2e9");
+            label.setTextFill(color);
+
+
+            editLabel.add(label);
+
+//                set action for Edit Click
+            int Dem = dem; // hơi cấn cấn chỗ này vì phải dùng hằng, dùng vì hàm lambda bắt buộc dùng
+            editLabel.get(dem).setOnMouseClicked(e -> {
+                try {
+                    qStatic = questions.get(Dem);
+                    switchToEditQuestion(e);
+                } catch (IOException even) {
+                    even.printStackTrace();
+                }
+            });
+
+            editLabel.get(dem).setOnMouseEntered(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    editLabel.get(Dem).setStyle("-fx-cursor: hand;");
+                    editLabel.get(Dem).setUnderline(true);
+                }
+            });
+
+            editLabel.get(dem).setOnMouseExited(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    editLabel.get(Dem).setUnderline(false);
+                }
+            });
+
+
+//                add component
+            hBoxEdit.getChildren().addAll(label, imageView1);
+            // fill color
+            if(dem % 2 ==0){
+                BackgroundFill backgroundFill2 = new BackgroundFill(Color.web("#DDDDDD"), null, null);
+                Background background2 = new Background(backgroundFill2);
+                hBoxEdit.setBackground(background2);
+            }
+            else {
+                hBoxEdit.setBackground(Background.fill(null));
+            }
+            // continue add component
+            hBoxrow.getChildren().addAll(hboxQuestion, hBoxEdit);
+            questionBox.getChildren().add(hBoxrow);
+        }
+        myAnchorPane.setPrefHeight(784 + dem*30);
     }
 
     @FXML

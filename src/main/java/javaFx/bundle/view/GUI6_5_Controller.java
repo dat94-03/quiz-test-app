@@ -45,6 +45,8 @@ public class GUI6_5_Controller implements Initializable {
     private VBox questionVBox ;
     @FXML
     private Button buttonCate;
+    @FXML
+    private CheckBox subCate;
     Integer h = 0 ;
     Integer k = 0 ;
     Integer i =0 ;
@@ -77,8 +79,6 @@ public class GUI6_5_Controller implements Initializable {
 
         treeView.setRoot(rootItem);
     }
-
-
 
     @FXML
     public void displayTreeView() {
@@ -113,6 +113,28 @@ public class GUI6_5_Controller implements Initializable {
         });
     }
 
+    public void showQuestionFromSubCate() throws IOException {
+        QuestionManage qm = new QuestionManage();
+        questionVBox.getChildren().clear();
+        numberHBox.getChildren().clear();
+        idQuestionInCate.clear();
+
+        if(subCate.isSelected() == false){
+            for(Question question : QuestionManage.questionsList){
+                if(question.category.equals(fullyCate)){
+                    idQuestionInCate.add(question.id);
+                }
+            }
+            appear();
+        }
+        else {
+            ArrayList<Question> subCate = qm.getQuestionsOfCategoryAndSubcategory(fullyCate);
+            for(Question question : subCate){
+                idQuestionInCate.add(question.id);
+            }
+            appear();
+        }
+    }
     public void appear() {
         System.out.println(idQuestionInCate);
         int numberQues = idQuestionInCate.size();

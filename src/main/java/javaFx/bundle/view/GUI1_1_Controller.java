@@ -31,6 +31,7 @@ public class GUI1_1_Controller implements Initializable {
     private ArrayList<Label> labelQuizzes = new ArrayList<>();
 //    public static String currentQuiz = new String("Default");
     static Quiz currentQuiz;
+    static boolean isSelectedCategory = false;
     @FXML
     private Label label;
     @FXML

@@ -104,6 +104,9 @@
                      <font>
                         <Font name="Arial" size="17.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Label layoutX="746.0" layoutY="118.0" text="Total of  marks: ">
                      <font>

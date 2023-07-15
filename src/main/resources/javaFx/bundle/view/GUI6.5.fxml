@@ -22,7 +22,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="960.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFx.bundle.view.GUI6_5_Controller">
    <children>
       <AnchorPane prefHeight="39.0" prefWidth="960.0" style="-fx-background-color: #009FE5;" />
-      <AnchorPane layoutX="11.0" layoutY="47.0" prefHeight="98.0" prefWidth="940.0" style="-fx-border-color: rgb(219, 221, 221); -fx-background-color: white;">
+      <AnchorPane layoutX="11.0" layoutY="47.0" onMouseClicked="#displayTreeViewOff" prefHeight="98.0" prefWidth="940.0" style="-fx-border-color: rgb(219, 221, 221); -fx-background-color: white;">
          <children>
             <Label layoutX="20.0" layoutY="59.0" prefHeight="30.0" prefWidth="69.0" text="Home " textFill="#c71d1d">
                <font>
@@ -74,14 +74,31 @@
         <content>
           <AnchorPane fx:id="menuPane" minHeight="0.0" minWidth="0.0" prefHeight="552.0" prefWidth="934.0" style="-fx-background-color: white;">
                <children>
+                  <HBox layoutX="68.0" layoutY="248.0" prefHeight="48.0" prefWidth="97.0">
+                     <children>
+                        <HBox fx:id="numberHBox" prefHeight="48.0" prefWidth="47.0" style="-fx-border-color: #d1d1d1; -fx-background-color: white;" />
+                        <Button mnemonicParsing="false" onAction="#buttonRight" prefHeight="47.0" prefWidth="47.0" style="-fx-background-color: white; -fx-border-color: #d1d1d1;">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../Img.img/rightarrow.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
                   <Line endX="-100.00000762939453" endY="-32.13334274291992" layoutX="112.0" layoutY="43.0" startX="-100.00000762939453" startY="16.933303833007812" stroke="#999696" />
                   <Line endX="58.70713806152344" endY="0.15953445434570312" layoutX="114.0" layoutY="12.0" startX="-100.0" stroke="#999696" />
                   <Line endX="-100.00000762939453" endY="-32.13334274291992" layoutX="272.0" layoutY="45.0" startX="-99.99996948242188" startY="12.666641235351562" stroke="#999696" />
                   <Line endX="614.0000610351562" endY="14.599990844726562" layoutX="277.0" layoutY="45.0" startX="-105.70707702636719" startY="13.373737335205078" stroke="#999696" />
-                  <Button layoutX="19.0" layoutY="14.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: null;" text="Exsting category">
+                  <Button layoutX="14.0" layoutY="12.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="161.0" style="-fx-background-color: #D3D3D3;" text="Exsting category" textFill="#000000df">
                      <font>
                         <Font size="17.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button layoutX="178.0" layoutY="13.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="151.0" style="-fx-background-color: null;" text="New category" textFill="#009fe5">
                      <font>
@@ -108,6 +125,9 @@
                                  <font>
                                     <Font size="19.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
                               <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                                  <image>
@@ -118,28 +138,25 @@
                         </GridPane>
                      </graphic>
                   </Label>
-                  <CheckBox layoutX="138.0" layoutY="130.0" mnemonicParsing="false">
+                  <CheckBox fx:id="subCate" layoutX="138.0" layoutY="130.0" mnemonicParsing="false" onAction="#showQuestionFromSubCate" text="Include questions from subcategories too ">
                      <font>
-                        <Font size="14.0" />
+                        <Font size="19.0" />
                      </font>
                   </CheckBox>
-                  <Text layoutX="167.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Include questions from subcategories too ">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Text>
                   <Text layoutX="25.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of random questions" wrappingWidth="149.60000610351557">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Text>
-                  <ComboBox fx:id="comboBox" layoutX="209.0" layoutY="174.0" onAction="#selectNumberQuesToQuiz" prefHeight="30.0" prefWidth="60.0" style="-fx-border-color: #999696; -fx-background-color: white;" />
+                  <ComboBox fx:id="comboBox" layoutX="209.0" layoutY="174.0" onAction="#selectNumberQuesToQuiz" prefHeight="30.0" prefWidth="60.0" style="-fx-border-color: #999696; -fx-background-color: white;">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ComboBox>
                   <Text layoutX="19.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Questions matching this filter">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Text>
-                  <HBox fx:id="numberHBox" layoutX="66.0" layoutY="248.0" prefHeight="44.0" prefWidth="391.0" style="-fx-border-color: #d1d1d1; -fx-background-color: white;" />
                   <Button layoutX="17.0" layoutY="248.0" mnemonicParsing="false" onAction="#buttonLeft" prefHeight="47.0" prefWidth="47.0" style="-fx-background-color: white; -fx-border-color: #d1d1d1;">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
@@ -149,17 +166,11 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="459.0" layoutY="248.0" mnemonicParsing="false" onAction="#buttonRight" prefHeight="47.0" prefWidth="47.0" style="-fx-background-color: white; -fx-border-color: #d1d1d1;">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../Img.img/rightarrow.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
                   <VBox fx:id="questionVBox" layoutX="10.0" layoutY="301.0" prefHeight="234.0" prefWidth="905.0" style="-fx-border-color: #d1d1d1; -fx-background-color: white;" />
-                  <TreeView fx:id="treeView" layoutX="144.0" layoutY="120.0" onContextMenuRequested="#selectItem" onMouseClicked="#selectItem" prefHeight="268.0" prefWidth="393.0" visible="false" />
+                  <TreeView fx:id="treeView" layoutX="144.0" layoutY="120.0" onContextMenuRequested="#selectItem" onMouseClicked="#selectItem" prefHeight="268.0" prefWidth="393.0" visible="false">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></TreeView>
                </children>
             </AnchorPane>
         </content>

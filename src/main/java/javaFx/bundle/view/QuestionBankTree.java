@@ -1,6 +1,7 @@
 package javaFx.bundle.view;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -8,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -56,6 +58,8 @@ public class QuestionBankTree implements Initializable {
         LibraryForUs.accessChildrenTreeView(rootCategory, rootItem);
 
         treeView.setRoot(rootItem);
+
+
     }
 
     private void switchToScene(String fxmlFile) {
@@ -73,6 +77,7 @@ public class QuestionBankTree implements Initializable {
         treeView.setOnMouseClicked(mouseEvent -> {
             TreeItem<String> selectedItem = (TreeItem<String>) treeView.getSelectionModel().getSelectedItem();
             if(selectedItem != null){
+                GUI1_1_Controller.isSelectedCategory = true;
                 currentCategory = selectedItem.getValue();
                 fullyCategory = LibraryForUs.getFullyCategory(selectedItem);
                 System.out.println(fullyCategory);

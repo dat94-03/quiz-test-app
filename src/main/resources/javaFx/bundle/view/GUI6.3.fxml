@@ -42,18 +42,14 @@
                   <Image url="@../../../Img.img/muiten.png" />
                </image>
             </ImageView>
-            <CheckBox layoutX="57.0" layoutY="306.0" mnemonicParsing="false" />
-            <Text fill="#302f2f" layoutX="82.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Also show the questions  from subcategories">
+            <CheckBox fx:id="showQuesSubCate" layoutX="57.0" layoutY="306.0" mnemonicParsing="false" onAction="#showQuestionFromSubCate" text="Also show the questions  from subcategories">
                <font>
                   <Font size="19.0" />
-               </font>
-            </Text>
-            <CheckBox layoutX="57.0" layoutY="341.0" mnemonicParsing="false" />
-            <Text fill="#302f2f" layoutX="82.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Also show old questions">
+               </font></CheckBox>
+            <CheckBox layoutX="57.0" layoutY="341.0" mnemonicParsing="false" text="Also show old questions">
                <font>
-                  <Font name="Arial" size="19.0" />
-               </font>
-            </Text>
+                  <Font size="19.0" />
+               </font></CheckBox>
             <CheckBox layoutX="72.0" layoutY="391.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="10.0" />
             <ImageView fitHeight="28.0" fitWidth="34.0" layoutX="90.0" layoutY="381.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -66,7 +62,10 @@
                </font>
             </Text>
             <VBox fx:id="questionBox" layoutX="15.0" layoutY="420.0" prefHeight="325.0" prefWidth="924.0" style="-fx-border-color: White;" />
-            <TreeView fx:id="treeView" layoutX="212.0" layoutY="262.0" onContextMenuRequested="#selectItem" onMouseClicked="#selectItem" prefHeight="350.0" prefWidth="460.0" visible="false" />
+            <TreeView fx:id="treeView" layoutX="212.0" layoutY="262.0" onContextMenuRequested="#selectItem" onMouseClicked="#selectItem" prefHeight="350.0" prefWidth="460.0" visible="false">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></TreeView>
             <Label layoutX="212.0" layoutY="214.0" prefHeight="48.0" prefWidth="270.0" style="-fx-border-color: #b7b2b2;">
                <graphic>
                   <GridPane>
@@ -82,6 +81,9 @@
                            <font>
                               <Font size="20.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                            <image>

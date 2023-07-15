@@ -157,7 +157,10 @@
                   <Image url="@../../../Img.img/question%20mark.png" />
                </image>
             </ImageView>
-            <ListView fx:id="addListView" layoutX="613.0" layoutY="228.0" onMouseClicked="#selectItem" prefHeight="109.0" prefWidth="240.0" visible="false" />
+            <ListView fx:id="addListView" layoutX="613.0" layoutY="228.0" onMouseClicked="#selectItem" prefHeight="109.0" prefWidth="240.0" visible="false">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ListView>
          </children>
       </AnchorPane>
    </children>

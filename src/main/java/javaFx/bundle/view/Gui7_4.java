@@ -124,8 +124,6 @@ public class Gui7_4 implements Initializable {
             gridPane.add(button, column, row); // Thêm nút vào vị trí hàng và cột tương ứng
         }
         vBoxNav.getChildren().add(gridPane);
-//        Button targetButton = (Button) vBox.lookup("#button2");
-//        System.out.println(targetButton);
 
         Label label1 = new Label("Finish review");
         label1.setFont(Font.font(18.0));
@@ -162,11 +160,6 @@ public class Gui7_4 implements Initializable {
 
         boolean hasImage = false;
         if(question.getQuestionMedia() != null)     hasImage =  true;
-
-        System.out.println("Bat dau in ra test");
-        for(String str : quizInExam.userChoice){
-            System.out.println(str);
-        }
 
         String userChoice = quizInExam.userChoice.get(dem - 1);
 

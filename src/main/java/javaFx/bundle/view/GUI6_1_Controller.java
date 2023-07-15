@@ -198,6 +198,7 @@ public class GUI6_1_Controller implements Initializable{
         exportButton.setStyle("-fx-background-color: #5aea57");
         exportButton.setTextFill(Color.web("#ececec"));
         exportButton.setFont(Font.font(18));
+        exportButton.setCursor(Cursor.HAND);
         exportButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

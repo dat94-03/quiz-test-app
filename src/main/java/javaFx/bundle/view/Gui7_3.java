@@ -47,7 +47,7 @@ public class Gui7_3 implements Initializable {
     private Parent root;
     private Quiz currentQuiz = GUI1_1_Controller.currentQuiz;
     static QuizInExam quizInExam = new QuizInExam();
-//    private Media media;
+    //    private Media media;
     private ArrayList<AnchorPane> questionPanes = new ArrayList<>();
     private Boolean isPlay = false;
     @FXML

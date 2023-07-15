@@ -1,7 +1,6 @@
 package javaFx.bundle.view;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -49,15 +48,8 @@ public class GUI6_1_Controller implements Initializable{
         stage.setScene(scene);
         stage.show();
     }
-    public void switchToGUIHome(ActionEvent event) throws  IOException {
-        root = FXMLLoader.load(getClass().getResource("Home.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-    public void switchToGUI8(ActionEvent event) throws  IOException {
-        root = FXMLLoader.load(getClass().getResource("GUI8.fxml"));
+    public void switchTo7(ActionEvent event) throws  IOException {
+        root = FXMLLoader.load(getClass().getResource("Gui7_3.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -198,17 +190,19 @@ public class GUI6_1_Controller implements Initializable{
         exportButton.setStyle("-fx-background-color: #5aea57");
         exportButton.setTextFill(Color.web("#ececec"));
         exportButton.setFont(Font.font(18));
-        exportButton.setCursor(Cursor.HAND);
-        exportButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    childStage.close();
-                    switchToGUI8(event);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+        exportButton.setOnAction(event -> {
+            try {
+                childStage.close();
+                parentStage.setOpacity(1.0);
+                Parent root1 = FXMLLoader.load(getClass().getResource("GUI8.fxml"));
+                Stage stage = (Stage) openButton.getScene().getWindow();
+                Scene scene = new Scene(root1);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+
         });
         root.getChildren().add(exportButton) ;
 
@@ -217,10 +211,17 @@ public class GUI6_1_Controller implements Initializable{
         childStage.initOwner(parentStage);
 
         // Làm mờ Stage cha
-//        parentStage.setOpacity(0.5);
+        parentStage.setOpacity(0.5);
 
         Scene scene = new Scene(root,760,370);
         childStage.setScene(scene);
         childStage.show();
+    }
+    public void switchToHome(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

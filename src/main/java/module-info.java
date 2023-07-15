@@ -6,6 +6,10 @@ module com.example.ourproject {
     requires java.sql;
     requires java.desktop;
     requires javafx.media;
+    requires kernel;
+    requires layout;
+    requires io;
+    requires javafx.swing;
 
 
     opens javaFx.bundle.view to javafx.fxml;

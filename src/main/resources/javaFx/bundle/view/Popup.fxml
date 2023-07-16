@@ -17,7 +17,7 @@
                   <Image url="@../../../Img.img/menu.png" />
                </image>
             </ImageView>
-            <Label layoutX="719.0" layoutY="11.0" prefHeight="38.0" prefWidth="114.0" text="Đình Trường" textFill="WHITE">
+            <Label fx:id="labelUserName" alignment="CENTER_RIGHT" layoutX="646.0" layoutY="11.0" prefHeight="38.0" prefWidth="171.0" text="Đình Trường" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

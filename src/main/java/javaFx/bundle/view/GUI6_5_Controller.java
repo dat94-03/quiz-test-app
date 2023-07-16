@@ -136,7 +136,6 @@ public class GUI6_5_Controller implements Initializable {
         }
     }
     public void appear() {
-        System.out.println(idQuestionInCate);
         int numberQues = idQuestionInCate.size();
         for( i = 0; i< (numberQues / 10 + 1); i++) {
             button[i] = new Button(String.valueOf(i+1)) ;
@@ -184,13 +183,13 @@ public class GUI6_5_Controller implements Initializable {
             hBox.setStyle("-fx-background-color: #FFFFFF");
 
             Image image = new Image(getClass().getResourceAsStream("/Img.img/3.png")) ;
-            ImageView threedots = new ImageView(image) ;
-            threedots.setFitWidth(20);
-            threedots.setFitHeight(20);
-            threedots.setPreserveRatio(true);
-            threedots.setPickOnBounds(true);
-            HBox.setMargin(threedots,new Insets(8,0,0,20));
-            hBox.getChildren().add(threedots) ;
+            ImageView threeDots = new ImageView(image) ;
+            threeDots.setFitWidth(20);
+            threeDots.setFitHeight(20);
+            threeDots.setPreserveRatio(true);
+            threeDots.setPickOnBounds(true);
+            HBox.setMargin(threeDots,new Insets(8,0,0,20));
+            hBox.getChildren().add(threeDots) ;
 
             Question question = QuestionManage.questionsList.get(idQuestionInCate.get(i));
             Label questionLabel = new Label(question.title) ;
@@ -261,13 +260,13 @@ public class GUI6_5_Controller implements Initializable {
             hBox.setStyle("-fx-background-color: #FFFFFF");
 
             Image image = new Image(getClass().getResourceAsStream("/Img.img/3.png"));
-            ImageView threedots = new ImageView(image);
-            threedots.setFitWidth(20);
-            threedots.setFitHeight(20);
-            threedots.setPreserveRatio(true);
-            threedots.setPickOnBounds(true);
-            HBox.setMargin(threedots, new Insets(8, 0, 0, 20));
-            hBox.getChildren().add(threedots);
+            ImageView threeDots = new ImageView(image);
+            threeDots.setFitWidth(20);
+            threeDots.setFitHeight(20);
+            threeDots.setPreserveRatio(true);
+            threeDots.setPickOnBounds(true);
+            HBox.setMargin(threeDots, new Insets(8, 0, 0, 20));
+            hBox.getChildren().add(threeDots);
 
             if(k >= idQuestionInCate.size())     break;
             Question question = QuestionManage.questionsList.get(idQuestionInCate.get(k));
@@ -289,6 +288,7 @@ public class GUI6_5_Controller implements Initializable {
         }
     }
 
+
     public void selectNumberQuesToQuiz(){
         comboBox.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -300,7 +300,7 @@ public class GUI6_5_Controller implements Initializable {
 
                 if(alert.showAndWait().get() == ButtonType.OK){
                     Collections.shuffle(idQuestionInCate);
-                    System.out.println("Id question in Cate la : " + idQuestionInCate );
+//                    System.out.println("Id question in Cate la : " + idQuestionInCate );
 //                    ArrayList<Integer> tmp = (ArrayList<Integer>) idQuestionInCate.subList(0, numberQuesRandom - 1);
                     int demtam = 0;
                     for(int t : idQuestionInCate){

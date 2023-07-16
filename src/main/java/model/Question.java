@@ -157,12 +157,12 @@ public class Question {
     public boolean isMultipleChoice(){
         multipleAnswer.clear();
         String[] tmp = correctAnswer.split(",");
-        if(tmp.length == 1)     return false;
         for(String str : tmp){
             if(str.equals("") || str == null || str.equals(" "))   continue;
             str = str.trim();
             multipleAnswer.add(str);
         }
+        if(multipleAnswer.size() == 1)      return false;
         return true;
     }
 

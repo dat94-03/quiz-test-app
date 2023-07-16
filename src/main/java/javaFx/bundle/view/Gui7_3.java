@@ -49,6 +49,9 @@ public class Gui7_3 implements Initializable {
     static QuizInExam quizInExam = new QuizInExam();
     //    private Media media;
     private ArrayList<AnchorPane> questionPanes = new ArrayList<>();
+    private ArrayList<Double> questionHeight = new ArrayList<>();
+    private double sumQuestionHeight = 0;
+    private boolean isCalculateHeight = false;
     private Boolean isPlay = false;
     @FXML
     private Text hour ;
@@ -358,9 +361,6 @@ public class Gui7_3 implements Initializable {
 
             }
 
-//          old
-//            ImageView imageTitle = new ImageView(question.getQuestionImage().get(0));
-//            contentBox.getChildren().add(imageTitle);
         }
 
         // Group radio buttons
@@ -414,9 +414,6 @@ public class Gui7_3 implements Initializable {
                             contentBox.getChildren().addAll(imageView);
                         }
                     }
-//                      old
-//                    ImageView imageChoice = new ImageView(question.getQuestionImage().get(count));
-//                    contentBox.getChildren().add(imageChoice);
                 }
                 count++;
             }
@@ -477,14 +474,22 @@ public class Gui7_3 implements Initializable {
 
         // Add panes to HBox
         hbox.getChildren().addAll(questionPane, contentPane);
-
         return hbox;
-
     }
 
     private void scrollToQuestion(int questionIndex,int numQuestion) {
 //        System.out.println("question Index la : " + questionIndex + ", numQues la : " + numQuestion);
+        if(!isCalculateHeight){
+            questionHeight.add((double) 0);
+            calculateHeight();
+            System.out.println(questionHeight);
+        }
+        isCalculateHeight = true;
         double vValue = (double) questionIndex / (numQuestion-2.5);
+        System.out.println("vValue old : " + vValue);
+        vValue = (double) (questionHeight.get(questionIndex - 1) + 230) / (sumQuestionHeight + 230 )  ;
+        System.out.println("vValue new : " + vValue + ", questionHeight : " + questionHeight.get(questionIndex - 1));
+        System.out.println("sum : " + sumQuestionHeight);
         scrollPane.setVvalue(vValue);
     }
 
@@ -594,6 +599,24 @@ public class Gui7_3 implements Initializable {
                                 }
                             }
                         }
+                    }
+                }
+            }
+        }
+    }
+
+    private void calculateHeight(){
+        for (javafx.scene.Node node : vBox.getChildren()) {
+            if (node instanceof HBox) {
+                HBox hBox = (HBox) node;
+                for (javafx.scene.Node childNode : hBox.getChildren()) {
+                    if (childNode instanceof AnchorPane) {
+                        AnchorPane anchorPane = (AnchorPane) childNode;
+                        if (anchorPane == null) continue;
+                        if (anchorPane.getId().equals("QuestionPane")) continue;
+                        System.out.println(anchorPane.getHeight());
+                        sumQuestionHeight += anchorPane.getHeight() ;
+                        questionHeight.add(sumQuestionHeight);
                     }
                 }
             }

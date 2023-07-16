@@ -5,6 +5,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,7 +18,7 @@
       <AnchorPane fx:id="myAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="784.0" prefWidth="900.0">
          <children>
             <AnchorPane layoutX="-6.0" layoutY="-1.0" prefHeight="57.0" prefWidth="966.0" style="-fx-background-color: #009FE5;" />
-            <AnchorPane layoutX="33.0" layoutY="57.0" prefHeight="122.0" prefWidth="883.0" style="-fx-border-color: rgb(219, 221, 221);">
+            <AnchorPane layoutX="33.0" layoutY="57.0" onMouseClicked="#displayTreeViewOff" prefHeight="122.0" prefWidth="883.0" style="-fx-border-color: rgb(219, 221, 221);">
                <children>
                   <Label layoutX="42.0" layoutY="76.0" prefHeight="30.0" prefWidth="69.0" text="Home " textFill="#c71d1d">
                      <font>
@@ -110,10 +111,13 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label fx:id="categoryLabel" layoutX="220.0" layoutY="103.0" prefHeight="43.0" prefWidth="295.0" style="-fx-border-color: rgb(219, 221, 221);" text="Default">
+                  <Label fx:id="categoryLabel" layoutX="220.0" layoutY="103.0" onMouseClicked="#displayTreeView" prefHeight="43.0" prefWidth="295.0" style="-fx-border-color: rgb(219, 221, 221);" text="Default">
                      <font>
                         <Font size="18.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Label>
                   <ImageView fitHeight="23.0" fitWidth="15.0" layoutX="478.0" layoutY="119.0" opacity="0.81" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -147,6 +151,11 @@
                      </image>
                   </ImageView>
                   <VBox fx:id="questionBox" layoutX="8.0" layoutY="346.0" prefHeight="235.0" prefWidth="901.0" />
+                  <TreeView fx:id="treeView" layoutX="219.0" layoutY="146.0" onContextMenuRequested="#selectItem" onMouseClicked="#selectItem" prefHeight="268.0" prefWidth="375.0" style="-fx-background-color: none;" visible="false">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </TreeView>
                </children>
             </AnchorPane>
          </children>

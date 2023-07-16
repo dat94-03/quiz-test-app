@@ -183,19 +183,6 @@ public class GUI63 implements Initializable {
         }
         listCheckBox.add(checkBox);
         int finalI = i;
-        listCheckBox.get(i - 1).setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-//                         if(listCheckBox.get(finalI - 1).isSelected() == false){
-//                             try {
-//                                 LibraryForUs.deleteQuestionInQuiz(listQuestion.get(finalI - 1), currentQuiz);
-//                                 System.out.println(listQuestion.get(finalI - 1));
-//                             } catch (IOException e) {
-//                                 throw new RuntimeException(e);
-//                             }
-//                         }
-            }
-        });
         HBox.setMargin(listCheckBox.get(i - 1), new Insets(8, 0, 0, 8));
         hBox.getChildren().add(checkBox);
 
@@ -300,7 +287,6 @@ public class GUI63 implements Initializable {
                         currentQuiz.quizQuestions =
                                 currentQuiz.quizQuestions + "," + Integer.toString(listQuestion.get(i).id);
                         quizzesManage.editingQuiz(currentQuiz.id, currentQuiz.quizQuestions, "will fix");
-                        System.out.println(listQuestion.get(i));
                     }
                 } catch (IOException e) {
                     throw new RuntimeException(e);

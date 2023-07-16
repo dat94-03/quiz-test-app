@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1203.0" prefWidth="944.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFx.bundle.view.AddQuestion">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFx.bundle.view.AddQuestion">
    <content>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1137.0" prefWidth="960.0">
          <children>
@@ -75,7 +75,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="8.0" layoutY="173.0" prefHeight="1012.0" prefWidth="939.0" style="-fx-border-color: rgb(219, 221, 221);">
+            <AnchorPane layoutX="8.0" layoutY="173.0" prefHeight="780.0" prefWidth="960.0" style="-fx-border-color: rgb(219, 221, 221);">
                <children>
                   <Label layoutX="21.0" layoutY="15.0" prefHeight="47.0" prefWidth="466.0" text="Adding a Multiple choice question" textFill="#c71d1d">
                      <font>
@@ -186,7 +186,7 @@
                         <Image url="@../../../Img.img/chamthan.png" />
                      </image>
                   </ImageView>
-                  <ScrollPane layoutX="495.0" layoutY="414.0" prefHeight="1199.0" prefWidth="417.0">
+                  <ScrollPane layoutX="482.0" layoutY="353.0" prefHeight="1199.0" prefWidth="417.0">
                      <content>
                         <VBox fx:id="moreChoice" prefHeight="1203.0" prefWidth="421.0">
                            <children>

@@ -36,9 +36,13 @@ public class GUI1_1_Controller implements Initializable {
     private Label label;
     @FXML
     private VBox vBoxQuiz;
+    @FXML
+    private Label labelUserName;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        labelUserName.setText(QuizTestApplication.currentUser);
+
         vBoxQuiz.getChildren().clear();
         labelQuizzes.clear();
 
@@ -97,10 +101,6 @@ public class GUI1_1_Controller implements Initializable {
                 }
             });
 
-            if(i > 0){
-                imageView.setOpacity(0.5);
-                labelQuizzes.get(i).setOpacity(0.5);
-            }
             hBox.getChildren().addAll(spacer,imageView,labelQuizzes.get(i));
             vBoxQuiz.getChildren().add(hBox);
             i++;

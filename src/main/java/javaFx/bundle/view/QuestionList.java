@@ -17,8 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.Question;
-import model.QuestionManage;
+import model.*;
 
 import javax.xml.transform.Source;
 import java.io.IOException;
@@ -45,9 +44,32 @@ public class QuestionList implements Initializable{
     private CheckBox checkBoxShowSubCategory;
     @FXML
     private AnchorPane myAnchorPane;
+    @FXML
+    private TreeView<String> treeView;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
+//        Set Tree View
+        treeView.setStyle("-fx-font-size: 16px;");
+        treeView.setShowRoot(false);
+
+        TreeItem<String> rootItem = new TreeItem<>("root");
+        rootItem.setExpanded(true);
+
+        CategoriesManage build = null;
+        try {
+            build = new CategoriesManage();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        Category rootCategory = build.getRoot();
+
+        LibraryForUs.accessChildrenTreeView(rootCategory, rootItem);
+
+        treeView.setRoot(rootItem);
+
+//        Display question
         QuestionManage qm = null;
         try {
             qm = new QuestionManage();
@@ -75,6 +97,33 @@ public class QuestionList implements Initializable{
                 dem++;
             }
         }
+    }
+
+    @FXML
+    public void displayTreeView() {
+        treeView.setVisible(true);
+    }
+    @FXML
+    public void displayTreeViewOff() {
+        treeView.setVisible(false);
+    }
+
+    public void selectItem() {
+        treeView.setOnMouseClicked(mouseEvent -> {
+            TreeItem<String> selectedItem = (TreeItem<String>) treeView.getSelectionModel().getSelectedItem();
+            if(selectedItem != null){
+                displayTreeViewOff();
+                QuestionBankTree.currentCategory = selectedItem.getValue();
+                QuestionBankTree.fullyCategory = LibraryForUs.getFullyCategory(selectedItem);
+                System.out.println(QuestionBankTree.fullyCategory);
+                categoryLabel.setText("  " + QuestionBankTree.currentCategory);
+            }
+            try {
+                showQuestionFromSubCate();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     public void showQuestionFromSubCate() throws IOException {

@@ -41,14 +41,11 @@ public class EditQuestion implements Initializable {
     private ChoiceBox<String>[] selectPercent = new ChoiceBox[10];
     private ImageView[] imageChooser = new ImageView[10];
     private  String stringMedia[] = new String[10];
-    String[] answerChoice = new String[10];
 
     private String[] percent = {"None","100%","90%","83.33333%","80%","75%","70%","67.66667%","60%","50%","40%","33.3333%","30%","25%","20%","16.66667%","14.28571%","12.5%","11.11111%","10%","5%","-5%",};
     int indexChoice = 0;
-    int numOldChoice;
     private String selectCategory = new String();
     private String fullyPath = new String();
-    private String oldPath = QuestionBankTree.fullyCategory;
     Question currentQuestion = QuestionList.qStatic;
     private Boolean isPlay = false;
     @FXML
@@ -74,8 +71,8 @@ public class EditQuestion implements Initializable {
         try {
             if (currentQuestion.getPathQuestionMedia() != null){
                 stringMedia = currentQuestion.getPathQuestionMedia().toArray(new String[0]);
-                System.out.println("Day la");
-                System.out.println(stringMedia);
+//                System.out.println("Day la");
+//                System.out.println(stringMedia);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -117,7 +114,6 @@ public class EditQuestion implements Initializable {
 
 //        draw answer of old question
         for(String answer : currentQuestion.choices){
-            String tmp = new String("null");
 //            stringImage.add(tmp);
             if(answer.equals("null"))  continue;
             VBox vBox = new VBox();
@@ -201,7 +197,7 @@ public class EditQuestion implements Initializable {
 
             fullyPath = LibraryForUs.getFullyCategory(selectedItem);
 
-//            disable TreeView when we done
+//            disable TreeView when done
             categoryTreeView.setVisible(false);
 //            set label after change parent category
             categoryLabel.setText("  " + selectedItem.getValue());
@@ -351,14 +347,13 @@ public class EditQuestion implements Initializable {
 
     @FXML
     public void previewQuestion(ActionEvent event) throws IOException {
-        String tmp = new String();
+        StringBuilder tmp = new StringBuilder(new String());
         for(String str : stringMedia){
-            tmp += str + "\n";
+            tmp.append(str).append("\n");
         }
-        System.out.println("Day la tmp: \n" + tmp);
-        currentQuestion.addQuestionMedia(tmp);
+//        System.out.println("Day la tmp: \n" + tmp);
+        currentQuestion.addQuestionMedia(tmp.toString());
 
-       ScrollPane scrollPane = new ScrollPane();
        VBox previewRoot = new VBox();
        Label labelTitle = new Label(currentQuestion.title);
        if(currentQuestion.getQuestionMedia().get(0) == null) {
@@ -377,7 +372,7 @@ public class EditQuestion implements Initializable {
                mediaView.setOnMouseClicked(new EventHandler<MouseEvent>() {
                    @Override
                    public void handle(MouseEvent event) {
-                       if(isPlay == false){
+                       if(!isPlay){
                            mediaPlayer.play();
                            isPlay = true;
                        }
@@ -387,12 +382,14 @@ public class EditQuestion implements Initializable {
                        }
                    }
                });
-
                previewRoot.getChildren().addAll(labelTitle, mediaView);
+               previewRoot.setPrefHeight(previewRoot.getHeight() + 520);
            }
            else {
                ImageView imageViewTitle = new ImageView(new Image(currentQuestion.getQuestionMedia().get(0).mediaFile.toURI().toString()));
+               imageViewTitle.setFitHeight(300);  imageViewTitle.setFitWidth(300);
                previewRoot.getChildren().addAll(labelTitle, imageViewTitle);
+               previewRoot.setPrefHeight(previewRoot.getHeight() + 320);
            }
        }
 
@@ -416,7 +413,7 @@ public class EditQuestion implements Initializable {
                 mediaView.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        if(isPlay == false){
+                        if(!isPlay){
                             mediaPlayer.play();
                             isPlay = true;
                         }
@@ -441,9 +438,10 @@ public class EditQuestion implements Initializable {
             }
             else {
                 ImageView imageView = new ImageView(new Image(currentQuestion.getQuestionMedia().get(dem).mediaFile.toURI().toString()));
+                imageView.setFitHeight(100);  imageView.setFitWidth(100);
                 previewRoot.getChildren().addAll(imageView);
+                previewRoot.setPrefHeight(previewRoot.getHeight() + 120);
             }
-
             dem++;
         }
 //        previewRoot.getChildren().add(q.getQuestionImage());
@@ -477,38 +475,4 @@ public class EditQuestion implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
-    @FXML
-    private ImageView alert1;
-    @FXML
-    private ImageView alert2;
-    @FXML
-    private ImageView alert3;
-    @FXML
-    private TextField myTextField;
-    @FXML
-    private TextField myTextField2;
-
-    public void blankCheck(KeyEvent event) {
-        if (myTextField.getText().isBlank()) {
-            alert1.setVisible(true);
-        } else  {
-            alert1.setVisible(false);
-        }
-    }
-    public void blankCheck2(KeyEvent event) {
-        if (questionText.getText().isBlank()) {
-            alert2.setVisible(true);
-        } else  {
-            alert2.setVisible(false);
-        }
-    }
-    public void blankCheck3(KeyEvent event) {
-        if (myTextField2.getText().isBlank()) {
-            alert3.setVisible(true);
-        } else  {
-            alert3.setVisible(false);
-        }
-    }
-
 }

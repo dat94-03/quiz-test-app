@@ -11,8 +11,11 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 public class QuizTestApplication extends Application {
+    public static String currentUser ;
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(QuizTestApplication.class.getResource("Home.fxml"));
@@ -26,19 +29,12 @@ public class QuizTestApplication extends Application {
         stage.show();
     }
     public static void main(String[] args) throws IOException, InvalidFormatException {
-        QuestionManage qm = new QuestionManage();
-//        Question question = QuestionManage.questionsList.get(227);
-//        System.out.println(question.title);
-//        if (question.isMultipleChoice()){
-//            System.out.println(question.multipleAnswer);
-//            if(question.isOptionBelongMultipleAns("B"))
-//                System.out.println("true");
-//            else System.out.println("fa");
-//        }
-//        else {
-//            System.out.println(question.correctAnswer);
-//        }
+        String[] userName = {"Đức Huy", "Tiến Đạt", "Đình Trường", "Minh Tuấn", "Hồng Quân"};
+        Random random = new Random();
+        int randomNumber = random.nextInt(5);
+        currentUser = userName[randomNumber];
 
+        QuestionManage qm = new QuestionManage();
         launch();
 
     }

@@ -204,7 +204,7 @@ public class GUI64 implements Initializable {
                 public void handle(MouseEvent mouseEvent) {
                     idQuestionDelete.add(j);
                     questionBox.getChildren().remove(vBoxesQuestion.get(finalI - 1));
-                    System.out.println("i la " + finalI + "j la " + j);
+//                    System.out.println("i la " + finalI + "j la " + j);
                 }
             });
             binImageViews.get(i - 1).setOnMouseEntered(new EventHandler<MouseEvent>() {

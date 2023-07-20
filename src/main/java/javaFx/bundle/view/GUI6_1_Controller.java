@@ -36,9 +36,11 @@ public class GUI6_1_Controller implements Initializable{
     private Label quizName;
     @FXML
     private Button openButton ;
-
+    @FXML
+    private Label labelTimeLimit;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        labelTimeLimit.setText("Time limit: " + GUI1_1_Controller.currentQuiz.timeLimit / 60.0 + " minutes");
         quizName.setText(GUI1_1_Controller.currentQuiz.quizName);
     }
     public void switchToGUI6_2a(ActionEvent event) throws IOException {
@@ -56,7 +58,6 @@ public class GUI6_1_Controller implements Initializable{
         stage.show();
     }
     public void openChildStage1() {
-
         // Lấy Stage cha từ Button
         Stage parentStage = (Stage) openButton.getScene().getWindow();
 
@@ -118,7 +119,10 @@ public class GUI6_1_Controller implements Initializable{
         label.setFont(font);
         root.getChildren().add(label) ;
 
-        Text text2 = new Text("Your attempt will hava a time limit of 1 hour. When you start, the timer will begin to count down and cannot be paused. You must finish your attempt before it expires. Are you sure you wish start now ?") ;
+        Text text2 = new Text("Your attempt will hava a time limit of " +
+                GUI1_1_Controller.currentQuiz.timeLimit / 60.0 +
+                " minute. When you start, the timer will begin to count down and cannot be paused. " +
+                "You must finish your attempt before it expires. Are you sure you wish start now ?") ;
         text2.setLayoutX(30);
         text2.setLayoutY(198);
         text2.setFill(Color.web("#404040"));

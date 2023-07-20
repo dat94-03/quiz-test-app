@@ -81,7 +81,7 @@
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../Img.img/rightarrow.png" />
+                                    <Image url="@../../../Img.img/angle-right.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -159,9 +159,9 @@
                   </Text>
                   <Button layoutX="17.0" layoutY="248.0" mnemonicParsing="false" onAction="#buttonLeft" prefHeight="47.0" prefWidth="47.0" style="-fx-background-color: white; -fx-border-color: #d1d1d1;">
                      <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="30.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../Img.img/leftarrow.png" />
+                              <Image url="@../../../Img.img/angle-left.png" />
                            </image>
                         </ImageView>
                      </graphic>

@@ -265,14 +265,12 @@ public class Gui7_4 implements Initializable {
                 }
                 else {
                     ImageView imageView = new ImageView(new Image(question.getQuestionMedia().get(0).mediaFile.toURI().toString()));
+                    imageView.setFitWidth(300);
+                    imageView.setFitHeight(300);
                     contentBox.getChildren().addAll(imageView);
                 }
 
             }
-
-//          old
-//            ImageView imageTitle = new ImageView(question.getQuestionImage().get(0));
-//            contentBox.getChildren().add(imageTitle);
         }
 
         // Group radio buttons
@@ -283,6 +281,8 @@ public class Gui7_4 implements Initializable {
             for (String choice : question.choices){
                 RadioButton option = new RadioButton(choice);
                 option.setFont(Font.font(14.0));
+                option.setWrapText(true);
+                option.setMaxWidth(580);
                 option.setDisable(true);
                 if(userChoice != null){
                     if(userChoice.equals(choice.substring(0,1)))     option.setSelected(true);
@@ -326,6 +326,8 @@ public class Gui7_4 implements Initializable {
                         }
                         else {
                             ImageView imageView = new ImageView(new Image(question.getQuestionMedia().get(count).mediaFile.toURI().toString()));
+                            imageView.setFitWidth(100);
+                            imageView.setFitHeight(100);
                             contentBox.getChildren().addAll(imageView);
                         }
                     }
@@ -341,6 +343,8 @@ public class Gui7_4 implements Initializable {
             for (String choice : question.choices) {
                 CheckBox option = new CheckBox(choice);
                 option.setFont(Font.font(14.0));
+                option.setWrapText(true);
+                option.setMaxWidth(580);
                 option.setDisable(true);
                 if(userChoice != null){
                     if (userChoice.contains(choice.substring(0,1))) option.setSelected(true);
@@ -381,6 +385,8 @@ public class Gui7_4 implements Initializable {
                             contentBox.getChildren().add(seeAgain);
                         } else {
                             ImageView imageView = new ImageView(new Image(question.getQuestionMedia().get(count).mediaFile.toURI().toString()));
+                            imageView.setFitWidth(100);
+                            imageView.setFitHeight(100);
                             contentBox.getChildren().addAll(imageView);
                         }
                     }

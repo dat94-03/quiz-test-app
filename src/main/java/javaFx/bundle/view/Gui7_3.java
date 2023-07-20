@@ -79,13 +79,9 @@ public class Gui7_3 implements Initializable {
     LocalDateTime time = currentDateTime ;
 
     public void startCountdown() {
-
-        System.out.println("Start Countdown");
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy, h:mm a");
         String formattedDateTime = currentDateTime.format(formatter);
         quizInExam.startExam = formattedDateTime;
-
 
         thrd = new Thread(new Runnable() {
             @Override
@@ -356,9 +352,10 @@ public class Gui7_3 implements Initializable {
                 }
                 else {
                     ImageView imageView = new ImageView(new Image(question.getQuestionMedia().get(0).mediaFile.toURI().toString()));
+                    imageView.setFitWidth(300);
+                    imageView.setFitHeight(300);
                     contentBox.getChildren().addAll(imageView);
                 }
-
             }
 
         }
@@ -371,6 +368,8 @@ public class Gui7_3 implements Initializable {
             for (String choice : question.choices){
                 RadioButton option = new RadioButton(choice);
                 option.setFont(Font.font(14.0));
+                option.setWrapText(true);
+                option.setMaxWidth(580);
                 option.setToggleGroup(answerGroup);
                 option.setOnAction(e -> handleAnswerSelection(dem));
                 contentBox.getChildren().add(option);
@@ -411,6 +410,8 @@ public class Gui7_3 implements Initializable {
                         }
                         else {
                             ImageView imageView = new ImageView(new Image(question.getQuestionMedia().get(count).mediaFile.toURI().toString()));
+                            imageView.setFitWidth(100);
+                            imageView.setFitHeight(100);
                             contentBox.getChildren().addAll(imageView);
                         }
                     }
@@ -423,6 +424,8 @@ public class Gui7_3 implements Initializable {
                 CheckBox option = new CheckBox(choice);
                 option.setFont(Font.font(14.0));
                 option.setOnAction(e -> handleAnswerSelection(dem));
+                option.setWrapText(true);
+                option.setMaxWidth(580);
                 contentBox.getChildren().add(option);
                 if(hasImage == true){
                     if(question.getQuestionMedia().get(count) != null){
@@ -461,6 +464,8 @@ public class Gui7_3 implements Initializable {
                         }
                         else {
                             ImageView imageView = new ImageView(new Image(question.getQuestionMedia().get(count).mediaFile.toURI().toString()));
+                            imageView.setFitWidth(100);
+                            imageView.setFitHeight(100);
                             contentBox.getChildren().addAll(imageView);
                         }
                     }
@@ -482,14 +487,14 @@ public class Gui7_3 implements Initializable {
         if(!isCalculateHeight){
             questionHeight.add((double) 0);
             calculateHeight();
-            System.out.println(questionHeight);
+//            System.out.println(questionHeight);
         }
         isCalculateHeight = true;
         double vValue = (double) questionIndex / (numQuestion-2.5);
-        System.out.println("vValue old : " + vValue);
+//        System.out.println("vValue old : " + vValue);
         vValue = (double) (questionHeight.get(questionIndex - 1) + 230) / (sumQuestionHeight + 230 )  ;
-        System.out.println("vValue new : " + vValue + ", questionHeight : " + questionHeight.get(questionIndex - 1));
-        System.out.println("sum : " + sumQuestionHeight);
+//        System.out.println("vValue new : " + vValue + ", questionHeight : " + questionHeight.get(questionIndex - 1));
+//        System.out.println("sum : " + sumQuestionHeight);
         scrollPane.setVvalue(vValue);
     }
 
@@ -531,6 +536,8 @@ public class Gui7_3 implements Initializable {
     }
 
     private void calculateAttempt(){
+        // pause video
+
         //        finish attempt
         for (javafx.scene.Node node : vBox.getChildren()) {
             if (node instanceof HBox) {
@@ -563,7 +570,6 @@ public class Gui7_3 implements Initializable {
                                             }
                                             userChoice++;
                                         }
-
                                     }
                                     if(flag == false)   quizInExam.userChoice.add(null);
                                 }
@@ -591,7 +597,7 @@ public class Gui7_3 implements Initializable {
                                     }
                                     if(flag == false)   quizInExam.userChoice.add(null);
                                     else    quizInExam.userChoice.add(userSelect);
-                                    System.out.println("tmp la : " + tmp + ", numberCorrect la : " + numberCorrectAns);
+//                                    System.out.println("tmp la : " + tmp + ", numberCorrect la : " + numberCorrectAns);
                                     if(isUserRight && (tmp == numberCorrectAns)){
                                         quizInExam.userPoint = quizInExam.userPoint + 1;
                                         quizInExam.correctQuestions.add(idQues);
@@ -614,7 +620,7 @@ public class Gui7_3 implements Initializable {
                         AnchorPane anchorPane = (AnchorPane) childNode;
                         if (anchorPane == null) continue;
                         if (anchorPane.getId().equals("QuestionPane")) continue;
-                        System.out.println(anchorPane.getHeight());
+//                        System.out.println(anchorPane.getHeight());
                         sumQuestionHeight += anchorPane.getHeight() ;
                         questionHeight.add(sumQuestionHeight);
                     }

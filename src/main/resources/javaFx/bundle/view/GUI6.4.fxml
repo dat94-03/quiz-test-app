@@ -46,12 +46,12 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="439.0" layoutY="57.0" prefHeight="30.0" prefWidth="291.0" text="/  Thi giữa kỳ 2 môn Công nghệ    /" textFill="#c71d1d">
+            <Label layoutX="738.0" layoutY="57.0" prefHeight="30.0" prefWidth="134.0" text="Edit quiz" textFill="#c71d1d">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="738.0" layoutY="57.0" prefHeight="30.0" prefWidth="134.0" text="Edit quiz" textFill="#c71d1d">
+            <Label layoutX="439.0" layoutY="57.0" prefHeight="30.0" prefWidth="291.0" text="/  Thi giữa kỳ 2 môn Công nghệ    /" textFill="#c71d1d">
                <font>
                   <Font size="18.0" />
                </font>
@@ -62,7 +62,7 @@
          <content>
             <AnchorPane fx:id="menuPane" prefHeight="589.0" prefWidth="929.0" style="-fx-border-color: rgb(219, 221, 221); -fx-background-color: white;">
                <children>
-                  <Label layoutX="15.0" layoutY="15.0" text="Editing quiz : Thi giữa kỳ 2 môn Công nghệ " textFill="#c71d1d">
+                  <Label fx:id="labelQuizName" layoutX="15.0" layoutY="15.0" text="Editing quiz : Thi giữa kỳ 2 môn Công nghệ " textFill="#c71d1d">
                      <font>
                         <Font name="Arial" size="24.0" />
                      </font>
@@ -77,7 +77,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Text layoutX="105.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="67">
+                  <Text fx:id="textNumQuestions" layoutX="105.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="67">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -114,12 +114,12 @@
                      </font>
                   </Label>
                   <VBox fx:id="questionBox" layoutX="4.0" layoutY="235.0" prefHeight="354.0" prefWidth="915.0" />
-                  <Text layoutX="864.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="67.00">
+                  <Text fx:id="textMark" layoutX="864.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="67.00">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Text>
-                  <Button layoutX="20.0" layoutY="95.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="135.0" style="-fx-background-color: #009FE5;" text="REPAGINATE" textFill="WHITE">
+                  <Button fx:id="t" layoutX="20.0" layoutY="95.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="135.0" style="-fx-background-color: #009FE5;" text="REPAGINATE" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font>

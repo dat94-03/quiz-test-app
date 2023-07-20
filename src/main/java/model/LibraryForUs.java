@@ -12,9 +12,17 @@ public class LibraryForUs {
             item.setExpanded(true);
             for(Category tmp : category.subCategories){
 //                System.out.println(tmp);
-                TreeItem<String> tmpItem = new TreeItem<>(tmp.categoryName + " (" + tmp.numQuestions + ")");
-                accessChildrenTreeView(tmp, tmpItem);
-                item.getChildren().add(tmpItem);
+                if(tmp.numQuestions == 0){
+                    TreeItem<String> tmpItem = new TreeItem<>(tmp.categoryName );
+                    accessChildrenTreeView(tmp, tmpItem);
+                    item.getChildren().add(tmpItem);
+                }
+                else{
+                    TreeItem<String> tmpItem = new TreeItem<>(tmp.categoryName + " (" + tmp.numQuestions + ")");
+                    accessChildrenTreeView(tmp, tmpItem);
+                    item.getChildren().add(tmpItem);
+                }
+
             }
         }
     }

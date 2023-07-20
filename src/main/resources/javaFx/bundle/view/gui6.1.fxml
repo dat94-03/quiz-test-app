@@ -80,12 +80,12 @@
                   <Image url="@../../../Img.img/setting%20dropdown.png" />
                </image>
             </ImageView>
-            <Label layoutX="663.0" layoutY="102.0" prefHeight="27.0" prefWidth="144.0" text="Time limit: 1 hour">
+            <Label fx:id="labelTimeLimit" layoutX="639.0" layoutY="102.0" prefHeight="27.0" prefWidth="204.0" text="Time limit: 1 hour">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="31.0" layoutY="203.0" prefHeight="30.0" prefWidth="367.0" text="Summary of your previous attempts" textFill="#c71d1d">
+            <Label layoutX="31.0" layoutY="203.0" prefHeight="35.0" prefWidth="395.0" text="Summary of your previous attempts" textFill="#c71d1d">
                <font>
                   <Font size="24.0" />
                </font>

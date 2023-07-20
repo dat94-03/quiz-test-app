@@ -97,13 +97,15 @@ public class AddQuestion implements Initializable {
             answerChoice[i - 1] = textChoice[i].getText();
 
             if(selectPercent[i] != null){
-                if(selectPercent[i].getValue().equals("100%")){
+                if(selectPercent[i].getValue().equals("100%")) {
                     rightAnswer += textChoice[i].getText(0, 1) + ", ";
                     existCorrectAnswer = true;
                 }
             }
         }
-
+        if(rightAnswer.length() > 0){
+            rightAnswer = rightAnswer.substring(0, rightAnswer.length() - 2);
+        }
         if(questionText.getText().equals("")){
             isHaveText = false;
             Alert isFormatQuestionRight = new Alert(Alert.AlertType.ERROR);

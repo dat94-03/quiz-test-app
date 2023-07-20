@@ -35,7 +35,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Button layoutX="5.0" layoutY="-13.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="126.0" style="-fx-background-color: none;" text="IT" textFill="#c71d1d">
+                  <Button layoutX="5.0" layoutY="-13.0" mnemonicParsing="false" onAction="#switchToGUIHome" prefHeight="83.0" prefWidth="126.0" style="-fx-background-color: none;" text="IT" textFill="#c71d1d">
                      <font>
                         <Font name="Tahoma" size="40.0" />
                      </font>

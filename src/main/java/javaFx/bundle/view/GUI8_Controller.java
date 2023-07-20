@@ -9,14 +9,12 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Cursor;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.SnapshotParameters;
+import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -47,6 +45,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+//import com.itextpdf.text.Document;
+//import com.itextpdf.text.DocumentException;
+//import com.itextpdf.text.Paragraph;
+//import com.itextpdf.text.pdf.PdfWriter;
 
 public class GUI8_Controller implements Initializable {
     private Stage stage;
@@ -184,6 +187,8 @@ public class GUI8_Controller implements Initializable {
             if(question.getQuestionMedia().get(0) != null){
                 if(question.getQuestionMedia().get(0).mediaType.equals("V") == false){
                     ImageView imageView = new ImageView(new Image(question.getQuestionMedia().get(0).mediaFile.toURI().toString()));
+                    imageView.setFitWidth(300);
+                    imageView.setFitHeight(300);
                     contentBox.getChildren().addAll(imageView);
                 }
             }
@@ -197,12 +202,16 @@ public class GUI8_Controller implements Initializable {
             for (String choice : question.choices){
                 RadioButton option = new RadioButton(choice);
                 option.setFont(Font.font(14.0));
+                option.setWrapText(true);
+                option.setMaxWidth(580);
                 option.setToggleGroup(answerGroup);
                 contentBox.getChildren().add(option);
                 if(hasImage == true){
                     if(question.getQuestionMedia().get(count) != null){
-                        if(question.getQuestionMedia().get(count).mediaType.equals("V")){
+                        if(question.getQuestionMedia().get(count).mediaType.equals("V") == false){
                             ImageView imageView = new ImageView(new Image(question.getQuestionMedia().get(count).mediaFile.toURI().toString()));
+                            imageView.setFitWidth(100);
+                            imageView.setFitHeight(100);
                             contentBox.getChildren().addAll(imageView);
                         }
                     }
@@ -214,11 +223,15 @@ public class GUI8_Controller implements Initializable {
             for (String choice : question.choices){
                 CheckBox option = new CheckBox(choice);
                 option.setFont(Font.font(14.0));
+                option.setWrapText(true);
+                option.setMaxWidth(580);
                 contentBox.getChildren().add(option);
                 if(hasImage == true){
                     if(question.getQuestionMedia().get(count) != null){
-                        if(question.getQuestionMedia().get(count).mediaType.equals("V")){
+                        if(question.getQuestionMedia().get(count).mediaType.equals("V") == false){
                             ImageView imageView = new ImageView(new Image(question.getQuestionMedia().get(count).mediaFile.toURI().toString()));
+                            imageView.setFitWidth(100);
+                            imageView.setFitHeight(100);
                             contentBox.getChildren().addAll(imageView);
                         }
                     }
@@ -238,6 +251,8 @@ public class GUI8_Controller implements Initializable {
     }
 
     public void exportPDF() throws IOException {
+        String password = new String("Ababa");
+
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Lưu file PDF");
         fileChooser.getExtensionFilters().add(
@@ -248,20 +263,13 @@ public class GUI8_Controller implements Initializable {
 
         String output = fileToSave.getAbsolutePath();
 
-//        String output = "D:\\Java\\Output.pdf";
         PdfWriter writer = new PdfWriter(output);
-
-//        {
-//            try {
-//                writer = new PdfWriter(new FileOutputStream(output));
-//            } catch (FileNotFoundException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
 
         PdfDocument pdfDocument = new PdfDocument(writer);
 
         Document document = new Document(pdfDocument, PageSize.A4);
+
+//        writer.setEncryption(password.getBytes(), password.getBytes(), PdfWriter.ALLOW_PRINTING, PdfWriter.ENCRYPTION_AES_128);
 
         document.setMargins(50, 50, 50, 50);
         // Khởi tạo VBox và lấy kích thước của nó
@@ -285,5 +293,12 @@ public class GUI8_Controller implements Initializable {
             startY += 1240;
         }
         document.close();
+    }
+    public void switchToGUIHome(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

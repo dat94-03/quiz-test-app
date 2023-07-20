@@ -49,10 +49,21 @@ public class GUI64 implements Initializable {
     private AnchorPane menuPane ;
     @FXML
     private CheckBox shuffleQuestion;
+    @FXML
+    private Text textNumQuestions;
+    @FXML
+    private Text textMark;
+    @FXML
+    private Label labelQuizName;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        labelQuizName.setText(currentQuiz.quizName);
         idQuestionsForQuiz = LibraryForUs.getQuestionIdFromQuiz(currentQuiz);
+        textNumQuestions.setText("" + idQuestionsForQuiz.size());
+        double mark =  idQuestionsForQuiz.size() * 1.0;
+        textMark.setText(String.format("%.2f",mark));
+
         QuestionManage questionManage = null;
         try {
             questionManage = new QuestionManage();
@@ -61,21 +72,6 @@ public class GUI64 implements Initializable {
         }
 
         drawQuestionInVBox();
-
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("questionsinGUI6.4.fxml"));
-//            VBox fxmlVBox = new VBox();
-//            try {
-//                fxmlVBox = loader.load();
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//            QuestioninEditingquiz questioninEditingquiz = loader.getController() ;
-//            questioninEditingquiz.setNumber(String.valueOf(i));
-//            questioninEditingquiz.setQuestion(String.valueOf(i));
-//            questionBox.getChildren().add(fxmlVBox) ;
-//
-//        }
-//        questionBox.setSpacing(5) ;
     }
 
     public void saveQuestions(ActionEvent event) throws IOException {
@@ -165,12 +161,6 @@ public class GUI64 implements Initializable {
 
             Label questionLabel = new Label(QuestionManage.questionsList.get(j).title);
             questionLabel.setFont(Font.font(18));
-//            Text text1 = new Text(question.title + " ");
-//            text1.setFont(Font.font("System", FontWeight.BOLD, 18));
-//            Text text2 = new Text(question.title);
-//            text2.setFont(Font.font("System", FontWeight.NORMAL, 18));
-//            TextFlow textFlow = new TextFlow(text1, text2);
-//            questionLabel.setGraphic(textFlow);
             questionLabel.setPrefHeight(46);
             questionLabel.setPrefWidth(531);
             questionLabel.setFont(Font.font(18));
@@ -248,10 +238,10 @@ public class GUI64 implements Initializable {
             vBoxesQuestion.add(vBox);
 
             questionBox.getChildren().add(vBoxesQuestion.get(i - 1)) ;
-
             i++;
         }
     }
+
 }
 
 

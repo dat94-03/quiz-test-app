@@ -120,17 +120,12 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label layoutX="364.0" layoutY="57.0" prefHeight="30.0" prefWidth="134.0" text="General" textFill="#c71d1d">
+                  <Label layoutX="364.0" layoutY="57.0" prefHeight="30.0" prefWidth="134.0" text="General  /  " textFill="#c71d1d">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="439.0" layoutY="57.0" prefHeight="30.0" prefWidth="291.0" text="/  Thi giữa kỳ 2 môn Công nghệ    /" textFill="#c71d1d">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="738.0" layoutY="57.0" prefHeight="30.0" prefWidth="134.0" text="Edit quiz" textFill="#c71d1d">
+                  <Label fx:id="labelNameQuiz" layoutX="462.0" layoutY="57.0" prefHeight="30.0" prefWidth="268.0" text="Thi giữa kỳ 2 môn Công nghệ    /" textFill="#c71d1d">
                      <font>
                         <Font size="18.0" />
                      </font>

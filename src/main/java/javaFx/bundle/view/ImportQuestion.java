@@ -32,7 +32,7 @@ public class ImportQuestion implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    private String pathToFile = new String();
+    private String pathToFile = new String("");
     @FXML
     private Button chooseAFileButton;
     @FXML
@@ -83,7 +83,7 @@ public class ImportQuestion implements Initializable {
                 System.out.println(pathToFile);
             }
     }
-    public void dragAndDropFile(ActionEvent event){
+    public void dragAndDropFile(){
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Drag and drop File");
             FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Word Documents", "*.docx");
@@ -131,7 +131,8 @@ public class ImportQuestion implements Initializable {
         QuestionManage questionManage = null;
         try {
             questionManage = new QuestionManage();
-            questionManage.importQuestions(pathToFile, QuestionBankTree.fullyCategory);
+            if(!pathToFile.equals(""))
+                questionManage.importQuestions(pathToFile, QuestionBankTree.fullyCategory);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
@@ -145,7 +146,7 @@ public class ImportQuestion implements Initializable {
         stage.show();
     }
     public void switchToQuestionBank(MouseEvent event) throws IOException {
-//        root = FXMLLoader.load(getClass().getResource("QuestionBank.fxml"));
+        root = FXMLLoader.load(getClass().getResource("QuestionBank.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

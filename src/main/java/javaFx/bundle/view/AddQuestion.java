@@ -93,7 +93,6 @@ public class AddQuestion implements Initializable {
 
         for(int i = 3; i < indexChoice; i++){
             if(textChoice[i] == null)   continue;
-//            System.out.println(Choice[i].getText());
             answerChoice[i - 1] = textChoice[i].getText();
 
             if(selectPercent[i] != null){
@@ -128,7 +127,6 @@ public class AddQuestion implements Initializable {
 //            Add question to database
             Question newQuestion = new Question(++currentID, QuestionBankTree.fullyCategory, questionText.getText() , rightAnswer, answerChoices.toArray(answerChoices.toArray(new String[0])));
             questionManage.addQuestion(newQuestion);
-            System.out.println(newQuestion);
 
 //           update number question of current category
             QuestionBankTree.currentCategory = LibraryForUs.updateNumberQuestion(QuestionBankTree.currentCategory, 1);
@@ -175,7 +173,6 @@ public class AddQuestion implements Initializable {
 
         for(int i = 3; i < indexChoice; i++){
             if(textChoice[i] == null)   continue;
-//            System.out.println(Choice[i].getText());
             answerChoice[i - 1] = textChoice[i].getText();
 
             if(selectPercent[i] != null){
@@ -201,7 +198,6 @@ public class AddQuestion implements Initializable {
 
         if(existCorrectAnswer == true && isHaveText == true){
             Question newQuestion = new Question(++currentID, QuestionBankTree.fullyCategory, questionText.getText() , rightAnswer, answerChoice);
-            System.out.println(newQuestion);
             questionManage.addQuestion(newQuestion);
         }
     }

@@ -71,8 +71,6 @@ public class EditQuestion implements Initializable {
         try {
             if (currentQuestion.getPathQuestionMedia() != null){
                 stringMedia = currentQuestion.getPathQuestionMedia().toArray(new String[0]);
-//                System.out.println("Day la");
-//                System.out.println(stringMedia);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -238,6 +236,11 @@ public class EditQuestion implements Initializable {
                 flagCorectAnswer = true;
             }
         }
+        if(currentQuestion.correctAnswer.length() > 0){
+            currentQuestion.correctAnswer = currentQuestion.correctAnswer.substring(0,
+                    currentQuestion.correctAnswer.length() - 2);
+        }
+
 
         if((flagTitle == true) && (flagChoices >= 2) && (flagCorectAnswer == true)){
             QuestionManage questionManage = new QuestionManage();
@@ -351,7 +354,6 @@ public class EditQuestion implements Initializable {
         for(String str : stringMedia){
             tmp.append(str).append("\n");
         }
-//        System.out.println("Day la tmp: \n" + tmp);
         currentQuestion.addQuestionMedia(tmp.toString());
 
        VBox previewRoot = new VBox();
@@ -361,7 +363,6 @@ public class EditQuestion implements Initializable {
        }
        else {
            if(currentQuestion.getQuestionMedia().get(0).mediaType.equals("V")){
-               System.out.println("Video se duoc in ra");
                File file = currentQuestion.getQuestionMedia().get(0).mediaFile;
                Media media = new Media(file.toURI().toString());
                MediaPlayer mediaPlayer = new MediaPlayer(media);

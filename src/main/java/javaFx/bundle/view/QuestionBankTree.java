@@ -80,7 +80,6 @@ public class QuestionBankTree implements Initializable {
                 GUI1_1_Controller.isSelectedCategory = true;
                 currentCategory = selectedItem.getValue();
                 fullyCategory = LibraryForUs.getFullyCategory(selectedItem);
-                System.out.println(fullyCategory);
             }
             switchToScene("QuestionList.fxml");
         });

@@ -13,6 +13,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -32,6 +35,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.*;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -52,6 +56,8 @@ public class Gui7_3 implements Initializable {
     private ArrayList<Double> questionHeight = new ArrayList<>();
     private double sumQuestionHeight = 0;
     private boolean isCalculateHeight = false;
+
+
     private Boolean isPlay = false;
     @FXML
     private Text hour ;
@@ -77,6 +83,8 @@ public class Gui7_3 implements Initializable {
     Integer currSecond = currentQuiz.timeLimit ;
     LocalDateTime currentDateTime = LocalDateTime.now();
     LocalDateTime time = currentDateTime ;
+    Integer currSec = currSecond;
+
 
     public void startCountdown() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy, h:mm a");
@@ -98,6 +106,7 @@ public class Gui7_3 implements Initializable {
                                 DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy, h:mm a");
                                 String formattedDateTime2 = time.format(formatter2);
                                 quizInExam.endExam = formattedDateTime2;
+                                exportTime(currSec - currSecond);
                             }
                             Platform.runLater(new Runnable() {
                                 @Override
@@ -118,8 +127,6 @@ public class Gui7_3 implements Initializable {
                         }
                         currSecond -= 1 ;
                         Thread.sleep(1000);
-
-
                     }
                 } catch (Exception e) {
 
@@ -137,8 +144,6 @@ public class Gui7_3 implements Initializable {
             return   "0" + String.valueOf(a) ;
         else  return String.valueOf(a) ;
     }
-
-
     void setOutput() {
         LinkedList<Integer> currHms = secondsToHms(currSecond) ;
         hour.setText(changeint(currHms.get(0)));
@@ -160,7 +165,8 @@ public class Gui7_3 implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         quizInExam.deleteData();
-        labelNameQuiz.setText("/ " + currentQuiz.quizName + " / ");
+        String str = currentQuiz.quizName.trim();
+        labelNameQuiz.setText("/ " + str + "  /  Preview" );
 
         QuestionManage questionManage = null;
         try {
@@ -498,7 +504,6 @@ public class Gui7_3 implements Initializable {
         scrollPane.setVvalue(vValue);
     }
 
-
     // Xử lý sự kiện khi chọn một câu trả lời
     private void handleAnswerSelection(int questionIndex) {
         Button targetButton = (Button) vBoxNav.lookup("#button" + questionIndex);
@@ -527,6 +532,7 @@ public class Gui7_3 implements Initializable {
 
     public void switchTo7_4(MouseEvent event) throws IOException, InterruptedException {
         calculateAttempt();
+        exportTime(currSec - currSecond);
 //      switch to GUI 7.4
         root = FXMLLoader.load(getClass().getResource("Gui7_4.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -576,7 +582,6 @@ public class Gui7_3 implements Initializable {
                                 else {
                                     int tmp = 0;
                                     int numberCorrectAns = question.multipleAnswer.size();
-                                    System.out.println(question.multipleAnswer);
                                     boolean isUserRight = true;
                                     String userSelect = new String("");
                                     String correctAns = question.correctAnswer;
@@ -597,7 +602,6 @@ public class Gui7_3 implements Initializable {
                                     }
                                     if(flag == false)   quizInExam.userChoice.add(null);
                                     else    quizInExam.userChoice.add(userSelect);
-//                                    System.out.println("tmp la : " + tmp + ", numberCorrect la : " + numberCorrectAns);
                                     if(isUserRight && (tmp == numberCorrectAns)){
                                         quizInExam.userPoint = quizInExam.userPoint + 1;
                                         quizInExam.correctQuestions.add(idQues);
@@ -629,5 +633,10 @@ public class Gui7_3 implements Initializable {
         }
     }
 
+    public void exportTime(int a){
+        int min = a/60;
+        int sec = a % 60;
+        quizInExam.timeTaken = "" + min + " min " + sec + " seconds";
+    }
 }
 

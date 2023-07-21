@@ -115,7 +115,6 @@ public class QuestionList implements Initializable{
                 displayTreeViewOff();
                 QuestionBankTree.currentCategory = selectedItem.getValue();
                 QuestionBankTree.fullyCategory = LibraryForUs.getFullyCategory(selectedItem);
-                System.out.println(QuestionBankTree.fullyCategory);
                 categoryLabel.setText("  " + QuestionBankTree.currentCategory);
             }
             try {

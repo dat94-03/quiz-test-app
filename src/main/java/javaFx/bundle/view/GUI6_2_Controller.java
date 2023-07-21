@@ -26,15 +26,17 @@ public class GUI6_2_Controller implements Initializable {
 
     @FXML
     private Label label;
-
     @FXML
     private ListView<Label> addListView;
     @FXML
     private Label labelAdd;
+    @FXML
+    private Label labelNameQuiz;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        label.setText("Editing quiz:" + GUI1_1_Controller.currentQuiz.quizName);
+        label.setText("Editing quiz: " + GUI1_1_Controller.currentQuiz.quizName);
+        labelNameQuiz.setText(GUI1_1_Controller.currentQuiz.quizName + "  /  Edit Quiz");
 
         boolean flag = false;
         Label label1 = getItem(choices[0]);

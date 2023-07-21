@@ -294,13 +294,11 @@ public class GUI6_5_Controller implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 int numberQuesRandom = (int)comboBox.getValue();
-                System.out.println(numberQuesRandom);
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setContentText("Do you want to import random " + numberQuesRandom + " question");
 
                 if(alert.showAndWait().get() == ButtonType.OK){
                     Collections.shuffle(idQuestionInCate);
-//                    System.out.println("Id question in Cate la : " + idQuestionInCate );
 //                    ArrayList<Integer> tmp = (ArrayList<Integer>) idQuestionInCate.subList(0, numberQuesRandom - 1);
                     int demtam = 0;
                     for(int t : idQuestionInCate){

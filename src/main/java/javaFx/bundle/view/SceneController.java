@@ -57,13 +57,6 @@ public class SceneController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-   public void switchToAddNewQuiz(ActionEvent event) throws  IOException {
-       root = FXMLLoader.load(getClass().getResource("AddNewQuiz.fxml"));
-       stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-       scene = new Scene(root);
-       stage.setScene(scene);
-       stage.show();
-   }
     public void switchToCategory(MouseEvent event) throws  IOException {
         root = FXMLLoader.load(getClass().getResource("AddingCategory.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -85,15 +78,8 @@ public class SceneController implements Initializable {
             alert.showAndWait();
         }
     }
-    public void switchTo7(ActionEvent event) throws  IOException {
-        root = FXMLLoader.load(getClass().getResource("Gui7_3.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-    public void switchToGUI6_1(MouseEvent event) throws IOException{
-        root = FXMLLoader.load(getClass().getResource("gui6.1.fxml"));
+    public void switchToAddNewQuiz(ActionEvent event) throws  IOException {
+        root = FXMLLoader.load(getClass().getResource("AddNewQuiz.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

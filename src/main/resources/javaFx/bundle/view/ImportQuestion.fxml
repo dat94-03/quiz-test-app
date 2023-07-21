@@ -103,7 +103,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button fx:id="dragDropButton" layoutX="632.0" layoutY="381.0" mnemonicParsing="false" onAction="#dragAndDropFile" opacity="0.0" prefHeight="57.0" prefWidth="63.0" text="Button">
+            <Button fx:id="dragDropButton" layoutX="613.0" layoutY="381.0" mnemonicParsing="false" onAction="#dragAndDropFile" opacity="0.0" prefHeight="63.0" prefWidth="95.0" text="Button">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
@@ -115,7 +115,7 @@
                      </image>
                   </ImageView>
                </graphic></Label>
-            <ImageView fx:id="dropDown" fitHeight="55.0" fitWidth="48.0" layoutX="639.0" layoutY="388.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="dropDown" fitHeight="55.0" fitWidth="48.0" layoutX="639.0" layoutY="388.0" onMouseClicked="#dragAndDropFile" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Img.img/darkblue-arrow.png" />
                </image>

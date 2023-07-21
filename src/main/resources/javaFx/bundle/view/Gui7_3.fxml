@@ -57,22 +57,18 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Label fx:id="labelNameQuiz" layoutX="451.0" layoutY="50.0" prefHeight="30.0" prefWidth="281.0" text="/  Thi giữa kì 2 môn Công Nghệ  /" textFill="#c71d1d">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Label>
-                  <Label layoutX="733.0" layoutY="48.0" prefHeight="35.0" prefWidth="302.0" text="Preview" textFill="#c71d1d">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Label>
+                  <HBox layoutX="438.0" layoutY="44.0" prefHeight="40.0" prefWidth="425.0">
+                     <children>
+                        <Label fx:id="labelNameQuiz" prefHeight="38.0" prefWidth="281.0" text="/  Thi giữa kì 2 môn Công Nghệ  /" textFill="#c71d1d">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
             </AnchorPane>
             <HBox prefHeight="605.0" prefWidth="1038.0">

@@ -51,7 +51,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="666.0" layoutY="137.0" mnemonicParsing="false" onAction="#switchToQuestionBank" prefHeight="43.0" prefWidth="179.0" style="-fx-background-color: #0073A5;" text="TURN EDITING ON" textFill="WHITE">
+            <Button layoutX="666.0" layoutY="137.0" mnemonicParsing="false" onAction="#switchToAddNewQuiz" prefHeight="43.0" prefWidth="179.0" style="-fx-background-color: #0073A5;" text="TURN EDITING ON" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

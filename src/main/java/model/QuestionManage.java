@@ -192,7 +192,6 @@ public class QuestionManage {
 //
             if(text.length() == 0)  continue; // skip space line
 
-//            System.out.println("Dong nay la : " + text);
 //                if text is title
             if(flag == 0){
                 if((text.charAt(6) != ':')){
@@ -205,7 +204,7 @@ public class QuestionManage {
                     continue;
                 }
                 else {
-                    System.out.println("This is error 1");
+//                    System.out.println("This is error 1");
                     tmp = text;
                     isAiken = false;
                     break;
@@ -218,7 +217,7 @@ public class QuestionManage {
                     continue;
                 }
                 else {
-                    System.out.println("This is error 2");
+//                    System.out.println("This is error 2");
                     tmp = text;
                     isAiken = false;
                     break;
@@ -231,8 +230,7 @@ public class QuestionManage {
                     continue;
                 }
                 else {
-                    System.out.println(text);
-                    System.out.println("This is error 3");
+//                    System.out.println("This is error 3");
                     tmp = text;
                     isAiken = false;
                     break;
@@ -246,7 +244,7 @@ public class QuestionManage {
             }
 //                else : break loop, announce paragraph i is wrong in aiken format
             else {
-                System.out.println("This is error 4");
+//                System.out.println("This is error 4");
                 tmp = text;
                 isAiken = false;
                 break;
@@ -256,7 +254,7 @@ public class QuestionManage {
         if(flag != 0)   isAiken = false;
 
         if(isAiken ){
-            System.out.println("Success " + numQuestion);
+//            System.out.println("Success " + numQuestion);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Success " + numQuestion);
             alert.showAndWait();

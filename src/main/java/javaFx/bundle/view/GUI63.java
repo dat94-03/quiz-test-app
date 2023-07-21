@@ -57,9 +57,13 @@ public class GUI63 implements Initializable {
     public Button button;
     @FXML
     private CheckBox showQuesSubCate;
+    @FXML
+    private Label labelNameQuiz;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        labelNameQuiz.setText(currentQuiz.quizName + "  /  Edit Quiz");
+
         treeView.setStyle("-fx-font-size: 16px;");
         treeView.setShowRoot(false);
 

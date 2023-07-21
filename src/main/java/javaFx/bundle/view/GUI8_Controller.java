@@ -65,7 +65,7 @@ public class GUI8_Controller implements Initializable {
     private ScrollPane scrollPane;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        labelNameQuiz.setText("/ " + currentQuiz.quizName + " / ");
+        labelNameQuiz.setText("/ " + currentQuiz.quizName + "  /  Preview");
         QuestionManage questionManage = null;
         try {
             questionManage = new QuestionManage();

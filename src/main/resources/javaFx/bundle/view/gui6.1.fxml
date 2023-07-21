@@ -29,12 +29,12 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="389.0" layoutY="73.0" prefHeight="30.0" prefWidth="92.0" text="/   General   /" textFill="#c71d1d">
+            <Label layoutX="389.0" layoutY="73.0" prefHeight="30.0" prefWidth="108.0" text="/   General   /" textFill="#c71d1d">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="495.0" layoutY="73.0" prefHeight="30.0" prefWidth="259.0" text="Thi thử giữa kỳ 2 môn Công nghệ" textFill="#c71d1d">
+            <Label fx:id="labelNameQuiz" layoutX="506.0" layoutY="73.0" prefHeight="30.0" prefWidth="364.0" text="Thi thử giữa kỳ 2 môn Công nghệ" textFill="#c71d1d">
                <font>
                   <Font size="18.0" />
                </font>

@@ -58,11 +58,15 @@ public class Gui7_4 implements Initializable {
     private ScrollPane scrollPane;
     @FXML
     private Label labelNameQuiz;
+    @FXML
+    private Label labelTimeTaken;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println(quizInExam.timeTaken);
         labelStartQUiz.setText(quizInExam.startExam);
         labelFinishQuiz.setText(quizInExam.endExam);
+        labelTimeTaken.setText(quizInExam.timeTaken);
 
         double userPoint = quizInExam.userPoint;
         double maxPoint = quizInExam.maxPoint;
@@ -75,8 +79,7 @@ public class Gui7_4 implements Initializable {
         labelMark.setText(s1 + "/" + s2);
         labelGrade.setText(s3 + " out of 10.00(0%)");
 
-        System.out.println(quizInExam.userChoice);
-        labelNameQuiz.setText("/ " + currentQuiz.quizName + " / ");
+        labelNameQuiz.setText("/ " + currentQuiz.quizName + "  /  Preview");
 
         QuestionManage questionManage = null;
         try {

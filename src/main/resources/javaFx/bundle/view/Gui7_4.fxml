@@ -61,14 +61,6 @@
                                 <Cursor fx:constant="HAND" />
                             </cursor>
                         </Label>
-                        <Label layoutX="733.0" layoutY="48.0" prefHeight="35.0" prefWidth="302.0" text="Preview" textFill="#c71d1d">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                            <cursor>
-                                <Cursor fx:constant="HAND" />
-                            </cursor>
-                        </Label>
                     </children>
                 </AnchorPane>
                 <HBox prefHeight="605.0" prefWidth="1038.0">
@@ -163,7 +155,7 @@
                                                                 <Insets right="10.0" top="5.0" />
                                                             </padding>
                                                         </Label>
-                                                        <Label contentDisplay="RIGHT" layoutX="10.0" layoutY="50.0" prefHeight="25.0" prefWidth="689.0" style="-fx-background-color: #F7F7F7;" text="1 min 27 secs">
+                                                        <Label fx:id="labelTimeTaken" contentDisplay="RIGHT" layoutX="10.0" layoutY="50.0" prefHeight="25.0" prefWidth="689.0" style="-fx-background-color: #F7F7F7;" text="1 min 27 secs">
                                                             <font>
                                                                 <Font name="Arial" size="16.0" />
                                                             </font>

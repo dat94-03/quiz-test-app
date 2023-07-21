@@ -191,12 +191,13 @@ public class GUI6_1_Controller implements Initializable{
         root.getChildren().add(cancelButton) ;
 
         Button exportButton = new Button("EXPORT") ;
-        exportButton.setLayoutX(615);
-        exportButton.setLayoutY(311);
+        exportButton.setLayoutX(590);
+        exportButton.setLayoutY(292.0);
         exportButton.setMnemonicParsing(false);
-        exportButton.setPrefHeight(39);
-        exportButton.setPrefWidth(109);
-        exportButton.setStyle("-fx-background-color: #5aea57");
+        exportButton.setPrefHeight(59.0);
+        exportButton.setPrefWidth(134.0);
+        exportButton.setFont(font2);
+        exportButton.setStyle("-fx-background-color: #59da95");
         exportButton.setTextFill(Color.web("#ececec"));
         exportButton.setFont(Font.font(18));
         exportButton.setCursor(Cursor.HAND);

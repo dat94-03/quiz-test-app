@@ -1,17 +1,15 @@
 package javaFx.bundle.view;
 
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import model.Question;
 import model.QuestionManage;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
 public class QuizTestApplication extends Application {
@@ -28,6 +26,7 @@ public class QuizTestApplication extends Application {
         stage.getIcons().add(image);
         stage.show();
     }
+
     public static void main(String[] args) throws IOException, InvalidFormatException {
         String[] userName = {"Đức Huy", "Tiến Đạt", "Đình Trường", "Minh Tuấn", "Hồng Quân"};
         Random random = new Random();

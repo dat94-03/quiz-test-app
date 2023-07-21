@@ -175,6 +175,102 @@ public class QuestionManage {
     }
 
     //check if a file is in Aiken format, return boolean value
+    public boolean checkAikenFormatTxt(String path) throws IOException{
+        String tmp = new String();
+        int numQuestion = 0 , i = 0, flag = 0;
+        boolean isAiken = true;
+
+        FileReader fileReader = new FileReader(path);
+        int tam = fileReader.read();
+        String content = new String("");
+        while(tam != -1){
+            content = (content + (char) tam);
+            tam = fileReader.read();
+        }
+        String[] paragraphs = content.split("\n");
+        for(String paragraph : paragraphs){
+            i++;
+            String text = paragraph; // text get content of paragraph
+            text = text.trim();
+//
+            if(text.length() == 0)  continue; // skip space line
+
+//                if text is title
+            if(flag == 0){
+                if((text.charAt(6) != ':')){
+                    if((text.charAt(1) == '.') && (Character.isLetter(text.charAt(0)))){
+                        tmp = text;
+                        isAiken = false;
+                        break;
+                    }
+                    flag = 1;
+                    continue;
+                }
+                else {
+                    System.out.println("This is error 1");
+                    tmp = text;
+                    isAiken = false;
+                    break;
+                }
+            }
+//                if text start with "A."
+            else if(flag == 1){
+                if(text.startsWith("A.")){
+                    flag = 2;
+                    continue;
+                }
+                else {
+                    System.out.println("This is error 2");
+                    tmp = text;
+                    isAiken = false;
+                    break;
+                }
+            }
+//                if text start with "B." or "C.", "D.", ....
+            else if((flag == 2 || flag == 3) && (text.startsWith("ANSWER:") == false)){
+                if (text.charAt(1) == '.' && Character.isLetter(text.charAt(0))){
+                    flag = 3;
+                    continue;
+                }
+                else {
+                    System.out.println("This is error 3");
+                    tmp = text;
+                    isAiken = false;
+                    break;
+                }
+            }
+//                if text start with "ANSWER: ..."
+            else if(text.startsWith("ANSWER:") && flag == 3){
+                flag = 0;
+                numQuestion++;
+                continue;
+            }
+//                else : break loop, announce paragraph i is wrong in aiken format
+            else {
+                System.out.println("This is error 4");
+                tmp = text;
+                isAiken = false;
+                break;
+            }
+        }
+
+        if(flag != 0)   isAiken = false;
+
+        if(isAiken ){
+            System.out.println("Success " + numQuestion);
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setContentText("Success " + numQuestion);
+//            alert.showAndWait();
+        }
+        else {
+            System.out.println("Error at " + i + "\nContent Error : " + tmp);
+//            Alert alert = new Alert(Alert.AlertType.ERROR);
+//            alert.setContentText("Error at " + i + "\nContent Error : " + tmp);
+//            alert.showAndWait();
+        }
+        return isAiken;
+    }
+
     public boolean checkAikenFormat(String path) throws IOException {
         String tmp = new String();
         int numQuestion = 0 , i = 0, flag = 0;
